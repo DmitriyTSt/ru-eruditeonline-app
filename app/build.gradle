@@ -1,0 +1,81 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+apply from: '../config/quality/quality.gradle'
+apply from: '../dependencies.gradle'
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "ru.eruditeonline.app"
+        multiDexEnabled true
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring code_desugaring
+
+    implementation core_ktx
+    implementation appcompat
+    implementation material
+    implementation constraintlayout
+    implementation fragment_ktx
+    implementation multidex
+    implementation view_pager_2
+    implementation flexbox
+    implementation paging
+
+    implementation coroutines_core
+    implementation coroutines_android
+    implementation livedata_ktx
+    implementation lifecycle_process
+
+    implementation retrofit
+    implementation gson
+    implementation gson_converter
+
+    implementation navigation_fragment
+    implementation navigation_ui
+
+    implementation dagger
+    implementation dagger_android
+    implementation dagger_android_support
+    kapt dagger_android_processor
+    kapt dagger_compiler
+
+    implementation timber
+    implementation chucker
+
+    implementation chrometabs
+}
