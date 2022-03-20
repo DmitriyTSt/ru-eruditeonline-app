@@ -4,5 +4,4 @@ import dagger.Module
 import ru.eruditeonline.app.di.module.viewmodel.BaseViewModelModule
 
 @Module
-abstract class ViewModelModule : BaseViewModelModule() {
-}
+abstract class ViewModelModule : BaseViewModelModule()

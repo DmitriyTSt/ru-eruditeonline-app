@@ -4,10 +4,10 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
-import ru.eruditeonline.app.presentation.EruditeApplication
 import ru.eruditeonline.app.di.module.ActivityModule
 import ru.eruditeonline.app.di.module.ApplicationModule
 import ru.eruditeonline.app.di.module.FragmentModule
+import ru.eruditeonline.app.presentation.EruditeApplication
 import javax.inject.Singleton
 
 @Singleton

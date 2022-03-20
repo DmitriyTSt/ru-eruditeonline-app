@@ -5,7 +5,6 @@ import dagger.Binds
 import dagger.Module
 import ru.eruditeonline.app.di.util.ViewModelFactory
 
-
 @Module
 abstract class ViewModelFactoryModule {
     @Binds
