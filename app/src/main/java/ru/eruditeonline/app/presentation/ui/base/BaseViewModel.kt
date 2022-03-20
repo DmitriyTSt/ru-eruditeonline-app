@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import ru.eruditeonline.app.presentation.navigation.Destination
 
-class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel() {
     /** Навигации */
     private val _destinationLiveEvent = SingleLiveEvent<Destination>()
     val destinationLiveEvent: LiveData<Destination> = _destinationLiveEvent

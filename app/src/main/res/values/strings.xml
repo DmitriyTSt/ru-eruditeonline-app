@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Erudite.Online</string>
+    <string name="dashboard_menu_label">Dashboard</string>
+    <string name="competition_menu_label">Конкурсы</string>
+    <string name="rating_menu_label">Рейтинг</string>
+    <string name="profile_menu_label">Профиль</string>
 </resources>

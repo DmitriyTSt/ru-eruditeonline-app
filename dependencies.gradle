@@ -69,4 +69,7 @@ ext {
     // codeDesugaring for java.time on API < 26
     code_desugaring = "com.android.tools:desugar_jdk_libs:1.1.5"
 
+    // viewBinding delegate
+    viewbinding_delegate = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3"
+
 }

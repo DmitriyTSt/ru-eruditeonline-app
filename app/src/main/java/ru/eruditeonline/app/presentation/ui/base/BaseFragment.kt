@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
+abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 

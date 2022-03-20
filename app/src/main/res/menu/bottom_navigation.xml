@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dashboard_graph"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/dashboard_menu_label" />
+    <item
+        android:id="@+id/competition_graph"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/competition_menu_label" />
+    <item
+        android:id="@+id/rating_graph"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/rating_menu_label" />
+    <item
+        android:id="@+id/profile_graph"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/profile_menu_label" />
+</menu>

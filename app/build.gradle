@@ -56,6 +56,8 @@ dependencies {
     implementation flexbox
     implementation paging
 
+    implementation viewbinding_delegate
+
     implementation coroutines_core
     implementation coroutines_android
     implementation livedata_ktx

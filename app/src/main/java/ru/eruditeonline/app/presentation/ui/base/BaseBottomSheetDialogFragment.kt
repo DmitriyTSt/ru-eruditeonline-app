@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class BaseBottomSheetDialogFragment(@LayoutRes private val layoutRes: Int) : BottomSheetDialogFragment() {
+abstract class BaseBottomSheetDialogFragment(@LayoutRes private val layoutRes: Int) : BottomSheetDialogFragment() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 

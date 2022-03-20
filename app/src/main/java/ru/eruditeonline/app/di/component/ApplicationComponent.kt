@@ -7,6 +7,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import ru.eruditeonline.app.di.module.ActivityModule
 import ru.eruditeonline.app.di.module.ApplicationModule
 import ru.eruditeonline.app.di.module.FragmentModule
+import ru.eruditeonline.app.di.module.ViewModelModule
 import ru.eruditeonline.app.presentation.EruditeApplication
 import javax.inject.Singleton
 
@@ -17,6 +18,7 @@ import javax.inject.Singleton
         ApplicationModule::class,
         ActivityModule::class,
         FragmentModule::class,
+        ViewModelModule::class,
     ]
 )
 interface ApplicationComponent : AndroidInjector<EruditeApplication> {

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
-class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
