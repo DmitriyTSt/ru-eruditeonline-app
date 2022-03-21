@@ -4,4 +4,6 @@
     <string name="competition_menu_label">Конкурсы</string>
     <string name="rating_menu_label">Рейтинг</string>
     <string name="profile_menu_label">Профиль</string>
+    <string name="error_paging">Ошибка. Попробуйте обновить</string>
+    <string name="error_retry">Повторить</string>
 </resources>
