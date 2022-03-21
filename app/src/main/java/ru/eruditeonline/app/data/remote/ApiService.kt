@@ -7,6 +7,7 @@ import retrofit2.http.Path
 import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
 import ru.eruditeonline.app.data.remote.response.CompetitionItemData
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
+import ru.eruditeonline.app.data.remote.response.CompetitionTestData
 import ru.eruditeonline.app.data.remote.response.ObjectResponse
 
 interface ApiService {
@@ -15,4 +16,7 @@ interface ApiService {
 
     @GET("competition/item/{id}")
     fun getCompetitionItem(@Path("id") id: String): ObjectResponse<CompetitionItemData>
+
+    @GET("competition/test/{id}")
+    fun getCompetitionTest(@Path("id") id: String): ObjectResponse<CompetitionTestData>
 }
