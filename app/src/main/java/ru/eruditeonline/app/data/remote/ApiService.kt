@@ -4,6 +4,8 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
+import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
 import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
 import ru.eruditeonline.app.data.remote.response.CompetitionItemData
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
@@ -12,11 +14,14 @@ import ru.eruditeonline.app.data.remote.response.ObjectResponse
 
 interface ApiService {
     @POST("competition/items")
-    fun getCompetitionItems(@Body params: CompetitionItemsParams): ObjectResponse<CompetitionItemsResponse>
+    suspend fun getCompetitionItems(@Body params: CompetitionItemsParams): ObjectResponse<CompetitionItemsResponse>
 
     @GET("competition/item/{id}")
-    fun getCompetitionItem(@Path("id") id: String): ObjectResponse<CompetitionItemData>
+    suspend fun getCompetitionItem(@Path("id") id: String): ObjectResponse<CompetitionItemData>
 
     @GET("competition/test/{id}")
-    fun getCompetitionTest(@Path("id") id: String): ObjectResponse<CompetitionTestData>
+    suspend fun getCompetitionTest(@Path("id") id: String): ObjectResponse<CompetitionTestData>
+
+    @POST("competition/check")
+    suspend fun checkTest(@Body params: CompetitionCheckParams): ObjectResponse<ApiTempResult>
 }
