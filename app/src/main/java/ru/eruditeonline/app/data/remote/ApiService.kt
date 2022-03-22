@@ -5,9 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
-import ru.eruditeonline.app.data.remote.model.result.ApiTestUserResultRow
 import ru.eruditeonline.app.data.remote.model.test.ApiCreatedResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
+import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResultRow
 import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
 import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
 import ru.eruditeonline.app.data.remote.params.ResultSaveParams
@@ -17,6 +17,7 @@ import ru.eruditeonline.app.data.remote.response.CompetitionTestData
 import ru.eruditeonline.app.data.remote.response.ListResponse
 import ru.eruditeonline.app.data.remote.response.ObjectResponse
 import ru.eruditeonline.app.data.remote.response.ProfileData
+import ru.eruditeonline.app.data.remote.response.TestUserResultResponse
 
 interface ApiService {
     @POST("competition/items")
@@ -44,4 +45,7 @@ interface ApiService {
         @Query("offset") offset: Int,
         @Query("limit") limit: Int,
     ): ListResponse<ApiTestUserResultRow>
+
+    @GET("results/{id}")
+    suspend fun getResult(@Path("id") id: String): ObjectResponse<TestUserResultResponse>
 }

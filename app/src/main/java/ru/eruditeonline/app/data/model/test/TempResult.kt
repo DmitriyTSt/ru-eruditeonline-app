@@ -6,7 +6,7 @@ class TempResult(
     /** Временный идентификатор прохождения теста */
     val id: String,
     /** Выбранные ответы */
-    val answers: List<TempResultAnswer>,
+    val answers: List<ResultAnswer>,
     /** Набранные баллы */
     val score: Score,
     /** Затраченное время, в секундах */

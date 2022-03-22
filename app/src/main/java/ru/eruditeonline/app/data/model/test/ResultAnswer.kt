@@ -1,6 +1,6 @@
 package ru.eruditeonline.app.data.model.test
 
-class TempResultAnswer(
+class ResultAnswer(
     /** Вопрос */
     val question: Question,
     /** Текст ответа */

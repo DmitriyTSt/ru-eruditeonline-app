@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.data.model.result
+package ru.eruditeonline.app.data.model.test
 
 import ru.eruditeonline.app.data.model.base.Score
 

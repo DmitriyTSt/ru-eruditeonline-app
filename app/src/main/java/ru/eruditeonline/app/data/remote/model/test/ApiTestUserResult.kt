@@ -1,9 +1,9 @@
-package ru.eruditeonline.app.data.remote.model.result
+package ru.eruditeonline.app.data.remote.model.test
 
 import com.google.gson.annotations.SerializedName
 import ru.eruditeonline.app.data.remote.model.base.ApiScore
 
-class ApiTestUserResultRow(
+class ApiTestUserResult(
     /** Идентификатор результата */
     @SerializedName("id") val id: String?,
     /** Дата прохождения */
@@ -18,4 +18,8 @@ class ApiTestUserResultRow(
     @SerializedName("place") val place: String?,
     /** Балл */
     @SerializedName("score") val score: ApiScore?,
+    /** Затраченное время */
+    @SerializedName("spentTime") val spentTime: Long?,
+    /** Ответы */
+    @SerializedName("answers") val answers: List<ApiResultAnswer?>?,
 )

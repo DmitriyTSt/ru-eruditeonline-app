@@ -2,7 +2,7 @@ package ru.eruditeonline.app.data.remote.model.test
 
 import com.google.gson.annotations.SerializedName
 
-class ApiTempResultAnswer(
+class ApiResultAnswer(
     /** Вопрос */
     @SerializedName("question") val question: Question?,
     /** Текст ответа */
