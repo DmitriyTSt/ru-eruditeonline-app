@@ -4,6 +4,8 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
+import ru.eruditeonline.app.data.remote.model.result.ApiTestUserResultRow
 import ru.eruditeonline.app.data.remote.model.test.ApiCreatedResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
 import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
@@ -12,6 +14,7 @@ import ru.eruditeonline.app.data.remote.params.ResultSaveParams
 import ru.eruditeonline.app.data.remote.response.CompetitionItemData
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
 import ru.eruditeonline.app.data.remote.response.CompetitionTestData
+import ru.eruditeonline.app.data.remote.response.ListResponse
 import ru.eruditeonline.app.data.remote.response.ObjectResponse
 import ru.eruditeonline.app.data.remote.response.ProfileData
 
@@ -33,4 +36,12 @@ interface ApiService {
 
     @GET("profile")
     suspend fun getProfile(): ObjectResponse<ProfileData>
+
+    @GET("user/results")
+    suspend fun getUserResults(
+        @Query("email") email: String?,
+        @Query("query") query: String?,
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
+    ): ListResponse<ApiTestUserResultRow>
 }
