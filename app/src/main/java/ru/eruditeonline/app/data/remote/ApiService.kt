@@ -4,9 +4,11 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import ru.eruditeonline.app.data.remote.model.test.ApiCreatedResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
 import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
 import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
+import ru.eruditeonline.app.data.remote.params.ResultSaveParams
 import ru.eruditeonline.app.data.remote.response.CompetitionItemData
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
 import ru.eruditeonline.app.data.remote.response.CompetitionTestData
@@ -24,4 +26,7 @@ interface ApiService {
 
     @POST("competition/check")
     suspend fun checkTest(@Body params: CompetitionCheckParams): ObjectResponse<ApiTempResult>
+
+    @POST("result/save")
+    suspend fun saveResult(@Body params: ResultSaveParams): ObjectResponse<ApiCreatedResult>
 }
