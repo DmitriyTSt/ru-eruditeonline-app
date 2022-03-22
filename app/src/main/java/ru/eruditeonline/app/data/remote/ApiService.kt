@@ -13,6 +13,7 @@ import ru.eruditeonline.app.data.remote.response.CompetitionItemData
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
 import ru.eruditeonline.app.data.remote.response.CompetitionTestData
 import ru.eruditeonline.app.data.remote.response.ObjectResponse
+import ru.eruditeonline.app.data.remote.response.ProfileData
 
 interface ApiService {
     @POST("competition/items")
@@ -29,4 +30,7 @@ interface ApiService {
 
     @POST("result/save")
     suspend fun saveResult(@Body params: ResultSaveParams): ObjectResponse<ApiCreatedResult>
+
+    @GET("profile")
+    suspend fun getProfile(): ObjectResponse<ProfileData>
 }
