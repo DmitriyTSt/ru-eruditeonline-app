@@ -5,11 +5,14 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import ru.eruditeonline.app.data.remote.model.rating.ApiRatingRow
 import ru.eruditeonline.app.data.remote.model.test.ApiCreatedResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
+import ru.eruditeonline.app.data.remote.model.test.ApiTestCommonResultRow
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResultRow
 import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
 import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
+import ru.eruditeonline.app.data.remote.params.RatingParams
 import ru.eruditeonline.app.data.remote.params.ResultSaveParams
 import ru.eruditeonline.app.data.remote.response.CompetitionItemData
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
@@ -48,4 +51,13 @@ interface ApiService {
 
     @GET("results/{id}")
     suspend fun getResult(@Path("id") id: String): ObjectResponse<TestUserResultResponse>
+
+    @GET("results")
+    suspend fun getCommonResults(
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
+    ): ListResponse<ApiTestCommonResultRow>
+
+    @POST("rating")
+    suspend fun getRating(@Body params: RatingParams): ListResponse<ApiRatingRow>
 }
