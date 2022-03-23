@@ -13,5 +13,5 @@ class ApiCompetitionTest(
     /** Возрастная категория */
     @SerializedName("ageCategoryTitle") val ageCategoryTitle: String?,
     /** Список вопросов */
-    @SerializedName("questions") val questions: List<ApiQuestion?>?,
+    @SerializedName("questions") val questions: List<ApiQuestion>?,
 )

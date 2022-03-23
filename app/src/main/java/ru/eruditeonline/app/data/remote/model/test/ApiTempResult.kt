@@ -7,7 +7,7 @@ class ApiTempResult(
     /** Временный идентификатор прохождения теста */
     @SerializedName("id") val id: String?,
     /** Выбранные ответы */
-    @SerializedName("answers") val answers: List<ApiResultAnswer?>?,
+    @SerializedName("answers") val answers: List<ApiResultAnswer>?,
     /** Набранные баллы */
     @SerializedName("score") val score: ApiScore?,
     /** Затраченное время, в секундах */
