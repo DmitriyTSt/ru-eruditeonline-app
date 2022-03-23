@@ -5,6 +5,8 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import ru.eruditeonline.app.data.remote.model.base.ApiCountry
+import ru.eruditeonline.app.data.remote.model.base.ApiDiploma
 import ru.eruditeonline.app.data.remote.model.rating.ApiRatingRow
 import ru.eruditeonline.app.data.remote.model.test.ApiCreatedResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
@@ -60,4 +62,10 @@ interface ApiService {
 
     @POST("rating")
     suspend fun getRating(@Body params: RatingParams): ListResponse<ApiRatingRow>
+
+    @GET("countries")
+    suspend fun getCountries(): ListResponse<ApiCountry>
+
+    @GET("diplomas")
+    suspend fun getDiplomas(): ListResponse<ApiDiploma>
 }
