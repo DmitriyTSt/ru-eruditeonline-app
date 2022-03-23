@@ -4,6 +4,10 @@ import dagger.Binds
 import dagger.Module
 import ru.eruditeonline.app.data.repository.AuthRepository
 import ru.eruditeonline.app.data.repository.AuthRepositoryImpl
+import ru.eruditeonline.app.data.repository.ProfileRepository
+import ru.eruditeonline.app.data.repository.ProfileRepositoryImpl
+import ru.eruditeonline.app.data.repository.RatingRepository
+import ru.eruditeonline.app.data.repository.RatingRepositoryImpl
 import ru.eruditeonline.app.data.repository.RefreshTokenRepository
 import ru.eruditeonline.app.data.repository.RefreshTokenRepositoryImpl
 import ru.eruditeonline.app.data.repository.TokenRepository
@@ -18,4 +22,10 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideTokenRepository(tokenRepositoryImpl: RefreshTokenRepositoryImpl): TokenRepository
+
+    @Binds
+    abstract fun provideProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
+
+    @Binds
+    abstract fun provideRatingRepository(ratingRepositoryImpl: RatingRepositoryImpl): RatingRepository
 }
