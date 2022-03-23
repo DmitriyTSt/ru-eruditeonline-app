@@ -14,15 +14,20 @@ import ru.eruditeonline.app.data.remote.model.test.ApiTestCommonResultRow
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResultRow
 import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
 import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
+import ru.eruditeonline.app.data.remote.params.CreateAnonymParams
+import ru.eruditeonline.app.data.remote.params.LoginParams
 import ru.eruditeonline.app.data.remote.params.RatingParams
+import ru.eruditeonline.app.data.remote.params.RegistrationParams
 import ru.eruditeonline.app.data.remote.params.ResultSaveParams
 import ru.eruditeonline.app.data.remote.response.CompetitionItemData
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
 import ru.eruditeonline.app.data.remote.response.CompetitionTestData
+import ru.eruditeonline.app.data.remote.response.EmptyResponse
 import ru.eruditeonline.app.data.remote.response.ListResponse
 import ru.eruditeonline.app.data.remote.response.ObjectResponse
 import ru.eruditeonline.app.data.remote.response.ProfileData
 import ru.eruditeonline.app.data.remote.response.TestUserResultResponse
+import ru.eruditeonline.app.data.remote.response.TokenData
 
 interface ApiService {
     @POST("competition/items")
@@ -68,4 +73,19 @@ interface ApiService {
 
     @GET("diplomas")
     suspend fun getDiplomas(): ListResponse<ApiDiploma>
+
+    @POST("auth/anonym")
+    suspend fun createAnonym(@Body params: CreateAnonymParams): ObjectResponse<TokenData>
+
+    @GET("auth/confirm")
+    suspend fun confirmEmail(@Query("token") token: String): EmptyResponse
+
+    @POST("auth/login")
+    suspend fun login(@Body params: LoginParams): ObjectResponse<TokenData>
+
+    @GET("auth/logout")
+    suspend fun logout(): ObjectResponse<TokenData>
+
+    @POST("auth/registration")
+    suspend fun registration(@Body params: RegistrationParams): EmptyResponse
 }
