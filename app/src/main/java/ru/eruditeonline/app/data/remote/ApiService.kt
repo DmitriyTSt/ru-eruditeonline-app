@@ -20,7 +20,7 @@ import ru.eruditeonline.app.data.remote.params.RatingParams
 import ru.eruditeonline.app.data.remote.params.RegistrationParams
 import ru.eruditeonline.app.data.remote.params.SaveResultParams
 import ru.eruditeonline.app.data.remote.response.CompetitionItemData
-import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
+import ru.eruditeonline.app.data.remote.response.CompetitionItemsData
 import ru.eruditeonline.app.data.remote.response.CompetitionTestData
 import ru.eruditeonline.app.data.remote.response.EmptyResponse
 import ru.eruditeonline.app.data.remote.response.ListResponse
@@ -31,7 +31,7 @@ import ru.eruditeonline.app.data.remote.response.TokenData
 
 interface ApiService {
     @POST("competition/items")
-    suspend fun getCompetitionItems(@Body params: CompetitionItemsParams): ObjectResponse<CompetitionItemsResponse>
+    suspend fun getCompetitionItems(@Body params: CompetitionItemsParams): ObjectResponse<CompetitionItemsData>
 
     @GET("competition/item/{id}")
     suspend fun getCompetitionItem(@Path("id") id: String): ObjectResponse<CompetitionItemData>

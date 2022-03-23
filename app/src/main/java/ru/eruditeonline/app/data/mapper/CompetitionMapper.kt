@@ -3,6 +3,7 @@ package ru.eruditeonline.app.data.mapper
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionItem
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
+import ru.eruditeonline.app.data.model.competition.CompetitionPagingData
 import ru.eruditeonline.app.data.model.competition.FilterItem
 import ru.eruditeonline.app.data.model.competition.TestAgeGroup
 import ru.eruditeonline.app.data.remote.model.competition.ApiCompetitionFilters
@@ -10,6 +11,7 @@ import ru.eruditeonline.app.data.remote.model.competition.ApiCompetitionItem
 import ru.eruditeonline.app.data.remote.model.competition.ApiCompetitionItemShort
 import ru.eruditeonline.app.data.remote.model.competition.ApiFilterItem
 import ru.eruditeonline.app.data.remote.model.competition.ApiTestAgeGroup
+import ru.eruditeonline.app.data.remote.response.CompetitionItemsData
 import javax.inject.Inject
 
 class CompetitionMapper @Inject constructor(
@@ -30,6 +32,14 @@ class CompetitionMapper @Inject constructor(
         return CompetitionFilters(
             ages = api.ages.orEmpty().map { fromApiToModel(it) },
             subjects = api.subjects.orEmpty().map { fromApiToModel(it) },
+        )
+    }
+
+    fun fromApiToModel(api: CompetitionItemsData): CompetitionPagingData {
+        return CompetitionPagingData(
+            list = api.list.orEmpty().map { fromApiToModel(it) },
+            filters = api.filters?.let { fromApiToModel(it) },
+            hasMore = api.hasMore.orDefault()
         )
     }
 

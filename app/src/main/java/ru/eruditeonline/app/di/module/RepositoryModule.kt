@@ -4,6 +4,8 @@ import dagger.Binds
 import dagger.Module
 import ru.eruditeonline.app.data.repository.AuthRepository
 import ru.eruditeonline.app.data.repository.AuthRepositoryImpl
+import ru.eruditeonline.app.data.repository.CompetitionRepository
+import ru.eruditeonline.app.data.repository.CompetitionRepositoryImpl
 import ru.eruditeonline.app.data.repository.ProfileRepository
 import ru.eruditeonline.app.data.repository.ProfileRepositoryImpl
 import ru.eruditeonline.app.data.repository.RatingRepository
@@ -34,4 +36,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideResultRepository(resultRepositoryImpl: ResultRepositoryImpl): ResultRepository
+
+    @Binds
+    abstract fun provideCompetitionRepository(competitionRepositoryImpl: CompetitionRepositoryImpl): CompetitionRepository
 }
