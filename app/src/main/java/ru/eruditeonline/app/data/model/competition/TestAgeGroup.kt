@@ -8,7 +8,7 @@ class TestAgeGroup(
     /** Наименование */
     val title: String,
     /** Цвет фона */
-    @ColorInt val color: Int,
+    @ColorInt val color: Int?,
     /** Ссылка на иконку */
     val icon: String?,
 )

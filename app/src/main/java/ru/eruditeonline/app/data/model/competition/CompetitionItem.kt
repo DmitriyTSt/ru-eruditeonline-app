@@ -5,7 +5,7 @@ package ru.eruditeonline.app.data.model.competition
  */
 class CompetitionItem(
     /** Идентификатор конкурса */
-    val id: String,
+    val id: Int,
     /** Полное название конкурса */
     val title: String,
     /** Ссылка на изображение теста */
