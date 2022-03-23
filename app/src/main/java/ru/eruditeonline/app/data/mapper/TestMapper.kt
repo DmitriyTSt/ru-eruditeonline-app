@@ -8,6 +8,8 @@ import ru.eruditeonline.app.data.model.test.ResultAnswer
 import ru.eruditeonline.app.data.model.test.ResultInfo
 import ru.eruditeonline.app.data.model.test.TempResult
 import ru.eruditeonline.app.data.model.test.TestCommonResultRow
+import ru.eruditeonline.app.data.model.test.TestUserResult
+import ru.eruditeonline.app.data.model.test.TestUserResultRow
 import ru.eruditeonline.app.data.remote.model.test.ApiAnswer
 import ru.eruditeonline.app.data.remote.model.test.ApiCompetitionTest
 import ru.eruditeonline.app.data.remote.model.test.ApiCreatedResult
@@ -17,6 +19,8 @@ import ru.eruditeonline.app.data.remote.model.test.ApiResultAnswer
 import ru.eruditeonline.app.data.remote.model.test.ApiResultInfo
 import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTestCommonResultRow
+import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResult
+import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResultRow
 import javax.inject.Inject
 
 class TestMapper @Inject constructor(
@@ -31,6 +35,32 @@ class TestMapper @Inject constructor(
             competitionId = api.competitionId.orEmpty(),
             competitionTitle = api.competitionTitle.orEmpty(),
             resultText = api.resultText.orEmpty(),
+        )
+    }
+
+    fun fromApiToModel(api: ApiTestUserResultRow): TestUserResultRow {
+        return TestUserResultRow(
+            id = api.id.orEmpty(),
+            date = api.date.orEmpty(),
+            username = api.username.orEmpty(),
+            testId = api.testId.orEmpty(),
+            competitionTitle = api.competitionTitle.orEmpty(),
+            place = api.place.orEmpty(),
+            score = baseMapper.fromApiToModel(api.score),
+        )
+    }
+
+    fun fromApiToModel(api: ApiTestUserResult): TestUserResult {
+        return TestUserResult(
+            id = api.id.orEmpty(),
+            date = api.date.orEmpty(),
+            username = api.username.orEmpty(),
+            testId = api.testId.orEmpty(),
+            competitionTitle = api.competitionTitle.orEmpty(),
+            place = api.place.orEmpty(),
+            score = baseMapper.fromApiToModel(api.score),
+            spentTime = api.spentTime.orDefault(),
+            answers = api.answers.orEmpty().map { fromApiToModel(it) },
         )
     }
 

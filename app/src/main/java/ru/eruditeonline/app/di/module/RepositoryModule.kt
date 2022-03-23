@@ -10,6 +10,8 @@ import ru.eruditeonline.app.data.repository.RatingRepository
 import ru.eruditeonline.app.data.repository.RatingRepositoryImpl
 import ru.eruditeonline.app.data.repository.RefreshTokenRepository
 import ru.eruditeonline.app.data.repository.RefreshTokenRepositoryImpl
+import ru.eruditeonline.app.data.repository.ResultRepository
+import ru.eruditeonline.app.data.repository.ResultRepositoryImpl
 import ru.eruditeonline.app.data.repository.TokenRepository
 
 @Module
@@ -28,4 +30,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideRatingRepository(ratingRepositoryImpl: RatingRepositoryImpl): RatingRepository
+
+    @Binds
+    abstract fun provideResultRepository(resultRepositoryImpl: ResultRepositoryImpl): ResultRepository
 }

@@ -21,5 +21,5 @@ class ApiTestUserResult(
     /** Затраченное время */
     @SerializedName("spentTime") val spentTime: Long?,
     /** Ответы */
-    @SerializedName("answers") val answers: List<ApiResultAnswer?>?,
+    @SerializedName("answers") val answers: List<ApiResultAnswer>?,
 )

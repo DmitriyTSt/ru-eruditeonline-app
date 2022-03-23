@@ -2,9 +2,9 @@ package ru.eruditeonline.app.data.remote.params
 
 import com.google.gson.annotations.SerializedName
 
-class ResultSaveParams(
+class SaveResultParams(
     /** Временный идентификатор прохождения теста */
-    @SerializedName("completeId") val completeId: String,
+    @SerializedName("completeId") val completeId: Long,
     /** Имя */
     @SerializedName("name") val name: String,
     /** Фамилия */
@@ -30,7 +30,7 @@ class ResultSaveParams(
     /** Идентифифкатор типа диплома */
     @SerializedName("diplomaType") val diplomaType: String,
     /** Оценка */
-    @SerializedName("review") val review: String,
+    @SerializedName("review") val review: Review,
 ) {
     class Review(
         /** Качество и понятность вопросов */

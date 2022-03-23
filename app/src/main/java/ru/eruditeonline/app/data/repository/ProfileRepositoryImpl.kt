@@ -14,6 +14,6 @@ class ProfileRepositoryImpl @Inject constructor(
             .data
             .profile
             ?.let { profileMapper.fromApiToModel(it) }
-            ?: throw IllegalStateException("profile null from api")
+            ?: throw IllegalStateException("Profile null from api")
     }
 }

@@ -18,7 +18,7 @@ import ru.eruditeonline.app.data.remote.params.CreateAnonymParams
 import ru.eruditeonline.app.data.remote.params.LoginParams
 import ru.eruditeonline.app.data.remote.params.RatingParams
 import ru.eruditeonline.app.data.remote.params.RegistrationParams
-import ru.eruditeonline.app.data.remote.params.ResultSaveParams
+import ru.eruditeonline.app.data.remote.params.SaveResultParams
 import ru.eruditeonline.app.data.remote.response.CompetitionItemData
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsResponse
 import ru.eruditeonline.app.data.remote.response.CompetitionTestData
@@ -43,7 +43,7 @@ interface ApiService {
     suspend fun checkTest(@Body params: CompetitionCheckParams): ObjectResponse<ApiTempResult>
 
     @POST("result/save")
-    suspend fun saveResult(@Body params: ResultSaveParams): ObjectResponse<ApiCreatedResult>
+    suspend fun saveResult(@Body params: SaveResultParams): ObjectResponse<ApiCreatedResult>
 
     @GET("profile")
     suspend fun getProfile(): ObjectResponse<ProfileData>
