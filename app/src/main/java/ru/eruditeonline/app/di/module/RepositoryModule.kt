@@ -14,8 +14,12 @@ import ru.eruditeonline.app.data.repository.RefreshTokenRepository
 import ru.eruditeonline.app.data.repository.RefreshTokenRepositoryImpl
 import ru.eruditeonline.app.data.repository.ResultRepository
 import ru.eruditeonline.app.data.repository.ResultRepositoryImpl
+import ru.eruditeonline.app.data.repository.TestRepository
+import ru.eruditeonline.app.data.repository.TestRepositoryImpl
 import ru.eruditeonline.app.data.repository.TokenRepository
 import ru.eruditeonline.app.data.repository.TokenRepositoryImpl
+import ru.eruditeonline.app.data.repository.UtilsRepository
+import ru.eruditeonline.app.data.repository.UtilsRepositoryImpl
 
 @Module
 abstract class RepositoryModule {
@@ -39,4 +43,10 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideCompetitionRepository(competitionRepositoryImpl: CompetitionRepositoryImpl): CompetitionRepository
+
+    @Binds
+    abstract fun provideTestRepository(testRepositoryImpl: TestRepositoryImpl): TestRepository
+
+    @Binds
+    abstract fun provideUtilsRepository(utilsRepositoryImpl: UtilsRepositoryImpl): UtilsRepository
 }

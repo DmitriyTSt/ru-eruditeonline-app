@@ -1,5 +1,6 @@
 package ru.eruditeonline.app.data.mapper
 
+import ru.eruditeonline.app.data.model.competition.CompetitionPassData
 import ru.eruditeonline.app.data.model.test.Answer
 import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.model.test.CreatedResult
@@ -21,6 +22,7 @@ import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTestCommonResultRow
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResultRow
+import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
 import javax.inject.Inject
 
 class TestMapper @Inject constructor(
@@ -131,6 +133,25 @@ class TestMapper @Inject constructor(
             question = fromApiToModel(api.question),
             answerText = api.answerText.orEmpty(),
             correct = fromApiToModel(api.correct),
+        )
+    }
+
+    fun fromModelToApi(model: CompetitionPassData): CompetitionCheckParams {
+        return CompetitionCheckParams(
+            testId = model.testId,
+            questionResults = model.questionResults.map { question ->
+                when (question) {
+                    is CompetitionPassData.Question.ListAnswer -> CompetitionCheckParams.Question.ListAnswer(
+                        questionId = question.questionId,
+                        answerId = question.answerId
+                    )
+                    is CompetitionPassData.Question.SingleAnswer -> CompetitionCheckParams.Question.SingleAnswer(
+                        questionId = question.questionId,
+                        textAnswer = question.textAnswer,
+                    )
+                }
+            },
+            spentTime = model.spentTime,
         )
     }
 
