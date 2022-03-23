@@ -13,6 +13,7 @@ import ru.eruditeonline.app.data.repository.RefreshTokenRepositoryImpl
 import ru.eruditeonline.app.data.repository.ResultRepository
 import ru.eruditeonline.app.data.repository.ResultRepositoryImpl
 import ru.eruditeonline.app.data.repository.TokenRepository
+import ru.eruditeonline.app.data.repository.TokenRepositoryImpl
 
 @Module
 abstract class RepositoryModule {
@@ -23,7 +24,7 @@ abstract class RepositoryModule {
     abstract fun provideRefreshTokenRepository(refreshTokenRepositoryImpl: RefreshTokenRepositoryImpl): RefreshTokenRepository
 
     @Binds
-    abstract fun provideTokenRepository(tokenRepositoryImpl: RefreshTokenRepositoryImpl): TokenRepository
+    abstract fun provideTokenRepository(tokenRepositoryImpl: TokenRepositoryImpl): TokenRepository
 
     @Binds
     abstract fun provideProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
