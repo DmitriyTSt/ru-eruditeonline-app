@@ -6,6 +6,8 @@ import ru.eruditeonline.app.data.repository.AuthRepository
 import ru.eruditeonline.app.data.repository.AuthRepositoryImpl
 import ru.eruditeonline.app.data.repository.CompetitionRepository
 import ru.eruditeonline.app.data.repository.CompetitionRepositoryImpl
+import ru.eruditeonline.app.data.repository.MainRepository
+import ru.eruditeonline.app.data.repository.MainRepositoryImpl
 import ru.eruditeonline.app.data.repository.ProfileRepository
 import ru.eruditeonline.app.data.repository.ProfileRepositoryImpl
 import ru.eruditeonline.app.data.repository.RatingRepository
@@ -49,4 +51,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideUtilsRepository(utilsRepositoryImpl: UtilsRepositoryImpl): UtilsRepository
+
+    @Binds
+    abstract fun provideMainRepository(mainRepositoryImpl: MainRepositoryImpl): MainRepository
 }

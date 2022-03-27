@@ -7,6 +7,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.eruditeonline.app.data.remote.model.base.ApiCountry
 import ru.eruditeonline.app.data.remote.model.base.ApiDiploma
+import ru.eruditeonline.app.data.remote.model.main.ApiMainSection
 import ru.eruditeonline.app.data.remote.model.rating.ApiRatingRow
 import ru.eruditeonline.app.data.remote.model.test.ApiCreatedResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTempResult
@@ -30,6 +31,9 @@ import ru.eruditeonline.app.data.remote.response.TestUserResultResponse
 import ru.eruditeonline.app.data.remote.response.TokenData
 
 interface ApiService {
+    @GET("main")
+    suspend fun getMainSections(): ListResponse<ApiMainSection>
+
     @POST("competition/items")
     suspend fun getCompetitionItems(@Body params: CompetitionItemsParams): ObjectResponse<CompetitionItemsData>
 
