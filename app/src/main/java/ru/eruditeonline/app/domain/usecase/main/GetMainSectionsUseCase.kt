@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.domain.usecase
+package ru.eruditeonline.app.domain.usecase.main
 
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.data.repository.MainRepository
