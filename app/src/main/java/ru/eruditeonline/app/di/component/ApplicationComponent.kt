@@ -5,6 +5,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ru.eruditeonline.app.di.module.ActivityModule
+import ru.eruditeonline.app.di.module.ApiServiceModule
 import ru.eruditeonline.app.di.module.ApplicationModule
 import ru.eruditeonline.app.di.module.CoroutineModule
 import ru.eruditeonline.app.di.module.FragmentModule
@@ -23,6 +24,7 @@ import javax.inject.Singleton
         ViewModelModule::class,
         RepositoryModule::class,
         CoroutineModule::class,
+        ApiServiceModule::class,
     ]
 )
 interface ApplicationComponent : AndroidInjector<EruditeApplication> {
