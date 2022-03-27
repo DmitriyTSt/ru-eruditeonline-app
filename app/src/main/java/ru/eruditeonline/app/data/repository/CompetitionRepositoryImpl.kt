@@ -1,0 +1,39 @@
+package ru.eruditeonline.app.data.repository
+
+import ru.eruditeonline.app.data.mapper.CompetitionMapper
+import ru.eruditeonline.app.data.model.competition.CompetitionItem
+import ru.eruditeonline.app.data.model.competition.CompetitionPagingData
+import ru.eruditeonline.app.data.remote.ApiService
+import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
+import javax.inject.Inject
+
+class CompetitionRepositoryImpl @Inject constructor(
+    private val apiService: ApiService,
+    private val competitionMapper: CompetitionMapper,
+) : CompetitionRepository {
+    override suspend fun getCompetitionItems(
+        query: String?,
+        ageIds: List<String>?,
+        subjectIds: List<String>?,
+        offset: Int,
+        limit: Int
+    ): CompetitionPagingData {
+        return apiService.getCompetitionItems(
+            CompetitionItemsParams(
+                query,
+                ageIds,
+                subjectIds,
+                offset,
+                limit
+            )
+        ).data.let { competitionMapper.fromApiToModel(it) }
+    }
+
+    override suspend fun getCompetitionItem(id: String): CompetitionItem {
+        return apiService.getCompetitionItem(id)
+            .data
+            .item
+            ?.let { competitionMapper.fromApiToModel(it) }
+            ?: throw IllegalStateException("Competition item data null from api")
+    }
+}

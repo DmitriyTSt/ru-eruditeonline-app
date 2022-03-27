@@ -72,4 +72,7 @@ ext {
     // viewBinding delegate
     viewbinding_delegate = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3"
 
+    // secured shared preferences
+    security_crypto = "androidx.security:security-crypto:1.0.0"
+
 }

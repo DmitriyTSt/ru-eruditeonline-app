@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.domain.paging
+package ru.eruditeonline.app.domain.paging.base
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

@@ -80,4 +80,5 @@ dependencies {
     implementation chucker
 
     implementation chrometabs
+    implementation security_crypto
 }

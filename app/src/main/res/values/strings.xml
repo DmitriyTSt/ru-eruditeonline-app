@@ -6,4 +6,5 @@
     <string name="profile_menu_label">Профиль</string>
     <string name="error_paging">Ошибка. Попробуйте обновить</string>
     <string name="error_retry">Повторить</string>
+    <string name="error_auth_401">Что-то пошло не так. Необходимо авторизоваться повторно</string>
 </resources>
