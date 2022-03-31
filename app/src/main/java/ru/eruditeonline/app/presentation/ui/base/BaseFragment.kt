@@ -11,6 +11,7 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import dagger.android.support.AndroidSupportInjection
 import ru.eruditeonline.app.presentation.ui.mainactivity.BottomNavigationViewManager
 import javax.inject.Inject
@@ -34,7 +35,9 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        callOperations()
+        lifecycleScope.launchWhenStarted {
+            callOperations()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
