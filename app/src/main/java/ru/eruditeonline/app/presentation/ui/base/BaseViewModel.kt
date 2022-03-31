@@ -1,8 +1,21 @@
 package ru.eruditeonline.app.presentation.ui.base
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.CombinedLoadStates
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.ParsedError
 import ru.eruditeonline.app.presentation.navigation.Destination
+import androidx.paging.LoadState as PagingLoadState
 
 abstract class BaseViewModel : ViewModel() {
     /** Навигации */
@@ -15,5 +28,42 @@ abstract class BaseViewModel : ViewModel() {
 
     fun navigateBack() {
         _destinationLiveEvent.postValue(Destination.Back)
+    }
+
+    protected fun <T> MutableLiveData<LoadState<T>>.launchLoadData(
+        block: Flow<LoadState<T>>,
+    ): Job = viewModelScope.launch {
+        block.collect { result ->
+            this@launchLoadData.postValue(result)
+        }
+    }
+
+    protected fun <T : Any> MutableLiveData<PagingData<T>>.launchPagingData(
+        block: () -> Flow<PagingData<T>>
+    ): Job = viewModelScope.launch {
+        block()
+            .cachedIn(viewModelScope)
+            .collectLatest { this@launchPagingData.postValue(it) }
+    }
+
+    protected fun MutableLiveData<LoadState<Unit>>.bindPagingState(loadState: CombinedLoadStates) {
+        when (loadState.source.refresh) {
+            // Only show the list if refresh succeeds.
+            is PagingLoadState.NotLoading -> {
+                if (this.value != null && this.value !is LoadState.Success) {
+                    // никогда не пускаем success первым значением в лайвдату,
+                    // так как пагинация до начала загрузки находится в состоянии NotLoading
+                    // также нет смысла слать success, если последнее значение success
+                    this.postValue(LoadState.Success(Unit))
+                }
+            }
+            // Show loading spinner during initial load or refresh.
+            is PagingLoadState.Loading -> this.postValue(LoadState.Loading())
+            // Show the retry state if initial load or refresh fails.
+            is PagingLoadState.Error -> {
+                val throwable = (loadState.source.refresh as PagingLoadState.Error).error
+                this.postValue(LoadState.Error(throwable, ParsedError("", "", throwable.message ?: ParsedError.DEFAULT_MESSAGE)))
+            }
+        }
     }
 }

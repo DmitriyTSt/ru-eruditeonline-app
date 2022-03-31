@@ -3,7 +3,9 @@ package ru.eruditeonline.app.presentation.ui.mainactivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -13,7 +15,7 @@ import ru.eruditeonline.app.presentation.ui.base.BaseActivity
 
 private const val EXTRA_FROM_401_ERROR = "extra_from_401_error"
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), BottomNavigationViewManager {
 
     companion object {
         fun createStartIntent(context: Context, from401Error: Boolean = false): Intent {
@@ -37,5 +39,13 @@ class MainActivity : BaseActivity() {
         binding.bottomNavigationView.apply {
             setupWithNavController(navController.apply { attachNavController(this) })
         }
+    }
+
+    override fun setNavigationViewVisibility(isVisible: Boolean) {
+        binding.bottomNavigationView.isVisible = isVisible
+    }
+
+    override fun getNavigationView(): View {
+        return binding.bottomNavigationView
     }
 }

@@ -1,5 +1,7 @@
 package ru.eruditeonline.app.data.model.competition
 
+import ru.eruditeonline.app.data.model.Similarable
+
 /**
  * Сокращенная модель конкурса для списков
  */
@@ -16,4 +18,12 @@ class CompetitionItemShort(
     val difficulty: Int,
     /** Ссылка на изображение */
     val icon: String?,
-)
+) : Similarable<CompetitionItemShort> {
+    override fun areItemsTheSame(other: CompetitionItemShort): Boolean {
+        return this.id == other.id
+    }
+
+    override fun areContentsTheSame(other: CompetitionItemShort): Boolean {
+        return this == other
+    }
+}

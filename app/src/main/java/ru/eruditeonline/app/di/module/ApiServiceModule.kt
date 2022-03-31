@@ -10,6 +10,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.eruditeonline.app.data.mapper.EnumConverterFactory
+import ru.eruditeonline.app.data.remote.ApiService
+import ru.eruditeonline.app.data.remote.RefreshApiService
 import ru.eruditeonline.app.data.remote.interceptor.TokenAuthenticator
 import ru.eruditeonline.app.data.repository.AppInfoRepository
 import ru.eruditeonline.app.data.repository.EndpointRepository
@@ -113,6 +115,23 @@ class ApiServiceModule {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addConverterFactory(EnumConverterFactory())
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideApiService(
+        retrofit: Retrofit
+    ): ApiService {
+        return retrofit.create(ApiService::class.java)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideRefreshApiService(
+        @RefreshTokenClient retrofit: Retrofit
+    ): RefreshApiService {
+        return retrofit.create(RefreshApiService::class.java)
     }
 
     @Singleton

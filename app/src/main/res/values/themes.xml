@@ -25,5 +25,6 @@
         <item name="appBarLayoutStyle">@style/AppBarLayoutStyle</item>
         <item name="toolbarStyle">@style/ToolbarStyle</item>
         <item name="android:toolbarStyle">@style/ToolbarStyle</item>
+        <item name="recyclerViewStyle">@style/RecyclerViewStyle</item>
     </style>
 </resources>

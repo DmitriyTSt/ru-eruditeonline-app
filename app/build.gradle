@@ -56,6 +56,9 @@ dependencies {
     implementation flexbox
     implementation paging
 
+    implementation glide
+    implementation glide_compiler
+
     implementation viewbinding_delegate
 
     implementation coroutines_core

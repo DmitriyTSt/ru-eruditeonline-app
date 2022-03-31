@@ -15,7 +15,7 @@ abstract class UseCaseUnary<in Params, Result> {
             val result = execute(params)
             emit(LoadState.Success(result))
         } catch (t: Throwable) {
-            emit(LoadState.Error<Result>(ParsedError("", ParsedError.DEFAULT_TITLE, ParsedError.DEFAULT_MESSAGE), t))
+            emit(LoadState.Error<Result>(t, ParsedError("", ParsedError.DEFAULT_TITLE, ParsedError.DEFAULT_MESSAGE)))
         }
     }
 }

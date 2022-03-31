@@ -37,8 +37,8 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:textAppearance="@style/Font.Heading3.Medium"
-            tools:text="Обновить" />
+            android:text="@string/error_retry"
+            android:textAppearance="@style/Font.Heading3.Medium" />
     </LinearLayout>
 
 </FrameLayout>

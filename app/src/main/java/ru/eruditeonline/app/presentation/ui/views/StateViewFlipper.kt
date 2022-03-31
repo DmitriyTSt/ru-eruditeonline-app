@@ -21,7 +21,7 @@ class StateViewFlipper(context: Context, attrs: AttributeSet? = null) : ViewFlip
     private val loadingBinding = ViewLoadingStateBinding.inflate(LayoutInflater.from(context), this, true)
     private val errorBinding = ViewErrorStateBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun <T> setStateFromResult(loadableResult: LoadState<T>, useApiErrorMessage: Boolean = false) {
+    fun <T> setState(loadableResult: LoadState<T>, useApiErrorMessage: Boolean = false) {
         when (loadableResult) {
             is LoadState.Loading -> setStateLoading()
             is LoadState.Success -> setStateData()
@@ -41,9 +41,9 @@ class StateViewFlipper(context: Context, attrs: AttributeSet? = null) : ViewFlip
         displayedChild = State.DATA.displayedChild
     }
 
-    private fun setStateError(error: ParsedError) {
+    private fun setStateError(error: ParsedError?) {
         displayedChild = State.ERROR.displayedChild
-        errorBinding.textViewErrorTitle.text = error.title
-        errorBinding.textViewErrorMessage.text = error.message
+        errorBinding.textViewErrorTitle.text = error?.title ?: ParsedError.DEFAULT_TITLE
+        errorBinding.textViewErrorMessage.text = error?.message ?: ParsedError.DEFAULT_MESSAGE
     }
 }
