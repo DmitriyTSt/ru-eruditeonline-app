@@ -3,6 +3,7 @@ package ru.eruditeonline.app.domain.usecase.base
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.ParsedError
 
 abstract class UseCaseUnary<in Params, Result> {
 
@@ -14,7 +15,7 @@ abstract class UseCaseUnary<in Params, Result> {
             val result = execute(params)
             emit(LoadState.Success(result))
         } catch (t: Throwable) {
-            emit(LoadState.Error<Result>(t.message.orEmpty(), t))
+            emit(LoadState.Error<Result>(ParsedError("", ParsedError.DEFAULT_TITLE, ParsedError.DEFAULT_MESSAGE), t))
         }
     }
 }

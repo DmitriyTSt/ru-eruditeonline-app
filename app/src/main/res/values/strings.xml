@@ -7,4 +7,7 @@
     <string name="error_paging">Ошибка. Попробуйте обновить</string>
     <string name="error_retry">Повторить</string>
     <string name="error_auth_401">Что-то пошло не так. Необходимо авторизоваться повторно</string>
+    <string name="competition_items_title">Конкурсы</string>
+    <string name="search_title">Поиск</string>
+    <string name="filter_title">Фильтр</string>
 </resources>
