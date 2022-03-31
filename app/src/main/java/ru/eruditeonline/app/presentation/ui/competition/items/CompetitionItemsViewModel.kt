@@ -21,6 +21,10 @@ class CompetitionItemsViewModel @Inject constructor(
     private val _pagingStateLiveData = MutableLiveData<LoadState<Unit>>()
     val pagingStateLiveData: LiveData<LoadState<Unit>> = _pagingStateLiveData
 
+    /** Вид отображения списка */
+    private val _listViewTypeLiveData = MutableLiveData(CompetitionItemsViewType.CARD)
+    val listViewTypeLiveData: LiveData<CompetitionItemsViewType> = _listViewTypeLiveData
+
     fun loadCompetitions(
         query: String?,
     ) {
@@ -39,5 +43,11 @@ class CompetitionItemsViewModel @Inject constructor(
 
     fun bindPagingState(loadState: CombinedLoadStates) {
         _pagingStateLiveData.bindPagingState(loadState)
+    }
+
+    fun changeListViewType() {
+        val oldViewType = (_listViewTypeLiveData.value ?: CompetitionItemsViewType.CARD)
+        val newViewType = CompetitionItemsViewType.values().let { types -> types[(oldViewType.ordinal + 1) % types.size] }
+        _listViewTypeLiveData.postValue(newViewType)
     }
 }
