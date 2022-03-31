@@ -11,7 +11,6 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import dagger.android.support.AndroidSupportInjection
 import ru.eruditeonline.app.presentation.ui.mainactivity.BottomNavigationViewManager
 import javax.inject.Inject
