@@ -34,6 +34,8 @@ class MainActivity : BaseActivity() {
         }
 
         val navController = (supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment).navController
-        binding.bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavigationView.apply {
+            setupWithNavController(navController.apply { attachNavController(this) })
+        }
     }
 }
