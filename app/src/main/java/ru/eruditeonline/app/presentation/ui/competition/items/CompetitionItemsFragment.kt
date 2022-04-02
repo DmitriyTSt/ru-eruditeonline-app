@@ -3,18 +3,25 @@ package ru.eruditeonline.app.presentation.ui.competition.items
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.updatePadding
+import androidx.fragment.app.setFragmentResultListener
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.databinding.FragmentCompetitionItemsBinding
 import ru.eruditeonline.app.presentation.extension.addDefaultGridSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.disableChangeAnimations
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.paging.PagingLoadStateAdapter
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterFragment
+import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterRequest
 import ru.eruditeonline.app.presentation.ui.competition.items.adapter.CompetitionItemsAdapter
 import javax.inject.Inject
 
@@ -37,9 +44,22 @@ class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_item
         toolbar.fitTopInsetsWithPadding()
         setupHeader()
         setupList()
+        setFragmentResultListener(CompetitionFilterFragment.FILTER_REQUEST_CODE) { _, bundle ->
+            val filterRequest = bundle.getParcelable<FilterRequest>(CompetitionFilterFragment.FILTER_KEY)
+            if (filterRequest != null) {
+                stateViewFlipper.setState(LoadState.Loading<Unit>())
+                itemsAdapter.submitData(lifecycle, PagingData.empty())
+                viewModel.loadCompetitions(
+                    query = null,
+                    ageIds = filterRequest.ageIds,
+                    subjectIds = filterRequest.subjectIds,
+                )
+            }
+        }
     }
 
     override fun onBindViewModel() = with(viewModel) {
+        observeNavigationCommands(viewModel)
         pagingStateLiveData.observe { state ->
             binding.stateViewFlipper.setState(state)
         }
@@ -49,6 +69,9 @@ class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_item
         listViewTypeLiveData.observe { viewType ->
             applyProductListViewType(viewType)
         }
+        filtersLiveData.observe { filters ->
+            bindFilters(filters)
+        }
     }
 
     override fun applyBottomNavigationViewPadding(view: View, bottomNavigationViewHeight: Int) {
@@ -56,8 +79,9 @@ class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_item
     }
 
     private fun setupHeader() = with(binding) {
-        imageViewViewType.setOnClickListener {
+        toolbar.menu.findItem(R.id.view_type).setOnMenuItemClickListener {
             viewModel.changeListViewType()
+            true
         }
     }
 
@@ -71,13 +95,20 @@ class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_item
             adapter = itemsAdapter.withLoadStateFooter(
                 footer = PagingLoadStateAdapter { itemsAdapter.retry() }
             )
-            disableChangeAnimations()
+            itemAnimator = null
         }
         applyProductListViewType(itemsAdapter.viewType)
     }
 
+    private fun bindFilters(filters: CompetitionFilters) = with(binding) {
+        toolbar.menu.findItem(R.id.filter).setOnMenuItemClickListener {
+            viewModel.openFilter(filters)
+            true
+        }
+    }
+
     private fun applyProductListViewType(viewType: CompetitionItemsViewType) = with(binding) {
-        imageViewViewType.setImageResource(
+        toolbar.menu.findItem(R.id.view_type).setIcon(
             when (viewType) {
                 CompetitionItemsViewType.CARD -> R.drawable.ic_view_type_card
                 CompetitionItemsViewType.ROW -> R.drawable.ic_view_type_row

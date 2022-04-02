@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
 import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.domain.usecase.competition.FilterCompetitionsUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
@@ -12,6 +13,7 @@ import javax.inject.Inject
 
 class CompetitionItemsViewModel @Inject constructor(
     private val filterCompetitionsUseCase: FilterCompetitionsUseCase,
+    private val destinations: CompetitionItemsDestinations,
 ) : BaseViewModel() {
     /** Данные пагинации */
     private val _pagingDataLiveData = MutableLiveData<PagingData<CompetitionItemShort>>()
@@ -25,17 +27,24 @@ class CompetitionItemsViewModel @Inject constructor(
     private val _listViewTypeLiveData = MutableLiveData(CompetitionItemsViewType.CARD)
     val listViewTypeLiveData: LiveData<CompetitionItemsViewType> = _listViewTypeLiveData
 
+    /** Фильтры */
+    private val _filtersLiveData = MutableLiveData<CompetitionFilters>()
+    val filtersLiveData: LiveData<CompetitionFilters> = _filtersLiveData
+
     fun loadCompetitions(
         query: String?,
+        ageIds: List<String> = emptyList(),
+        subjectIds: List<String> = emptyList(),
     ) {
+        _pagingStateLiveData.postValue(LoadState.Loading())
         _pagingDataLiveData.launchPagingData {
             filterCompetitionsUseCase.executeFlow(
                 FilterCompetitionsUseCase.Params(
                     query = query.orEmpty(),
-                    ageIds = emptyList(),
-                    subjectIds = emptyList(),
+                    ageIds = ageIds,
+                    subjectIds = subjectIds,
                 ) { filters ->
-                    // TODO save filters
+                    _filtersLiveData.postValue(filters)
                 }
             )
         }
@@ -49,5 +58,9 @@ class CompetitionItemsViewModel @Inject constructor(
         val oldViewType = (_listViewTypeLiveData.value ?: CompetitionItemsViewType.CARD)
         val newViewType = CompetitionItemsViewType.values().let { types -> types[(oldViewType.ordinal + 1) % types.size] }
         _listViewTypeLiveData.postValue(newViewType)
+    }
+
+    fun openFilter(filter: CompetitionFilters) {
+        navigate(destinations.filter(filter))
     }
 }

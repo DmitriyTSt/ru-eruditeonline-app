@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.eruditeonline.app.di.module.viewmodel.BaseViewModelModule
 import ru.eruditeonline.app.di.util.ViewModelKey
+import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
@@ -32,4 +33,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun profileViewModel(viewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CompetitionFilterViewModel::class)
+    abstract fun competitionFilterViewModel(viewModel: CompetitionFilterViewModel): ViewModel
 }

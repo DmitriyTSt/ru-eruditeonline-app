@@ -45,6 +45,7 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
         setupLayout(savedInstanceState)
         onBindViewModel()
         applyBottomNavigationPadding(view)
+        bottomNavigationViewManager?.setNavigationViewVisibility(showBottomNavigationView)
     }
 
     open fun callOperations() = Unit
