@@ -15,7 +15,6 @@ import ru.eruditeonline.app.databinding.FragmentCompetitionItemsBinding
 import ru.eruditeonline.app.presentation.extension.addDefaultGridSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.disableChangeAnimations
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.paging.PagingLoadStateAdapter
