@@ -7,6 +7,9 @@ import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
+
+    override val showBottomNavigationView: Boolean = true
+
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel: ProfileViewModel by appViewModels()
 }

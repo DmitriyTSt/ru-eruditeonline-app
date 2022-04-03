@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">Erudite.Online</string>
-    <string name="dashboard_menu_label">Dashboard</string>
+    <string name="dashboard_menu_label">Главная</string>
     <string name="competition_menu_label">Конкурсы</string>
     <string name="rating_menu_label">Рейтинг</string>
     <string name="profile_menu_label">Профиль</string>
     <string name="error_paging">Ошибка. Попробуйте обновить</string>
-    <string name="error_retry">Повторить</string>
+    <string name="error_retry">Обновить</string>
     <string name="error_auth_401">Что-то пошло не так. Необходимо авторизоваться повторно</string>
+    <string name="competition_items_title">Конкурсы</string>
+    <string name="search_title">Поиск</string>
+    <string name="filter_title">Фильтр</string>
+    <string name="filter_apply_button_label">Применить</string>
+    <string name="filter_ages_title">Возраст</string>
+    <string name="filter_subjects_title">Предмет</string>
+    <string name="competition_view_type_label">Отображение</string>
 </resources>

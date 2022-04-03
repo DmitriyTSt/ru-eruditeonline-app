@@ -1,5 +1,6 @@
 package ru.eruditeonline.app.data.repository
 
+import kotlinx.coroutines.delay
 import ru.eruditeonline.app.data.mapper.CompetitionMapper
 import ru.eruditeonline.app.data.model.competition.CompetitionItem
 import ru.eruditeonline.app.data.model.competition.CompetitionPagingData
@@ -18,6 +19,7 @@ class CompetitionRepositoryImpl @Inject constructor(
         offset: Int,
         limit: Int
     ): CompetitionPagingData {
+        delay(1000) // TODO remove
         return apiService.getCompetitionItems(
             CompetitionItemsParams(
                 query,

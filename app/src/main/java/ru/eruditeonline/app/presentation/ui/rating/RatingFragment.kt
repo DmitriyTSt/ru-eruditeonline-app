@@ -7,6 +7,9 @@ import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 
 class RatingFragment : BaseFragment(R.layout.fragment_rating) {
+
+    override val showBottomNavigationView: Boolean = true
+
     private val binding by viewBinding(FragmentRatingBinding::bind)
     private val viewModel: RatingViewModel by appViewModels()
 }

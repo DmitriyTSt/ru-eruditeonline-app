@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 apply from: '../config/quality/quality.gradle'
@@ -55,6 +57,9 @@ dependencies {
     implementation view_pager_2
     implementation flexbox
     implementation paging
+
+    implementation glide
+    implementation glide_compiler
 
     implementation viewbinding_delegate
 

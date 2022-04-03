@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_navigation_view_corner_size">8dp</dimen>
+
+    <!-- Standard spaces -->
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
+    <dimen name="padding_4">4dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="clickable_image_padding">4dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="text_size_heading_1">24sp</dimen>
+    <dimen name="text_size_heading_2">20sp</dimen>
+    <dimen name="text_size_heading_3">18sp</dimen>
+    <dimen name="text_size_body_1">16sp</dimen>
+    <dimen name="text_size_body_2">14sp</dimen>
+</resources>
