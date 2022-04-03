@@ -11,6 +11,7 @@ import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsVi
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 import ru.eruditeonline.app.presentation.ui.rating.RatingViewModel
+import ru.eruditeonline.app.presentation.ui.splash.SplashViewModel
 
 @Module
 abstract class ViewModelModule : BaseViewModelModule() {
@@ -38,4 +39,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(CompetitionFilterViewModel::class)
     abstract fun competitionFilterViewModel(viewModel: CompetitionFilterViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashViewModel::class)
+    abstract fun splashViewModel(viewModel: SplashViewModel): ViewModel
 }

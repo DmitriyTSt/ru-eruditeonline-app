@@ -7,6 +7,7 @@ import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFr
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardFragment
 import ru.eruditeonline.app.presentation.ui.profile.ProfileFragment
 import ru.eruditeonline.app.presentation.ui.rating.RatingFragment
+import ru.eruditeonline.app.presentation.ui.splash.SplashFragment
 
 @Module
 abstract class FragmentModule {
@@ -24,4 +25,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun competitionFilterFragment(): CompetitionFilterFragment
+
+    @ContributesAndroidInjector
+    abstract fun splashFragment(): SplashFragment
 }
