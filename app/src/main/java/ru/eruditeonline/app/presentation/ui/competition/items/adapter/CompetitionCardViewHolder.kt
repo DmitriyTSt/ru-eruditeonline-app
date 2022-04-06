@@ -16,14 +16,9 @@ class CompetitionCardViewHolder(
 ) : BaseCompetitionViewHolder(parent.inflate(R.layout.item_competition_card), onItemClick) {
     private val binding by viewBinding(ItemCompetitionCardBinding::bind)
 
-    override val imageViewImage: ImageView
-        get() = binding.imageViewImage
-    override val imageViewDifficulty: ImageView
-        get() = binding.imageViewDifficulty
-    override val textViewTitle: TextView
-        get() = binding.textViewTitle
-    override val textViewAges: TextView
-        get() = binding.textViewAges
-    override val clickableView: View
-        get() = binding.root
+    override val imageViewImage: ImageView = binding.imageViewImage
+    override val imageViewDifficulty: ImageView = binding.imageViewDifficulty
+    override val textViewTitle: TextView = binding.textViewTitle
+    override val textViewAges: TextView = binding.textViewAges
+    override val clickableView: View = binding.root
 }

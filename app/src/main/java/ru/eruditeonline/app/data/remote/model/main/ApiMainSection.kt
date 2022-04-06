@@ -7,6 +7,6 @@ class ApiMainSection(
     @SerializedName("type") val type: ApiMainSectionType?,
     @SerializedName("taglines") val taglines: List<ApiTagline>?,
     @SerializedName("title") val title: String?,
-    @SerializedName("viewType") val viewType: ApiCompetitionViewType?,
-    @SerializedName("events") val events: List<ApiCompetitionItemShort>?,
+    @SerializedName("competitionViewType") val competitionViewType: ApiCompetitionViewType?,
+    @SerializedName("competitionItems") val competitionItems: List<ApiCompetitionItemShort>?,
 )

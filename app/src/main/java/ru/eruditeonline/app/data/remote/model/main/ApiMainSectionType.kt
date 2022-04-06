@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 enum class ApiMainSectionType {
     /** Слоганы */
-    @SerializedName("tagline") TAGLINE,
+    @SerializedName("TAGLINE") TAGLINE,
 
     /** КОнкурсы */
-    @SerializedName("events") COMPETITIONS,
+    @SerializedName("COMPETITION_ITEM") COMPETITION_ITEM,
 }

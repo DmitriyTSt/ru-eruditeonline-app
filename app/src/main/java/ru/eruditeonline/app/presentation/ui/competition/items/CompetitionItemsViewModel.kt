@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
-import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.domain.usecase.competition.FilterCompetitionsUseCase
@@ -20,8 +20,8 @@ class CompetitionItemsViewModel @Inject constructor(
     val pagingDataLiveData: LiveData<PagingData<CompetitionItemShort>> = _pagingDataLiveData
 
     /** Состояние загрузки пагинации */
-    private val _pagingStateLiveData = MutableLiveData<LoadState<Unit>>()
-    val pagingStateLiveData: LiveData<LoadState<Unit>> = _pagingStateLiveData
+    private val _pagingStateLiveData = MutableLiveData<LoadableState<Unit>>()
+    val pagingStateLiveData: LiveData<LoadableState<Unit>> = _pagingStateLiveData
 
     /** Вид отображения списка */
     private val _listViewTypeLiveData = MutableLiveData(CompetitionItemsViewType.CARD)
@@ -36,7 +36,7 @@ class CompetitionItemsViewModel @Inject constructor(
         ageIds: List<String> = emptyList(),
         subjectIds: List<String> = emptyList(),
     ) {
-        _pagingStateLiveData.postValue(LoadState.Loading())
+        _pagingStateLiveData.postValue(LoadableState.Loading())
         _pagingDataLiveData.launchPagingData {
             filterCompetitionsUseCase.executeFlow(
                 FilterCompetitionsUseCase.Params(

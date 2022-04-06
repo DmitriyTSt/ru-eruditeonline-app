@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Erudite.Online</string>
+    <string name="app_name">Эрудит.Онлайн</string>
     <string name="dashboard_menu_label">Главная</string>
     <string name="competition_menu_label">Конкурсы</string>
     <string name="rating_menu_label">Рейтинг</string>

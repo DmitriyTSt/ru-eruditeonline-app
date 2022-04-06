@@ -1,5 +1,6 @@
 package ru.eruditeonline.app.data.mapper
 
+import android.graphics.Color
 import ru.eruditeonline.app.data.model.main.CompetitionViewType
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.data.model.main.Tagline
@@ -14,14 +15,15 @@ class MainMapper @Inject constructor(
 ) {
 
     fun fromApiToModel(api: ApiMainSection): MainSection? {
+        println("API_TYPE ${api.type}")
         return when (api.type) {
             ApiMainSectionType.TAGLINE -> MainSection.TaglineBlock(
                 taglines = api.taglines.orEmpty().map { fromApiToModel(it) },
             )
-            ApiMainSectionType.COMPETITIONS -> MainSection.CompetitionsBlock(
+            ApiMainSectionType.COMPETITION_ITEM -> MainSection.CompetitionsBlock(
                 title = api.title.orEmpty(),
-                viewType = viewTypeMapper[api.viewType] ?: CompetitionViewType.ROW,
-                events = api.events.orEmpty().map { competitionMapper.fromApiToModel(it) },
+                viewType = viewTypeMapper[api.competitionViewType] ?: CompetitionViewType.ROW,
+                items = api.competitionItems.orEmpty().map { competitionMapper.fromApiToModel(it) },
             )
             null -> null
         }
@@ -37,6 +39,11 @@ class MainMapper @Inject constructor(
             title = api.title.orEmpty(),
             text = api.text.orEmpty(),
             icon = api.icon.orEmpty(),
+            titleColor = try {
+                Color.parseColor(api.titleColor.orEmpty())
+            } catch (e: Exception) {
+                null
+            }
         )
     }
 }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp"
+    app:cardCornerRadius="@dimen/competition_card_corner_radius"
+    app:cardElevation="@dimen/competition_card_elevation"
     app:rippleColor="@color/light_grey"
     tools:layout_width="156dp">
 
@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
+            android:contentDescription="@null"
             app:layout_constraintBottom_toBottomOf="@id/imageViewImage"
             tools:src="@drawable/ic_rating_1" />
 

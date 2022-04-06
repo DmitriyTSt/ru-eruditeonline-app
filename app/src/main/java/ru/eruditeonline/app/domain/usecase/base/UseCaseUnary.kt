@@ -2,20 +2,20 @@ package ru.eruditeonline.app.domain.usecase.base
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.ParsedError
 
 abstract class UseCaseUnary<in Params, Result> {
 
     abstract suspend fun execute(params: Params): Result
 
-    fun executeFlow(params: Params): Flow<LoadState<Result>> = flow {
+    fun executeFlow(params: Params): Flow<LoadableState<Result>> = flow {
         try {
-            emit(LoadState.Loading<Result>())
+            emit(LoadableState.Loading<Result>())
             val result = execute(params)
-            emit(LoadState.Success(result))
+            emit(LoadableState.Success(result))
         } catch (t: Throwable) {
-            emit(LoadState.Error<Result>(t, ParsedError("", ParsedError.DEFAULT_TITLE, ParsedError.DEFAULT_MESSAGE)))
+            emit(LoadableState.Error<Result>(t, ParsedError("", ParsedError.DEFAULT_TITLE, ParsedError.DEFAULT_MESSAGE)))
         }
     }
 }

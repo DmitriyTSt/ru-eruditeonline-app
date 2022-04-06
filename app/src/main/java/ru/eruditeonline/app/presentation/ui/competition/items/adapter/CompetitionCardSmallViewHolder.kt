@@ -7,18 +7,18 @@ import android.widget.TextView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
-import ru.eruditeonline.app.databinding.ItemCompetitionRowBinding
+import ru.eruditeonline.app.databinding.ItemCompetitionCardSmallBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 
-class CompetitionRowViewHolder(
+class CompetitionCardSmallViewHolder(
     parent: ViewGroup,
     onItemClick: (CompetitionItemShort) -> Unit,
-) : BaseCompetitionViewHolder(parent.inflate(R.layout.item_competition_row), onItemClick) {
-    private val binding by viewBinding(ItemCompetitionRowBinding::bind)
+) : BaseCompetitionViewHolder(parent.inflate(R.layout.item_competition_card_small), onItemClick) {
+    private val binding by viewBinding(ItemCompetitionCardSmallBinding::bind)
 
-    override val imageViewImage: ImageView = binding.imageViewImage
-    override val imageViewDifficulty: ImageView = binding.imageViewDifficulty
+    override val imageViewImage: ImageView = binding.imageView
+    override val imageViewDifficulty: ImageView? = null
     override val textViewTitle: TextView = binding.textViewTitle
-    override val textViewAges: TextView = binding.textViewAges
+    override val textViewAges: TextView? = null
     override val clickableView: View = binding.root
 }

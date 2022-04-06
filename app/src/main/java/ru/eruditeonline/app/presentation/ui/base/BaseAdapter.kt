@@ -11,10 +11,10 @@ abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder> : RecyclerView.Adapt
 
     override fun getItemCount() = _items.size
 
-    fun getItem(position: Int) = _items[position]
+    open fun getItem(position: Int) = _items[position]
 
     @SuppressLint("NotifyDataSetChanged")
-    fun submitList(newItems: List<T>) {
+    open fun submitList(newItems: List<T>) {
         _items.clear()
         _items.addAll(newItems)
         notifyDataSetChanged()

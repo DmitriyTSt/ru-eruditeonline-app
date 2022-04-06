@@ -9,4 +9,6 @@ class ApiTagline(
     @SerializedName("text") val text: String?,
     /** Ссылка на иконку */
     @SerializedName("icon") val icon: String?,
+    /** Цвет заголовка */
+    @SerializedName("titleColor") val titleColor: String?,
 )

@@ -8,7 +8,7 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.databinding.FragmentCompetitionFilterBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
@@ -66,7 +66,7 @@ class CompetitionFilterFragment : BaseFragment(R.layout.fragment_competition_fil
 
     private fun bindGroups(groups: List<FilterGroup>) = with(binding) {
         groupsAdapter.submitList(groups) {
-            stateViewFlipper.setState(LoadState.Success(Unit))
+            stateViewFlipper.setState(LoadableState.Success(Unit))
             tabLayout.isVisible = true
         }
     }

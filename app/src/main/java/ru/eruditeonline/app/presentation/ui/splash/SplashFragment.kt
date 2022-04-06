@@ -3,7 +3,7 @@ package ru.eruditeonline.app.presentation.ui.splash
 import android.os.Bundle
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.databinding.FragmentSplashBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -29,7 +29,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     override fun onBindViewModel() = with(viewModel) {
         observeNavigationCommands(viewModel)
         startFlowLiveEvent.observe { state ->
-            if (state is LoadState.Error) {
+            if (state is LoadableState.Error) {
                 binding.root.displayedChild = STATE_ERROR
             } else {
                 binding.root.displayedChild = STATE_DATA

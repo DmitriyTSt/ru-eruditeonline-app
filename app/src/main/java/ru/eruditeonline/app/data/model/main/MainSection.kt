@@ -10,6 +10,6 @@ sealed class MainSection {
     class CompetitionsBlock(
         val title: String,
         val viewType: CompetitionViewType,
-        val events: List<CompetitionItemShort>,
+        val items: List<CompetitionItemShort>,
     ) : MainSection()
 }

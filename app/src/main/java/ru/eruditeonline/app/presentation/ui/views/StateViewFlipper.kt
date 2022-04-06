@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ViewFlipper
-import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.ParsedError
 import ru.eruditeonline.app.databinding.ViewErrorStateBinding
 import ru.eruditeonline.app.databinding.ViewLoadingStateBinding
@@ -21,11 +21,11 @@ class StateViewFlipper(context: Context, attrs: AttributeSet? = null) : ViewFlip
     private val loadingBinding = ViewLoadingStateBinding.inflate(LayoutInflater.from(context), this, true)
     private val errorBinding = ViewErrorStateBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun <T> setState(loadableResult: LoadState<T>, useApiErrorMessage: Boolean = false) {
+    fun <T> setState(loadableResult: LoadableState<T>, useApiErrorMessage: Boolean = false) {
         when (loadableResult) {
-            is LoadState.Loading -> setStateLoading()
-            is LoadState.Success -> setStateData()
-            is LoadState.Error -> setStateError(loadableResult.error)
+            is LoadableState.Loading -> setStateLoading()
+            is LoadableState.Success -> setStateData()
+            is LoadableState.Error -> setStateError(loadableResult.error)
         }
     }
 

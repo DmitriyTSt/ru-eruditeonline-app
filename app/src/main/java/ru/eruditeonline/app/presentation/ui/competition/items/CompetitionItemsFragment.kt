@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.databinding.FragmentCompetitionItemsBinding
 import ru.eruditeonline.app.presentation.extension.addDefaultGridSpaceItemDecoration
@@ -46,7 +46,7 @@ class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_item
         setFragmentResultListener(CompetitionFilterFragment.FILTER_REQUEST_CODE) { _, bundle ->
             val filterRequest = bundle.getParcelable<FilterRequest>(CompetitionFilterFragment.FILTER_KEY)
             if (filterRequest != null) {
-                stateViewFlipper.setState(LoadState.Loading<Unit>())
+                stateViewFlipper.setState(LoadableState.Loading<Unit>())
                 itemsAdapter.submitData(lifecycle, PagingData.empty())
                 viewModel.loadCompetitions(
                     query = null,

@@ -2,7 +2,7 @@ package ru.eruditeonline.app.presentation.ui.splash
 
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.map
-import ru.eruditeonline.app.data.model.LoadState
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.SplashUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
@@ -13,8 +13,8 @@ class SplashViewModel @Inject constructor(
     private val destinations: SplashDestinations,
 ) : BaseViewModel() {
     /** Начальная инициализация приложения */
-    private val _startFlowLiveEvent = SingleLiveEvent<LoadState<Unit>>()
-    val startFlowLiveEvent: LiveData<LoadState<Unit>> = _startFlowLiveEvent
+    private val _startFlowLiveEvent = SingleLiveEvent<LoadableState<Unit>>()
+    val startFlowLiveEvent: LiveData<LoadableState<Unit>> = _startFlowLiveEvent
 
     fun runStartFlow() {
         _startFlowLiveEvent.launchLoadData(
