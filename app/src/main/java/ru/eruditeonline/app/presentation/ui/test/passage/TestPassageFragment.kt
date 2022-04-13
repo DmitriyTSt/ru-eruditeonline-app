@@ -14,16 +14,21 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.model.test.Question
 import ru.eruditeonline.app.databinding.FragmentTestPassageBinding
+import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import java.util.Locale
+import javax.inject.Inject
 
 class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
     private val binding by viewBinding(FragmentTestPassageBinding::bind)
     private val viewModel: TestPassageViewModel by appViewModels()
     private val args: TestPassageFragmentArgs by navArgs()
+
+    @Inject lateinit var answersAdapter: AnswersAdapter
 
     override fun callOperations() {
         viewModel.loadTest(args.id)
@@ -34,7 +39,7 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
         content.linearProgressIndicator.setProgressCompat(0, false)
         setupInsets()
         setupCloseScreen()
-        Unit
+        setupAnswers()
     }
 
     override fun onBindViewModel() = with(viewModel) {
@@ -92,9 +97,16 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
             .show()
     }
 
+    private fun setupAnswers() = with(binding.content.recyclerView) {
+        adapter = answersAdapter
+        addLinearSpaceItemDecoration(R.dimen.padding_16)
+    }
+
     private fun bindTest(test: CompetitionTest) = with(binding.content) {
         textViewTitle.text = test.title
-        toolbar.title = test.ageCategoryTitle
+        toolbar.title = test.ageCategoryTitle?.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+        }
         linearProgressIndicator.max = test.questions.size
     }
 
@@ -108,6 +120,19 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
         linearProgressIndicator.setProgressCompat(index + 1, false)
         fabSelect.setOnClickListener {
             viewModel.next()
+        }
+
+        when (question) {
+            is Question.ListAnswer -> {
+                textInputLayoutAnswer.isVisible = false
+                recyclerView.isVisible = true
+                answersAdapter.submitList(question.answers)
+            }
+            is Question.SingleAnswer -> {
+                textInputLayoutAnswer.isVisible = true
+                recyclerView.isVisible = false
+                textInputLayoutAnswer.hint = question.label
+            }
         }
     }
 }
