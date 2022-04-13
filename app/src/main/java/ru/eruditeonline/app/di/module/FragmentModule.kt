@@ -2,6 +2,7 @@ package ru.eruditeonline.app.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailFragment
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterFragment
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFragment
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardFragment
@@ -28,4 +29,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun splashFragment(): SplashFragment
+
+    @ContributesAndroidInjector
+    abstract fun competitionDetailFragment(): CompetitionDetailFragment
 }

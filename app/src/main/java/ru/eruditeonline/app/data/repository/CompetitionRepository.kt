@@ -14,5 +14,5 @@ interface CompetitionRepository {
     ): CompetitionPagingData
 
     /** Получение конкурса */
-    suspend fun getCompetitionItem(id: String): CompetitionItem
+    suspend fun getCompetitionItem(id: Int): CompetitionItem
 }

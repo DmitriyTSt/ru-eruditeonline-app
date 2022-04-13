@@ -19,7 +19,8 @@
     </fragment>
 
     <include app:graph="@navigation/dashboard_graph" />
-    <include app:graph="@navigation/competition_graph" />
+    <include app:graph="@navigation/competition_items_graph" />
+    <include app:graph="@navigation/competition_detail_graph" />
     <include app:graph="@navigation/rating_graph" />
     <include app:graph="@navigation/profile_graph" />
 

@@ -8,6 +8,8 @@ class CompetitionItem(
     val id: Int,
     /** Полное название конкурса */
     val title: String,
+    /** Предмет */
+    val subject: String,
     /** Ссылка на изображение теста */
     val icon: String?,
     /** Сложность (от 1 до 5) */

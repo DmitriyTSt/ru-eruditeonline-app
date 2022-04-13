@@ -87,8 +87,7 @@ class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_item
     private fun setupList() = with(binding) {
         itemsAdapter.apply {
             addLoadStateListener { loadState -> viewModel.bindPagingState(loadState) }
-            onItemClick = { item ->
-            }
+            onItemClick = viewModel::openCompetition
         }
         recyclerView.apply {
             adapter = itemsAdapter.withLoadStateFooter(

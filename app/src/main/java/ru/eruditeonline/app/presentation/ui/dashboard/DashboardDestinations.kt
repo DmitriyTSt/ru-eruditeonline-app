@@ -1,21 +1,15 @@
-package ru.eruditeonline.app.presentation.ui.competition.items
+package ru.eruditeonline.app.presentation.ui.dashboard
 
 import android.content.Context
 import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.presentation.navigation.Destination
 import javax.inject.Inject
 
-class CompetitionItemsDestinations @Inject constructor(
+class DashboardDestinations @Inject constructor(
     private val context: Context,
 ) {
-    /** Фильтр */
-    fun filter(filter: CompetitionFilters) = Destination.Action(
-        CompetitionItemsFragmentDirections.actionCompetitionItemsFragmentToCompetitionFilterFragment(filter)
-    )
-
     /** Конкурс */
     fun competitionItem(id: Int) = Destination.DeepLink(
         NavDeepLinkRequest.Builder
