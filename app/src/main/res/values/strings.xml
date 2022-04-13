@@ -18,4 +18,5 @@
     <string name="competition_ages_template">Возрастная категория: %s</string>
     <string name="competition_infos_title">Дополнительные материалы:</string>
     <string name="competition_run_test_title">Принять участие в конкурсе:</string>
+    <string name="test_passage_answer_text_label">Введите ответ</string>
 </resources>
