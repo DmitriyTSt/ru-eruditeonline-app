@@ -9,6 +9,7 @@ import ru.eruditeonline.app.databinding.FragmentDashboardBinding
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.app.presentation.ui.dashboard.mainsection.MainSectionsAdapter
 import javax.inject.Inject
@@ -35,6 +36,7 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
     }
 
     override fun onBindViewModel() = with(viewModel) {
+        observeNavigationCommands(viewModel)
         mainSectionsLiveData.observe { state ->
             binding.stateViewFlipper.setState(state)
             state.doOnSuccess { list ->
@@ -48,9 +50,7 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
     }
 
     private fun setupList() = with(binding) {
-        mainSectionsAdapter.onCompetitionItemsClick = { item ->
-            // TODO open comp item
-        }
+        mainSectionsAdapter.onCompetitionItemClick = viewModel::openCompetition
         recyclerView.apply {
             adapter = mainSectionsAdapter
             addLinearSpaceItemDecoration(R.dimen.padding_16)

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigation_deep_link_to_competition_detail">app://competition/{id}</string>
+    <string name="navigation_deep_link_to_competition_detail_template">app://competition/%d</string>
+</resources>

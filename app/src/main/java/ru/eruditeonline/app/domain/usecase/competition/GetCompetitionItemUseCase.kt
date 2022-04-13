@@ -17,6 +17,6 @@ class GetCompetitionItemUseCase @Inject constructor(
     }
 
     data class Params(
-        val id: String,
+        val id: Int,
     )
 }

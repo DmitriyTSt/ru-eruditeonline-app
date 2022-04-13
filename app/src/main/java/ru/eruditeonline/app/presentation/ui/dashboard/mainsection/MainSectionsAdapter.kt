@@ -10,11 +10,11 @@ import javax.inject.Inject
 
 class MainSectionsAdapter @Inject constructor() : BaseAdapter<MainSection, RecyclerView.ViewHolder>() {
 
-    lateinit var onCompetitionItemsClick: (CompetitionItemShort) -> Unit
+    lateinit var onCompetitionItemClick: (CompetitionItemShort) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            R.layout.item_main_section_competitions -> MainSectionCompetitionsViewHolder(parent, onCompetitionItemsClick)
+            R.layout.item_main_section_competitions -> MainSectionCompetitionsViewHolder(parent, onCompetitionItemClick)
             R.layout.item_main_section_taglines -> MainSectionTaglinesViewHolder(parent)
             else -> throw IllegalStateException("Unsupported view type")
         }

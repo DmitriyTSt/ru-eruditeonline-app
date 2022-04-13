@@ -63,4 +63,8 @@ class CompetitionItemsViewModel @Inject constructor(
     fun openFilter(filter: CompetitionFilters) {
         navigate(destinations.filter(filter))
     }
+
+    fun openCompetition(item: CompetitionItemShort) {
+        navigate(destinations.competitionItem(item.id))
+    }
 }

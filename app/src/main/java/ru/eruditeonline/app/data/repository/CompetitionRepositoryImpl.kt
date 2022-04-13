@@ -31,7 +31,7 @@ class CompetitionRepositoryImpl @Inject constructor(
         ).data.let { competitionMapper.fromApiToModel(it) }
     }
 
-    override suspend fun getCompetitionItem(id: String): CompetitionItem {
+    override suspend fun getCompetitionItem(id: Int): CompetitionItem {
         return apiService.getCompetitionItem(id)
             .data
             .item

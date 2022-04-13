@@ -38,7 +38,7 @@ interface ApiService {
     suspend fun getCompetitionItems(@Body params: CompetitionItemsParams): ObjectResponse<CompetitionItemsData>
 
     @GET("competition/item/{id}")
-    suspend fun getCompetitionItem(@Path("id") id: String): ObjectResponse<CompetitionItemData>
+    suspend fun getCompetitionItem(@Path("id") id: Int): ObjectResponse<CompetitionItemData>
 
     @GET("competition/test/{id}")
     suspend fun getCompetitionTest(@Path("id") id: String): ObjectResponse<CompetitionTestData>
