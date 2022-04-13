@@ -143,7 +143,7 @@ class TestMapper @Inject constructor(
                 when (question) {
                     is CompetitionPassData.Question.ListAnswer -> CompetitionCheckParams.Question.ListAnswer(
                         questionId = question.questionId,
-                        answerId = question.answerId
+                        answerId = question.answerId,
                     )
                     is CompetitionPassData.Question.SingleAnswer -> CompetitionCheckParams.Question.SingleAnswer(
                         questionId = question.questionId,

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import ru.eruditeonline.app.data.model.LoadableState
+import ru.eruditeonline.app.data.model.competition.CompetitionPassData
 import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.model.test.Question
 import ru.eruditeonline.app.domain.usecase.test.GetTestUseCase
@@ -28,11 +29,23 @@ class TestPassageViewModel @Inject constructor(
     private val _questionLiveData = MutableLiveData<Pair<Int, Question>>()
     val questionLiveData: LiveData<Pair<Int, Question>> = _questionLiveData
 
+    var questionResults = mutableListOf<CompetitionPassData.Question>()
+
     fun loadTest(id: String) {
         _testLiveData.launchLoadData(getTestUseCase.executeFlow(GetTestUseCase.Params(id)))
     }
 
-    fun next() {
+    fun saveSingleAnswer(text: String, questionId: Int) {
+        questionResults.add(CompetitionPassData.Question.SingleAnswer(questionId, text.takeIf { it.isNotEmpty() }))
+        next()
+    }
+
+    fun saveListAnswer(answerId: String?, questionId: Int) {
+        questionResults.add(CompetitionPassData.Question.ListAnswer(questionId, answerId))
+        next()
+    }
+
+    private fun next() {
         val questions = testLiveData.value?.getOrNull()?.questions
         if (!questions.isNullOrEmpty()) {
             val lastIndex = questionLiveData.value?.first ?: 0

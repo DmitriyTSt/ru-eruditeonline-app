@@ -9,16 +9,18 @@ class CompetitionPassData(
     val spentTime: Long,
 ) {
     sealed class Question(
-        val questionId: String,
+        val questionId: Int,
     ) {
         class ListAnswer(
-            questionId: String,
-            val answerId: String,
+            questionId: Int,
+            /** null, если не выбран */
+            val answerId: String?,
         ) : Question(questionId)
 
         class SingleAnswer(
-            questionId: String,
-            val textAnswer: String,
+            questionId: Int,
+            /** null, если не ответили */
+            val textAnswer: String?,
         ) : Question(questionId)
     }
 }

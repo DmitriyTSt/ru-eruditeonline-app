@@ -118,20 +118,23 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
             imageViewQuestion.load(question.image)
         }
         linearProgressIndicator.setProgressCompat(index + 1, false)
-        fabSelect.setOnClickListener {
-            viewModel.next()
-        }
 
         when (question) {
             is Question.ListAnswer -> {
                 textInputLayoutAnswer.isVisible = false
                 recyclerView.isVisible = true
                 answersAdapter.submitList(question.answers)
+                fabSelect.setOnClickListener {
+                    viewModel.saveListAnswer(answersAdapter.selectedAnswerId, question.id)
+                }
             }
             is Question.SingleAnswer -> {
                 textInputLayoutAnswer.isVisible = true
                 recyclerView.isVisible = false
                 textInputLayoutAnswer.hint = question.label
+                fabSelect.setOnClickListener {
+                    viewModel.saveSingleAnswer(editTextAnswer.text.toString(), question.id)
+                }
             }
         }
     }
