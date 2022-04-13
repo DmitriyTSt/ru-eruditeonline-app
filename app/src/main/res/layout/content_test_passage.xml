@@ -10,65 +10,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_close"
+            tools:title="5-8 классы" />
 
-            <ImageView
-                android:id="@+id/imageViewClose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_12"
-                android:layout_marginTop="12dp"
-                android:contentDescription="@null"
-                android:padding="@dimen/clickable_image_padding"
-                android:src="@drawable/ic_close"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:textAppearance="@style/Font.Heading3.Medium"
+            android:textColor="?colorOnPrimary"
+            app:layout_constraintTop_toBottomOf="@id/barrier"
+            tools:text="Конкурс по ОБЖ «Зимние опасности»" />
 
-            <TextView
-                android:id="@+id/textViewTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="@dimen/margin_16"
-                android:textAppearance="@style/Font.Heading2.Bold"
-                android:textColor="?colorOnPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imageViewClose"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Конкурс по ОБЖ «Зимние опасности»" />
-
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="imageViewClose,textViewTitle" />
-
-            <TextView
-                android:id="@+id/textViewAges"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_16"
-                android:layout_marginTop="8dp"
-                android:textAppearance="@style/Font.Heading3.Medium"
-                android:textColor="?colorOnPrimary"
-                app:layout_constraintTop_toBottomOf="@id/barrier"
-                tools:text="Возрастная категория: 5-8 классы" />
-
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/linearProgressIndicator"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:indeterminate="true"
-                app:indicatorColor="?colorOnPrimary"
-                app:layout_constraintTop_toBottomOf="@id/textViewAges"
-                app:trackThickness="2dp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linearProgressIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:indeterminate="true"
+            app:indicatorColor="?colorOnPrimary"
+            app:layout_constraintTop_toBottomOf="@id/textViewAges"
+            app:trackColor="?colorPrimary"
+            app:trackThickness="2dp" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -88,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_16"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:textAppearance="@style/Font.Heading3.Medium"
                 tools:text="№ 2. Что нужно сделать в первую очередь при обморожении?" />
 
@@ -95,18 +64,18 @@
                 android:id="@+id/cardViewQuestionImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="@dimen/margin_16"
-                android:layout_marginTop="16dp"
+                android:layout_marginVertical="8dp"
                 app:cardCornerRadius="@dimen/answer_card_corner_radius"
-                app:cardElevation="@dimen/answer_card_elevation">
+                app:cardElevation="@dimen/answer_card_elevation"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/imageViewQuestion"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:contentDescription="@null"
-                    android:maxHeight="172dp" />
+                    android:contentDescription="@null" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -115,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginVertical="8dp"
                 android:hint="@string/test_passage_answer_text_label"
                 app:errorEnabled="true">
 
@@ -129,7 +99,7 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
                 android:nestedScrollingEnabled="false"
                 android:paddingHorizontal="@dimen/padding_16"

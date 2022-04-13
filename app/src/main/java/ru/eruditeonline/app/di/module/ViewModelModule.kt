@@ -13,6 +13,7 @@ import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 import ru.eruditeonline.app.presentation.ui.rating.RatingViewModel
 import ru.eruditeonline.app.presentation.ui.splash.SplashViewModel
+import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageViewModel
 
 @Module
 abstract class ViewModelModule : BaseViewModelModule() {
@@ -50,4 +51,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(CompetitionDetailViewModel::class)
     abstract fun competitionDetailViewModel(viewModel: CompetitionDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TestPassageViewModel::class)
+    abstract fun testPassageViewModel(viewModel: TestPassageViewModel): ViewModel
 }

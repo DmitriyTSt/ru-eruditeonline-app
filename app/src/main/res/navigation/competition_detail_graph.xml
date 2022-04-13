@@ -15,5 +15,17 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_competitionDetailFragment_to_testPassageFragment"
+            app:destination="@id/testPassageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testPassageFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.test.passage.TestPassageFragment"
+        android:label="TestPassageFragment"
+        tools:layout="@layout/fragment_test_passage" >
+        <argument
+            android:name="id"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -26,4 +26,12 @@ sealed class LoadableState<T> {
             block()
         }
     }
+
+    fun getOrNull(): T? {
+        return if (this is Success) {
+            data
+        } else {
+            null
+        }
+    }
 }
