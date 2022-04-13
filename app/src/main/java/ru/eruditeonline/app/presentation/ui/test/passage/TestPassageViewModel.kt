@@ -9,15 +9,19 @@ import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.model.test.Question
 import ru.eruditeonline.app.domain.usecase.test.GetTestUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 import javax.inject.Inject
 
 class TestPassageViewModel @Inject constructor(
     private val getTestUseCase: GetTestUseCase,
+    private val destinations: TestPassageDestinations,
 ) : BaseViewModel() {
     /** Тест */
     private val _testLiveData = MutableLiveData<LoadableState<CompetitionTest>>()
     val testLiveData: LiveData<LoadableState<CompetitionTest>> = _testLiveData.map { state ->
         state.doOnSuccess { test ->
+            startTestTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
             if (test.questions.isNotEmpty()) {
                 _questionLiveData.postValue(0 to test.questions.first())
             }
@@ -29,7 +33,8 @@ class TestPassageViewModel @Inject constructor(
     private val _questionLiveData = MutableLiveData<Pair<Int, Question>>()
     val questionLiveData: LiveData<Pair<Int, Question>> = _questionLiveData
 
-    var questionResults = mutableListOf<CompetitionPassData.Question>()
+    private var startTestTime = 0L
+    private val questionResults = mutableListOf<CompetitionPassData.Question>()
 
     fun loadTest(id: String) {
         _testLiveData.launchLoadData(getTestUseCase.executeFlow(GetTestUseCase.Params(id)))
@@ -46,15 +51,25 @@ class TestPassageViewModel @Inject constructor(
     }
 
     private fun next() {
-        val questions = testLiveData.value?.getOrNull()?.questions
-        if (!questions.isNullOrEmpty()) {
-            val lastIndex = questionLiveData.value?.first ?: 0
-            val newIndex = lastIndex + 1
-            if (newIndex == questions.size) {
-                // TODO check answers
-            } else {
-                _questionLiveData.postValue(newIndex to questions[newIndex])
-            }
+        val test = testLiveData.value?.getOrNull() ?: return
+
+        val questions = test.questions.takeIf { it.isNotEmpty() } ?: return
+
+        val lastIndex = questionLiveData.value?.first ?: 0
+        val newIndex = lastIndex + 1
+        if (newIndex == questions.size) {
+            val spentTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - startTestTime
+            navigate(
+                destinations.checkResult(
+                    CompetitionPassData(
+                        testId = test.id,
+                        questionResults = questionResults,
+                        spentTime = spentTime,
+                    )
+                )
+            )
+        } else {
+            _questionLiveData.postValue(newIndex to questions[newIndex])
         }
     }
 }

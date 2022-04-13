@@ -123,6 +123,7 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
             is Question.ListAnswer -> {
                 textInputLayoutAnswer.isVisible = false
                 recyclerView.isVisible = true
+                answersAdapter.selectedAnswerId = null
                 answersAdapter.submitList(question.answers)
                 fabSelect.setOnClickListener {
                     viewModel.saveListAnswer(answersAdapter.selectedAnswerId, question.id)
