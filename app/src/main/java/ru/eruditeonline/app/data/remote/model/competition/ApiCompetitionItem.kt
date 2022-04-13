@@ -10,6 +10,8 @@ class ApiCompetitionItem(
     @SerializedName("id") val id: Int?,
     /** Полное название конкурса */
     @SerializedName("title") val title: String?,
+    /** Предмет */
+    @SerializedName("subject") val subject: String?,
     /** Ссылка на изображение теста */
     @SerializedName("icon") val icon: String?,
     /** Сложность (от 1 до 5) */

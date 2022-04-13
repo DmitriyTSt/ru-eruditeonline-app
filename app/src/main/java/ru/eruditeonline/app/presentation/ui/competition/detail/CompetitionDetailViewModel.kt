@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItem
+import ru.eruditeonline.app.data.model.competition.TestAgeGroup
 import ru.eruditeonline.app.domain.usecase.competition.GetCompetitionItemUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
@@ -17,5 +18,9 @@ class CompetitionDetailViewModel @Inject constructor(
 
     fun loadCompetitionItem(id: Int) {
         _competitionItemLiveData.launchLoadData(getCompetitionItemUseCase.executeFlow(GetCompetitionItemUseCase.Params(id)))
+    }
+
+    fun openTest(test: TestAgeGroup) {
+        // TODO
     }
 }
