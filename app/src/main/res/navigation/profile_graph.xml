@@ -9,5 +9,14 @@
         android:id="@+id/profileFragment"
         android:name="ru.eruditeonline.app.presentation.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_commonResultListFragment"
+            app:destination="@id/commonResultListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/commonResultListFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.result.common.CommonResultListFragment"
+        android:label="CommonResultListFragment"
+        tools:layout="@layout/fragment_common_result_list" />
 </navigation>

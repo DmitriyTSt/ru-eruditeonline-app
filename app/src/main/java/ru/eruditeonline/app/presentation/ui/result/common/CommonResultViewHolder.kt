@@ -8,15 +8,21 @@ import ru.eruditeonline.app.data.model.test.TestCommonResultRow
 import ru.eruditeonline.app.databinding.ItemCommonResultBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.extension.load
+import ru.eruditeonline.app.presentation.managers.DateFormatter
+import java.time.Instant
+import java.time.ZoneId
 
 class CommonResultViewHolder(
     parent: ViewGroup,
+    private val dateFormatter: DateFormatter,
     private val onItemClick: (TestCommonResultRow) -> Unit,
 ) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_common_result)) {
     private val binding by viewBinding(ItemCommonResultBinding::bind)
 
     fun bind(result: TestCommonResultRow) = with(binding) {
-        textViewDate.text = result.date
+        textViewDate.text = dateFormatter.formatStandardDate(
+            Instant.ofEpochSecond(result.date).atZone(ZoneId.systemDefault()).toLocalDate()
+        )
         textViewPlace.text = result.resultText
         textViewCity.text = result.city
         textViewUsername.text = result.username

@@ -4,7 +4,7 @@ import ru.eruditeonline.app.data.model.Similarable
 
 data class TestCommonResultRow(
     /** Дата прохождения */
-    val date: String,
+    val date: Long,
     /** Участник */
     val username: String,
     /** Регион (населенный пункт) */
@@ -12,7 +12,7 @@ data class TestCommonResultRow(
     /** Ссылка на иконку страны */
     val countryIcon: String,
     /** Идентификатор конкурса */
-    val competitionId: String,
+    val competitionId: Int,
     /** Конкурс */
     val competitionTitle: String,
     /** Текст результата */
