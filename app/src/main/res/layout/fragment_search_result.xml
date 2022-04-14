@@ -28,7 +28,6 @@
                     android:background="@null"
                     android:hint="@string/search_result_hint"
                     android:imeOptions="actionSearch"
-                    android:inputType="text|textCapSentences"
                     android:textAppearance="@style/Font.Body1.Regular"
                     android:textColor="?colorOnPrimary"
                     android:textColorHint="?colorOnPrimary"

@@ -26,5 +26,9 @@
         android:id="@+id/searchResultFragment"
         android:name="ru.eruditeonline.app.presentation.ui.result.search.SearchResultFragment"
         android:label="SearchResultFragment"
-        tools:layout="@layout/fragment_search_result" />
+        tools:layout="@layout/fragment_search_result" >
+        <argument
+            android:name="mode"
+            app:argType="ru.eruditeonline.app.presentation.ui.result.search.SearchResultMode" />
+    </fragment>
 </navigation>

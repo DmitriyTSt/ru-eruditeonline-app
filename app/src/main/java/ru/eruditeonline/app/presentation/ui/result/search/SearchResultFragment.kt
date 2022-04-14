@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.presentation.ui.result.search
 
 import android.os.Bundle
+import android.text.InputType
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentSearchResultBinding
@@ -16,6 +18,7 @@ import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 class SearchResultFragment : BaseFragment(R.layout.fragment_search_result) {
     private val binding by viewBinding(FragmentSearchResultBinding::bind)
     private val viewModel: SearchResultViewModel by appViewModels()
+    private val args: SearchResultFragmentArgs by navArgs()
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
@@ -35,8 +38,16 @@ class SearchResultFragment : BaseFragment(R.layout.fragment_search_result) {
     private fun setupSearch() = with(binding.editTextSearch) {
         setOnEditorActionListener { _, _, _ ->
             activity?.hideSoftKeyboard()
-            viewModel.search(text.toString())
+            viewModel.search(args.mode, text.toString())
             true
+        }
+        inputType = when (args.mode) {
+            SearchResultMode.EMAIL -> InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS
+            SearchResultMode.QUERY -> InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        }
+        hint = when (args.mode) {
+            SearchResultMode.EMAIL -> getString(R.string.search_result_by_email_hint)
+            SearchResultMode.QUERY -> getString(R.string.search_result_hint)
         }
         doAfterTextChanged {
             binding.imageViewClose.isVisible = !it.isNullOrEmpty()

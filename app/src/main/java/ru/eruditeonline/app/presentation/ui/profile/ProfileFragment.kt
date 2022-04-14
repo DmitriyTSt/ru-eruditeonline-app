@@ -16,8 +16,11 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     private val viewModel: ProfileViewModel by appViewModels()
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
+        buttonSearchResultsByEmail.setOnClickListener {
+            viewModel.openSearchResultsByEmail()
+        }
         buttonSearchResults.setOnClickListener {
-            viewModel.openSearchResults()
+            viewModel.openSearchResultsByQuery()
         }
         buttonCommonResults.setOnClickListener {
             viewModel.openCommonResults()

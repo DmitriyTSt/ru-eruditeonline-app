@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class SearchResultViewModel @Inject constructor() : BaseViewModel() {
 
-    fun search(text: String) {
+    fun search(mode: SearchResultMode, text: String) {
         // TODO
     }
 }
