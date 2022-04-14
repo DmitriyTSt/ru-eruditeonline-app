@@ -25,4 +25,5 @@
     <dimen name="competition_card_elevation">4dp</dimen>
     <dimen name="answer_card_corner_radius">8dp</dimen>
     <dimen name="answer_card_elevation">4dp</dimen>
+    <dimen name="rating_selector_height">104dp</dimen>
 </resources>

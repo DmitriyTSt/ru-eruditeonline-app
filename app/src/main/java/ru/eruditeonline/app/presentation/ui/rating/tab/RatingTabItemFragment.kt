@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.updatePadding
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import ru.eruditeonline.app.R
@@ -22,6 +23,8 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZoneOffset
 import javax.inject.Inject
+import kotlin.math.max
+import kotlin.math.min
 
 class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item), DatePeriodListener {
 
@@ -38,6 +41,7 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item), D
     private val binding by viewBinding(FragmentRatingTabItemBinding::bind)
     private val viewModel: RatingTabItemViewModel by appViewModels()
 
+    private val ratingSelectorHeight by lazy { resources.getDimension(R.dimen.rating_selector_height) }
     private val padding16 by lazy { resources.getDimensionPixelSize(R.dimen.padding_16) }
     private val mode by lazy { RatingTabItemMode.values()[arguments?.getInt(EXTRA_MODE) ?: 0] }
 
@@ -77,6 +81,13 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item), D
     private fun setupList() = with(binding.recyclerView) {
         adapter = ratingRowsAdapter
         addLinearSpaceItemDecoration(R.dimen.padding_8)
+        addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val oldOffset = binding.cardViewSelector.translationY
+                val newOffset = oldOffset - dy
+                binding.cardViewSelector.translationY = max(min(0f, newOffset), -ratingSelectorHeight)
+            }
+        })
     }
 
     private fun bindPeriod(date: LocalDate) = with(binding) {
