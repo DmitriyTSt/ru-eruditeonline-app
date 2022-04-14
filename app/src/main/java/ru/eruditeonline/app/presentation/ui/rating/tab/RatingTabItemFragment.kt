@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.updatePadding
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.rating.RatingRow
 import ru.eruditeonline.app.databinding.FragmentRatingTabItemBinding
@@ -13,7 +14,10 @@ import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.managers.DateFormatter
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
+import java.time.ZoneOffset
 import javax.inject.Inject
 
 class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
@@ -83,9 +87,19 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
     }
 
     private fun setupDayPicker(initialDate: LocalDate) = with(binding) {
-        textInputLayout.hint = getString(R.string.rating_day_hint)
+        val hint = getString(R.string.rating_day_hint)
+        textInputLayout.hint = hint
         viewSelectDate.setOnClickListener {
-
+            MaterialDatePicker.Builder.datePicker()
+                .setTitleText(hint)
+                .setSelection(initialDate.atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000)
+                .build()
+                .apply {
+                    addOnPositiveButtonClickListener { millis ->
+                        viewModel.selectDay(Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate())
+                    }
+                }
+                .show(childFragmentManager, hint)
         }
     }
 

@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/margin_8"
-            android:textAppearance="@style/Font.Body2.Medium"
+            android:textAppearance="@style/Font.Heading3.Medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="33150" />
