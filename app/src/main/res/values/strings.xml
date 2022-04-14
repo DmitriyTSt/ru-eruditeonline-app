@@ -31,4 +31,6 @@
     <string name="rating_month_hint">Месяц</string>
     <string name="rating_year_hint">Год</string>
     <string name="common_result_list_title">Итоги</string>
+    <string name="search_result_hint">Поиск…</string>
+    <string name="search_results_title">Поиск результатов</string>
 </resources>

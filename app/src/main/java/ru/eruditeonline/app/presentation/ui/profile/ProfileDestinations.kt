@@ -8,4 +8,9 @@ class ProfileDestinations @Inject constructor() {
     fun commonResults() = Destination.Action(
         ProfileFragmentDirections.actionProfileFragmentToCommonResultListFragment()
     )
+
+    /** Поиск результатов */
+    fun searchResults() = Destination.Action(
+        ProfileFragmentDirections.actionProfileFragmentToSearchResultFragment()
+    )
 }

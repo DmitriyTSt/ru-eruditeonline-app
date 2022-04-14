@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_profileFragment_to_commonResultListFragment"
             app:destination="@id/commonResultListFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/commonResultListFragment"
         android:name="ru.eruditeonline.app.presentation.ui.result.common.CommonResultListFragment"
         android:label="CommonResultListFragment"
         tools:layout="@layout/fragment_common_result_list" />
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.result.search.SearchResultFragment"
+        android:label="SearchResultFragment"
+        tools:layout="@layout/fragment_search_result" />
 </navigation>

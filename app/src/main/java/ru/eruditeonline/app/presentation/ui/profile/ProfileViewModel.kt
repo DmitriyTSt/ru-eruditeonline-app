@@ -9,4 +9,8 @@ class ProfileViewModel @Inject constructor(
     fun openCommonResults() {
         navigate(destinations.commonResults())
     }
+
+    fun openSearchResults() {
+        navigate(destinations.searchResults())
+    }
 }
