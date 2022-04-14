@@ -19,7 +19,7 @@ import javax.inject.Inject
 abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
     open val showBottomNavigationView: Boolean
-        get() = false
+        get() = (parentFragment as? BaseFragment)?.showBottomNavigationView ?: false
 
     protected var bottomNavigationViewManager: BottomNavigationViewManager? = null
 

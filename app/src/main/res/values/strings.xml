@@ -23,4 +23,8 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="test_temp_result_title">Конкурс пройден</string>
+    <string name="rating_title">Рейтинг</string>
+    <string name="rating_by_day_title">За день</string>
+    <string name="rating_by_month_title">За месяц</string>
+    <string name="rating_by_year_title">За год</string>
 </resources>
