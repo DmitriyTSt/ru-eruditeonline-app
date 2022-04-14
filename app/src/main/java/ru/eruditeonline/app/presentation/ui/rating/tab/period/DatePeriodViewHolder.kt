@@ -6,8 +6,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ItemDatePeriodBinding
 import ru.eruditeonline.app.presentation.extension.inflate
-import timber.log.Timber
-import java.time.LocalDate
 
 class DatePeriodViewHolder(
     parent: ViewGroup,
