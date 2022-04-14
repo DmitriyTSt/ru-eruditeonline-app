@@ -14,13 +14,16 @@ import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.managers.DateFormatter
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.app.presentation.ui.rating.tab.period.DatePeriodDialogFragment
+import ru.eruditeonline.app.presentation.ui.rating.tab.period.DatePeriodListener
+import ru.eruditeonline.app.presentation.ui.rating.tab.row.RatingRowsAdapter
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZoneOffset
 import javax.inject.Inject
 
-class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
+class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item), DatePeriodListener {
 
     companion object {
         private const val EXTRA_MODE = "extra_mode"
@@ -67,6 +70,10 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
         binding.recyclerView.updatePadding(bottom = bottomNavigationViewHeight + padding16)
     }
 
+    override fun selectDate(date: LocalDate) {
+        viewModel.selectDate(mode, date)
+    }
+
     private fun setupList() = with(binding.recyclerView) {
         adapter = ratingRowsAdapter
         addLinearSpaceItemDecoration(R.dimen.padding_8)
@@ -81,8 +88,8 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
         editText.setText(formattedDate)
         when (mode) {
             RatingTabItemMode.DAY -> setupDayPicker(date)
-            RatingTabItemMode.MONTH -> setupMonthPicker(date)
-            RatingTabItemMode.YEAR -> setupYearPicker(date)
+            RatingTabItemMode.MONTH -> setupMonthPicker()
+            RatingTabItemMode.YEAR -> setupYearPicker()
         }
     }
 
@@ -96,24 +103,26 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
                 .build()
                 .apply {
                     addOnPositiveButtonClickListener { millis ->
-                        viewModel.selectDay(Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate())
+                        viewModel.selectDate(mode, Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate())
                     }
                 }
                 .show(childFragmentManager, hint)
         }
     }
 
-    private fun setupMonthPicker(initialDate: LocalDate) = with(binding) {
-        textInputLayout.hint = getString(R.string.rating_month_hint)
+    private fun setupMonthPicker() = with(binding) {
+        val hint = getString(R.string.rating_month_hint)
+        textInputLayout.hint = hint
         viewSelectDate.setOnClickListener {
-
+            DatePeriodDialogFragment.newInstance(mode).show(childFragmentManager, hint)
         }
     }
 
-    private fun setupYearPicker(initialDate: LocalDate) = with(binding) {
-        textInputLayout.hint = getString(R.string.rating_year_hint)
+    private fun setupYearPicker() = with(binding) {
+        val hint = getString(R.string.rating_year_hint)
+        textInputLayout.hint = hint
         viewSelectDate.setOnClickListener {
-
+            DatePeriodDialogFragment.newInstance(mode).show(childFragmentManager, hint)
         }
     }
 

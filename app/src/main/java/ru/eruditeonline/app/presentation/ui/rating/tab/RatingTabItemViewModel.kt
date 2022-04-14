@@ -38,16 +38,8 @@ class RatingTabItemViewModel @Inject constructor(
         }
     }
 
-    fun selectDay(date: LocalDate) {
-        load(RatingTabItemMode.DAY, date)
-    }
-
-    fun selectMonth(month: Int, year: Int) {
-        load(RatingTabItemMode.MONTH, LocalDate.of(year, month, 1))
-    }
-
-    fun selectYear(year: Int) {
-        load(RatingTabItemMode.MONTH, LocalDate.of(year, 1, 1))
+    fun selectDate(mode: RatingTabItemMode, date: LocalDate) {
+        load(mode, date)
     }
 
     private fun load(mode: RatingTabItemMode, date: LocalDate) {

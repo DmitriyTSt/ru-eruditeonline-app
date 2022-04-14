@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.presentation.ui.rating.tab
+package ru.eruditeonline.app.presentation.ui.rating.tab.row
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter

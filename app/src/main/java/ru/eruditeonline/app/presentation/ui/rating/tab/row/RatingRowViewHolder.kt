@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.presentation.ui.rating.tab
+package ru.eruditeonline.app.presentation.ui.rating.tab.row
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
@@ -43,6 +43,6 @@ class RatingRowViewHolder(
         }
         setCompoundDrawablesRelativeWithIntrinsicBounds(icon, 0, 0, 0)
         setTextColor(context.getColorCompat(color))
-        text = diff.toString()
+        text = if (diff > 0) "+$diff" else diff.toString()
     }
 }
