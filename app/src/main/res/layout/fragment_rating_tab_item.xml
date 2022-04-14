@@ -47,6 +47,7 @@
             android:layout_height="match_parent"
             android:paddingHorizontal="@dimen/padding_16"
             android:paddingTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_rating_row" />
     </ru.eruditeonline.app.presentation.ui.views.StateViewFlipper>
 

@@ -2,7 +2,6 @@ package ru.eruditeonline.app.presentation.managers
 
 import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -27,7 +26,7 @@ class DateFormatter @Inject constructor() {
     }
 
     fun formatTextMonthMonth(date: LocalDate): String {
-        return textMonthMonthTemplate.format(LocalDateTime.from(date).toEpochSecond(ZoneOffset.UTC) * 1000)
+        return textMonthMonthTemplate.format(date.atStartOfDay().toEpochSecond(ZoneOffset.UTC) * 1000)
     }
 
     fun formatYear(date: LocalDate): String {

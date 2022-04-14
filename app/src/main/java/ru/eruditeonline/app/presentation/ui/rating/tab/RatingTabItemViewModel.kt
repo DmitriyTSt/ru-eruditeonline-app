@@ -21,7 +21,14 @@ class RatingTabItemViewModel @Inject constructor(
     val selectedDateLiveData: LiveData<LocalDate> = _selectedDateLiveData
 
     fun initLoad(mode: RatingTabItemMode) {
-        load(mode, LocalDate.now())
+        val date = LocalDate.now().run {
+            if (mode == RatingTabItemMode.YEAR) {
+                minusYears(1)
+            } else {
+                this
+            }
+        }
+        load(mode, date)
     }
 
     fun retry(mode: RatingTabItemMode) {

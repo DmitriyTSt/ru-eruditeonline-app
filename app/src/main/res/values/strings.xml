@@ -27,4 +27,7 @@
     <string name="rating_by_day_title">За день</string>
     <string name="rating_by_month_title">За месяц</string>
     <string name="rating_by_year_title">За год</string>
+    <string name="rating_day_hint">День</string>
+    <string name="rating_month_hint">Месяц</string>
+    <string name="rating_year_hint">Год</string>
 </resources>

@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.rating.RatingRow
 import ru.eruditeonline.app.databinding.FragmentRatingTabItemBinding
+import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.managers.DateFormatter
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -34,6 +35,7 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
     private val mode by lazy { RatingTabItemMode.values()[arguments?.getInt(EXTRA_MODE) ?: 0] }
 
     @Inject lateinit var dateFormatter: DateFormatter
+    @Inject lateinit var ratingRowsAdapter: RatingRowsAdapter
 
     override fun callOperations() {
         viewModel.initLoad(mode)
@@ -41,12 +43,16 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         stateViewFlipper.setRetryMethod { viewModel.retry(mode) }
+        setupList()
     }
 
     override fun onBindViewModel() = with(viewModel) {
         observeNavigationCommands(viewModel)
         ratingLiveData.observe { state ->
             binding.stateViewFlipper.setState(state)
+            state.doOnSuccess { rating ->
+                bindRating(rating)
+            }
         }
         selectedDateLiveData.observe { date ->
             bindPeriod(date)
@@ -55,6 +61,11 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
 
     override fun applyBottomNavigationViewPadding(view: View, bottomNavigationViewHeight: Int) {
         binding.recyclerView.updatePadding(bottom = bottomNavigationViewHeight + padding16)
+    }
+
+    private fun setupList() = with(binding.recyclerView) {
+        adapter = ratingRowsAdapter
+        addLinearSpaceItemDecoration(R.dimen.padding_8)
     }
 
     private fun bindPeriod(date: LocalDate) = with(binding) {
@@ -72,18 +83,27 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item) {
     }
 
     private fun setupDayPicker(initialDate: LocalDate) = with(binding) {
+        textInputLayout.hint = getString(R.string.rating_day_hint)
+        viewSelectDate.setOnClickListener {
 
+        }
     }
 
     private fun setupMonthPicker(initialDate: LocalDate) = with(binding) {
+        textInputLayout.hint = getString(R.string.rating_month_hint)
+        viewSelectDate.setOnClickListener {
 
+        }
     }
 
     private fun setupYearPicker(initialDate: LocalDate) = with(binding) {
+        textInputLayout.hint = getString(R.string.rating_year_hint)
+        viewSelectDate.setOnClickListener {
 
+        }
     }
 
     private fun bindRating(rating: List<RatingRow>) {
-
+        ratingRowsAdapter.submitList(rating)
     }
 }
