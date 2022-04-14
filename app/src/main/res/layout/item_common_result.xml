@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/default_card_corner_radius"
+    app:cardElevation="@dimen/default_card_elevation">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_weight="1"
+                android:textAppearance="@style/Font.Body2.Regular"
+                tools:text="14.04.2022" />
+
+            <ImageView
+                android:id="@+id/imageViewPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/textViewPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:textAppearance="@style/Font.Body2.Medium"
+                tools:text="Победитель (I место)" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8"
+            android:textAppearance="@style/Font.Body1.Regular"
+            tools:text="Томилов Дмитрий Александрович" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8"
+            android:layout_marginTop="4dp">
+
+            <ImageView
+                android:id="@+id/imageViewCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/textViewCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textAppearance="@style/Font.Body2.Regular"
+                tools:text="Саратов" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewCompetition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="@style/Font.Heading3.Medium"
+            tools:text="Конкурс по английскому языку «English proverbs and sayings»" />
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
