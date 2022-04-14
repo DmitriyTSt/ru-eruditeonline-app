@@ -3,9 +3,11 @@ package ru.eruditeonline.app.presentation.ui.result.search
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
 
-class SearchResultViewModel @Inject constructor() : BaseViewModel() {
+class SearchResultViewModel @Inject constructor(
+    private val destinations: SearchResultDestinations,
+) : BaseViewModel() {
 
     fun search(mode: SearchResultMode, text: String) {
-        // TODO
+        navigate(destinations.resultList(mode, text))
     }
 }

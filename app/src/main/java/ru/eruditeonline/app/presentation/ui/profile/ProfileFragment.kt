@@ -22,6 +22,9 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         buttonSearchResults.setOnClickListener {
             viewModel.openSearchResultsByQuery()
         }
+        buttonUserResults.setOnClickListener {
+            viewModel.openUserResults()
+        }
         buttonCommonResults.setOnClickListener {
             viewModel.openCommonResults()
         }

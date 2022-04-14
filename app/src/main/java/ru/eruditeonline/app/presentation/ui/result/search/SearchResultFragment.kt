@@ -37,8 +37,11 @@ class SearchResultFragment : BaseFragment(R.layout.fragment_search_result) {
 
     private fun setupSearch() = with(binding.editTextSearch) {
         setOnEditorActionListener { _, _, _ ->
-            activity?.hideSoftKeyboard()
-            viewModel.search(args.mode, text.toString())
+            val text = text.toString()
+            if (text.isNotEmpty()) {
+                activity?.hideSoftKeyboard()
+                viewModel.search(args.mode, text)
+            }
             true
         }
         inputType = when (args.mode) {

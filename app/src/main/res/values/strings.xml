@@ -35,4 +35,5 @@
     <string name="search_result_hint">Поиск…</string>
     <string name="search_results_by_email_title">Поиск результатов по email</string>
     <string name="search_results_title">Поиск результатов</string>
+    <string name="user_result_list_title">Результаты</string>
 </resources>

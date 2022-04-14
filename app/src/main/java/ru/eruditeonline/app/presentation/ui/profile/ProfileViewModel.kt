@@ -17,4 +17,8 @@ class ProfileViewModel @Inject constructor(
     fun openSearchResultsByQuery() {
         navigate(destinations.searchResultsByQuery())
     }
+
+    fun openUserResults() {
+        navigate(destinations.userResults())
+    }
 }

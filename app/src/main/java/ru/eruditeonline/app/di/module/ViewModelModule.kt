@@ -15,6 +15,7 @@ import ru.eruditeonline.app.presentation.ui.rating.RatingViewModel
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemViewModel
 import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListViewModel
 import ru.eruditeonline.app.presentation.ui.result.search.SearchResultViewModel
+import ru.eruditeonline.app.presentation.ui.result.user.UserResultListViewModel
 import ru.eruditeonline.app.presentation.ui.splash.SplashViewModel
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageViewModel
 import ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultViewModel
@@ -80,4 +81,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(SearchResultViewModel::class)
     abstract fun searchResultViewModel(viewModel: SearchResultViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserResultListViewModel::class)
+    abstract fun userResultListViewModel(viewModel: UserResultListViewModel): ViewModel
 }
