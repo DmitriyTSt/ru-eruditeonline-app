@@ -11,16 +11,18 @@ class CompetitionCheckParams(
     @SerializedName("spentTime") val spentTime: Long,
 ) {
     sealed class Question(
-        @SerializedName("questionId") val questionId: String,
+        @SerializedName("questionId") val questionId: Int,
     ) {
         class ListAnswer(
-            questionId: String,
-            @SerializedName("answerId") val answerId: String,
+            questionId: Int,
+            /** null, если не выбрали */
+            @SerializedName("answerId") val answerId: String?,
         ) : Question(questionId)
 
         class SingleAnswer(
-            questionId: String,
-            @SerializedName("textAnswer") val textAnswer: String,
+            questionId: Int,
+            /** null, если не ответили */
+            @SerializedName("textAnswer") val textAnswer: String?,
         ) : Question(questionId)
     }
 }

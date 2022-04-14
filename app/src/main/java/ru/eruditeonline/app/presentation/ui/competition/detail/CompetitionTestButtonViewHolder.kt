@@ -21,5 +21,8 @@ class CompetitionTestButtonViewHolder(
         backgroundTintList = ColorStateList.valueOf(
             test.color ?: context.getColorFromAttribute(android.R.attr.colorPrimary)
         )
+        setOnClickListener {
+            onItemClick(test)
+        }
     }
 }

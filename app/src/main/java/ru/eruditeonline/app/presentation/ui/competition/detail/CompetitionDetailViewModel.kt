@@ -11,6 +11,7 @@ import javax.inject.Inject
 
 class CompetitionDetailViewModel @Inject constructor(
     private val getCompetitionItemUseCase: GetCompetitionItemUseCase,
+    private val destinations: CompetitionDetailDestinations,
 ) : BaseViewModel() {
     /** Конкурс */
     private val _competitionItemLiveData = MutableLiveData<LoadableState<CompetitionItem>>()
@@ -21,6 +22,6 @@ class CompetitionDetailViewModel @Inject constructor(
     }
 
     fun openTest(test: TestAgeGroup) {
-        // TODO
+        navigate(destinations.testPassage(test.id))
     }
 }

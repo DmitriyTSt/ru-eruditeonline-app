@@ -1,5 +1,9 @@
 package ru.eruditeonline.app.data.model.competition
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 class CompetitionPassData(
     /** Идентификатор теста */
     val testId: String,
@@ -7,18 +11,22 @@ class CompetitionPassData(
     val questionResults: List<Question>,
     /** Потраченное на прохождение время в секундах */
     val spentTime: Long,
-) {
+) : Parcelable {
     sealed class Question(
-        val questionId: String,
-    ) {
+        open val questionId: Int,
+    ) : Parcelable {
+        @Parcelize
         class ListAnswer(
-            questionId: String,
-            val answerId: String,
+            override val questionId: Int,
+            /** null, если не выбран */
+            val answerId: String?,
         ) : Question(questionId)
 
+        @Parcelize
         class SingleAnswer(
-            questionId: String,
-            val textAnswer: String,
+            override val questionId: Int,
+            /** null, если не ответили */
+            val textAnswer: String?,
         ) : Question(questionId)
     }
 }

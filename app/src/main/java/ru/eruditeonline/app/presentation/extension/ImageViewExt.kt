@@ -20,7 +20,7 @@ fun ImageView.load(
     @DrawableRes errorRes: Int? = placeHolderRes,
     @DrawableRes fallbackRes: Int? = placeHolderRes,
     doOnFailure: () -> Unit = {},
-    doOnSuccess: (Drawable?) -> Unit = { }
+    doOnSuccess: (Drawable?) -> Unit = {},
 ) {
     Glide.with(this).clear(this)
     Glide.with(context)
@@ -28,6 +28,7 @@ fun ImageView.load(
         .apply { placeHolderRes?.let(::placeholder) }
         .apply { errorRes?.let(::error) }
         .apply { fallbackRes?.let(::fallback) }
+
         .addListener(
             object : RequestListener<Drawable> {
                 override fun onLoadFailed(

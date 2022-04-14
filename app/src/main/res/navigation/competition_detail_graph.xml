@@ -15,5 +15,31 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_competitionDetailFragment_to_testPassageFragment"
+            app:destination="@id/testPassageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testPassageFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.test.passage.TestPassageFragment"
+        android:label="TestPassageFragment"
+        tools:layout="@layout/fragment_test_passage">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_testPassageFragment_to_testTempResultFragment"
+            app:destination="@id/testTempResultFragment"
+            app:popUpTo="@id/competitionDetailFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/testTempResultFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultFragment"
+        android:label="TestTempResultFragment"
+        tools:layout="@layout/fragment_test_temp_result">
+        <argument
+            android:name="data"
+            app:argType="ru.eruditeonline.app.data.model.competition.CompetitionPassData" />
     </fragment>
 </navigation>
