@@ -24,10 +24,16 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             viewModel.navigateBack()
         }
         setupInsets()
+        buttonLogin.setOnClickListener {
+            viewModel.login(textInputLayoutLogin, textInputLayoutPassword)
+        }
     }
 
     override fun onBindViewModel() = with(viewModel) {
         observeNavigationCommands(viewModel)
+        loginLiveEvent.observe { state ->
+            binding.buttonLogin.setState(state)
+        }
     }
 
     private fun setupInsets() = with(binding) {

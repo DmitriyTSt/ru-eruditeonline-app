@@ -23,13 +23,14 @@
                 android:text="@string/login_title"
                 android:textAppearance="@style/Font.Heading1.Bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_16"
                 android:layout_marginTop="16dp"
                 android:hint="@string/login_email_hint"
+                app:errorEmpty="@string/empty_default_error"
                 app:errorEnabled="true">
 
                 <EditText
@@ -37,15 +38,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textWebEmailAddress" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_16"
                 android:layout_marginTop="8dp"
                 android:hint="@string/login_password_hint"
+                app:errorEmpty="@string/empty_default_error"
                 app:errorEnabled="true"
                 app:passwordToggleEnabled="true">
 
@@ -54,9 +56,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
-            </com.google.android.material.textfield.TextInputLayout>
+            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
 
-            <com.google.android.material.button.MaterialButton
+            <ru.eruditeonline.app.presentation.ui.views.StatefulMaterialButton
                 android:id="@+id/buttonLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

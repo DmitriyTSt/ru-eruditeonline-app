@@ -46,4 +46,5 @@
     <string name="registration_title">Регистрация</string>
     <string name="restore_password_button_label">Забыли пароль?</string>
     <string name="button_auth_label">Авторизация</string>
+    <string name="empty_default_error">Поле не может быть пустым</string>
 </resources>

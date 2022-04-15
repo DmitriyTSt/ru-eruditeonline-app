@@ -75,6 +75,8 @@ ext {
     // secured shared preferences
     security_crypto = "androidx.security:security-crypto:1.0.0"
 
+    swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
     // glide
     def glideVersion = "4.11.0"
     glide = "com.github.bumptech.glide:glide:$glideVersion"
