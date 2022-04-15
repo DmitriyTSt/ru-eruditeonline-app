@@ -19,15 +19,15 @@ class GetUserResultsUseCase @Inject constructor(
     override fun execute(params: Params): Flow<PagingData<TestUserResultRow>> {
         return createPager(
             UserResultsPagingSource(
-                email = params.email,
-                query = params.query,
+                email = params.email?.takeIf { it.isNotEmpty() },
+                query = params.query?.takeIf { it.isNotEmpty() },
                 repository = resultRepository,
             )
         ).flow
     }
 
     data class Params(
-        val query: String,
-        val email: String,
+        val query: String? = null,
+        val email: String? = null,
     )
 }

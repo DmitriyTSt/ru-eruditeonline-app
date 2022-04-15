@@ -1,6 +1,8 @@
 package ru.eruditeonline.app.data.model.rating
 
-class RatingRow(
+import ru.eruditeonline.app.data.model.Similarable
+
+data class RatingRow(
     /** Место */
     val rank: Int,
     /** Участник */
@@ -11,4 +13,12 @@ class RatingRow(
     val countryIcon: String,
     /** Прошлое место */
     val oldRank: Int?,
-)
+) : Similarable<RatingRow> {
+    override fun areItemsTheSame(other: RatingRow): Boolean {
+        return this.rank == other.rank
+    }
+
+    override fun areContentsTheSame(other: RatingRow): Boolean {
+        return this == other
+    }
+}

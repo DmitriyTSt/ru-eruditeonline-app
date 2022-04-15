@@ -9,5 +9,41 @@
         android:id="@+id/profileFragment"
         android:name="ru.eruditeonline.app.presentation.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_commonResultListFragment"
+            app:destination="@id/commonResultListFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_userResultListFragment"
+            app:destination="@id/userResultListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/commonResultListFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.result.common.CommonResultListFragment"
+        android:label="CommonResultListFragment"
+        tools:layout="@layout/fragment_common_result_list" />
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.result.search.SearchResultFragment"
+        android:label="SearchResultFragment"
+        tools:layout="@layout/fragment_search_result">
+        <argument
+            android:name="mode"
+            app:argType="ru.eruditeonline.app.presentation.ui.result.search.SearchResultMode" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_userResultListFragment"
+            app:destination="@id/userResultListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userResultListFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.result.user.UserResultListFragment"
+        android:label="UserResultListFragment"
+        tools:layout="@layout/fragment_user_result_list" >
+        <argument
+            android:name="params"
+            app:argType="ru.eruditeonline.app.presentation.ui.result.user.UserResultParams" />
+    </fragment>
 </navigation>

@@ -19,8 +19,11 @@
     <dimen name="text_size_heading_3">18sp</dimen>
     <dimen name="text_size_body_1">16sp</dimen>
     <dimen name="text_size_body_2">14sp</dimen>
+    <dimen name="default_card_corner_radius">8dp</dimen>
+    <dimen name="default_card_elevation">4dp</dimen>
     <dimen name="competition_card_corner_radius">8dp</dimen>
     <dimen name="competition_card_elevation">4dp</dimen>
     <dimen name="answer_card_corner_radius">8dp</dimen>
     <dimen name="answer_card_elevation">4dp</dimen>
+    <dimen name="rating_selector_height">104dp</dimen>
 </resources>

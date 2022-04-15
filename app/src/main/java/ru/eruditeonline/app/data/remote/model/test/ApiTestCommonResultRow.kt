@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class ApiTestCommonResultRow(
     /** Дата прохождения */
-    @SerializedName("date") val date: String?,
+    @SerializedName("date") val date: Long?,
     /** Участник */
     @SerializedName("username") val username: String?,
     /** Регион (населенный пункт) */
@@ -12,7 +12,7 @@ class ApiTestCommonResultRow(
     /** Ссылка на иконку страны */
     @SerializedName("countryIcon") val countryIcon: String?,
     /** Идентификатор конкурса */
-    @SerializedName("competitionId") val competitionId: String?,
+    @SerializedName("competitionId") val competitionId: Int?,
     /** Конкурс */
     @SerializedName("competitionTitle") val competitionTitle: String?,
     /** Текст результата */

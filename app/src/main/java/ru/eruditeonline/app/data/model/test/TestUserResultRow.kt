@@ -1,12 +1,13 @@
 package ru.eruditeonline.app.data.model.test
 
+import ru.eruditeonline.app.data.model.Similarable
 import ru.eruditeonline.app.data.model.base.Score
 
-class TestUserResultRow(
+data class TestUserResultRow(
     /** Идентификатор результата */
     val id: String,
     /** Дата прохождения */
-    val date: String,
+    val date: Long,
     /** Участник */
     val username: String,
     /** Идентификатор теста */
@@ -14,7 +15,15 @@ class TestUserResultRow(
     /** Название конкурса */
     val competitionTitle: String,
     /** Место */
-    place: String,
+    val place: String,
     /** Балл */
     val score: Score,
-)
+) : Similarable<TestUserResultRow> {
+    override fun areItemsTheSame(other: TestUserResultRow): Boolean {
+        return this.id == other.id
+    }
+
+    override fun areContentsTheSame(other: TestUserResultRow): Boolean {
+        return this == other
+    }
+}

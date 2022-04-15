@@ -30,11 +30,11 @@ class TestMapper @Inject constructor(
 ) {
     fun fromApiToModel(api: ApiTestCommonResultRow): TestCommonResultRow {
         return TestCommonResultRow(
-            date = api.date.orEmpty(),
+            date = api.date.orDefault(),
             username = api.username.orEmpty(),
             city = api.city.orEmpty(),
             countryIcon = api.countryIcon.orEmpty(),
-            competitionId = api.competitionId.orEmpty(),
+            competitionId = api.competitionId.orDefault(),
             competitionTitle = api.competitionTitle.orEmpty(),
             resultText = api.resultText.orEmpty(),
         )
@@ -43,7 +43,7 @@ class TestMapper @Inject constructor(
     fun fromApiToModel(api: ApiTestUserResultRow): TestUserResultRow {
         return TestUserResultRow(
             id = api.id.orEmpty(),
-            date = api.date.orEmpty(),
+            date = api.date.orDefault(),
             username = api.username.orEmpty(),
             testId = api.testId.orEmpty(),
             competitionTitle = api.competitionTitle.orEmpty(),

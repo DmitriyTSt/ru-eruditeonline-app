@@ -8,6 +8,10 @@ import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFr
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardFragment
 import ru.eruditeonline.app.presentation.ui.profile.ProfileFragment
 import ru.eruditeonline.app.presentation.ui.rating.RatingFragment
+import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemFragment
+import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListFragment
+import ru.eruditeonline.app.presentation.ui.result.search.SearchResultFragment
+import ru.eruditeonline.app.presentation.ui.result.user.UserResultListFragment
 import ru.eruditeonline.app.presentation.ui.splash.SplashFragment
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageFragment
 import ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultFragment
@@ -40,4 +44,16 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun testTempResultFragment(): TestTempResultFragment
+
+    @ContributesAndroidInjector
+    abstract fun ratingTabItemFragment(): RatingTabItemFragment
+
+    @ContributesAndroidInjector
+    abstract fun commonResultListFragment(): CommonResultListFragment
+
+    @ContributesAndroidInjector
+    abstract fun searchResultFragment(): SearchResultFragment
+
+    @ContributesAndroidInjector
+    abstract fun userResultListFragment(): UserResultListFragment
 }

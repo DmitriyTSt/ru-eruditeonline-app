@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.model.test
 
-class TestCommonResultRow(
+import ru.eruditeonline.app.data.model.Similarable
+
+data class TestCommonResultRow(
     /** Дата прохождения */
-    val date: String,
+    val date: Long,
     /** Участник */
     val username: String,
     /** Регион (населенный пункт) */
@@ -10,9 +12,17 @@ class TestCommonResultRow(
     /** Ссылка на иконку страны */
     val countryIcon: String,
     /** Идентификатор конкурса */
-    val competitionId: String,
+    val competitionId: Int,
     /** Конкурс */
     val competitionTitle: String,
     /** Текст результата */
     val resultText: String,
-)
+) : Similarable<TestCommonResultRow> {
+    override fun areItemsTheSame(other: TestCommonResultRow): Boolean {
+        return false
+    }
+
+    override fun areContentsTheSame(other: TestCommonResultRow): Boolean {
+        return this == other
+    }
+}

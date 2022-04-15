@@ -7,4 +7,6 @@
     <color name="black">#000000</color>
     <color name="light_grey">#cccccc</color>
     <color name="white">#FFFFFF</color>
+    <color name="rank_positive">#00AA00</color>
+    <color name="rank_negative">#FF0000</color>
 </resources>

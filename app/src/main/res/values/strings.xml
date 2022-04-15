@@ -23,4 +23,20 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="test_temp_result_title">Конкурс пройден</string>
+    <string name="rating_title">Рейтинг</string>
+    <string name="rating_by_day_title">За день</string>
+    <string name="rating_by_month_title">За месяц</string>
+    <string name="rating_by_year_title">За год</string>
+    <string name="rating_day_hint">День</string>
+    <string name="rating_month_hint">Месяц</string>
+    <string name="rating_year_hint">Год</string>
+    <string name="common_result_list_title">Итоги</string>
+    <string name="search_result_by_email_hint">Введите email…</string>
+    <string name="search_result_hint">Поиск…</string>
+    <string name="search_results_by_email_title">Поиск результатов по email</string>
+    <string name="search_results_title">Поиск результатов</string>
+    <string name="user_result_list_title">Результаты</string>
+    <string name="user_result_place_label">Место:</string>
+    <string name="user_result_score_label">Балл:</string>
+    <string name="score_template">%d из %d</string>
 </resources>
