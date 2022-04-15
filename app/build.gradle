@@ -17,7 +17,7 @@ android {
         multiDexEnabled true
         minSdk 21
         targetSdk 31
-        versionCode 1
+        versionCode this.getVersionCode()
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -42,6 +42,18 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+def getVersionCode() {
+    try {
+        def versionCode = "git rev-list --count HEAD".execute([], project.rootProject.projectDir).text.trim()
+        def result = Integer.parseInt(versionCode)
+        return result
+    }
+    catch (ignored) {
+        println "Error getting version code " + ignored.getLocalizedMessage()
+        return -1
     }
 }
 
