@@ -32,9 +32,9 @@ class RatingRowViewHolder(
 
         val diff = rank - oldRank
         val color = if (diff < 0) {
-            R.color.rank_negative
+            R.color.red
         } else {
-            R.color.rank_positive
+            R.color.green
         }
         val icon = if (diff < 0) {
             R.drawable.ic_rank_negative

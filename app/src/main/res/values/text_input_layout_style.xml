@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:minHeight">48dp</item>
+
+        <!-- Container attributes -->
+        <item name="boxBackgroundColor">@color/grey_bg</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/text_input_rounded_corner</item>
+        <item name="boxCornerRadiusTopStart">@dimen/text_input_rounded_corner</item>
+        <!-- Hint -->
+        <item name="android:textColorHint">@color/grey</item>
+        <item name="hintTextAppearance">@style/Font.Caption1.Regular</item>
+        <item name="hintTextColor">@color/grey</item>
+        <item name="materialThemeOverlay">@style/CustomMaterialThemeOverlay</item>
+        <!-- Helper text -->
+        <item name="helperTextTextAppearance">@style/Font.Caption1.Regular</item>
+        <item name="helperTextTextColor">?android:textColorSecondary</item>
+        <!-- Activation indicator attributes -->
+        <item name="boxStrokeColor">?colorPrimary</item>
+        <item name="boxStrokeErrorColor">?colorError</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">@dimen/text_input_stroke_width</item>
+        <!-- Helper/error/counter text attributes -->
+        <item name="errorEnabled">true</item>
+        <item name="errorTextColor">?colorError</item>
+        <item name="errorTextAppearance">@style/Font.Caption1.Regular</item>
+        <item name="errorIconDrawable">@null</item>
+        <!-- Placeholder -->
+        <item name="placeholderTextAppearance">@style/Font.Body2.Regular</item>
+        <item name="placeholderTextColor">@color/grey</item>
+    </style>
+
+    <dimen name="text_input_rounded_corner">6dp</dimen>
+    <dimen name="text_input_stroke_width">2dp</dimen>
+    <dimen name="text_input_inner_padding">16dp</dimen>
+
+    <style name="CustomMaterialThemeOverlay" parent="ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="editTextStyle">@style/TextInputEditTextStyle</item>
+    </style>
+
+    <style name="TextInputEditTextStyle" parent="@style/Widget.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="android:textAppearance">@style/Font.Body2.Regular</item>
+        <item name="android:textColorHint">@color/grey</item>
+    </style>
+</resources>

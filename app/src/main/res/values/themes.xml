@@ -30,5 +30,6 @@
         <item name="materialButtonStyle">@style/MaterialButtonStyle</item>
         <item name="buttonStyle">@style/MaterialButtonStyle</item>
         <item name="chipStyle">@style/ChipStyle</item>
+        <item name="textInputStyle">@style/TextInputLayoutStyle</item>
     </style>
 </resources>

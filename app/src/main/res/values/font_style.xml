@@ -57,4 +57,12 @@
     <style name="Font.Body2.Medium">
         <item name="fontFamily">@font/nunito_medium_font</item>
     </style>
+
+    <style name="Font.Caption1">
+        <item name="android:textSize">@dimen/text_size_caption_1</item>
+    </style>
+
+    <style name="Font.Caption1.Regular">
+        <item name="fontFamily">@font/nunito_regular_font</item>
+    </style>
 </resources>
