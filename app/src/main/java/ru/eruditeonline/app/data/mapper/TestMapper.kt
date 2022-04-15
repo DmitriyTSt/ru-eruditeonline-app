@@ -43,7 +43,7 @@ class TestMapper @Inject constructor(
     fun fromApiToModel(api: ApiTestUserResultRow): TestUserResultRow {
         return TestUserResultRow(
             id = api.id.orEmpty(),
-            date = api.date.orEmpty(),
+            date = api.date.orDefault(),
             username = api.username.orEmpty(),
             testId = api.testId.orEmpty(),
             competitionTitle = api.competitionTitle.orEmpty(),

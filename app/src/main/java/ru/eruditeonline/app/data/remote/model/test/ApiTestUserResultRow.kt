@@ -7,7 +7,7 @@ class ApiTestUserResultRow(
     /** Идентификатор результата */
     @SerializedName("id") val id: String?,
     /** Дата прохождения */
-    @SerializedName("date") val date: String?,
+    @SerializedName("date") val date: Long?,
     /** Участник */
     @SerializedName("username") val username: String?,
     /** Идентификатор теста */
