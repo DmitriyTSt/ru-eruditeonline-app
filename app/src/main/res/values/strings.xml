@@ -39,4 +39,11 @@
     <string name="user_result_place_label">Место:</string>
     <string name="user_result_score_label">Балл:</string>
     <string name="score_template">%d из %d</string>
+    <string name="login_title">Вход</string>
+    <string name="login_email_hint">E-mail адрес</string>
+    <string name="login_password_hint">Пароль</string>
+    <string name="login_button_label">Войти</string>
+    <string name="registration_title">Регистрация</string>
+    <string name="restore_password_button_label">Забыли пароль?</string>
+    <string name="button_auth_label">Авторизация</string>
 </resources>

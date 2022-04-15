@@ -18,6 +18,14 @@
         android:orientation="vertical">
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:text="@string/button_auth_label" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSearchResultsByEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

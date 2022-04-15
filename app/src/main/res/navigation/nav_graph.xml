@@ -23,5 +23,6 @@
     <include app:graph="@navigation/competition_detail_graph" />
     <include app:graph="@navigation/rating_graph" />
     <include app:graph="@navigation/profile_graph" />
+    <include app:graph="@navigation/auth_graph" />
 
 </navigation>

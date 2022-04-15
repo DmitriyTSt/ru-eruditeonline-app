@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_profileFragment_to_userResultListFragment"
             app:destination="@id/userResultListFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_auth_graph"
+            app:destination="@id/auth_graph" />
     </fragment>
     <fragment
         android:id="@+id/commonResultListFragment"

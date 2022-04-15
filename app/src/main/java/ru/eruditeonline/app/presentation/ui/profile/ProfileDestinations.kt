@@ -25,4 +25,9 @@ class ProfileDestinations @Inject constructor() {
     fun userResults() = Destination.Action(
         ProfileFragmentDirections.actionProfileFragmentToUserResultListFragment(UserResultParams.All)
     )
+
+    /** Авторизация */
+    fun login() = Destination.Action(
+        ProfileFragmentDirections.actionProfileFragmentToAuthGraph()
+    )
 }

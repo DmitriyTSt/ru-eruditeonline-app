@@ -10,6 +10,10 @@ class ProfileViewModel @Inject constructor(
         navigate(destinations.commonResults())
     }
 
+    fun openAuth() {
+        navigate(destinations.login())
+    }
+
     fun openSearchResultsByEmail() {
         navigate(destinations.searchResultsByEmail())
     }
