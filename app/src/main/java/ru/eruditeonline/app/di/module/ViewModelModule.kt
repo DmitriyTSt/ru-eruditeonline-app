@@ -12,7 +12,6 @@ import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilter
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
-import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileFragment
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
 import ru.eruditeonline.app.presentation.ui.rating.RatingViewModel
