@@ -8,6 +8,8 @@ import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilter
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFragment
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardFragment
 import ru.eruditeonline.app.presentation.ui.profile.ProfileFragment
+import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileFragment
+import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileFragment
 import ru.eruditeonline.app.presentation.ui.rating.RatingFragment
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemFragment
 import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListFragment
@@ -60,4 +62,10 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun loginFragment(): LoginFragment
+
+    @ContributesAndroidInjector
+    abstract fun anonymProfileFragment(): AnonymProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun userProfileFragment(): UserProfileFragment
 }

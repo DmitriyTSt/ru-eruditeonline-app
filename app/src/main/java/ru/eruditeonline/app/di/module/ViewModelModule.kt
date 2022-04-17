@@ -12,6 +12,9 @@ import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilter
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
+import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileFragment
+import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileViewModel
+import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
 import ru.eruditeonline.app.presentation.ui.rating.RatingViewModel
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemViewModel
 import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListViewModel
@@ -92,4 +95,14 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(LoginViewModel::class)
     abstract fun loginViewModel(viewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AnonymProfileViewModel::class)
+    abstract fun anonymProfileViewModel(viewModel: AnonymProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserProfileViewModel::class)
+    abstract fun userProfileViewModel(viewModel: UserProfileViewModel): ViewModel
 }
