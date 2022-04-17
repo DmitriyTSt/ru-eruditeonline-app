@@ -11,7 +11,7 @@ class ProfileMapper @Inject constructor() {
             id = api.id.orDefault(),
             name = api.name.orEmpty(),
             surname = api.surname.orEmpty(),
-            patronymic = api.patronymic.orEmpty(),
+            patronymic = api.patronymic,
             avatar = api.avatar,
         )
     }

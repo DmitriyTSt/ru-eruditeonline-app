@@ -10,6 +10,9 @@
         android:name="ru.eruditeonline.app.presentation.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
+
+        <deepLink app:uri="@string/navigation_deep_link_to_profile" />
+
         <action
             android:id="@+id/action_profileFragment_to_commonResultListFragment"
             app:destination="@id/commonResultListFragment" />
@@ -44,7 +47,7 @@
         android:id="@+id/userResultListFragment"
         android:name="ru.eruditeonline.app.presentation.ui.result.user.UserResultListFragment"
         android:label="UserResultListFragment"
-        tools:layout="@layout/fragment_user_result_list" >
+        tools:layout="@layout/fragment_user_result_list">
         <argument
             android:name="params"
             app:argType="ru.eruditeonline.app.presentation.ui.result.user.UserResultParams" />

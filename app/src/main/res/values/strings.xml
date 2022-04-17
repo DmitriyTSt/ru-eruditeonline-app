@@ -47,4 +47,8 @@
     <string name="restore_password_button_label">Забыли пароль?</string>
     <string name="button_auth_label">Авторизация</string>
     <string name="empty_default_error">Поле не может быть пустым</string>
+    <string name="profile_login_button_label">Войти</string>
+    <string name="profile_common_results_button_label">Итоги</string>
+    <string name="profile_search_results_button_label">Найти результаты</string>
+    <string name="profile_user_results_button_label">Мои результаты</string>
 </resources>

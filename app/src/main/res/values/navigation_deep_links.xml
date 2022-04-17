@@ -2,4 +2,6 @@
 <resources>
     <string name="navigation_deep_link_to_competition_detail">app://competition/{id}</string>
     <string name="navigation_deep_link_to_competition_detail_template">app://competition/%d</string>
+    <string name="navigation_deep_link_to_dashboard">app://dashboard</string>
+    <string name="navigation_deep_link_to_profile">app://profile</string>
 </resources>

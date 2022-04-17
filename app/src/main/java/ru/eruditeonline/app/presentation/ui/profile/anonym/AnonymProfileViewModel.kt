@@ -11,11 +11,19 @@ class AnonymProfileViewModel @Inject constructor(
         navigate(destinations.commonResults())
     }
 
-    fun openAuth() {
+    fun openLogin() {
         navigate(destinations.login())
+    }
+
+    fun openRegistration() {
+        // TODO
     }
 
     fun openSearchResultsByEmail() {
         navigate(destinations.searchResultsByEmail())
+    }
+
+    fun reloadStack() {
+        navigate(destinations.reloadStack())
     }
 }
