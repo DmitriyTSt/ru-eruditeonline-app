@@ -9,5 +9,24 @@
         android:id="@+id/loginFragment"
         android:name="ru.eruditeonline.app.presentation.ui.auth.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationFragment"
+        android:label="RegistrationFragment"
+        tools:layout="@layout/fragment_registration">
+
+        <deepLink app:uri="@string/navigation_deep_link_to_registration" />
+
+        <action
+            android:id="@+id/action_registrationFragment_to_select_country_graph"
+            app:destination="@id/select_country_graph" />
+    </fragment>
+
+
 </navigation>

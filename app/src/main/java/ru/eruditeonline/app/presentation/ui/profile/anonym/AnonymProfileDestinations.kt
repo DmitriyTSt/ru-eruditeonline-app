@@ -18,6 +18,13 @@ class AnonymProfileDestinations @Inject constructor(
         ProfileFragmentDirections.actionProfileFragmentToAuthGraph()
     )
 
+    /** Регистрация */
+    fun registration() = Destination.DeepLink(
+        NavDeepLinkRequest.Builder
+            .fromUri(context.getString(R.string.navigation_deep_link_to_registration).toUri())
+            .build()
+    )
+
     /** Итоги */
     fun commonResults() = Destination.Action(
         ProfileFragmentDirections.actionProfileFragmentToCommonResultListFragment()

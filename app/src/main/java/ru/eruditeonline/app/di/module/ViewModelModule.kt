@@ -7,6 +7,7 @@ import dagger.multibindings.IntoMap
 import ru.eruditeonline.app.di.module.viewmodel.BaseViewModelModule
 import ru.eruditeonline.app.di.util.ViewModelKey
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginViewModel
+import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationViewModel
 import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailViewModel
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
@@ -116,4 +117,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(SelectDiplomaViewModel::class)
     abstract fun selectDiplomaViewModel(viewModel: SelectDiplomaViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegistrationViewModel::class)
+    abstract fun registrationViewModel(viewModel: RegistrationViewModel): ViewModel
 }

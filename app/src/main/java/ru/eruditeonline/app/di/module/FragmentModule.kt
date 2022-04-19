@@ -3,6 +3,7 @@ package ru.eruditeonline.app.di.module
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginFragment
+import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationFragment
 import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailFragment
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterFragment
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFragment
@@ -76,4 +77,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun selectDiplomaFragment(): SelectDiplomaFragment
+
+    @ContributesAndroidInjector
+    abstract fun registrationFragment(): RegistrationFragment
 }

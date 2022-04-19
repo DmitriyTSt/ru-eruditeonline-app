@@ -4,4 +4,5 @@
     <string name="navigation_deep_link_to_competition_detail_template">app://competition/%d</string>
     <string name="navigation_deep_link_to_dashboard">app://dashboard</string>
     <string name="navigation_deep_link_to_profile">app://profile</string>
+    <string name="navigation_deep_link_to_registration">app://registration</string>
 </resources>

@@ -11,6 +11,7 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
+    private val destinations: LoginDestinations,
 ) : BaseViewModel() {
 
     /** Авторизация */
@@ -21,5 +22,9 @@ class LoginViewModel @Inject constructor(
         if (!validateAllFields(login, password)) return
 
         _loginLiveEvent.launchLoadData(loginUseCase.executeFlow(LoginUseCase.Params(login.text, password.text)))
+    }
+
+    fun openRegistration() {
+        navigate(destinations.registration())
     }
 }

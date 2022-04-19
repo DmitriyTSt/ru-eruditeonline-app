@@ -30,6 +30,9 @@ class SelectCountryFragment : BaseFragment(R.layout.fragment_select_country) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        toolbar.setNavigationOnClickListener {
+            viewModel.navigateBack()
+        }
         setupRecyclerView()
         stateViewFlipper.setRetryMethod { viewModel.loadCountries() }
     }
@@ -47,6 +50,7 @@ class SelectCountryFragment : BaseFragment(R.layout.fragment_select_country) {
     private fun setupRecyclerView() = with(binding.recyclerView) {
         countriesAdapter.onItemClick = { country ->
             setFragmentResult(REQUEST_CODE, bundleOf(KEY_COUNTRY to country))
+            viewModel.navigateBack()
         }
         adapter = countriesAdapter
     }

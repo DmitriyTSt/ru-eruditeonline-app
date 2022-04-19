@@ -16,7 +16,7 @@ class AnonymProfileViewModel @Inject constructor(
     }
 
     fun openRegistration() {
-        // TODO
+        navigate(destinations.registration())
     }
 
     fun openSearchResultsByEmail() {

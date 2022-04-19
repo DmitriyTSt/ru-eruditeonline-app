@@ -15,7 +15,7 @@ import javax.inject.Inject
 class SelectDiplomaFragment : BaseFragment(R.layout.fragment_select_diploma) {
 
     companion object {
-        const val REQUEST_CODE = "request_code"
+        const val REQUEST_CODE = "select_diploma_request_code"
         const val KEY_DIPLOMA = "key_diploma"
     }
 
@@ -30,6 +30,9 @@ class SelectDiplomaFragment : BaseFragment(R.layout.fragment_select_diploma) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        toolbar.setNavigationOnClickListener {
+            viewModel.navigateBack()
+        }
         setupRecyclerView()
         stateViewFlipper.setRetryMethod { viewModel.loadDiplomas() }
     }
