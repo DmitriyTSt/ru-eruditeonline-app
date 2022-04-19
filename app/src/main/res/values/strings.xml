@@ -51,4 +51,5 @@
     <string name="profile_common_results_button_label">Итоги</string>
     <string name="profile_search_results_button_label">Найти результаты</string>
     <string name="profile_user_results_button_label">Мои результаты</string>
+    <string name="select_country_title">Страна</string>
 </resources>
