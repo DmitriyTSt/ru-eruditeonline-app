@@ -10,7 +10,9 @@ import ru.eruditeonline.app.presentation.ui.auth.login.LoginViewModel
 import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailViewModel
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
+import ru.eruditeonline.app.presentation.ui.country.SelectCountryViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
+import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
@@ -104,4 +106,14 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(UserProfileViewModel::class)
     abstract fun userProfileViewModel(viewModel: UserProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SelectCountryViewModel::class)
+    abstract fun selectCountryViewModel(viewModel: SelectCountryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SelectDiplomaViewModel::class)
+    abstract fun selectDiplomaViewModel(viewModel: SelectDiplomaViewModel): ViewModel
 }

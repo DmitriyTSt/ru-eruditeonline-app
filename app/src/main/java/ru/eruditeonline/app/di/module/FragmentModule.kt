@@ -6,7 +6,9 @@ import ru.eruditeonline.app.presentation.ui.auth.login.LoginFragment
 import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailFragment
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterFragment
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFragment
+import ru.eruditeonline.app.presentation.ui.country.SelectCountryFragment
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardFragment
+import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaFragment
 import ru.eruditeonline.app.presentation.ui.profile.ProfileFragment
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileFragment
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileFragment
@@ -68,4 +70,10 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun userProfileFragment(): UserProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun selectCountryFragment(): SelectCountryFragment
+
+    @ContributesAndroidInjector
+    abstract fun selectDiplomaFragment(): SelectDiplomaFragment
 }
