@@ -46,4 +46,8 @@ class UserProfileViewModel @Inject constructor(
     fun reloadStack() {
         navigate(destinations.reloadStack())
     }
+
+    fun openInformation() {
+        navigate(destinations.information())
+    }
 }

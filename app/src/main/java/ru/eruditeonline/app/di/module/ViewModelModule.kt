@@ -16,6 +16,7 @@ import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsVi
 import ru.eruditeonline.app.presentation.ui.country.SelectCountryViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaViewModel
+import ru.eruditeonline.app.presentation.ui.information.InformationViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
@@ -134,4 +135,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(ValidationSuccessViewModel::class)
     abstract fun validationSuccessViewModel(viewModel: ValidationSuccessViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(InformationViewModel::class)
+    abstract fun informationViewModel(viewModel: InformationViewModel): ViewModel
 }

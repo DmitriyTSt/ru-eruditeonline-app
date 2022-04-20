@@ -40,6 +40,9 @@ class AnonymProfileFragment : BaseFragment(R.layout.fragment_anonym_profile) {
         setFragmentResultListener(LoginFragment.REQUEST_CODE) { _, _ ->
             viewModel.reloadStack()
         }
+        textViewInfo.setOnClickListener {
+            viewModel.openInformation()
+        }
     }
 
     override fun onBindViewModel() = with(viewModel) {

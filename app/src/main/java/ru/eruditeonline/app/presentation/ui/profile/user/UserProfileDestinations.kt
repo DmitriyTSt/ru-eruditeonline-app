@@ -43,4 +43,9 @@ class UserProfileDestinations @Inject constructor(
             ),
         )
     )
+
+    /** Информация */
+    fun information() = Destination.Action(
+        ProfileFragmentDirections.actionProfileFragmentToInformationFragment()
+    )
 }

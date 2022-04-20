@@ -83,4 +83,6 @@
     <string name="confirm_email_success_title">Почта подтверждена.</string>
     <string name="confirm_email_success_message">Теперь вы можете авторизоваться в приложении.</string>
     <string name="confirm_email_success_button_label">Авторизоваться</string>
+    <string name="information_title">Информация</string>
+    <string name="profile_information_button_label">Информация</string>
 </resources>
