@@ -19,7 +19,7 @@ class LoginViewModel @Inject constructor(
     val loginLiveEvent: LiveData<LoadableState<Unit>> = _loginLiveEvent
 
     fun login(login: TextInputValidator, password: TextInputValidator) {
-        if (!validateAllFields(login, password)) return
+        if (!validateAllFields(login, password).isValid) return
 
         _loginLiveEvent.launchLoadData(loginUseCase.executeFlow(LoginUseCase.Params(login.text, password.text)))
     }

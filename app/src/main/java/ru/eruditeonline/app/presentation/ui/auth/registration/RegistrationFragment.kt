@@ -6,6 +6,10 @@ import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
 import android.text.style.ForegroundColorSpan
+import android.view.View
+import androidx.core.graphics.Insets
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.setFragmentResultListener
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.datepicker.CalendarConstraints
@@ -13,10 +17,12 @@ import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputLayout
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.data.model.auth.Gender
 import ru.eruditeonline.app.data.model.base.Country
 import ru.eruditeonline.app.databinding.FragmentRegistrationBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
+import ru.eruditeonline.app.presentation.extension.errorSnackbar
 import ru.eruditeonline.app.presentation.extension.getColorCompat
 import ru.eruditeonline.app.presentation.extension.setTextFromHtml
 import ru.eruditeonline.app.presentation.extension.stripUnderlines
@@ -35,7 +41,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
     @Inject lateinit var dateFormatter: DateFormatter
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
-        toolbar.fitTopInsetsWithPadding()
+        setupInsets()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }
@@ -43,6 +49,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         setupSelectBirthday()
         setupSelectCountry()
         setRequiredFieldHints()
+        setupRegistrationButton()
     }
 
     override fun onBindViewModel() = with(viewModel) {
@@ -56,6 +63,39 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         }
         countryLiveData.observe { country ->
             binding.editTextCountry.setText(country.name)
+        }
+        scrollToErrorFieldLiveEvent.observe { viewId ->
+            scrollToErrorViewById(viewId)
+        }
+        emailValidationErrorLiveEvent.observe {
+            binding.textInputLayoutEmail.error = getString(R.string.email_validation_error)
+        }
+        passwordConfirmErrorLiveEvent.observe {
+            binding.textInputLayoutPasswordConfirm.error = getString(R.string.password_confirm_error)
+        }
+        privacyPolicyErrorLiveEvent.observe {
+            errorSnackbar(getString(R.string.privacy_policy_error))
+        }
+    }
+
+    private fun setupInsets() = with(binding) {
+        root.doOnApplyWindowInsets { _, insets, _ ->
+            val windowInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+            toolbar.updatePadding(
+                top = windowInsets.top,
+            )
+            root.updatePadding(
+                bottom = windowInsets.bottom
+            )
+            WindowInsetsCompat.Builder().setInsets(
+                WindowInsetsCompat.Type.systemBars(),
+                Insets.of(
+                    windowInsets.left,
+                    0,
+                    windowInsets.right,
+                    0
+                )
+            ).build()
         }
     }
 
@@ -119,5 +159,40 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
             }
         )
         hint = newHint
+    }
+
+    private fun setupRegistrationButton() = with(binding) {
+        buttonRegistration.setOnClickListener {
+            val gender = when (radioGroupGender.checkedRadioButtonId) {
+                R.id.radioButtonGenderMale -> Gender.MALE
+                R.id.radioButtonGenderFemale -> Gender.FEMALE
+                else -> Gender.NOT_SET
+            }
+            viewModel.register(
+                surname = textInputLayoutSurname,
+                name = textInputLayoutName,
+                patronymic = textInputLayoutPatronymic,
+                gender = gender,
+                school = textInputLayoutSchool,
+                city = textInputLayoutCity,
+                region = textInputLayoutRegion,
+                country = textInputLayoutCountry,
+                email = textInputLayoutEmail,
+                password = textInputLayoutPassword,
+                passwordConfirm = textInputLayoutPasswordConfirm,
+                isNotificationChecked = checkboxNotifications.isChecked,
+                isPrivacyPolicyChecked = checkboxPrivacyPolicy.isChecked,
+            )
+        }
+    }
+
+    private fun scrollToErrorViewById(viewId: Int) = with(binding) {
+        val viewWithError = root.findViewById<View>(viewId)
+        val viewTop = if (viewId == R.id.textInputLayoutCountry) {
+            binding.constraintLayoutCountry.top
+        } else {
+            viewWithError.top
+        }
+        nestedScrollView.scrollTo(0, viewTop)
     }
 }

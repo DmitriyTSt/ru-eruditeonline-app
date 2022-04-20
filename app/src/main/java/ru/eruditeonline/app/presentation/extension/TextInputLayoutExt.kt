@@ -20,10 +20,20 @@ fun TextInputLayout.isError(): Boolean {
     return error != null
 }
 
-fun validateAllFields(vararg validator: TextInputValidator): Boolean {
+fun validateAllFields(vararg validator: TextInputValidator): ValidationResult {
     var result = true
+    var firstInvalidId: Int? = null
     validator.forEach { layout ->
-        result = result and layout.validate()
+        val currentValid = layout.validate()
+        if (!currentValid && firstInvalidId == null) {
+            firstInvalidId = layout.getLayoutId()
+        }
+        result = result and currentValid
     }
-    return result
+    return ValidationResult(result, firstInvalidId)
 }
+
+class ValidationResult(
+    val isValid: Boolean,
+    val firstInvalidViewId: Int?,
+)

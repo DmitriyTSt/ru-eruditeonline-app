@@ -26,6 +26,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/linearLayoutContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -115,14 +116,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <RadioGroup
-                android:id="@+id/radioGroupSex"
+                android:id="@+id/radioGroupGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButtonSexNotSet"
+                    android:id="@+id/radioButtonGenderNotSet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -131,18 +132,18 @@
                     android:textAppearance="@style/Font.Body2.Regular" />
 
                 <RadioButton
-                    android:id="@+id/radioButtonSexMale"
+                    android:id="@+id/radioButtonGenderMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="8dp"
                     android:text="@string/sex_male"
                     android:textAppearance="@style/Font.Body2.Regular" />
 
                 <RadioButton
-                    android:id="@+id/radioButtonSexFemale"
+                    android:id="@+id/radioButtonGenderFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="8dp"
                     android:text="@string/sex_female"
                     android:textAppearance="@style/Font.Body2.Regular" />
             </RadioGroup>
@@ -197,6 +198,7 @@
             </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutCountry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_16"
@@ -265,7 +267,9 @@
                 android:layout_marginTop="8dp"
                 android:hint="@string/password_hint"
                 app:errorEmpty="@string/default_empty_error"
-                app:passwordToggleEnabled="true">
+                app:errorMalformed="@string/password_min_length_error"
+                app:passwordToggleEnabled="true"
+                app:validationPattern="@string/password_min_length_pattern">
 
                 <EditText
                     android:id="@+id/editTextPassword"
@@ -283,7 +287,9 @@
                 android:layout_marginTop="8dp"
                 android:hint="@string/password_confirm_hint"
                 app:errorEmpty="@string/default_empty_error"
-                app:passwordToggleEnabled="true">
+                app:errorMalformed="@string/password_min_length_error"
+                app:passwordToggleEnabled="true"
+                app:validationPattern="@string/password_min_length_pattern">
 
                 <EditText
                     android:id="@+id/editTextPasswordConfirm"

@@ -71,4 +71,9 @@
     <string name="sex_male">Мужской</string>
     <string name="sex_female">Женский</string>
     <string name="default_empty_error">Заполните обязательное поле</string>
+    <string name="email_validation_error">Введите корректный e-mail</string>
+    <string name="password_confirm_error">Пароли не совпадают</string>
+    <string name="privacy_policy_error">Необходимо дать согласие на обработку персональных данных</string>
+    <string name="password_min_length_error">Минимальная длина 8 символов</string>
+    <string name="password_min_length_pattern">(.){8,}</string>
 </resources>
