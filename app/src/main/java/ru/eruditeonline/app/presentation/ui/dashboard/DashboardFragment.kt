@@ -32,7 +32,7 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         appBarLayout.fitTopInsetsWithPadding()
         setupList()
-        Unit
+        stateViewFlipper.setRetryMethod { viewModel.loadMainSections() }
     }
 
     override fun onBindViewModel() = with(viewModel) {
