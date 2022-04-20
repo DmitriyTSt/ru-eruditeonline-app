@@ -76,4 +76,11 @@
     <string name="privacy_policy_error">Необходимо дать согласие на обработку персональных данных</string>
     <string name="password_min_length_error">Минимальная длина 8 символов</string>
     <string name="password_min_length_pattern">(.){8,}</string>
+    <string name="email_confirm_title">Подтверждение адреса</string>
+    <string name="confirm_email_description">На указанный Вами адрес электронной почты выслано письмо, содержащее ссылку, пройдя по которой Вы подтвердите регистрацию и сможете войти в личный кабинет.</string>
+    <string name="confirm_email_deep_link_info">Перейти по ссылке вы можете как на сайт, так и в мобильное приложение.</string>
+    <string name="confirm_email_button_ok_label">Хорошо</string>
+    <string name="confirm_email_success_title">Почта подтверждена.</string>
+    <string name="confirm_email_success_message">Теперь вы можете авторизоваться в приложении.</string>
+    <string name="confirm_email_success_button_label">Авторизоваться</string>
 </resources>

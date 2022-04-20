@@ -54,6 +54,12 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     override fun onBindViewModel() = with(viewModel) {
         observeNavigationCommands(viewModel)
+        registrationLiveEvent.observe { state ->
+            binding.buttonRegistration.setState(state)
+            state.doOnError { error ->
+                errorSnackbar(error?.message.orEmpty())
+            }
+        }
         birthdayLiveData.observe { millis ->
             binding.editTextBirthday.setText(
                 dateFormatter.formatStandardDate(

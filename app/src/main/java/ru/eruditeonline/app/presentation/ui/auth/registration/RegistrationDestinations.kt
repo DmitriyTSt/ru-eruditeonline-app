@@ -8,4 +8,9 @@ class RegistrationDestinations @Inject constructor() {
     fun selectCountry() = Destination.Action(
         RegistrationFragmentDirections.actionRegistrationFragmentToSelectCountryGraph()
     )
+
+    /** Успешная регистрация */
+    fun successRegistration() = Destination.Action(
+        RegistrationFragmentDirections.actionRegistrationFragmentToRegistrationSuccessFragment()
+    )
 }

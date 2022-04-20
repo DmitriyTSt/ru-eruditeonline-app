@@ -3,6 +3,9 @@ package ru.eruditeonline.app.presentation.ui.auth.registration
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
+import ru.eruditeonline.app.data.mapper.orDefault
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.auth.Gender
 import ru.eruditeonline.app.data.model.base.Country
 import ru.eruditeonline.app.domain.usecase.auth.RegistrationUseCase
@@ -16,6 +19,15 @@ class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: RegistrationUseCase,
     private val destinations: RegistrationDestinations,
 ) : BaseViewModel() {
+
+    /** Регистрация */
+    private val _registrationLiveEvent = SingleLiveEvent<LoadableState<Unit>>()
+    val registrationLiveEvent: LiveData<LoadableState<Unit>> = _registrationLiveEvent.map { state ->
+        state.doOnSuccess {
+            navigate(destinations.successRegistration())
+        }
+        state
+    }
 
     /** День рождения */
     private val _birthdayLiveData = MutableLiveData<Long>()
@@ -88,5 +100,26 @@ class RegistrationViewModel @Inject constructor(
             _privacyPolicyErrorLiveEvent.postValue(Unit)
             return
         }
+
+        val countryModel = countryLiveData.value ?: return
+
+        _registrationLiveEvent.launchLoadData(
+            registrationUseCase.executeFlow(
+                RegistrationUseCase.Params(
+                    email = email.text,
+                    password = password.text,
+                    name = name.text,
+                    surname = surname.text,
+                    patronymic = patronymic.text,
+                    birthday = birthdayLiveData.value.orDefault(),
+                    gender = gender,
+                    company = school.text,
+                    city = city.text,
+                    region = region.text,
+                    country = countryModel.code,
+                    emailAgreement = isNotificationChecked,
+                )
+            )
+        )
     }
 }
