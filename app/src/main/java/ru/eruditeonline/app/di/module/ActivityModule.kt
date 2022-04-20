@@ -10,7 +10,7 @@ import ru.eruditeonline.app.presentation.ui.startactivity.StartActivity
 abstract class ActivityModule {
     @ContributesAndroidInjector
     abstract fun mainActivity(): MainActivity
-    
+
     @ContributesAndroidInjector
     abstract fun startActivity(): StartActivity
 

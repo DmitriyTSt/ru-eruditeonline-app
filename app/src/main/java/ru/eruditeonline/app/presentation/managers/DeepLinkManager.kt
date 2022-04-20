@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.navigation.Destination
-import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
