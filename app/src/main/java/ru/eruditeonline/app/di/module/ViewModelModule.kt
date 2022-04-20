@@ -8,6 +8,8 @@ import ru.eruditeonline.app.di.module.viewmodel.BaseViewModelModule
 import ru.eruditeonline.app.di.util.ViewModelKey
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginViewModel
 import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationViewModel
+import ru.eruditeonline.app.presentation.ui.auth.registrationsuccess.RegistrationSuccessViewModel
+import ru.eruditeonline.app.presentation.ui.auth.validationsuccess.ValidationSuccessViewModel
 import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailViewModel
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
@@ -122,4 +124,14 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(RegistrationViewModel::class)
     abstract fun registrationViewModel(viewModel: RegistrationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegistrationSuccessViewModel::class)
+    abstract fun registrationSuccessViewModel(viewModel: RegistrationSuccessViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ValidationSuccessViewModel::class)
+    abstract fun validationSuccessViewModel(viewModel: ValidationSuccessViewModel): ViewModel
 }

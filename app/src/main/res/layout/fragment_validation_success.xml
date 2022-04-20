@@ -18,37 +18,44 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <ru.eruditeonline.app.presentation.ui.views.StateViewFlipper
+        android:id="@+id/stateViewFlipper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_16"
-            android:text="@string/confirm_email_success_title"
-            android:textAlignment="center"
-            android:textAppearance="@style/Font.Heading1.Bold" />
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_16"
-            android:layout_marginTop="16dp"
-            android:text="@string/confirm_email_success_message"
-            android:textAlignment="center"
-            android:textAppearance="@style/Font.Body1.Regular" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:text="@string/confirm_email_success_title"
+                android:textAlignment="center"
+                android:textAppearance="@style/Font.Heading1.Bold" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonAuth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="@string/confirm_email_success_button_label" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginTop="16dp"
+                android:text="@string/confirm_email_success_message"
+                android:textAlignment="center"
+                android:textAppearance="@style/Font.Body1.Regular" />
 
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonAuth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:text="@string/confirm_email_success_button_label" />
+
+        </LinearLayout>
+    </ru.eruditeonline.app.presentation.ui.views.StateViewFlipper>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

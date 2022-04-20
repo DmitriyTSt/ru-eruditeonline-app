@@ -5,4 +5,6 @@
     <string name="navigation_deep_link_to_dashboard">app://dashboard</string>
     <string name="navigation_deep_link_to_profile">app://profile</string>
     <string name="navigation_deep_link_to_registration">app://registration</string>
+    <string name="navigation_deep_link_to_confirm_email">app://registration/confirm?token={token}</string>
+    <string name="navigation_deep_link_to_confirm_email_template">app://registration/confirm?token=%s</string>
 </resources>

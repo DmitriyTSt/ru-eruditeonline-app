@@ -47,6 +47,11 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/auth_graph"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+
+        <deepLink app:uri="@string/navigation_deep_link_to_confirm_email" />
     </fragment>
 
 

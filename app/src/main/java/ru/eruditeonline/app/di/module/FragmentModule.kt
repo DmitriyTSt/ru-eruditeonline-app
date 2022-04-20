@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginFragment
 import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationFragment
+import ru.eruditeonline.app.presentation.ui.auth.registrationsuccess.RegistrationSuccessFragment
+import ru.eruditeonline.app.presentation.ui.auth.validationsuccess.ValidationSuccessFragment
 import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailFragment
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterFragment
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFragment
@@ -80,4 +82,10 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun registrationFragment(): RegistrationFragment
+
+    @ContributesAndroidInjector
+    abstract fun registrationSuccessFragment(): RegistrationSuccessFragment
+
+    @ContributesAndroidInjector
+    abstract fun validationSuccessFragment(): ValidationSuccessFragment
 }
