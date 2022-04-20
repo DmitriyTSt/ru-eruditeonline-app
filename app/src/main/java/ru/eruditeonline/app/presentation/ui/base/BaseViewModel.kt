@@ -38,6 +38,14 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
+    protected fun <T> SingleLiveEvent<LoadableState<T>>.launchLoadData(
+        block: Flow<LoadableState<T>>,
+    ): Job = viewModelScope.launch {
+        block.collect { result ->
+            this@launchLoadData.postValue(result)
+        }
+    }
+
     protected fun <T : Any> MutableLiveData<PagingData<T>>.launchPagingData(
         block: () -> Flow<PagingData<T>>
     ): Job = viewModelScope.launch {

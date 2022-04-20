@@ -6,11 +6,19 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.eruditeonline.app.di.module.viewmodel.BaseViewModelModule
 import ru.eruditeonline.app.di.util.ViewModelKey
+import ru.eruditeonline.app.presentation.ui.auth.login.LoginViewModel
+import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationViewModel
+import ru.eruditeonline.app.presentation.ui.auth.registrationsuccess.RegistrationSuccessViewModel
+import ru.eruditeonline.app.presentation.ui.auth.validationsuccess.ValidationSuccessViewModel
 import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailViewModel
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
+import ru.eruditeonline.app.presentation.ui.country.SelectCountryViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
+import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
+import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileViewModel
+import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
 import ru.eruditeonline.app.presentation.ui.rating.RatingViewModel
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemViewModel
 import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListViewModel
@@ -86,4 +94,44 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(UserResultListViewModel::class)
     abstract fun userResultListViewModel(viewModel: UserResultListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoginViewModel::class)
+    abstract fun loginViewModel(viewModel: LoginViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AnonymProfileViewModel::class)
+    abstract fun anonymProfileViewModel(viewModel: AnonymProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserProfileViewModel::class)
+    abstract fun userProfileViewModel(viewModel: UserProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SelectCountryViewModel::class)
+    abstract fun selectCountryViewModel(viewModel: SelectCountryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SelectDiplomaViewModel::class)
+    abstract fun selectDiplomaViewModel(viewModel: SelectDiplomaViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegistrationViewModel::class)
+    abstract fun registrationViewModel(viewModel: RegistrationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RegistrationSuccessViewModel::class)
+    abstract fun registrationSuccessViewModel(viewModel: RegistrationSuccessViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ValidationSuccessViewModel::class)
+    abstract fun validationSuccessViewModel(viewModel: ValidationSuccessViewModel): ViewModel
 }

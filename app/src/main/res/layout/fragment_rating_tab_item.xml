@@ -23,6 +23,7 @@
                 android:id="@+id/textInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:errorEnabled="false"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText

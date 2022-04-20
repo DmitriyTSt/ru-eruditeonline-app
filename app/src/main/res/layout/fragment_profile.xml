@@ -3,50 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Profile"
-        android:textSize="40sp" />
-
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonSearchResultsByEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
-            android:text="@string/search_results_by_email_title" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonSearchResults"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
-            android:text="@string/search_results_title" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonUserResults"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="16dp"
-            android:text="@string/user_result_list_title" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonCommonResults"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/common_result_list_title" />
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

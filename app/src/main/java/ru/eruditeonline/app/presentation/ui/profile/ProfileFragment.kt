@@ -5,8 +5,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentProfileBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileFragment
+import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileFragment
 
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
@@ -16,21 +17,15 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     private val viewModel: ProfileViewModel by appViewModels()
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
-        buttonSearchResultsByEmail.setOnClickListener {
-            viewModel.openSearchResultsByEmail()
+        val profileFragment = if (viewModel.preferencesStorage.isSignedIn) {
+            UserProfileFragment.newInstance()
+        } else {
+            AnonymProfileFragment.newInstance()
         }
-        buttonSearchResults.setOnClickListener {
-            viewModel.openSearchResultsByQuery()
-        }
-        buttonUserResults.setOnClickListener {
-            viewModel.openUserResults()
-        }
-        buttonCommonResults.setOnClickListener {
-            viewModel.openCommonResults()
-        }
-    }
-
-    override fun onBindViewModel() = with(viewModel) {
-        observeNavigationCommands(viewModel)
+        childFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container_view, profileFragment)
+            .commit()
+        Unit
     }
 }

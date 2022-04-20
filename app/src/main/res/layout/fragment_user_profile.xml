@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ru.eruditeonline.app.presentation.ui.views.StateViewFlipper
+        android:id="@+id/stateViewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="300dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageViewAvatar"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/textViewUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginTop="24dp"
+                android:textAppearance="@style/Font.Heading1.Bold"
+                tools:text="Иванов Иван Иванович" />
+        </LinearLayout>
+
+    </ru.eruditeonline.app.presentation.ui.views.StateViewFlipper>
+
+    <ImageView
+        android:id="@+id/imageViewLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="14dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@null"
+        android:padding="2dp"
+        android:src="@drawable/ic_logout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewSearchResultsByQuery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="12dp"
+            android:paddingHorizontal="@dimen/padding_16"
+            android:paddingVertical="12dp"
+            android:text="@string/profile_search_results_button_label"
+            android:textAppearance="@style/Font.Body1.Regular"
+            app:drawableStartCompat="@drawable/ic_search_results" />
+
+        <TextView
+            android:id="@+id/textViewUserResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="12dp"
+            android:paddingHorizontal="@dimen/padding_16"
+            android:paddingVertical="12dp"
+            android:text="@string/profile_user_results_button_label"
+            android:textAppearance="@style/Font.Body1.Regular"
+            app:drawableStartCompat="@drawable/ic_user_results" />
+
+        <TextView
+            android:id="@+id/textViewCommonResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="12dp"
+            android:paddingHorizontal="@dimen/padding_16"
+            android:paddingVertical="12dp"
+            android:text="@string/profile_common_results_button_label"
+            android:textAppearance="@style/Font.Body1.Regular"
+            app:drawableStartCompat="@drawable/ic_common_results" />
+
+    </LinearLayout>
+</FrameLayout>

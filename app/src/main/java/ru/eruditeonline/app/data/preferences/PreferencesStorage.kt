@@ -9,6 +9,7 @@ import javax.inject.Singleton
 
 private const val KEY_ACCESS_TOKEN = "profile_access_token"
 private const val KEY_REFRESH_TOKEN = "profile_refresh_token"
+private const val KEY_IS_SIGNED_IN = "is_signed_in"
 
 @Singleton
 class PreferencesStorage @Inject constructor(
@@ -31,5 +32,13 @@ class PreferencesStorage @Inject constructor(
         internal set(refreshToken) {
             // коммит тут стоит осознанно, для случаев с 401
             securedPreferenceStorage.edit().putString(KEY_REFRESH_TOKEN, refreshToken).commit()
+        }
+
+    var isSignedIn: Boolean
+        get() = regularPreferenceStorage.getBoolean(KEY_IS_SIGNED_IN, false)
+        @SuppressLint("ApplySharedPref")
+        internal set(value) {
+            // коммит тут стоит осознанно, для случаев с 401
+            regularPreferenceStorage.edit().putBoolean(KEY_IS_SIGNED_IN, value).commit()
         }
 }

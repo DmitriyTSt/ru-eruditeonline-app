@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Получение типов дипломов
  */
-class GetDimplomasUseCase @Inject constructor(
+class GetDiplomasUseCase @Inject constructor(
     private val utilsRepository: UtilsRepository,
 ) : UseCaseUnary<Unit, List<Diploma>>() {
 

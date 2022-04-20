@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="162dp"
+                android:text="@string/login_title"
+                android:textAppearance="@style/Font.Heading1.Bold" />
+
+            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+                android:id="@+id/textInputLayoutLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginTop="16dp"
+                android:hint="@string/login_email_hint"
+                app:errorEmpty="@string/empty_default_error"
+                app:errorEnabled="true">
+
+                <EditText
+                    android:id="@+id/editTextLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textWebEmailAddress" />
+            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+                android:id="@+id/textInputLayoutPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginTop="8dp"
+                android:hint="@string/login_password_hint"
+                app:errorEmpty="@string/empty_default_error"
+                app:errorEnabled="true"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+            <ru.eruditeonline.app.presentation.ui.views.StatefulMaterialButton
+                android:id="@+id/buttonLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginTop="8dp"
+                android:text="@string/login_button_label" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonRegistration"
+                style="@style/MaterialButtonStyle.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginTop="8dp"
+                android:minHeight="36dp"
+                android:text="@string/registration_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonRestorePassword"
+                style="@style/MaterialButtonStyle.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginBottom="16dp"
+                android:minHeight="36dp"
+                android:text="@string/restore_password_button_label" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_back_dark" />
+
+</FrameLayout>

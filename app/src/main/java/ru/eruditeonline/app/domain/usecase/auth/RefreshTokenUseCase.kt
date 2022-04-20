@@ -27,8 +27,8 @@ class RefreshTokenUseCase @Inject constructor(
     override suspend fun execute(params: Unit): String {
         try {
             val token = refreshTokenRepository.refreshToken(
-                tokenRepository.refreshToken.orEmpty(),
-                deviceUuidFactory.deviceUuid.toString(),
+                deviceId = deviceUuidFactory.deviceUuid.toString(),
+                refreshToken = tokenRepository.refreshToken.orEmpty(),
             )
             saveTokenUseCase.execute(SaveTokenUseCase.Params(token))
             return token.accessToken

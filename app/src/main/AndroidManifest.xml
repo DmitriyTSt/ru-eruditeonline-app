@@ -18,11 +18,40 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".presentation.ui.mainactivity.MainActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".presentation.ui.startactivity.StartActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".presentation.ui.startactivity.DeepLinkStartActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+
+            <intent-filter
+                android:autoVerify="true"
+                tools:ignore="UnusedAttribute">
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https" />
+                <data android:scheme="http" />
+
+                <data android:host="erudyt-online.ru" />
+
+                <data android:pathPrefix="/registration.html" />
             </intent-filter>
         </activity>
     </application>
