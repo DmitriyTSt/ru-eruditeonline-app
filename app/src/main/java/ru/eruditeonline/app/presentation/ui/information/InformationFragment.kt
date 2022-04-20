@@ -22,6 +22,9 @@ class InformationFragment : BaseFragment(R.layout.fragment_information) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        toolbar.setNavigationOnClickListener {
+            viewModel.navigateBack()
+        }
         setupRecyclerView()
         stateViewFlipper.setRetryMethod { viewModel.loadWebPages() }
     }

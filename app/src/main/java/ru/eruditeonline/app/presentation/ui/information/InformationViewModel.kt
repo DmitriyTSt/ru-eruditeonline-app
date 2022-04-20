@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 class InformationViewModel @Inject constructor(
     private val getWebPagesUseCase: GetWebPagesUseCase,
+    private val destinations: InformationDestinations,
 ) : BaseViewModel() {
     /** Веб-страницы */
     private val _webPagesLiveData = MutableLiveData<LoadableState<List<WebPageItem>>>()
@@ -20,6 +21,6 @@ class InformationViewModel @Inject constructor(
     }
 
     fun openWebPage(page: WebPageItem) {
-
+        navigate(destinations.webPage(page.path))
     }
 }

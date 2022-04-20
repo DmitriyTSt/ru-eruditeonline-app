@@ -24,6 +24,7 @@ import ru.eruditeonline.app.presentation.ui.result.user.UserResultListFragment
 import ru.eruditeonline.app.presentation.ui.splash.SplashFragment
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageFragment
 import ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultFragment
+import ru.eruditeonline.app.presentation.ui.webpage.WebPageFragment
 
 @Module
 abstract class FragmentModule {
@@ -92,4 +93,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun informationFragment(): InformationFragment
+
+    @ContributesAndroidInjector
+    abstract fun webPageFragment(): WebPageFragment
 }

@@ -28,6 +28,7 @@ import ru.eruditeonline.app.presentation.ui.result.user.UserResultListViewModel
 import ru.eruditeonline.app.presentation.ui.splash.SplashViewModel
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageViewModel
 import ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultViewModel
+import ru.eruditeonline.app.presentation.ui.webpage.WebPageViewModel
 
 @Module
 abstract class ViewModelModule : BaseViewModelModule() {
@@ -140,4 +141,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(InformationViewModel::class)
     abstract fun informationViewModel(viewModel: InformationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(WebPageViewModel::class)
+    abstract fun webPageViewModel(viewModel: WebPageViewModel): ViewModel
 }
