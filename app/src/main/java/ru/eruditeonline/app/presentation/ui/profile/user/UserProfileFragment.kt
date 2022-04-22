@@ -42,6 +42,9 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         imageViewLogout.setOnClickListener {
             viewModel.logout()
         }
+        textViewInfo.setOnClickListener {
+            viewModel.openInformation()
+        }
     }
 
     override fun onBindViewModel() = with(viewModel) {

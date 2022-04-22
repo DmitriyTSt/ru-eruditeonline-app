@@ -66,5 +66,17 @@
             android:textAppearance="@style/Font.Body1.Regular"
             app:drawableStartCompat="@drawable/ic_common_results" />
 
+        <TextView
+            android:id="@+id/textViewInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:drawablePadding="12dp"
+            android:paddingHorizontal="@dimen/padding_16"
+            android:paddingVertical="12dp"
+            android:text="@string/profile_information_button_label"
+            android:textAppearance="@style/Font.Body1.Regular"
+            app:drawableStartCompat="@drawable/ic_info" />
+
     </LinearLayout>
 </FrameLayout>

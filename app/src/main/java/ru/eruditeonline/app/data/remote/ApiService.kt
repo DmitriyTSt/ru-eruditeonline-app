@@ -7,6 +7,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.eruditeonline.app.data.remote.model.base.ApiCountry
 import ru.eruditeonline.app.data.remote.model.base.ApiDiploma
+import ru.eruditeonline.app.data.remote.model.base.ApiWebPageItem
 import ru.eruditeonline.app.data.remote.model.main.ApiMainSection
 import ru.eruditeonline.app.data.remote.model.rating.ApiRatingRow
 import ru.eruditeonline.app.data.remote.model.test.ApiCreatedResult
@@ -29,6 +30,7 @@ import ru.eruditeonline.app.data.remote.response.ObjectResponse
 import ru.eruditeonline.app.data.remote.response.ProfileData
 import ru.eruditeonline.app.data.remote.response.TestUserResultResponse
 import ru.eruditeonline.app.data.remote.response.TokenData
+import ru.eruditeonline.app.data.remote.response.WebPageResponse
 
 interface ApiService {
     @GET("main")
@@ -92,4 +94,10 @@ interface ApiService {
 
     @POST("auth/registration")
     suspend fun registration(@Body params: RegistrationParams): EmptyResponse
+
+    @GET("webpages")
+    suspend fun getWebPages(): ListResponse<ApiWebPageItem>
+
+    @GET("webpage")
+    suspend fun getWebPage(@Query("path") path: String): ObjectResponse<WebPageResponse>
 }

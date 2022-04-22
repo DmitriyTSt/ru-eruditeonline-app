@@ -49,4 +49,9 @@ class AnonymProfileDestinations @Inject constructor(
             ),
         )
     )
+
+    /** Информация */
+    fun information() = Destination.Action(
+        ProfileFragmentDirections.actionProfileFragmentToInformationFragment()
+    )
 }

@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class DeepLinkManager @Inject constructor(
     private val context: Context,
     private val destinations: DeepLinkDestinations,
-) {
+) : InnerDeepLinkManager {
     private val registrationPath by lazy { context.getString(R.string.deep_link_registration_path) }
     private val confirmEmailTokenQueryName by lazy { context.getString(R.string.deep_link_confirm_email_token_query_name) }
 
@@ -24,7 +24,17 @@ class DeepLinkManager @Inject constructor(
     fun resolveDeepLink(): Destination? {
         val deepLink = this.deepLink ?: return null
 
-        val destination = when (deepLink.path) {
+        val destination = resolveDeepLinkDestination(deepLink)
+        this.deepLink = null
+        return destination
+    }
+
+    override fun resolveDeepLink(uri: Uri): Destination? {
+        return resolveDeepLinkDestination(uri)
+    }
+
+    private fun resolveDeepLinkDestination(deepLink: Uri): Destination? {
+        return when (deepLink.path) {
             registrationPath -> {
                 val token = deepLink.getQueryParameter(confirmEmailTokenQueryName)
                 if (token.isNullOrEmpty()) {
@@ -35,7 +45,5 @@ class DeepLinkManager @Inject constructor(
             }
             else -> null
         }
-        this.deepLink = null
-        return destination
     }
 }

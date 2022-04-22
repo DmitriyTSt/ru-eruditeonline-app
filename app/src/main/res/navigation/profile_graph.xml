@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_profileFragment_to_auth_graph"
             app:destination="@id/auth_graph" />
+        <action
+            android:id="@+id/action_profileFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
     <fragment
         android:id="@+id/commonResultListFragment"
@@ -51,5 +54,23 @@
         <argument
             android:name="params"
             app:argType="ru.eruditeonline.app.presentation.ui.result.user.UserResultParams" />
+    </fragment>
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.information.InformationFragment"
+        android:label="InformationFragment"
+        tools:layout="@layout/fragment_information">
+        <action
+            android:id="@+id/action_informationFragment_to_webPageFragment"
+            app:destination="@id/webPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webPageFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.webpage.WebPageFragment"
+        android:label="WebPageFragment"
+        tools:layout="@layout/fragment_web_page" >
+        <argument
+            android:name="path"
+            app:argType="string" />
     </fragment>
 </navigation>

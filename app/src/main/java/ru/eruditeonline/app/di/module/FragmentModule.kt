@@ -12,6 +12,7 @@ import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFr
 import ru.eruditeonline.app.presentation.ui.country.SelectCountryFragment
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardFragment
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaFragment
+import ru.eruditeonline.app.presentation.ui.information.InformationFragment
 import ru.eruditeonline.app.presentation.ui.profile.ProfileFragment
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileFragment
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileFragment
@@ -23,6 +24,7 @@ import ru.eruditeonline.app.presentation.ui.result.user.UserResultListFragment
 import ru.eruditeonline.app.presentation.ui.splash.SplashFragment
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageFragment
 import ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultFragment
+import ru.eruditeonline.app.presentation.ui.webpage.WebPageFragment
 
 @Module
 abstract class FragmentModule {
@@ -88,4 +90,10 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun validationSuccessFragment(): ValidationSuccessFragment
+
+    @ContributesAndroidInjector
+    abstract fun informationFragment(): InformationFragment
+
+    @ContributesAndroidInjector
+    abstract fun webPageFragment(): WebPageFragment
 }
