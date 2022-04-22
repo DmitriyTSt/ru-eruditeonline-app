@@ -1,11 +1,13 @@
 package ru.eruditeonline.app.presentation.ui.webpage
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.addCallback
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
@@ -14,9 +16,12 @@ import ru.eruditeonline.app.data.model.base.WebPage
 import ru.eruditeonline.app.databinding.FragmentWebPageBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.managers.InnerDeepLinkManager
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import javax.inject.Inject
 
+private const val ERUDITE_DOMAIN = "erudit-online.ru"
 private const val WEB_VIEW_BASE_URL = "https://erudit-online.ru"
 private const val WEB_VIEW_MIME_TYPE = "text/html; charset=utf-8"
 private const val WEB_VIEW_ENCODING = "UTF-8"
@@ -26,6 +31,8 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
     private val viewModel: WebPageViewModel by appViewModels()
     private val args: WebPageFragmentArgs by navArgs()
 
+    @Inject lateinit var innerDeepLinkManager: InnerDeepLinkManager
+
     override fun callOperations() {
         viewModel.loadWebPage(args.path)
     }
@@ -33,7 +40,10 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
         toolbar.setNavigationOnClickListener {
-            viewModel.navigateBack()
+            viewModel.onBackPressed()
+        }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
+            viewModel.onBackPressed()
         }
         setupWebView()
     }
@@ -51,6 +61,23 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
                 bindPage(page)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.webView.onResume()
+    }
+
+    override fun onPause() {
+        binding.webView.onPause()
+        super.onPause()
+    }
+
+    override fun onDestroyView() {
+        binding.webView.stopLoading()
+        // Чтобы коллбэки не вызывались после смерти вью
+        binding.webView.webViewClient = object : WebViewClient() {}
+        super.onDestroyView()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -74,6 +101,31 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
                 super.onReceivedError(view, errorCode, description, failingUrl)
                 setErrorState()
             }
+
+            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                openDeepLinkOrWebViewLoad(request?.url)
+                return true
+            }
+
+            override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                openDeepLinkOrWebViewLoad(
+                    try {
+                        Uri.parse(url)
+                    } catch (e: Exception) {
+                        null
+                    }
+                )
+                return true
+            }
+        }
+    }
+
+    private fun openDeepLinkOrWebViewLoad(uri: Uri?) {
+        if (uri == null) return
+        if (uri.host == ERUDITE_DOMAIN) {
+            innerDeepLinkManager.resolveDeepLink(uri)?.let { viewModel.navigate(it) } ?: run {
+                viewModel.loadWebPage(uri.toString().replace(WEB_VIEW_BASE_URL, ""))
+            }
         }
     }
 
@@ -83,6 +135,16 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
 
     private fun bindPage(page: WebPage) = with(binding) {
         toolbar.title = page.title
-        webView.loadDataWithBaseURL(WEB_VIEW_BASE_URL, page.content, WEB_VIEW_MIME_TYPE, WEB_VIEW_ENCODING, null)
+        webView.loadDataWithBaseURL(
+            WEB_VIEW_BASE_URL,
+            page.content,
+            WEB_VIEW_MIME_TYPE,
+            WEB_VIEW_ENCODING,
+            null,
+        )
+    }
+
+    private fun String.fixPath(): String {
+        return if (firstOrNull() == '/') this else "/$this"
     }
 }

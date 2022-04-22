@@ -1,6 +1,10 @@
 package ru.eruditeonline.app.data.model.base
 
-class WebPage(
+data class WebPage(
+    /** Заголовок страницы */
     val title: String,
+    /** Контент страницы */
     val content: String,
+    /** Путь страницы */
+    val path: String = "",
 )

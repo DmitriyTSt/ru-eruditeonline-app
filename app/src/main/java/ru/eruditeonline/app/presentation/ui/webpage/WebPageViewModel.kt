@@ -2,6 +2,7 @@ package ru.eruditeonline.app.presentation.ui.webpage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.flow.map
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.base.WebPage
 import ru.eruditeonline.app.domain.usecase.GetWebPageUseCase
@@ -15,7 +16,26 @@ class WebPageViewModel @Inject constructor(
     private val _webPageLiveData = MutableLiveData<LoadableState<WebPage>>()
     val webPageLiveData: LiveData<LoadableState<WebPage>> = _webPageLiveData
 
-    fun loadWebPage(path: String) {
-        _webPageLiveData.launchLoadData(getWebPageUseCase.executeFlow(GetWebPageUseCase.Params(path)))
+    /** История веб вью */
+    private val backStack = ArrayDeque<WebPage>()
+
+    fun loadWebPage(path: String, skipStack: Boolean = false) {
+        _webPageLiveData.launchLoadData(getWebPageUseCase.executeFlow(GetWebPageUseCase.Params(path)).map { state ->
+            state.doOnSuccess { page ->
+                if (!skipStack) {
+                    backStack.addLast(page)
+                }
+            }
+            state
+        })
+    }
+
+    fun onBackPressed() {
+        backStack.removeLast()
+        if (backStack.isNotEmpty()) {
+            _webPageLiveData.postValue(LoadableState.Success(backStack.last()))
+        } else {
+            navigateBack()
+        }
     }
 }

@@ -13,7 +13,7 @@ class GetWebPageUseCase @Inject constructor(
 ) : UseCaseUnary<GetWebPageUseCase.Params, WebPage>() {
 
     override suspend fun execute(params: Params): WebPage {
-        return utilsRepository.getWebPage(params.path)
+        return utilsRepository.getWebPage(params.path).let { it.copy(path = params.path) }
     }
 
     data class Params(
