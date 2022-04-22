@@ -45,6 +45,9 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner) {
             viewModel.onBackPressed()
         }
+        stateViewFlipper.setRetryMethod {
+            webView.reload()
+        }
         setupWebView()
     }
 
@@ -85,11 +88,17 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
         webView.settings.apply {
             javaScriptEnabled = true
             domStorageEnabled = true
+            javaScriptCanOpenWindowsAutomatically = true
         }
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 binding.stateViewFlipper.setState(LoadableState.Success(Unit))
+                webView.scrollTo(0, viewModel.scrollYByPage.getOrDefault(viewModel.getCurrentPath(), 0))
+                webView.setOnWebViewScrollChangeListener { _, _, scrollY, _, _ ->
+                    viewModel.scrollYByPage[viewModel.getCurrentPath()] = scrollY
+                    binding.appBarLayout.isLifted = scrollY > 0
+                }
             }
 
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
@@ -126,6 +135,8 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
             innerDeepLinkManager.resolveDeepLink(uri)?.let { viewModel.navigate(it) } ?: run {
                 viewModel.loadWebPage(uri.toString().replace(WEB_VIEW_BASE_URL, ""))
             }
+        } else {
+            viewModel.openBrowser(uri)
         }
     }
 
@@ -134,6 +145,7 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
     }
 
     private fun bindPage(page: WebPage) = with(binding) {
+        webView.setOnWebViewScrollChangeListener(null)
         toolbar.title = page.title
         webView.loadDataWithBaseURL(
             WEB_VIEW_BASE_URL,
@@ -142,9 +154,5 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
             WEB_VIEW_ENCODING,
             null,
         )
-    }
-
-    private fun String.fixPath(): String {
-        return if (firstOrNull() == '/') this else "/$this"
     }
 }
