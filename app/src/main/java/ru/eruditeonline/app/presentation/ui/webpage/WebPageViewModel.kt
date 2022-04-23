@@ -42,11 +42,15 @@ class WebPageViewModel @Inject constructor(
     }
 
     fun onBackPressed() {
-        backStack.removeLast()
-        if (backStack.isNotEmpty()) {
+        if (_webPageLiveData.value !is LoadableState.Success) {
             _webPageLiveData.postValue(LoadableState.Success(backStack.last()))
         } else {
-            navigateBack()
+            backStack.removeLast()
+            if (backStack.isNotEmpty()) {
+                _webPageLiveData.postValue(LoadableState.Success(backStack.last()))
+            } else {
+                navigateBack()
+            }
         }
     }
 
