@@ -2,10 +2,14 @@
 <resources>
     <string name="navigation_deep_link_to_competition_detail">app://competition/{id}</string>
     <string name="navigation_deep_link_to_competition_detail_template">app://competition/%d</string>
+    <string name="navigation_deep_link_to_test_passage">app://test/{id}</string>
+    <string name="navigation_deep_link_to_test_passage_template">app://test/%s</string>
     <string name="navigation_deep_link_to_dashboard">app://dashboard</string>
     <string name="navigation_deep_link_to_competitions">app://competitions</string>
     <string name="navigation_deep_link_to_profile">app://profile</string>
+    <string name="navigation_deep_link_to_login">app://login</string>
     <string name="navigation_deep_link_to_registration">app://registration</string>
     <string name="navigation_deep_link_to_confirm_email">app://registration/confirm?token={token}</string>
     <string name="navigation_deep_link_to_confirm_email_template">app://registration/confirm?token=%s</string>
+    <string name="navigation_deep_link_to_results">app://results_common</string>
 </resources>

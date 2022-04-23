@@ -33,7 +33,10 @@
         android:id="@+id/commonResultListFragment"
         android:name="ru.eruditeonline.app.presentation.ui.result.common.CommonResultListFragment"
         android:label="CommonResultListFragment"
-        tools:layout="@layout/fragment_common_result_list" />
+        tools:layout="@layout/fragment_common_result_list">
+
+        <deepLink app:uri="@string/navigation_deep_link_to_results" />
+    </fragment>
     <fragment
         android:id="@+id/searchResultFragment"
         android:name="ru.eruditeonline.app.presentation.ui.result.search.SearchResultFragment"

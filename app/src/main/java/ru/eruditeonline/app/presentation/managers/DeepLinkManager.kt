@@ -12,8 +12,6 @@ class DeepLinkManager @Inject constructor(
     private val context: Context,
     private val destinations: DeepLinkDestinations,
 ) : InnerDeepLinkManager {
-    private val registrationPath by lazy { context.getString(R.string.deep_link_registration_path) }
-    private val confirmEmailTokenQueryName by lazy { context.getString(R.string.deep_link_confirm_email_token_query_name) }
 
     private var deepLink: Uri? = null
 
@@ -35,15 +33,41 @@ class DeepLinkManager @Inject constructor(
 
     private fun resolveDeepLinkDestination(deepLink: Uri): Destination? {
         return when (deepLink.path) {
-            registrationPath -> {
-                val token = deepLink.getQueryParameter(confirmEmailTokenQueryName)
+            DeepLink.REGISTRATION -> {
+                val token = deepLink.getQueryParameter(DeepLink.CONFIRM_EMAIL_QUERY_NAME)
                 if (token.isNullOrEmpty()) {
                     destinations.registration()
                 } else {
                     destinations.confirmEmail(token)
                 }
             }
-            else -> null
+            DeepLink.LOGIN -> destinations.login()
+            DeepLink.PROFILE -> destinations.profile()
+            DeepLink.COMMON_RESULTS -> destinations.commonResults()
+            DeepLink.TEST -> {
+                val testId = deepLink.getQueryParameter(DeepLink.TEST_QUERY_NAME)
+                if (testId.isNullOrEmpty()) {
+                    null
+                } else {
+                    destinations.test(testId)
+                }
+            }
+            else -> {
+                when {
+                    deepLink.path?.startsWith(DeepLink.COMPETITION_PREFIX) == true -> {
+                        val competitionId = deepLink.path.orEmpty()
+                            .replace(DeepLink.COMPETITION_PREFIX, "")
+                            .replace(".html", "")
+                            .toIntOrNull()
+                        if (competitionId != null) {
+                            destinations.competition(competitionId)
+                        } else {
+                            null
+                        }
+                    }
+                    else -> null
+                }
+            }
         }
     }
 }
