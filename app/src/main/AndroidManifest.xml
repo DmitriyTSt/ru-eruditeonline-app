@@ -58,6 +58,7 @@
                 <data android:pathPrefix="/rating-" />
                 <data android:pathPrefix="/quiz.html" />
                 <data android:pathPrefix="/results.html" />
+                <data android:pathPrefix="/reward.html" />
             </intent-filter>
         </activity>
     </application>

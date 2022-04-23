@@ -12,4 +12,5 @@ object DeepLink {
     const val RATING_DAY = "/rating-day.html"
     const val RATING_MONTH = "/rating-month.html"
     const val RATING_YEAR = "/rating-year.html"
+    const val SEARCH_RESULTS_BY_EMAIL = "/reward.html"
 }

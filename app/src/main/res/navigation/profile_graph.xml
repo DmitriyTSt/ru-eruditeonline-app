@@ -42,6 +42,9 @@
         android:name="ru.eruditeonline.app.presentation.ui.result.search.SearchResultFragment"
         android:label="SearchResultFragment"
         tools:layout="@layout/fragment_search_result">
+
+        <deepLink app:uri="@string/navigation_deep_link_to_results_search" />
+
         <argument
             android:name="mode"
             app:argType="ru.eruditeonline.app.presentation.ui.result.search.SearchResultMode" />
