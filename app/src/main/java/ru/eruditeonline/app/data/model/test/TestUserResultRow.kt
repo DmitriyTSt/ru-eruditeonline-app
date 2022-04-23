@@ -5,7 +5,7 @@ import ru.eruditeonline.app.data.model.base.Score
 
 data class TestUserResultRow(
     /** Идентификатор результата */
-    val id: String,
+    val id: Int,
     /** Дата прохождения */
     val date: Long,
     /** Участник */

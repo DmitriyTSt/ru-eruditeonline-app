@@ -63,7 +63,7 @@ interface ApiService {
     ): ListResponse<ApiTestUserResultRow>
 
     @GET("results/{id}")
-    suspend fun getResult(@Path("id") id: String): ObjectResponse<TestUserResultResponse>
+    suspend fun getResult(@Path("id") id: Int): ObjectResponse<TestUserResultResponse>
 
     @GET("results")
     suspend fun getCommonResults(

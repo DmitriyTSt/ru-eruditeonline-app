@@ -17,6 +17,6 @@ class GetResultUseCase @Inject constructor(
     }
 
     data class Params(
-        val id: String,
+        val id: Int,
     )
 }

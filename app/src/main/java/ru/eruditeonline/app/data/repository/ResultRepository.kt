@@ -14,7 +14,7 @@ interface ResultRepository {
     suspend fun getCommonResults(offset: Int, limit: Int): ListResponse<TestCommonResultRow>
 
     /** Получение результата */
-    suspend fun getResult(id: String): TestUserResult
+    suspend fun getResult(id: Int): TestUserResult
 
     /** Сохранение результата */
     suspend fun saveResult(

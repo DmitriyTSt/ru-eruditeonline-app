@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.test.ResultAnswer
-import ru.eruditeonline.app.databinding.ItemResultAnswerBinding
+import ru.eruditeonline.app.databinding.ItemTempResultAnswerBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 
 class ResultAnswerViewHolder(
     parent: ViewGroup,
-) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_result_answer)) {
-    private val binding by viewBinding(ItemResultAnswerBinding::bind)
+) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_temp_result_answer)) {
+    private val binding by viewBinding(ItemTempResultAnswerBinding::bind)
 
     @SuppressLint("SetTextI18n")
     fun bind(answer: ResultAnswer) = with(binding) {

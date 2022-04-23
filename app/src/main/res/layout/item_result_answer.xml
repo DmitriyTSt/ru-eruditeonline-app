@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="@style/Font.Body2.Regular"
-    tools:text="Вопрос №1: Нет ответа" />
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:drawablePadding="8dp"
+        android:padding="8dp"
+        android:textAppearance="@style/Font.Body1.Regular"
+        app:drawableStartCompat="@drawable/ic_arrow_down"
+        tools:text="Вопрос №1. 10100101" />
+
+    <TextView
+        android:id="@+id/textViewQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
+        android:textAppearance="@style/Font.Body2.Regular"
+        android:visibility="gone"
+        tools:text="Переведите число 167 из десятичной системы счисления в двоичную систему счисления. В ответе выберите двоичное число."
+        tools:visibility="visible" />
+
+</LinearLayout>
