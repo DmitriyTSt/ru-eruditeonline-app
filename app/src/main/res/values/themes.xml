@@ -33,6 +33,7 @@
         <item name="buttonStyle">@style/MaterialButtonStyle</item>
         <item name="chipStyle">@style/ChipStyle</item>
         <item name="textInputStyle">@style/TextInputLayoutStyle</item>
+        <item name="tabStyle">@style/TabStyle</item>
 
         <item name="iconBack">@drawable/ic_back</item>
         <item name="iconClose">@drawable/ic_close</item>
@@ -44,6 +45,7 @@
         <item name="appBarLayoutStyle">@style/AppBarLayoutStyle.Light</item>
         <item name="toolbarStyle">@style/ToolbarStyle.Light</item>
         <item name="android:toolbarStyle">@style/ToolbarStyle.Light</item>
+        <item name="tabStyle">@style/TabStyle.Light</item>
 
         <item name="iconBack">@drawable/ic_back_dark</item>
         <item name="iconClose">@drawable/ic_close_dark</item>
