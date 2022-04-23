@@ -9,8 +9,6 @@ import ru.eruditeonline.app.databinding.ItemCommonResultBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.managers.DateFormatter
-import java.time.Instant
-import java.time.ZoneId
 
 class CommonResultViewHolder(
     parent: ViewGroup,

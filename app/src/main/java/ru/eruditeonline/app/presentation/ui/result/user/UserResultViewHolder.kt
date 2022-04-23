@@ -9,8 +9,6 @@ import ru.eruditeonline.app.data.model.test.TestUserResultRow
 import ru.eruditeonline.app.databinding.ItemUserResultBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.managers.DateFormatter
-import java.time.Instant
-import java.time.ZoneId
 
 class UserResultViewHolder(
     parent: ViewGroup,

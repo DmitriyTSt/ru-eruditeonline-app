@@ -26,6 +26,4 @@ class ResultAnswersAdapter @Inject constructor() : BaseAdapter<ResultAnswer, Res
         val item = getItem(position)
         holder.bind(item, expanded.contains(item.question.title))
     }
-
-
 }

@@ -9,7 +9,6 @@ import ru.eruditeonline.app.data.model.test.TestUserResult
 import ru.eruditeonline.app.databinding.FragmentResultDetailBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
-import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.managers.DateFormatter
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
