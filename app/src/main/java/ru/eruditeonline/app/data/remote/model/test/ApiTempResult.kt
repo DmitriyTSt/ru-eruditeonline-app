@@ -5,7 +5,7 @@ import ru.eruditeonline.app.data.remote.model.base.ApiScore
 
 class ApiTempResult(
     /** Временный идентификатор прохождения теста */
-    @SerializedName("id") val id: String?,
+    @SerializedName("id") val id: Int?,
     /** Выбранные ответы */
     @SerializedName("answers") val answers: List<ApiResultAnswer>?,
     /** Набранные баллы */

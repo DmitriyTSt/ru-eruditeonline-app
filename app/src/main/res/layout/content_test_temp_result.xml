@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:background="?colorSurface">
@@ -147,19 +148,53 @@
         </com.google.android.material.card.MaterialCardView>
 
         <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
-            android:id="@+id/textInputLayoutUsername"
+            android:id="@+id/textInputLayoutSurname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_16"
             android:layout_marginTop="16dp"
-            android:hint="@string/username_hint"
+            android:hint="@string/surname_hint"
             app:errorEmpty="@string/default_empty_error">
 
             <EditText
-                android:id="@+id/editTextUsername"
+                android:id="@+id/editTextSurname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords" />
+
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/name_hint"
+            app:errorEmpty="@string/default_empty_error">
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutPatronymic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/patronymic_hint">
+
+            <EditText
+                android:id="@+id/editTextPatronymic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+
         </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
 
         <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
@@ -421,7 +456,7 @@
             android:textAppearance="@style/Font.Body2.Medium" />
 
         <RatingBar
-            android:id="@+id/ratingBarInterests"
+            android:id="@+id/ratingBarInterest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -453,7 +488,7 @@
         </LinearLayout>
 
         <ru.eruditeonline.app.presentation.ui.views.StatefulMaterialButton
-            android:id="@+id/buttonRegistration"
+            android:id="@+id/buttonSaveResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_16"

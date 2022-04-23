@@ -112,7 +112,7 @@ class TestMapper @Inject constructor(
 
     fun fromApiToModel(api: ApiTempResult): TempResult {
         return TempResult(
-            id = api.id.orEmpty(),
+            id = api.id.orDefault(),
             answers = api.answers.orEmpty().map { fromApiToModel(it) },
             score = baseMapper.fromApiToModel(api.score),
             spentTime = api.spentTime.orDefault(),

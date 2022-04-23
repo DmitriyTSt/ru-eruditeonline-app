@@ -18,5 +18,4 @@ class ResultAnswerViewHolder(
     fun bind(answer: ResultAnswer) = with(binding) {
         root.text = "${answer.question.title}. ${answer.answerText ?: root.context.getString(R.string.empty_answer)}"
     }
-
 }

@@ -51,7 +51,7 @@ class ResultRepositoryImpl @Inject constructor(
     }
 
     override suspend fun saveResult(
-        completeId: Long,
+        completeId: Int,
         name: String,
         surname: String,
         patronymic: String?,

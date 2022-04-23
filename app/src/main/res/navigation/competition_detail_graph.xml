@@ -50,7 +50,9 @@
             app:destination="@id/selectDiplomaFragment" />
         <action
             android:id="@+id/action_testTempResultFragment_to_successSaveResultFragment"
-            app:destination="@id/successSaveResultFragment" />
+            app:destination="@id/successSaveResultFragment"
+            app:popUpTo="@id/competitionDetailFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -62,7 +64,7 @@
         android:id="@+id/successSaveResultFragment"
         android:name="ru.eruditeonline.app.presentation.ui.test.successresult.SuccessSaveResultFragment"
         android:label="SuccessSaveResultFragment"
-        tools:layout="@layout/fragment_success_save_result" >
+        tools:layout="@layout/fragment_success_save_result">
         <argument
             android:name="result"
             app:argType="ru.eruditeonline.app.data.model.test.CreatedResult" />

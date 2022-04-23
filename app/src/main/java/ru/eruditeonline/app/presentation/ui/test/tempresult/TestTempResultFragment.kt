@@ -7,6 +7,7 @@ import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
 import android.text.style.ForegroundColorSpan
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.graphics.Insets
 import androidx.core.view.WindowInsetsCompat
@@ -25,6 +26,7 @@ import ru.eruditeonline.app.data.model.test.TempResult
 import ru.eruditeonline.app.databinding.FragmentTestTempResultBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
+import ru.eruditeonline.app.presentation.extension.errorSnackbar
 import ru.eruditeonline.app.presentation.extension.getColorCompat
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.extension.setTextFromHtml
@@ -52,6 +54,7 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
             viewModel.navigateBack()
         }
         setRequiredFieldHints()
+        setupSaveButton()
         setupPrivacyPolicy()
         setupSelectCountry()
         setupSelectDiploma()
@@ -78,6 +81,21 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
                 imageViewDiploma.load(diploma.image)
             }
         }
+        scrollToErrorFieldLiveEvent.observe { viewId ->
+            scrollToErrorViewById(viewId)
+        }
+        emailValidationErrorLiveEvent.observe { id ->
+            binding.root.findViewById<TextInputLayout?>(id)?.error = getString(R.string.email_validation_error)
+        }
+        privacyPolicyErrorLiveEvent.observe {
+            errorSnackbar(getString(R.string.privacy_policy_error))
+        }
+        saveResultLiveEvent.observe { state ->
+            binding.content.buttonSaveResult.setState(state)
+            state.doOnError { error ->
+                errorSnackbar(error?.message.orEmpty())
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -95,7 +113,8 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
             textViewResultText.text = result.resultInfo.resultText
         }
         textViewSpentTime.text = getString(
-            R.string.temp_result_spent_time_template, "%02d.%02d".format(
+            R.string.temp_result_spent_time_template,
+            "%02d.%02d".format(
                 result.spentTime / 60,
                 result.spentTime % 60,
             )
@@ -162,6 +181,29 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
         }
     }
 
+    private fun setupSaveButton() = with(binding.content) {
+        buttonSaveResult.setOnClickListener {
+            viewModel.saveResult(
+                surname = textInputLayoutSurname,
+                name = textInputLayoutName,
+                patronymic = textInputLayoutPatronymic,
+                school = textInputLayoutSchool,
+                position = textInputLayoutPosition,
+                teacher = textInputLayoutTeacher,
+                country = textInputLayoutCountry,
+                city = textInputLayoutCity,
+                region = textInputLayoutRegion,
+                email = textInputLayoutEmail,
+                teacherEmail = textInputLayoutTeacherEmail,
+                diploma = textInputLayoutDiploma,
+                isPrivacyPolicyChecked = checkboxPrivacyPolicy.isChecked,
+                ratingQuality = ratingBarQuality.rating.toInt(),
+                ratingDifficulty = ratingBarDifficulty.rating.toInt(),
+                ratingInterest = ratingBarInterest.rating.toInt(),
+            )
+        }
+    }
+
     private fun setupPrivacyPolicy() = with(binding.content.textViewPrivacyPolicy) {
         movementMethod = LinkMovementMethod.getInstance()
         setTextFromHtml(getString(R.string.temp_result_privacy_policy_checkbox_text))
@@ -169,11 +211,22 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
     }
 
     private fun setRequiredFieldHints() = with(binding.content) {
-        textInputLayoutUsername.setFieldRequiredHint()
+        textInputLayoutSurname.setFieldRequiredHint()
+        textInputLayoutName.setFieldRequiredHint()
         textInputLayoutCity.setFieldRequiredHint()
         textInputLayoutCountry.setFieldRequiredHint()
         textInputLayoutEmail.setFieldRequiredHint()
         textInputLayoutDiploma.setFieldRequiredHint()
+    }
+
+    private fun scrollToErrorViewById(viewId: Int) = with(binding) {
+        val viewWithError = root.findViewById<View>(viewId)
+        val viewTop = if (viewId == R.id.textInputLayoutCountry) {
+            binding.content.constraintLayoutCountry.top
+        } else {
+            viewWithError.top
+        }
+        content.nestedScrollView.scrollTo(0, viewTop)
     }
 
     private fun TextInputLayout.setFieldRequiredHint() {
