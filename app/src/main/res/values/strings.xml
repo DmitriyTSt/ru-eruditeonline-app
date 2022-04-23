@@ -103,4 +103,9 @@
     <string name="temp_result_score_label">Баллы</string>
     <string name="diploma_type_template">Вариант №%s</string>
     <string name="empty_answer">Нет ответа</string>
+    <string name="success_save_result_title">Результат сохранен</string>
+    <string name="success_save_result_email_search_message">Вы всегда можете найти свой результат по e-mail.</string>
+    <string name="success_save_result_profile_message">Зарегистрированным участникам результаты доступны в личном кабинете.</string>
+    <string name="success_save_result_button_competitions_label">Другие конкурсы</string>
+    <string name="success_save_result_button_result_label">К результату</string>
 </resources>

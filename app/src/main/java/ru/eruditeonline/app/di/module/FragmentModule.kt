@@ -23,6 +23,7 @@ import ru.eruditeonline.app.presentation.ui.result.search.SearchResultFragment
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultListFragment
 import ru.eruditeonline.app.presentation.ui.splash.SplashFragment
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageFragment
+import ru.eruditeonline.app.presentation.ui.test.successresult.SuccessSaveResultFragment
 import ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultFragment
 import ru.eruditeonline.app.presentation.ui.webpage.WebPageFragment
 
@@ -96,4 +97,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun webPageFragment(): WebPageFragment
+
+    @ContributesAndroidInjector
+    abstract fun successSaveResultFragment(): SuccessSaveResultFragment
 }

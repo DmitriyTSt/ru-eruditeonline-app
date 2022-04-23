@@ -103,7 +103,7 @@ class TestMapper @Inject constructor(
 
     fun fromApiToModel(api: ApiCreatedResult): CreatedResult {
         return CreatedResult(
-            id = api.id.orEmpty(),
+            id = api.id.orDefault(),
             username = api.username.orEmpty(),
             resultLink = api.resultLink.orEmpty(),
             achievementText = api.achievementText,
