@@ -118,8 +118,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:nestedScrollingEnabled="false"
             android:paddingHorizontal="@dimen/padding_16"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_temp_result_answer" />
 
         <TextView
             android:id="@+id/textViewResultText"

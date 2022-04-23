@@ -108,4 +108,11 @@
     <string name="success_save_result_profile_message">Зарегистрированным участникам результаты доступны в личном кабинете.</string>
     <string name="success_save_result_button_competitions_label">Другие конкурсы</string>
     <string name="success_save_result_button_result_label">К результату</string>
+    <string name="result_detail_title">Результат участника</string>
+    <string name="result_username_label">Участник:</string>
+    <string name="result_score_label">Результат (баллов):</string>
+    <string name="result_spent_time">Затрачено времени:</string>
+    <string name="result_date_label">Дата участия:</string>
+    <string name="result_id_label">Идентификатор результата:</string>
+    <string name="result_answers_block_title">Ответы участника</string>
 </resources>

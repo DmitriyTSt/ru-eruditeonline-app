@@ -1,12 +1,13 @@
 package ru.eruditeonline.app.data.model.test
 
 import ru.eruditeonline.app.data.model.base.Score
+import java.time.LocalDate
 
 class TestUserResult(
     /** Идентификатор результата */
-    val id: String,
+    val id: Int,
     /** Дата прохождения */
-    val date: String,
+    val date: LocalDate,
     /** Участник */
     val username: String,
     /** Идентификатор теста */

@@ -62,8 +62,8 @@ interface ApiService {
         @Query("limit") limit: Int,
     ): ListResponse<ApiTestUserResultRow>
 
-    @GET("results/{id}")
-    suspend fun getResult(@Path("id") id: String): ObjectResponse<TestUserResultResponse>
+    @GET("result/{id}")
+    suspend fun getResult(@Path("id") id: Int): ObjectResponse<TestUserResultResponse>
 
     @GET("results")
     suspend fun getCommonResults(

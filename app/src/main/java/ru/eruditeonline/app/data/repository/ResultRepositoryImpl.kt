@@ -42,7 +42,7 @@ class ResultRepositoryImpl @Inject constructor(
         } ?: throw IllegalStateException("Common results data null from api")
     }
 
-    override suspend fun getResult(id: String): TestUserResult {
+    override suspend fun getResult(id: Int): TestUserResult {
         return apiService.getResult(id)
             .data
             .result

@@ -1,10 +1,11 @@
 package ru.eruditeonline.app.data.model.test
 
 import ru.eruditeonline.app.data.model.Similarable
+import java.time.LocalDate
 
 data class TestCommonResultRow(
     /** Дата прохождения */
-    val date: Long,
+    val date: LocalDate,
     /** Участник */
     val username: String,
     /** Регион (населенный пункт) */

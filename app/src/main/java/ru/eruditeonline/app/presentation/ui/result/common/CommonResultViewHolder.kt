@@ -9,8 +9,6 @@ import ru.eruditeonline.app.databinding.ItemCommonResultBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.managers.DateFormatter
-import java.time.Instant
-import java.time.ZoneId
 
 class CommonResultViewHolder(
     parent: ViewGroup,
@@ -20,9 +18,7 @@ class CommonResultViewHolder(
     private val binding by viewBinding(ItemCommonResultBinding::bind)
 
     fun bind(result: TestCommonResultRow) = with(binding) {
-        textViewDate.text = dateFormatter.formatStandardDate(
-            Instant.ofEpochSecond(result.date).atZone(ZoneId.systemDefault()).toLocalDate()
-        )
+        textViewDate.text = dateFormatter.formatStandardDate(result.date)
         textViewPlace.text = result.resultText
         textViewCity.text = result.city
         textViewUsername.text = result.username

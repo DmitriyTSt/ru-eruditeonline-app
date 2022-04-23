@@ -9,8 +9,6 @@ import ru.eruditeonline.app.data.model.test.TestUserResultRow
 import ru.eruditeonline.app.databinding.ItemUserResultBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.managers.DateFormatter
-import java.time.Instant
-import java.time.ZoneId
 
 class UserResultViewHolder(
     parent: ViewGroup,
@@ -21,9 +19,7 @@ class UserResultViewHolder(
 
     @SuppressLint("SetTextI18n")
     fun bind(result: TestUserResultRow) = with(binding) {
-        textViewDate.text = dateFormatter.formatStandardDate(
-            Instant.ofEpochSecond(result.date).atZone(ZoneId.systemDefault()).toLocalDate()
-        )
+        textViewDate.text = dateFormatter.formatStandardDate(result.date)
         textViewNumber.text = "${result.testId} № ${result.id}"
         textViewUsername.text = result.username
         textViewPlaceValue.text = result.place

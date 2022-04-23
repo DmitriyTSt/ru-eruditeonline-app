@@ -54,6 +54,14 @@
         <argument
             android:name="params"
             app:argType="ru.eruditeonline.app.presentation.ui.result.user.UserResultParams" />
+
+        <action
+            android:id="@+id/action_userResultListFragment_to_result_detail_graph"
+            app:destination="@id/result_detail_graph">
+            <argument
+                android:name="id"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/informationFragment"
@@ -68,7 +76,7 @@
         android:id="@+id/webPageFragment"
         android:name="ru.eruditeonline.app.presentation.ui.webpage.WebPageFragment"
         android:label="WebPageFragment"
-        tools:layout="@layout/fragment_web_page" >
+        tools:layout="@layout/fragment_web_page">
         <argument
             android:name="path"
             app:argType="string" />

@@ -5,9 +5,9 @@ import ru.eruditeonline.app.data.remote.model.base.ApiScore
 
 class ApiTestUserResult(
     /** Идентификатор результата */
-    @SerializedName("id") val id: String?,
+    @SerializedName("id") val id: Int?,
     /** Дата прохождения */
-    @SerializedName("date") val date: String?,
+    @SerializedName("date") val date: Long?,
     /** Участник */
     @SerializedName("username") val username: String?,
     /** Идентификатор теста */
