@@ -21,6 +21,7 @@ import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
 import ru.eruditeonline.app.presentation.ui.rating.RatingViewModel
+import ru.eruditeonline.app.presentation.ui.rating.single.SingleTabRatingViewModel
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemViewModel
 import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListViewModel
 import ru.eruditeonline.app.presentation.ui.result.detail.ResultDetailViewModel
@@ -158,4 +159,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(ResultDetailViewModel::class)
     abstract fun resultDetailViewModel(viewModel: ResultDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SingleTabRatingViewModel::class)
+    abstract fun singleTabRatingViewModel(viewModel: SingleTabRatingViewModel): ViewModel
 }

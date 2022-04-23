@@ -6,6 +6,7 @@ import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.navigation.Destination
+import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemMode
 import javax.inject.Inject
 
 class DeepLinkDestinations @Inject constructor(
@@ -42,6 +43,12 @@ class DeepLinkDestinations @Inject constructor(
     fun test(id: String) = Destination.DeepLink(
         NavDeepLinkRequest.Builder
             .fromUri(context.getString(R.string.navigation_deep_link_to_test_passage_template, id).toUri())
+            .build()
+    )
+
+    fun rating(mode: RatingTabItemMode) = Destination.DeepLink(
+        NavDeepLinkRequest.Builder
+            .fromUri(context.getString(R.string.navigation_deep_link_to_rating_single_tab_template, mode).toUri())
             .build()
     )
 

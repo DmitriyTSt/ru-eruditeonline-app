@@ -4,12 +4,12 @@ import android.content.Context
 import android.net.Uri
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.navigation.Destination
+import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemMode
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class DeepLinkManager @Inject constructor(
-    private val context: Context,
     private val destinations: DeepLinkDestinations,
 ) : InnerDeepLinkManager {
 
@@ -52,6 +52,9 @@ class DeepLinkManager @Inject constructor(
                     destinations.test(testId)
                 }
             }
+            DeepLink.RATING_DAY -> destinations.rating(RatingTabItemMode.DAY)
+            DeepLink.RATING_MONTH -> destinations.rating(RatingTabItemMode.MONTH)
+            DeepLink.RATING_YEAR -> destinations.rating(RatingTabItemMode.YEAR)
             else -> {
                 when {
                     deepLink.path?.startsWith(DeepLink.COMPETITION_PREFIX) == true -> {

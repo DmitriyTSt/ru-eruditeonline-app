@@ -10,4 +10,16 @@
         android:name="ru.eruditeonline.app.presentation.ui.rating.RatingFragment"
         android:label="RatingFragment"
         tools:layout="@layout/fragment_rating" />
+    <fragment
+        android:id="@+id/singleTabRatingFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.rating.single.SingleTabRatingFragment"
+        android:label="SingleTabRatingFragment"
+        tools:layout="@layout/fragment_single_tab_rating">
+
+        <deepLink app:uri="@string/navigation_deep_link_to_rating_single_tab" />
+
+        <argument
+            android:name="mode"
+            app:argType="ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemMode" />
+    </fragment>
 </navigation>

@@ -12,4 +12,6 @@
     <string name="navigation_deep_link_to_confirm_email">app://registration/confirm?token={token}</string>
     <string name="navigation_deep_link_to_confirm_email_template">app://registration/confirm?token=%s</string>
     <string name="navigation_deep_link_to_results">app://results_common</string>
+    <string name="navigation_deep_link_to_rating_single_tab">app://rating/by/{mode}</string>
+    <string name="navigation_deep_link_to_rating_single_tab_template">app://rating/by/%s</string>
 </resources>

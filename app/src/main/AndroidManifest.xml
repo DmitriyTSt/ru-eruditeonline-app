@@ -51,7 +51,13 @@
 
                 <data android:host="erudyt-online.ru" />
 
+                <data android:pathPrefix="/login.html" />
                 <data android:pathPrefix="/registration.html" />
+                <data android:pathPrefix="/lk.html" />
+                <data android:pathPrefix="/konkurs/" />
+                <data android:pathPrefix="/rating-" />
+                <data android:pathPrefix="/quiz.html" />
+                <data android:pathPrefix="/results.html" />
             </intent-filter>
         </activity>
     </application>
