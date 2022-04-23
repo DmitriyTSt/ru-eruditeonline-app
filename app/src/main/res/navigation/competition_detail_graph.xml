@@ -27,6 +27,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+
+        <deepLink app:uri="@string/navigation_deep_link_to_test_passage" />
+
         <action
             android:id="@+id/action_testPassageFragment_to_testTempResultFragment"
             app:destination="@id/testTempResultFragment"

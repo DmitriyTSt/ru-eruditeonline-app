@@ -10,6 +10,9 @@
         android:name="ru.eruditeonline.app.presentation.ui.auth.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
+
+        <deepLink app:uri="@string/navigation_deep_link_to_login" />
+
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />

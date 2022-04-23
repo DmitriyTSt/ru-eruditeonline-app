@@ -37,17 +37,15 @@ class AnonymProfileDestinations @Inject constructor(
 
     /** Перезагрузка стека */
     fun reloadStack() = Destination.Stack(
-        listOf(
-            Destination.DeepLink(
-                NavDeepLinkRequest.Builder.fromUri(context.getString(R.string.navigation_deep_link_to_dashboard).toUri()).build(),
-                NavOptions.Builder()
-                    .setPopUpTo(R.id.nav_graph, true)
-                    .build()
-            ),
-            Destination.DeepLink(
-                NavDeepLinkRequest.Builder.fromUri(context.getString(R.string.navigation_deep_link_to_profile).toUri()).build(),
-            ),
-        )
+        Destination.DeepLink(
+            NavDeepLinkRequest.Builder.fromUri(context.getString(R.string.navigation_deep_link_to_dashboard).toUri()).build(),
+            NavOptions.Builder()
+                .setPopUpTo(R.id.nav_graph, true)
+                .build()
+        ),
+        Destination.DeepLink(
+            NavDeepLinkRequest.Builder.fromUri(context.getString(R.string.navigation_deep_link_to_profile).toUri()).build(),
+        ),
     )
 
     /** Информация */

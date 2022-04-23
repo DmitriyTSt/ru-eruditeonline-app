@@ -2,4 +2,13 @@
 <resources>
     <string name="deep_link_registration_path">/registration.html</string>
     <string name="deep_link_confirm_email_token_query_name">token</string>
+    <string name="deep_link_profile_path">/lk.html</string>
+    <string name="deep_link_login_path">/login.html</string>
+    <string name="deep_link_common_results_path">/results.html</string>
+    <string name="deep_link_competition_path_prefix">/konkurs/</string>
+    <string name="deep_link_test_path">/quiz.html</string>
+    <string name="deep_link_test_query_name">test</string>
+    <string name="deep_link_rating_day_path">/rating-day.html</string>
+    <string name="deep_link_rating_month_path">/rating-month.html</string>
+    <string name="deep_link_rating_year_path">/rating-year.html</string>
 </resources>
