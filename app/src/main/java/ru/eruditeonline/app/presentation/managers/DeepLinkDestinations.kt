@@ -59,6 +59,10 @@ class DeepLinkDestinations @Inject constructor(
             .build()
     )
 
+    fun competitionItems() = Destination.DeepLink(
+        simpleCreate(R.string.navigation_deep_link_to_competitions)
+    )
+
     private fun simpleCreate(@StringRes deepLinkRes: Int): NavDeepLinkRequest {
         return NavDeepLinkRequest.Builder
             .fromUri(context.getString(deepLinkRes).toUri())

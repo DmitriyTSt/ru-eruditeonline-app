@@ -59,6 +59,8 @@
                 <data android:pathPrefix="/quiz.html" />
                 <data android:pathPrefix="/results.html" />
                 <data android:pathPrefix="/reward.html" />
+                <data android:pathPrefix="/konkurs_all.html" />
+                <data android:pathPrefix="/filter" />
             </intent-filter>
         </activity>
     </application>
