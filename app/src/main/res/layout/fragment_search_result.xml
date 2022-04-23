@@ -30,8 +30,8 @@
                     android:imeOptions="actionSearch"
                     android:singleLine="true"
                     android:textAppearance="@style/Font.Body1.Regular"
-                    android:textColor="?colorOnPrimary"
-                    android:textColorHint="?colorOnPrimary"
+                    android:textColor="?appBarTextColor"
+                    android:textColorHint="?appBarTextColor"
                     android:textCursorDrawable="@null">
 
                     <requestFocus />

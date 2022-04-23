@@ -20,11 +20,8 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?colorPrimary"
             android:visibility="gone"
-            app:tabIndicatorColor="?colorOnPrimary"
-            app:tabTextAppearance="@style/Font.Heading3.Medium"
-            app:tabTextColor="?colorOnPrimary" />
+            app:tabTextAppearance="@style/Font.Heading3.Medium" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/bg_gradient_bottom_yellow" />
+        android:background="@drawable/bg_gradient_bottom_background" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonApply"
