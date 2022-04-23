@@ -66,6 +66,7 @@
     <string name="password_confirm_hint">Подтверждение</string>
     <string name="registration_notifications_checkbox_text">Да, я хочу получать уведомления о новых конкурсах</string>
     <string name="registration_privacy_policy_checkbox_text"><![CDATA[Нажимая кнопку «Зарегистрироваться», Вы даёте <a href="https://erudit-online.ru/personal-data.html">согласие на обработку персональных данных</a>в соответствии с Федеральным законом от 27 июля 2006 года № 152 «О персональных данных»]]></string>
+    <string name="temp_result_privacy_policy_checkbox_text"><![CDATA[Нажимая кнопку «Сохранить результаты», Вы даёте <a href="https://erudit-online.ru/personal-data.html">согласие на обработку персональных данных</a>в соответствии с Федеральным законом от 27 июля 2006 года № 152 «О персональных данных»]]></string>
     <string name="registration_button_label">Зарегистрироваться</string>
     <string name="sex_not_set">Не выбран</string>
     <string name="sex_male">Мужской</string>
@@ -85,4 +86,18 @@
     <string name="confirm_email_success_button_label">Авторизоваться</string>
     <string name="information_title">Информация</string>
     <string name="profile_information_button_label">Информация</string>
+    <string name="temp_result_spent_time_template">Затрачено времени: %s</string>
+    <string name="temp_result_average_score_template">Средний балл по всем участникам: %s</string>
+    <string name="temp_result_answers_title">Ваши ответы</string>
+    <string name="temp_result_save_message_warning">Для регистрации участия в конкурсе заполните данные участника и нажмите кнопку «Сохранить результат». Внимательно заполняйте все поля, так как указанные значения будут использоваться в итоговом протоколе и в наградных материалах.</string>
+    <string name="username_hint">Фамилия Имя Отчество</string>
+    <string name="position_hint">Должность (класс, курс, возраст)</string>
+    <string name="teacher_hint">Руководитель</string>
+    <string name="teacher_email_hint">E-mail руководителя</string>
+    <string name="diploma_type_hint">Вид диплома</string>
+    <string name="temp_result_review_title">Оцените, пожалуйста, конкурс</string>
+    <string name="review_quality_title">Качество и понятность вопросов</string>
+    <string name="review_difficulty_title">Сложность вопросов</string>
+    <string name="review_interests_title">Насколько интересными были вопросы</string>
+    <string name="save_result_button_label">Сохранить результаты</string>
 </resources>

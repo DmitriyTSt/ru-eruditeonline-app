@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="?colorSurface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewSpentTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:textAppearance="@style/Font.Body2.Regular"
+            tools:text="@string/temp_result_spent_time_template" />
+
+        <TextView
+            android:id="@+id/textViewAverageScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:textAppearance="@style/Font.Body2.Regular"
+            tools:text="@string/temp_result_average_score_template" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/temp_result_answers_title"
+                android:textAppearance="@style/Font.Heading2.Bold" />
+
+            <ImageView
+                android:id="@+id/imageViewAnswersToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@null"
+                android:padding="@dimen/clickable_image_padding"
+                android:src="@drawable/ic_arrow_up" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:paddingHorizontal="@dimen/padding_16"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <TextView
+            android:id="@+id/textViewResultText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="12dp"
+            android:textAppearance="@style/Font.Body2.Medium"
+            tools:text="Вы познакомились с заданиями конкурса. 100% участников справились с этими заданиями лучше. Попробуйте пройти конкурс ещё раз и давать ответы более внимательно." />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8"
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="@color/sweet_corn"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/temp_result_save_message_warning"
+                android:textAppearance="@style/Font.Body2.Medium" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="16dp"
+            android:hint="@string/username_hint"
+            app:errorEmpty="@string/default_empty_error">
+
+            <EditText
+                android:id="@+id/editTextUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutSchool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/school_hint">
+
+            <EditText
+                android:id="@+id/editTextSchool"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutPosition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/position_hint">
+
+            <EditText
+                android:id="@+id/editTextPosition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutTeacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/teacher_hint">
+
+            <EditText
+                android:id="@+id/editTextTeacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp">
+
+            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+                android:id="@+id/textInputLayoutCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/country_hint"
+                app:errorEmpty="@string/default_empty_error"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/editTextCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords" />
+
+            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="12dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewSelectCountry"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
+                android:background="?selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/city_hint"
+            app:errorEmpty="@string/default_empty_error">
+
+            <EditText
+                android:id="@+id/editTextCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutRegion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/region_hint">
+
+            <EditText
+                android:id="@+id/editTextRegion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords" />
+
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/email_hint"
+            app:errorEmpty="@string/default_empty_error">
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textWebEmailAddress" />
+
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            android:id="@+id/textInputLayoutTeacherEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:hint="@string/teacher_email_hint">
+
+            <EditText
+                android:id="@+id/editTextTeacherEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textWebEmailAddress" />
+
+        </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutDiploma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp">
+
+            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+                android:id="@+id/textInputLayoutDiploma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/diploma_type_hint"
+                app:errorEmpty="@string/default_empty_error"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/editTextDiploma"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords" />
+
+            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="12dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_arrow_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewSelectDiploma"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
+                android:background="?selectableItemBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/imageViewDiploma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="@string/temp_result_review_title"
+            android:textAppearance="@style/Font.Body1.Regular" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/review_quality_title"
+            android:textAppearance="@style/Font.Body2.Medium" />
+
+        <RatingBar
+            android:id="@+id/ratingBarQuality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:theme="@style/RatingBarTheme" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:text="@string/review_difficulty_title"
+            android:textAppearance="@style/Font.Body2.Medium" />
+
+        <RatingBar
+            android:id="@+id/ratingBarDifficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:theme="@style/RatingBarTheme" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp"
+            android:text="@string/review_interests_title"
+            android:textAppearance="@style/Font.Body2.Medium" />
+
+        <RatingBar
+            android:id="@+id/ratingBarInterests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:theme="@style/RatingBarTheme" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <CheckBox
+                android:id="@+id/checkboxPrivacyPolicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp" />
+
+            <TextView
+                android:id="@+id/textViewPrivacyPolicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="8dp"
+                android:textAppearance="@style/Font.Body2.Regular"
+                tools:text="@string/temp_result_privacy_policy_checkbox_text" />
+        </LinearLayout>
+
+        <ru.eruditeonline.app.presentation.ui.views.StatefulMaterialButton
+            android:id="@+id/buttonRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/save_result_button_label" />
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
