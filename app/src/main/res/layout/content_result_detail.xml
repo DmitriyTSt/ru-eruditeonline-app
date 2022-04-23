@@ -12,7 +12,7 @@
         android:paddingBottom="16dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewCompetitionTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_16"
@@ -39,10 +39,13 @@
 
             <TextView
                 android:id="@+id/textViewUsernameValue"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAlignment="textEnd"
                 android:textAppearance="@style/Font.Body1.Regular"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textViewUsernameLabel"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Иванов Иван" />
 
@@ -54,7 +57,7 @@
                 android:textAppearance="@style/Font.Body1.Regular"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewUsernameLabel" />
+                app:layout_constraintTop_toBottomOf="@id/textViewUsernameValue" />
 
             <TextView
                 android:id="@+id/textViewScoreValue"
@@ -141,14 +144,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="3"
             tools:listitem="@layout/item_result_answer" />
-
-        <ImageView
-            android:id="@+id/imageViewDiploma"
-            android:layout_width="100dp"
-            android:layout_height="141dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@null" />
 
     </LinearLayout>
 

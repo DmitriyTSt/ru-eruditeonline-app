@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/result_detail_graph"
+    app:startDestination="@id/resultDetailFragment">
+
+    <fragment
+        android:id="@+id/resultDetailFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.result.detail.ResultDetailFragment"
+        android:label="ResultDetailFragment"
+        tools:layout="@layout/fragment_result_detail">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+</navigation>

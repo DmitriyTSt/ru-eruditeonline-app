@@ -68,6 +68,13 @@
         <argument
             android:name="result"
             app:argType="ru.eruditeonline.app.data.model.test.CreatedResult" />
+        <action
+            android:id="@+id/action_successSaveResultFragment_to_result_detail_graph"
+            app:destination="@id/result_detail_graph">
+            <argument
+                android:name="id"
+                app:argType="integer" />
+        </action>
     </fragment>
 
 

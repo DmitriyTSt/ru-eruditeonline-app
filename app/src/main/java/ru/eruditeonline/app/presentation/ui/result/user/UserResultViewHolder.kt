@@ -21,9 +21,7 @@ class UserResultViewHolder(
 
     @SuppressLint("SetTextI18n")
     fun bind(result: TestUserResultRow) = with(binding) {
-        textViewDate.text = dateFormatter.formatStandardDate(
-            Instant.ofEpochSecond(result.date).atZone(ZoneId.systemDefault()).toLocalDate()
-        )
+        textViewDate.text = dateFormatter.formatStandardDate(result.date)
         textViewNumber.text = "${result.testId} № ${result.id}"
         textViewUsername.text = result.username
         textViewPlaceValue.text = result.place

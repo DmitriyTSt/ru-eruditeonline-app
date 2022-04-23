@@ -19,6 +19,7 @@ import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileFragment
 import ru.eruditeonline.app.presentation.ui.rating.RatingFragment
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemFragment
 import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListFragment
+import ru.eruditeonline.app.presentation.ui.result.detail.ResultDetailFragment
 import ru.eruditeonline.app.presentation.ui.result.search.SearchResultFragment
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultListFragment
 import ru.eruditeonline.app.presentation.ui.splash.SplashFragment
@@ -100,4 +101,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun successSaveResultFragment(): SuccessSaveResultFragment
+
+    @ContributesAndroidInjector
+    abstract fun resultDetailFragment(): ResultDetailFragment
 }

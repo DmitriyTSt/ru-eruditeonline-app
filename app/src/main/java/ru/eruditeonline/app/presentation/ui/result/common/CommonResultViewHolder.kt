@@ -20,9 +20,7 @@ class CommonResultViewHolder(
     private val binding by viewBinding(ItemCommonResultBinding::bind)
 
     fun bind(result: TestCommonResultRow) = with(binding) {
-        textViewDate.text = dateFormatter.formatStandardDate(
-            Instant.ofEpochSecond(result.date).atZone(ZoneId.systemDefault()).toLocalDate()
-        )
+        textViewDate.text = dateFormatter.formatStandardDate(result.date)
         textViewPlace.text = result.resultText
         textViewCity.text = result.city
         textViewUsername.text = result.username

@@ -12,7 +12,9 @@ class SuccessSaveResultDestinations @Inject constructor(
     private val context: Context,
 ) {
     /** Результат */
-    fun result(id: Int) = Destination.Stack(emptyList())
+    fun result(id: Int) = Destination.Action(
+        SuccessSaveResultFragmentDirections.actionSuccessSaveResultFragmentToResultDetailGraph(id)
+    )
 
     /** Конкурсы */
     fun competitions() = Destination.DeepLink(

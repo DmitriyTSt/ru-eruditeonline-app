@@ -12,6 +12,7 @@ import javax.inject.Inject
 
 class UserResultListViewModel @Inject constructor(
     private val getUserResultsUseCase: GetUserResultsUseCase,
+    private val destinations: UserResultListDestinations,
 ) : BaseViewModel() {
     /** Пагинация результатов */
     private val _resultsLiveData = MutableLiveData<PagingData<TestUserResultRow>>()
@@ -37,6 +38,6 @@ class UserResultListViewModel @Inject constructor(
     }
 
     fun openResult(result: TestUserResultRow) {
-        // TODO
+        navigate(destinations.result(result.id))
     }
 }

@@ -23,6 +23,8 @@ import ru.eruditeonline.app.data.remote.model.test.ApiTestCommonResultRow
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResultRow
 import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
+import java.time.Instant
+import java.time.ZoneId
 import javax.inject.Inject
 
 class TestMapper @Inject constructor(
@@ -30,7 +32,7 @@ class TestMapper @Inject constructor(
 ) {
     fun fromApiToModel(api: ApiTestCommonResultRow): TestCommonResultRow {
         return TestCommonResultRow(
-            date = api.date.orDefault(),
+            date = Instant.ofEpochSecond(api.date.orDefault()).atZone(ZoneId.systemDefault()).toLocalDate(),
             username = api.username.orEmpty(),
             city = api.city.orEmpty(),
             countryIcon = api.countryIcon.orEmpty(),
@@ -43,7 +45,7 @@ class TestMapper @Inject constructor(
     fun fromApiToModel(api: ApiTestUserResultRow): TestUserResultRow {
         return TestUserResultRow(
             id = api.id.orDefault(),
-            date = api.date.orDefault(),
+            date = Instant.ofEpochSecond(api.date.orDefault()).atZone(ZoneId.systemDefault()).toLocalDate(),
             username = api.username.orEmpty(),
             testId = api.testId.orEmpty(),
             competitionTitle = api.competitionTitle.orEmpty(),
@@ -55,7 +57,7 @@ class TestMapper @Inject constructor(
     fun fromApiToModel(api: ApiTestUserResult): TestUserResult {
         return TestUserResult(
             id = api.id.orDefault(),
-            date = api.date.orEmpty(),
+            date = Instant.ofEpochSecond(api.date.orDefault()).atZone(ZoneId.systemDefault()).toLocalDate(),
             username = api.username.orEmpty(),
             testId = api.testId.orEmpty(),
             competitionTitle = api.competitionTitle.orEmpty(),
