@@ -11,6 +11,65 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp">
+
+            <ru.eruditeonline.app.presentation.ui.views.ScoreProgressView
+                android:id="@+id/scoreProgressView"
+                android:layout_width="164dp"
+                android:layout_height="164dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="@string/temp_result_score_label"
+                android:textAppearance="@style/Font.Heading1.Bold"
+                app:layout_constraintBottom_toTopOf="@id/textViewScoreValue"
+                app:layout_constraintEnd_toEndOf="@id/scoreProgressView"
+                app:layout_constraintStart_toStartOf="@id/scoreProgressView" />
+
+            <TextView
+                android:id="@+id/textViewScoreValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Font.Heading1.Bold"
+                app:layout_constraintBottom_toBottomOf="@id/scoreProgressView"
+                app:layout_constraintEnd_toEndOf="@id/scoreProgressView"
+                app:layout_constraintStart_toStartOf="@id/scoreProgressView"
+                app:layout_constraintTop_toTopOf="@id/scoreProgressView"
+                tools:text="@string/score_value_template" />
+
+            <TextView
+                android:id="@+id/textViewScorePercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:textAppearance="@style/Font.Heading1.Bold"
+                app:layout_constraintEnd_toEndOf="@id/scoreProgressView"
+                app:layout_constraintStart_toStartOf="@id/scoreProgressView"
+                app:layout_constraintTop_toBottomOf="@id/textViewScoreValue"
+                tools:text="10%" />
+
+            <TextView
+                android:id="@+id/textViewPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Font.Heading1.Bold"
+                app:layout_constraintBottom_toBottomOf="@id/scoreProgressView"
+                app:layout_constraintEnd_toEndOf="@id/scoreProgressView"
+                app:layout_constraintStart_toStartOf="@id/scoreProgressView"
+                app:layout_constraintTop_toBottomOf="@id/scoreProgressView"
+                tools:text="Участник" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:id="@+id/textViewSpentTime"
             android:layout_width="match_parent"
@@ -55,6 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:layout_marginBottom="12dp"
             android:paddingHorizontal="@dimen/padding_16"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -63,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_16"
-            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
             android:textAppearance="@style/Font.Body2.Medium"
             tools:text="Вы познакомились с заданиями конкурса. 100% участников справились с этими заданиями лучше. Попробуйте пройти конкурс ещё раз и давать ответы более внимательно." />
 
@@ -71,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_8"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             app:cardBackgroundColor="@color/sweet_corn"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">

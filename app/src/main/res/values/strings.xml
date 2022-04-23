@@ -100,4 +100,6 @@
     <string name="review_difficulty_title">Сложность вопросов</string>
     <string name="review_interests_title">Насколько интересными были вопросы</string>
     <string name="save_result_button_label">Сохранить результаты</string>
+    <string name="score_value_template">%d из %d</string>
+    <string name="temp_result_score_label">Баллы</string>
 </resources>
