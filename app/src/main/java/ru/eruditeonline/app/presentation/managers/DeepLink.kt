@@ -11,6 +11,7 @@ object DeepLink {
         const val PROFILE = "/lk.html"
         const val COMMON_RESULTS = "/results.html"
         const val SEARCH_RESULTS_BY_EMAIL = "/reward.html"
+        const val PERSONAL_DATA = "/personal-data.html"
     }
 
     object Rating {

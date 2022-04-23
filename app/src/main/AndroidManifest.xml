@@ -50,6 +50,8 @@
                 <data android:scheme="http" />
 
                 <data android:host="erudyt-online.ru" />
+                <data android:host="erudit-online.ru" />
+                <data android:host="erudite-online.ru" />
 
                 <data android:pathPrefix="/login.html" />
                 <data android:pathPrefix="/registration.html" />
@@ -61,6 +63,7 @@
                 <data android:pathPrefix="/reward.html" />
                 <data android:pathPrefix="/konkurs_all.html" />
                 <data android:pathPrefix="/filter" />
+                <data android:pathPrefix="/personal-data.html" />
             </intent-filter>
         </activity>
     </application>

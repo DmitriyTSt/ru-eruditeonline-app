@@ -63,6 +63,12 @@ class DeepLinkDestinations @Inject constructor(
         simpleCreate(R.string.navigation_deep_link_to_competitions)
     )
 
+    fun webPage(path: String) = Destination.DeepLink(
+        NavDeepLinkRequest.Builder
+            .fromUri(context.getString(R.string.navigation_deep_link_to_web_page_template, path).toUri())
+            .build()
+    )
+
     private fun simpleCreate(@StringRes deepLinkRes: Int): NavDeepLinkRequest {
         return NavDeepLinkRequest.Builder
             .fromUri(context.getString(deepLinkRes).toUri())

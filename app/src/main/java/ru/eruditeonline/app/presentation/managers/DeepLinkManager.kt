@@ -55,6 +55,7 @@ class DeepLinkManager @Inject constructor(
             DeepLink.Rating.YEAR -> destinations.rating(RatingTabItemMode.YEAR)
             DeepLink.Profile.SEARCH_RESULTS_BY_EMAIL -> destinations.searchResultsByEmail()
             DeepLink.CompetitionList.ITEMS -> destinations.competitionItems()
+            DeepLink.Profile.PERSONAL_DATA -> destinations.webPage(deepLink.path.orEmpty())
             else -> {
                 when {
                     deepLink.path?.startsWith(DeepLink.Competition.PREFIX) == true -> {
