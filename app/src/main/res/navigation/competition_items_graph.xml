@@ -9,7 +9,9 @@
         android:id="@+id/competitionItemsFragment"
         android:name="ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFragment"
         android:label="CompetitionItemsFragment"
-        tools:layout="@layout/fragment_competition_items" >
+        tools:layout="@layout/fragment_competition_items">
+
+        <deepLink app:uri="@string/navigation_deep_link_to_competitions" />
         <action
             android:id="@+id/action_competitionItemsFragment_to_competitionFilterFragment"
             app:destination="@id/competitionFilterFragment" />
@@ -18,7 +20,7 @@
         android:id="@+id/competitionFilterFragment"
         android:name="ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterFragment"
         android:label="CompetitionFilterFragment"
-        tools:layout="@layout/fragment_competition_filter" >
+        tools:layout="@layout/fragment_competition_filter">
         <argument
             android:name="filters"
             app:argType="ru.eruditeonline.app.data.model.competition.CompetitionFilters" />

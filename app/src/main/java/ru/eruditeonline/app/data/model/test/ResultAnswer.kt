@@ -4,7 +4,7 @@ class ResultAnswer(
     /** Вопрос */
     val question: Question,
     /** Текст ответа */
-    val answerText: String,
+    val answerText: String?,
     /** Правильность */
     val correct: Correction?,
 ) {

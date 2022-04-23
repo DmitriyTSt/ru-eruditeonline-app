@@ -103,7 +103,7 @@ class TestMapper @Inject constructor(
 
     fun fromApiToModel(api: ApiCreatedResult): CreatedResult {
         return CreatedResult(
-            id = api.id.orEmpty(),
+            id = api.id.orDefault(),
             username = api.username.orEmpty(),
             resultLink = api.resultLink.orEmpty(),
             achievementText = api.achievementText,
@@ -112,7 +112,7 @@ class TestMapper @Inject constructor(
 
     fun fromApiToModel(api: ApiTempResult): TempResult {
         return TempResult(
-            id = api.id.orEmpty(),
+            id = api.id.orDefault(),
             answers = api.answers.orEmpty().map { fromApiToModel(it) },
             score = baseMapper.fromApiToModel(api.score),
             spentTime = api.spentTime.orDefault(),
@@ -131,7 +131,7 @@ class TestMapper @Inject constructor(
     fun fromApiToModel(api: ApiResultAnswer): ResultAnswer {
         return ResultAnswer(
             question = fromApiToModel(api.question),
-            answerText = api.answerText.orEmpty(),
+            answerText = api.answerText?.takeIf { it.isNotEmpty() },
             correct = fromApiToModel(api.correct),
         )
     }

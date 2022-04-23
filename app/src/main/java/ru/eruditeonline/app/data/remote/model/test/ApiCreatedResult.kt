@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class ApiCreatedResult(
     /** Идентификатор результата */
-    @SerializedName("id") val id: String?,
+    @SerializedName("id") val id: Int?,
     /** Участник */
     @SerializedName("username") val username: String?,
     /** Постоянная ссылка на результат прохождения */

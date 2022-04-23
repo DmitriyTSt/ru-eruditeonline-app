@@ -4,7 +4,7 @@ import ru.eruditeonline.app.data.model.base.Score
 
 class TempResult(
     /** Временный идентификатор прохождения теста */
-    val id: String,
+    val id: Int,
     /** Выбранные ответы */
     val answers: List<ResultAnswer>,
     /** Набранные баллы */

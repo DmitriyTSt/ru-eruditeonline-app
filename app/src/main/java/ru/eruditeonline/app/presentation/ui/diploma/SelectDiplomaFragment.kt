@@ -6,6 +6,7 @@ import androidx.fragment.app.setFragmentResult
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentSelectDiplomaBinding
+import ru.eruditeonline.app.presentation.extension.addDefaultGridSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -52,6 +53,7 @@ class SelectDiplomaFragment : BaseFragment(R.layout.fragment_select_diploma) {
             setFragmentResult(REQUEST_CODE, bundleOf(KEY_DIPLOMA to diploma))
             viewModel.navigateBack()
         }
+        addDefaultGridSpaceItemDecoration(2)
         adapter = diplomasAdapter
     }
 }

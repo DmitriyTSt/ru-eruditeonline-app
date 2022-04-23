@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class SaveResultParams(
     /** Временный идентификатор прохождения теста */
-    @SerializedName("completeId") val completeId: Long,
+    @SerializedName("completeId") val completeId: Int,
     /** Имя */
     @SerializedName("name") val name: String,
     /** Фамилия */

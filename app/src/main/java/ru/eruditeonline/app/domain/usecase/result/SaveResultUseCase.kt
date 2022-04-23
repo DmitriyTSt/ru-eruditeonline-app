@@ -34,7 +34,7 @@ class SaveResultUseCase @Inject constructor(
     }
 
     data class Params(
-        val completeId: Long,
+        val completeId: Int,
         val name: String,
         val surname: String,
         val patronymic: String,
