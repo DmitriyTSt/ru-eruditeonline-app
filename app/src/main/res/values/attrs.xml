@@ -10,4 +10,9 @@
         <attr name="progressColor" format="color" />
         <attr name="backgroundColor" format="color" />
     </declare-styleable>
+
+    <attr name="brandBackground" format="color" />
+
+    <attr name="iconBack" format="reference" />
+    <attr name="iconClose" format="reference" />
 </resources>

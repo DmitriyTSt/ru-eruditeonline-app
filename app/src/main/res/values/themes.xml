@@ -20,6 +20,8 @@
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
 
+        <item name="brandBackground">@color/sweet_corn</item>
+
         <item name="android:navigationBarColor">@color/black</item>
         <item name="android:windowTranslucentStatus">true</item>
 
@@ -31,6 +33,20 @@
         <item name="buttonStyle">@style/MaterialButtonStyle</item>
         <item name="chipStyle">@style/ChipStyle</item>
         <item name="textInputStyle">@style/TextInputLayoutStyle</item>
+
+        <item name="iconBack">@drawable/ic_back</item>
+        <item name="iconClose">@drawable/ic_close</item>
+    </style>
+
+    <style name="Theme.EruditeOnline.Light">
+        <item name="android:windowBackground">@color/white</item>
+
+        <item name="appBarLayoutStyle">@style/AppBarLayoutStyle.Light</item>
+        <item name="toolbarStyle">@style/ToolbarStyle.Light</item>
+        <item name="android:toolbarStyle">@style/ToolbarStyle.Light</item>
+
+        <item name="iconBack">@drawable/ic_back_dark</item>
+        <item name="iconClose">@drawable/ic_close_dark</item>
     </style>
 
     <style name="RatingBarTheme" parent="Theme.EruditeOnline">
