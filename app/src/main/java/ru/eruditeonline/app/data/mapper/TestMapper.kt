@@ -131,7 +131,7 @@ class TestMapper @Inject constructor(
     fun fromApiToModel(api: ApiResultAnswer): ResultAnswer {
         return ResultAnswer(
             question = fromApiToModel(api.question),
-            answerText = api.answerText.orEmpty(),
+            answerText = api.answerText?.takeIf { it.isNotEmpty() },
             correct = fromApiToModel(api.correct),
         )
     }

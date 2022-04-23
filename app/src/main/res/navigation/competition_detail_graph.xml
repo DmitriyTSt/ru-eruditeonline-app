@@ -41,5 +41,20 @@
         <argument
             android:name="data"
             app:argType="ru.eruditeonline.app.data.model.competition.CompetitionPassData" />
+
+        <action
+            android:id="@+id/action_testTempResultFragment_to_select_country_graph"
+            app:destination="@id/select_country_graph" />
+        <action
+            android:id="@+id/action_testTempResultFragment_to_selectDiplomaFragment"
+            app:destination="@id/selectDiplomaFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/selectDiplomaFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaFragment"
+        android:label="SelectDiplomaFragment"
+        tools:layout="@layout/fragment_select_diploma" />
+
+
 </navigation>

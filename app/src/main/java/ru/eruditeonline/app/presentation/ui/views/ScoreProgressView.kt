@@ -14,16 +14,21 @@ class ScoreProgressView : View {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defAttrs: Int) : super(context, attrs, defAttrs)
 
+    private val strokeWidth by lazy { resources.getDimension(R.dimen.score_stroke_width) }
+    private val strokeWidthPart by lazy { strokeWidth / 2 }
+
     private val backgroundPaint by lazy {
-        Paint().apply {
+        Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = context.getColorCompat(R.color.light_grey)
-            strokeWidth = resources.getDimension(R.dimen.score_stroke_width)
+            style = Paint.Style.STROKE
+            strokeWidth = this@ScoreProgressView.strokeWidth
         }
     }
     private val foregroundPaint by lazy {
-        Paint().apply {
+        Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = context.getColorCompat(R.color.green_pea)
-            strokeWidth = resources.getDimension(R.dimen.score_stroke_width)
+            style = Paint.Style.STROKE
+            strokeWidth = this@ScoreProgressView.strokeWidth
         }
     }
 
@@ -31,7 +36,7 @@ class ScoreProgressView : View {
     private val endAngle = 45f
     private var progressAngle = startAngle
 
-    fun setScore(score: Score) {
+    fun bindScore(score: Score) {
         progressAngle = startAngle + (score.current.toFloat() / score.max * (endAngle - startAngle))
         invalidate()
     }
@@ -39,16 +44,16 @@ class ScoreProgressView : View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawArc(
-            0f, 0f, width.toFloat(), height.toFloat(),
+            strokeWidthPart, strokeWidthPart, width.toFloat() - strokeWidthPart, height.toFloat() - strokeWidthPart,
             startAngle,
-            endAngle,
+            endAngle - startAngle,
             false,
             backgroundPaint
         )
         canvas.drawArc(
-            0f, 0f, width.toFloat(), height.toFloat(),
+            strokeWidthPart, strokeWidthPart, width.toFloat() - strokeWidthPart, height.toFloat() - strokeWidthPart,
             startAngle,
-            progressAngle,
+            progressAngle - startAngle,
             false,
             foregroundPaint
         )

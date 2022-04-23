@@ -87,7 +87,7 @@
     <string name="information_title">Информация</string>
     <string name="profile_information_button_label">Информация</string>
     <string name="temp_result_spent_time_template">Затрачено времени: %s</string>
-    <string name="temp_result_average_score_template">Средний балл по всем участникам: %s</string>
+    <string name="temp_result_average_score_template">Средний балл по всем участникам: %d%%</string>
     <string name="temp_result_answers_title">Ваши ответы</string>
     <string name="temp_result_save_message_warning">Для регистрации участия в конкурсе заполните данные участника и нажмите кнопку «Сохранить результат». Внимательно заполняйте все поля, так как указанные значения будут использоваться в итоговом протоколе и в наградных материалах.</string>
     <string name="username_hint">Фамилия Имя Отчество</string>
@@ -100,6 +100,7 @@
     <string name="review_difficulty_title">Сложность вопросов</string>
     <string name="review_interests_title">Насколько интересными были вопросы</string>
     <string name="save_result_button_label">Сохранить результаты</string>
-    <string name="score_value_template">%d из %d</string>
     <string name="temp_result_score_label">Баллы</string>
+    <string name="diploma_type_template">Вариант №%s</string>
+    <string name="empty_answer">Нет ответа</string>
 </resources>

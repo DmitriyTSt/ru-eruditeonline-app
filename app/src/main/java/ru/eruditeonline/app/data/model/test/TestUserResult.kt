@@ -14,7 +14,7 @@ class TestUserResult(
     /** Название конкурса */
     val competitionTitle: String,
     /** Место */
-    place: String,
+    val place: String,
     /** Балл */
     val score: Score,
     /** Затраченное время */
