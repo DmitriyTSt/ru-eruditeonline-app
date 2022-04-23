@@ -7,7 +7,13 @@ import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.method.LinkMovementMethod
 import android.text.style.ForegroundColorSpan
+import android.view.ViewGroup
+import androidx.core.graphics.Insets
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updateMargins
+import androidx.core.view.updatePadding
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -18,7 +24,7 @@ import ru.eruditeonline.app.data.model.base.Diploma
 import ru.eruditeonline.app.data.model.test.TempResult
 import ru.eruditeonline.app.databinding.FragmentTestTempResultBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.getColorCompat
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.extension.setTextFromHtml
@@ -41,7 +47,7 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
-        toolbar.fitTopInsetsWithPadding()
+        setupInsets()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }
@@ -95,6 +101,27 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
             )
         )
         answersAdapter.submitList(result.answers)
+    }
+
+    private fun setupInsets() = with(binding) {
+        root.doOnApplyWindowInsets { _, insets, _ ->
+            val windowInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+            toolbar.updatePadding(
+                top = windowInsets.top,
+            )
+            root.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                updateMargins(bottom = windowInsets.bottom)
+            }
+            WindowInsetsCompat.Builder().setInsets(
+                WindowInsetsCompat.Type.systemBars(),
+                Insets.of(
+                    windowInsets.left,
+                    0,
+                    windowInsets.right,
+                    0
+                )
+            ).build()
+        }
     }
 
     private fun setupSelectCountry() = with(binding.content) {
