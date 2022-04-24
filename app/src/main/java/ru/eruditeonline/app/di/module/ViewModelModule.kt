@@ -27,6 +27,7 @@ import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListViewMo
 import ru.eruditeonline.app.presentation.ui.result.detail.ResultDetailViewModel
 import ru.eruditeonline.app.presentation.ui.result.search.SearchResultViewModel
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultListViewModel
+import ru.eruditeonline.app.presentation.ui.settings.SettingsViewModel
 import ru.eruditeonline.app.presentation.ui.splash.SplashViewModel
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageViewModel
 import ru.eruditeonline.app.presentation.ui.test.successresult.SuccessSaveResultViewModel
@@ -164,4 +165,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(SingleTabRatingViewModel::class)
     abstract fun singleTabRatingViewModel(viewModel: SingleTabRatingViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingsViewModel::class)
+    abstract fun settingsViewModel(viewModel: SettingsViewModel): ViewModel
 }
