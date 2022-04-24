@@ -30,6 +30,7 @@
     <string name="rating_day_hint">День</string>
     <string name="rating_month_hint">Месяц</string>
     <string name="rating_year_hint">Год</string>
+    <string name="rating_single_tab_title_template">Рейтинг %s</string>
     <string name="common_result_list_title">Итоги</string>
     <string name="search_result_by_email_hint">Введите email…</string>
     <string name="search_result_hint">Поиск…</string>
