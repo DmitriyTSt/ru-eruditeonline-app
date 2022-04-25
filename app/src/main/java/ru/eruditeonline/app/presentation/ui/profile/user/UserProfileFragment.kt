@@ -79,5 +79,14 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         textViewUserName.text = listOf(profile.surname, profile.name, profile.patronymic)
             .filter { !it.isNullOrEmpty() }
             .joinToString(" ")
+        imageViewCountry.isVisible = profile.country != null
+        if (imageViewCountry.isVisible) {
+            imageViewCountry.load(profile.country?.image)
+        }
+        textViewLocation.text = if (profile.country != null) {
+            "${profile.country.name}, ${profile.city}"
+        } else {
+            profile.city
+        }
     }
 }

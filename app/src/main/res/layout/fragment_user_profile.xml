@@ -33,6 +33,29 @@
                 android:layout_marginTop="24dp"
                 android:textAppearance="@style/Font.Heading1.Bold"
                 tools:text="Иванов Иван Иванович" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_16"
+                android:layout_marginTop="4dp">
+
+                <ImageView
+                    android:id="@+id/imageViewCountry"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@null" />
+
+                <TextView
+                    android:id="@+id/textViewLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:textAppearance="@style/Font.Body1.Regular"
+                    tools:text="Россия, Саратов" />
+            </LinearLayout>
         </LinearLayout>
 
     </ru.eruditeonline.app.presentation.ui.views.StateViewFlipper>

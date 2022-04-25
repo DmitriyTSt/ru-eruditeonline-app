@@ -16,16 +16,24 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel: ProfileViewModel by appViewModels()
 
-    override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
-        val profileFragment = if (viewModel.preferencesStorage.isSignedIn) {
+    private var profileFragment: BaseFragment? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        profileFragment = if (viewModel.preferencesStorage.isSignedIn) {
             UserProfileFragment.newInstance()
         } else {
             AnonymProfileFragment.newInstance()
         }
-        childFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container_view, profileFragment)
-            .commit()
+    }
+
+    override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
+        profileFragment?.let { fragment ->
+            childFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_view, fragment)
+                .commit()
+        }
         Unit
     }
 }
