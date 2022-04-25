@@ -121,6 +121,4 @@
     <string name="profile_settings_button_label">Настройки</string>
     <string name="change_theme_dialog_title">Изменение темы</string>
     <string name="change_theme_dialog_message">Новая тема применится после перезапуска приложения. Перезапустить сейчас?</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
 </resources>

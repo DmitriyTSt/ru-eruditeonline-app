@@ -23,7 +23,8 @@
 
         <activity
             android:name=".presentation.ui.startactivity.StartActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/StartTheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +36,8 @@
         <activity
             android:name=".presentation.ui.startactivity.DeepLinkStartActivity"
             android:exported="true"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/StartTheme">
 
             <intent-filter
                 android:autoVerify="true"
