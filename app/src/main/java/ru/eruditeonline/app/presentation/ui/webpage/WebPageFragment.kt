@@ -27,6 +27,11 @@ private const val WEB_VIEW_MIME_TYPE = "text/html; charset=utf-8"
 private const val WEB_VIEW_ENCODING = "UTF-8"
 
 class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
+
+    companion object {
+        const val PERSONAL_DATA_PATH = "/personal-data.html"
+    }
+
     private val binding by viewBinding(FragmentWebPageBinding::bind)
     private val viewModel: WebPageViewModel by appViewModels()
     private val args: WebPageFragmentArgs by navArgs()

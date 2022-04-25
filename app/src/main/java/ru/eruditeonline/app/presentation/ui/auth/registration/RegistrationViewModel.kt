@@ -57,6 +57,10 @@ class RegistrationViewModel @Inject constructor(
         navigate(destinations.selectCountry())
     }
 
+    fun openPersonalData() {
+        navigate(destinations.personalData())
+    }
+
     fun selectCountry(country: Country) {
         _countryLiveData.postValue(country)
     }

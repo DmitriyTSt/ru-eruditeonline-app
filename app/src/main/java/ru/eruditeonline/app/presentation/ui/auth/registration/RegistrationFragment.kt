@@ -8,6 +8,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import androidx.core.graphics.Insets
+import androidx.core.text.buildSpannedString
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.setFragmentResultListener
@@ -24,8 +25,7 @@ import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.errorSnackbar
 import ru.eruditeonline.app.presentation.extension.getColorCompat
-import ru.eruditeonline.app.presentation.extension.setTextFromHtml
-import ru.eruditeonline.app.presentation.extension.stripUnderlines
+import ru.eruditeonline.app.presentation.extension.link
 import ru.eruditeonline.app.presentation.managers.DateFormatter
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -107,8 +107,15 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
 
     private fun setupPrivacyPolicy() = with(binding.textViewPrivacyPolicy) {
         movementMethod = LinkMovementMethod.getInstance()
-        setTextFromHtml(getString(R.string.registration_privacy_policy_checkbox_text))
-        stripUnderlines()
+        text = buildSpannedString {
+            append(getString(R.string.registration_privacy_policy_checkbox_text_part_start))
+            append(" ")
+            link(viewModel::openPersonalData) {
+                append(getString(R.string.privacy_policy_checkbox_text_part_link))
+            }
+            append(" ")
+            append(getString(R.string.privacy_policy_checkbox_text_part_end))
+        }
     }
 
     private fun setupSelectCountry() = with(binding) {

@@ -1,13 +1,29 @@
 package ru.eruditeonline.app.presentation.ui.test.tempresult
 
+import android.content.Context
+import androidx.core.net.toUri
+import androidx.navigation.NavDeepLinkRequest
+import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.test.CreatedResult
 import ru.eruditeonline.app.presentation.navigation.Destination
+import ru.eruditeonline.app.presentation.ui.webpage.WebPageFragment
 import javax.inject.Inject
 
-class TestTempResultDestinations @Inject constructor() {
+class TestTempResultDestinations @Inject constructor(
+    private val context: Context,
+) {
     /** Выбор страны */
     fun selectCountry() = Destination.Action(
         TestTempResultFragmentDirections.actionTestTempResultFragmentToSelectCountryGraph()
+    )
+
+    /** Персональные данные */
+    fun personalData() = Destination.DeepLink(
+        NavDeepLinkRequest.Builder
+            .fromUri(
+                context.getString(R.string.navigation_deep_link_to_web_page_template, WebPageFragment.PERSONAL_DATA_PATH).toUri()
+            )
+            .build()
     )
 
     /** Выбор диплома */
