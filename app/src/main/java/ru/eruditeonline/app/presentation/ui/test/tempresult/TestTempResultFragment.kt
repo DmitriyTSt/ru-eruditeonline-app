@@ -23,6 +23,7 @@ import com.google.android.material.textfield.TextInputLayout
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.base.Country
 import ru.eruditeonline.app.data.model.base.Diploma
+import ru.eruditeonline.app.data.model.profile.Profile
 import ru.eruditeonline.app.data.model.test.TempResult
 import ru.eruditeonline.app.databinding.FragmentTestTempResultBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
@@ -65,9 +66,12 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
         observeNavigationCommands(viewModel)
         tempResultLiveData.observe { state ->
             binding.stateViewFlipper.setState(state)
-            state.doOnSuccess { result ->
-                bindResult(result)
+            state.doOnSuccess { resultWithProfile ->
+                bindResult(resultWithProfile.tempResult)
             }
+        }
+        profileInfoLiveEvent.observe { profile ->
+            bindProfile(profile)
         }
         countryLiveData.observe { country ->
             binding.content.editTextCountry.setText(country.name)
@@ -120,6 +124,19 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
             )
         )
         answersAdapter.submitList(result.answers)
+    }
+
+    private fun bindProfile(profile: Profile) = with(binding.content) {
+        editTextName.setText(profile.name)
+        editTextSurname.setText(profile.surname)
+        editTextPatronymic.setText(profile.patronymic)
+        if (profile.country != null) {
+            viewModel.selectCountry(profile.country)
+        }
+        editTextRegion.setText(profile.region)
+        editTextCity.setText(profile.city)
+        editTextSchool.setText(profile.school)
+        editTextEmail.setText(profile.email)
     }
 
     private fun setupInsets() = with(binding) {
@@ -228,10 +245,10 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
 
     private fun scrollToErrorViewById(viewId: Int) = with(binding) {
         val viewWithError = root.findViewById<View>(viewId)
-        val viewTop = if (viewId == R.id.textInputLayoutCountry) {
-            binding.content.constraintLayoutCountry.top
-        } else {
-            viewWithError.top
+        val viewTop = when (viewId) {
+            R.id.textInputLayoutCountry -> binding.content.constraintLayoutCountry.top
+            R.id.textInputLayoutDiploma -> binding.content.constraintLayoutDiploma.top
+            else -> viewWithError.top
         }
         content.nestedScrollView.scrollTo(0, viewTop)
     }

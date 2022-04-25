@@ -4,12 +4,14 @@ import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
+import kotlinx.coroutines.flow.map
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.base.Country
 import ru.eruditeonline.app.data.model.base.Diploma
 import ru.eruditeonline.app.data.model.competition.CompetitionPassData
+import ru.eruditeonline.app.data.model.profile.Profile
 import ru.eruditeonline.app.data.model.test.CreatedResult
-import ru.eruditeonline.app.data.model.test.TempResult
+import ru.eruditeonline.app.data.model.test.TempResultWithProfile
 import ru.eruditeonline.app.domain.usecase.result.SaveResultUseCase
 import ru.eruditeonline.app.domain.usecase.test.CheckTestUseCase
 import ru.eruditeonline.app.presentation.extension.validateAllFields
@@ -25,8 +27,12 @@ class TestTempResultViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     /** Проверка прохождения теста */
-    private val _tempResultLiveData = MutableLiveData<LoadableState<TempResult>>()
-    val tempResultLiveData: LiveData<LoadableState<TempResult>> = _tempResultLiveData
+    private val _tempResultLiveData = MutableLiveData<LoadableState<TempResultWithProfile>>()
+    val tempResultLiveData: LiveData<LoadableState<TempResultWithProfile>> = _tempResultLiveData
+
+    /** Информация о профиле */
+    private val _profileInfoLiveEvent = SingleLiveEvent<Profile>()
+    val profileInfoLiveEvent: LiveData<Profile> = _profileInfoLiveEvent
 
     /** Страна */
     private val _countryLiveData = MutableLiveData<Country>()
@@ -58,7 +64,14 @@ class TestTempResultViewModel @Inject constructor(
     }
 
     fun checkTest(data: CompetitionPassData) {
-        _tempResultLiveData.launchLoadData(checkTestUseCase.executeFlow(CheckTestUseCase.Params(data)))
+        _tempResultLiveData.launchLoadData(
+            checkTestUseCase.executeFlow(CheckTestUseCase.Params(data)).map { state ->
+                state.doOnSuccess { resultWithProfile ->
+                    resultWithProfile.profile?.let { _profileInfoLiveEvent.postValue(it) }
+                }
+                state
+            }
+        )
     }
 
     fun openSelectCountry() {
@@ -99,7 +112,7 @@ class TestTempResultViewModel @Inject constructor(
         ratingDifficulty: Int,
         ratingInterest: Int,
     ) {
-        val tempResultId = tempResultLiveData.value?.getOrNull()?.id ?: return
+        val tempResultId = tempResultLiveData.value?.getOrNull()?.tempResult?.id ?: return
 
         val validationResult = validateAllFields(surname, name, city, country, email, diploma)
         if (!validationResult.isValid) {
