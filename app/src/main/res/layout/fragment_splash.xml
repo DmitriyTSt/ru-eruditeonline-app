@@ -2,11 +2,15 @@
 <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?colorPrimary">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@null"
+        android:src="@drawable/img_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,6 +26,7 @@
             android:layout_marginHorizontal="32dp"
             android:textAlignment="center"
             android:textAppearance="@style/Font.Heading3.Medium"
+            android:textColor="?colorOnPrimary"
             tools:text="Что-то пошло не так" />
 
         <TextView
@@ -32,10 +37,12 @@
             android:layout_marginTop="4dp"
             android:textAlignment="center"
             android:textAppearance="@style/Font.Body1.Regular"
+            android:textColor="?colorOnPrimary"
             tools:text="Попробуйте обновить экран" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonRepeat"
+            style="@style/MaterialButtonStyle.Bordered"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
