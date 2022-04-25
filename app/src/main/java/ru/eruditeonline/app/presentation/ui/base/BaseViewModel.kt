@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.eruditeonline.app.data.model.LoadableState
-import ru.eruditeonline.app.data.model.ParsedError
 import ru.eruditeonline.app.presentation.navigation.Destination
 import androidx.paging.LoadState as PagingLoadState
 
@@ -70,7 +69,7 @@ abstract class BaseViewModel : ViewModel() {
             // Show the retry state if initial load or refresh fails.
             is PagingLoadState.Error -> {
                 val throwable = (loadState.source.refresh as PagingLoadState.Error).error
-                this.postValue(LoadableState.Error(throwable, ParsedError("", "", throwable.message ?: ParsedError.DEFAULT_MESSAGE)))
+                this.postValue(LoadableState.Error(throwable))
             }
         }
     }

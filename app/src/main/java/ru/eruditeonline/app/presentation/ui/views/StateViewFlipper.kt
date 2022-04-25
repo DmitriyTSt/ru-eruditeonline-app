@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ViewFlipper
+import androidx.annotation.StringRes
+import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.ParsedError
 import ru.eruditeonline.app.databinding.ViewErrorStateBinding
@@ -21,7 +23,7 @@ class StateViewFlipper(context: Context, attrs: AttributeSet? = null) : ViewFlip
     private val loadingBinding = ViewLoadingStateBinding.inflate(LayoutInflater.from(context), this, true)
     private val errorBinding = ViewErrorStateBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun <T> setState(loadableResult: LoadableState<T>, useApiErrorMessage: Boolean = false) {
+    fun <T> setState(loadableResult: LoadableState<T>) {
         when (loadableResult) {
             is LoadableState.Loading -> setStateLoading()
             is LoadableState.Success -> setStateData()
@@ -41,9 +43,38 @@ class StateViewFlipper(context: Context, attrs: AttributeSet? = null) : ViewFlip
         displayedChild = State.DATA.displayedChild
     }
 
-    private fun setStateError(error: ParsedError?) {
+    private fun setStateError(error: ParsedError) {
         displayedChild = State.ERROR.displayedChild
-        errorBinding.textViewErrorTitle.text = error?.title ?: ParsedError.DEFAULT_TITLE
-        errorBinding.textViewErrorMessage.text = error?.message ?: ParsedError.DEFAULT_MESSAGE
+        when (error) {
+            is ParsedError.ApiError -> setApiError(error.message)
+            is ParsedError.GeneralError -> setGeneralError()
+            is ParsedError.NetworkError -> setNetworkError()
+        }
+    }
+
+    private fun setNetworkError() {
+        setErrorStateContent(
+            titleRes = R.string.error_no_network_title,
+            description = context.getString(R.string.error_no_network_description),
+        )
+    }
+
+    private fun setGeneralError() {
+        setErrorStateContent(
+            titleRes = R.string.error_something_wrong_title,
+            description = context.getString(R.string.error_something_wrong_description),
+        )
+    }
+
+    private fun setApiError(description: String) {
+        setErrorStateContent(
+            titleRes = R.string.error_something_wrong_title,
+            description = description,
+        )
+    }
+
+    private fun setErrorStateContent(@StringRes titleRes: Int, description: String) = with(errorBinding) {
+        textViewErrorTitle.setText(titleRes)
+        textViewErrorMessage.text = description
     }
 }

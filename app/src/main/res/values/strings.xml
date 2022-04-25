@@ -7,6 +7,10 @@
     <string name="error_paging">Ошибка. Попробуйте обновить</string>
     <string name="error_retry">Обновить</string>
     <string name="error_auth_401">Что-то пошло не так. Необходимо авторизоваться повторно</string>
+    <string name="error_no_network_title">Нет подключения к сети</string>
+    <string name="error_no_network_description">Проверьте мобильное соединение или подключение Wi-Fi</string>
+    <string name="error_something_wrong_title">Что-то пошло не так</string>
+    <string name="error_something_wrong_description">Попробуйте обновить страницу</string>
     <string name="competition_items_title">Конкурсы</string>
     <string name="search_title">Поиск</string>
     <string name="filter_title">Фильтр</string>
@@ -66,8 +70,10 @@
     <string name="password_hint">Пароль</string>
     <string name="password_confirm_hint">Подтверждение</string>
     <string name="registration_notifications_checkbox_text">Да, я хочу получать уведомления о новых конкурсах</string>
-    <string name="registration_privacy_policy_checkbox_text"><![CDATA[Нажимая кнопку «Зарегистрироваться», Вы даёте <a href="https://erudit-online.ru/personal-data.html">согласие на обработку персональных данных</a> в соответствии с Федеральным законом от 27 июля 2006 года № 152 «О персональных данных»]]></string>
-    <string name="temp_result_privacy_policy_checkbox_text"><![CDATA[Нажимая кнопку «Сохранить результаты», Вы даёте <a href="https://erudit-online.ru/personal-data.html">согласие на обработку персональных данных</a> в соответствии с Федеральным законом от 27 июля 2006 года № 152 «О персональных данных»]]></string>
+    <string name="registration_privacy_policy_checkbox_text_part_start">Нажимая кнопку «Зарегистрироваться», Вы даёте</string>
+    <string name="temp_result_privacy_policy_checkbox_text_part_start">Нажимая кнопку «Сохранить результаты», Вы даёте</string>
+    <string name="privacy_policy_checkbox_text_part_link">согласие на обработку персональных данных</string>
+    <string name="privacy_policy_checkbox_text_part_end">в соответствии с Федеральным законом от 27 июля 2006 года № 152 «О персональных данных»</string>
     <string name="registration_button_label">Зарегистрироваться</string>
     <string name="sex_not_set">Не выбран</string>
     <string name="sex_male">Мужской</string>

@@ -2,11 +2,13 @@ package ru.eruditeonline.app.presentation.ui.profile.user
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.profile.Profile
 import ru.eruditeonline.app.databinding.FragmentUserProfileBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.errorSnackbar
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -59,8 +61,13 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             }
         }
         logoutLiveEvent.observe { state ->
+            binding.imageViewLogout.isVisible = !state.isLoading
+            binding.progressBarLogout.isVisible = state.isLoading
             state.doOnSuccess {
                 reloadStack()
+            }
+            state.doOnError { error ->
+                errorSnackbar(error)
             }
         }
     }
