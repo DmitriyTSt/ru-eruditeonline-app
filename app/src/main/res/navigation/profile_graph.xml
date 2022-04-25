@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_profileFragment_to_informationFragment"
             app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/commonResultListFragment"
@@ -89,4 +92,9 @@
 
         <deepLink app:uri="@string/navigation_deep_link_to_web_page" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

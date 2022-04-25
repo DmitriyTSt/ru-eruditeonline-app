@@ -12,7 +12,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_back">
+            app:navigationIcon="?iconBack">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -30,8 +30,8 @@
                     android:imeOptions="actionSearch"
                     android:singleLine="true"
                     android:textAppearance="@style/Font.Body1.Regular"
-                    android:textColor="?colorOnPrimary"
-                    android:textColorHint="?colorOnPrimary"
+                    android:textColor="?appBarTextColor"
+                    android:textColorHint="?appBarTextColor"
                     android:textCursorDrawable="@null">
 
                     <requestFocus />
@@ -45,7 +45,7 @@
                     android:background="?selectableItemBackgroundBorderless"
                     android:contentDescription="@null"
                     android:padding="2dp"
-                    android:src="@drawable/ic_close"
+                    android:src="?iconClose"
                     android:visibility="gone" />
             </LinearLayout>
 

@@ -42,6 +42,9 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         imageViewLogout.setOnClickListener {
             viewModel.logout()
         }
+        textViewSettings.setOnClickListener {
+            viewModel.openSettings()
+        }
         textViewInfo.setOnClickListener {
             viewModel.openInformation()
         }

@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_back"
+            app:navigationIcon="?iconBack"
             app:title="@string/common_result_list_title" />
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -16,6 +16,7 @@ import ru.eruditeonline.app.presentation.extension.addDefaultGridSpaceItemDecora
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.extension.resolveAttribute
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.paging.PagingLoadStateAdapter
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -108,8 +109,8 @@ class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_item
     private fun applyProductListViewType(viewType: CompetitionItemsViewType) = with(binding) {
         toolbar.menu.findItem(R.id.view_type).setIcon(
             when (viewType) {
-                CompetitionItemsViewType.CARD -> R.drawable.ic_view_type_card
-                CompetitionItemsViewType.ROW -> R.drawable.ic_view_type_row
+                CompetitionItemsViewType.CARD -> root.context.resolveAttribute(R.attr.iconViewTypeCard)
+                CompetitionItemsViewType.ROW -> root.context.resolveAttribute(R.attr.iconViewTypeRow)
             }
         )
         itemsAdapter.let {

@@ -30,6 +30,7 @@
     <string name="rating_day_hint">День</string>
     <string name="rating_month_hint">Месяц</string>
     <string name="rating_year_hint">Год</string>
+    <string name="rating_single_tab_title_template">Рейтинг %s</string>
     <string name="common_result_list_title">Итоги</string>
     <string name="search_result_by_email_hint">Введите email…</string>
     <string name="search_result_hint">Поиск…</string>
@@ -115,4 +116,11 @@
     <string name="result_date_label">Дата участия:</string>
     <string name="result_id_label">Идентификатор результата:</string>
     <string name="result_answers_block_title">Ответы участника</string>
+    <string name="settings_title">Настройки</string>
+    <string name="app_theme_label">Тема приложения</string>
+    <string name="profile_settings_button_label">Настройки</string>
+    <string name="change_theme_dialog_title">Изменение темы</string>
+    <string name="change_theme_dialog_message">Новая тема применится после перезапуска приложения. Перезапустить сейчас?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 </resources>

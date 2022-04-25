@@ -30,4 +30,8 @@ class AnonymProfileViewModel @Inject constructor(
     fun openInformation() {
         navigate(destinations.information())
     }
+
+    fun openSettings() {
+        navigate(destinations.settings())
+    }
 }

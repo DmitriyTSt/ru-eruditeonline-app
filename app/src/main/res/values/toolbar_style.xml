@@ -2,12 +2,16 @@
 <resources>
 
     <style name="AppBarLayoutStyle" parent="Widget.Design.AppBarLayout">
-        <item name="android:background">?colorPrimary</item>
+        <item name="android:background">?appBarBackgroundColor</item>
         <item name="liftOnScroll">false</item>
     </style>
 
+    <style name="AppBarLayoutStyle.Light">
+        <item name="liftOnScroll">true</item>
+    </style>
+
     <style name="ToolbarStyle" parent="Widget.MaterialComponents.Toolbar">
-        <item name="titleTextColor">?colorOnPrimary</item>
+        <item name="titleTextColor">?appBarTextColor</item>
         <item name="android:titleTextStyle">@style/ToolbarTitleTextStyle</item>
         <item name="titleTextAppearance">@style/ToolbarTitleTextStyle</item>
         <item name="android:titleTextAppearance">@style/ToolbarTitleTextStyle</item>

@@ -14,7 +14,7 @@
             android:id="@+id/toolbarLoading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_close" />
+            app:navigationIcon="?iconClose" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ru.eruditeonline.app.presentation.ui.views.StateViewFlipper

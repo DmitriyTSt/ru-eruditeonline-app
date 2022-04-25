@@ -10,4 +10,15 @@
         <attr name="progressColor" format="color" />
         <attr name="backgroundColor" format="color" />
     </declare-styleable>
+
+    <attr name="brandBackground" format="color" />
+    <attr name="appBarBackgroundColor" format="color" />
+    <attr name="appBarTextColor" format="color" />
+    <attr name="appBarIndicatorColor" format="color" />
+
+    <attr name="iconBack" format="reference" />
+    <attr name="iconClose" format="reference" />
+    <attr name="iconViewTypeRow" format="reference" />
+    <attr name="iconViewTypeCard" format="reference" />
+    <attr name="iconFilter" format="reference" />
 </resources>

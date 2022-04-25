@@ -20,6 +20,11 @@
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
 
+        <item name="brandBackground">@color/sweet_corn</item>
+        <item name="appBarBackgroundColor">?colorPrimary</item>
+        <item name="appBarTextColor">?colorOnPrimary</item>
+        <item name="appBarIndicatorColor">?colorOnPrimary</item>
+
         <item name="android:navigationBarColor">@color/black</item>
         <item name="android:windowTranslucentStatus">true</item>
 
@@ -31,6 +36,31 @@
         <item name="buttonStyle">@style/MaterialButtonStyle</item>
         <item name="chipStyle">@style/ChipStyle</item>
         <item name="textInputStyle">@style/TextInputLayoutStyle</item>
+        <item name="tabStyle">@style/TabStyle</item>
+
+        <item name="iconBack">@drawable/ic_back</item>
+        <item name="iconClose">@drawable/ic_close</item>
+        <item name="iconViewTypeCard">@drawable/ic_view_type_card</item>
+        <item name="iconViewTypeRow">@drawable/ic_view_type_row</item>
+        <item name="iconFilter">@drawable/ic_filter</item>
+    </style>
+
+    <style name="Theme.EruditeOnline.Light">
+        <item name="android:windowBackground">@color/white</item>
+
+        <item name="appBarBackgroundColor">?colorSurface</item>
+        <item name="appBarTextColor">?colorOnSurface</item>
+        <item name="appBarIndicatorColor">?colorPrimary</item>
+
+        <item name="appBarLayoutStyle">@style/AppBarLayoutStyle.Light</item>
+        <item name="tabStyle">@style/TabStyle.Light</item>
+
+        <item name="iconBack">@drawable/ic_back_dark</item>
+        <item name="iconClose">@drawable/ic_close_dark</item>
+
+        <item name="iconViewTypeCard">@drawable/ic_view_type_card_dark</item>
+        <item name="iconViewTypeRow">@drawable/ic_view_type_row_dark</item>
+        <item name="iconFilter">@drawable/ic_filter_dark</item>
     </style>
 
     <style name="RatingBarTheme" parent="Theme.EruditeOnline">
