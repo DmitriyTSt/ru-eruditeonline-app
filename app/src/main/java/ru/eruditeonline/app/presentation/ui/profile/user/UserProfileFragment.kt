@@ -68,7 +68,7 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
     override fun applyBottomNavigationViewPadding(view: View, bottomNavigationViewHeight: Int) = Unit
 
     private fun bindProfile(profile: Profile) = with(binding) {
-        imageViewAvatar.load(profile.avatar)
+        imageViewAvatar.load(profile.avatar, placeHolderRes = R.drawable.img_logo)
         textViewUserName.text = listOf(profile.surname, profile.name, profile.patronymic)
             .filter { !it.isNullOrEmpty() }
             .joinToString(" ")
