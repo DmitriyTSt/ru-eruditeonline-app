@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import ru.eruditeonline.app.data.model.LoadableState
-import ru.eruditeonline.app.data.model.ParsedError
 import ru.eruditeonline.app.presentation.navigation.Destination
 import androidx.paging.LoadState as PagingLoadState
 
