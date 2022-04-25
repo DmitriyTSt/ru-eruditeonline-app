@@ -57,7 +57,7 @@ class RegistrationFragment : BaseFragment(R.layout.fragment_registration) {
         registrationLiveEvent.observe { state ->
             binding.buttonRegistration.setState(state)
             state.doOnError { error ->
-                errorSnackbar(error?.message.orEmpty())
+                errorSnackbar(error)
             }
         }
         birthdayLiveData.observe { millis ->

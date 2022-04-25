@@ -93,7 +93,7 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
         saveResultLiveEvent.observe { state ->
             binding.content.buttonSaveResult.setState(state)
             state.doOnError { error ->
-                errorSnackbar(error?.message.orEmpty())
+                errorSnackbar(error)
             }
         }
     }

@@ -45,7 +45,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         loginLiveEvent.observe { state ->
             binding.buttonLogin.setState(state)
             state.doOnError { error ->
-                errorSnackbar(error?.message.orEmpty())
+                errorSnackbar(error)
             }
             state.doOnSuccess {
                 setFragmentResult(REQUEST_CODE, bundleOf())

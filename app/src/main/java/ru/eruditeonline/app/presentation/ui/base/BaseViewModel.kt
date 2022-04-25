@@ -70,7 +70,7 @@ abstract class BaseViewModel : ViewModel() {
             // Show the retry state if initial load or refresh fails.
             is PagingLoadState.Error -> {
                 val throwable = (loadState.source.refresh as PagingLoadState.Error).error
-                this.postValue(LoadableState.Error(throwable, ParsedError("", "", throwable.message ?: ParsedError.DEFAULT_MESSAGE)))
+                this.postValue(LoadableState.Error(throwable))
             }
         }
     }
