@@ -11,4 +11,6 @@ class Tagline(
     val icon: String,
     /** Цвет заголовка */
     @ColorInt val titleColor: Int?,
+    /** Диплинк */
+    val url: String?,
 )

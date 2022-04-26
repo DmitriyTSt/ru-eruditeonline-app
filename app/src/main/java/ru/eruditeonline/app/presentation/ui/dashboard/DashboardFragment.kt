@@ -52,6 +52,7 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
 
     private fun setupList() = with(binding) {
         mainSectionsAdapter.onCompetitionItemClick = viewModel::openCompetition
+        mainSectionsAdapter.onTaglineClick = viewModel::openTaglineContent
         recyclerView.apply {
             adapter = mainSectionsAdapter
             addLinearSpaceItemDecoration(R.dimen.padding_16)

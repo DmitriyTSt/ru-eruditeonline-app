@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.main.MainSection
+import ru.eruditeonline.app.data.model.main.Tagline
 import ru.eruditeonline.app.databinding.ItemMainSectionTaglinesBinding
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.inflate
@@ -13,13 +14,16 @@ import ru.eruditeonline.app.presentation.ui.dashboard.tagline.TaglinesAdapter
 
 class MainSectionTaglinesViewHolder(
     parent: ViewGroup,
+    private val onTaglineClick: (Tagline) -> Unit,
 ) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_main_section_taglines)) {
     private val binding by viewBinding(ItemMainSectionTaglinesBinding::bind)
 
     private val padding8 by lazy { itemView.resources.getDimensionPixelSize(R.dimen.padding_8) }
     private val padding16 by lazy { itemView.resources.getDimensionPixelSize(R.dimen.padding_16) }
 
-    private val taglinesAdapter = TaglinesAdapter()
+    private val taglinesAdapter = TaglinesAdapter().apply {
+        onItemClick = onTaglineClick
+    }
 
     init {
         binding.root.apply {

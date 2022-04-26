@@ -5,17 +5,19 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
+import ru.eruditeonline.app.data.model.main.Tagline
 import ru.eruditeonline.app.presentation.ui.base.BaseAdapter
 import javax.inject.Inject
 
 class MainSectionsAdapter @Inject constructor() : BaseAdapter<MainSection, RecyclerView.ViewHolder>() {
 
     lateinit var onCompetitionItemClick: (CompetitionItemShort) -> Unit
+    lateinit var onTaglineClick: (Tagline) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             R.layout.item_main_section_competitions -> MainSectionCompetitionsViewHolder(parent, onCompetitionItemClick)
-            R.layout.item_main_section_taglines -> MainSectionTaglinesViewHolder(parent)
+            R.layout.item_main_section_taglines -> MainSectionTaglinesViewHolder(parent, onTaglineClick)
             else -> throw IllegalStateException("Unsupported view type")
         }
     }

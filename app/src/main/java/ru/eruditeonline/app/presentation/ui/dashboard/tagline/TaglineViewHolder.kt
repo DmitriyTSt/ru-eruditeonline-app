@@ -12,6 +12,7 @@ import ru.eruditeonline.app.presentation.extension.load
 
 class TaglineViewHolder(
     parent: ViewGroup,
+    private val onItemClick: (Tagline) -> Unit,
 ) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_tagline)) {
     private val binding by viewBinding(ItemTaglineBinding::bind)
 
@@ -20,5 +21,8 @@ class TaglineViewHolder(
         textViewTitle.text = tagline.title
         textViewDescription.text = tagline.text
         textViewTitle.setTextColor(tagline.titleColor ?: root.context.getColorFromAttribute(R.attr.colorOnSurface))
+        root.setOnClickListener {
+            onItemClick(tagline)
+        }
     }
 }

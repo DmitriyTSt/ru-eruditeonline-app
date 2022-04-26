@@ -43,7 +43,8 @@ class MainMapper @Inject constructor(
                 Color.parseColor(api.titleColor.orEmpty())
             } catch (e: Exception) {
                 null
-            }
+            },
+            url = api.url,
         )
     }
 }
