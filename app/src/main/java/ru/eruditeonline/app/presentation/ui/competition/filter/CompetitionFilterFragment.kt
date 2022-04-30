@@ -41,6 +41,10 @@ class CompetitionFilterFragment : BaseFragment(R.layout.fragment_competition_fil
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }
+        toolbar.menu.findItem(R.id.reset).setOnMenuItemClickListener {
+            viewModel.resetFilters()
+            true
+        }
         setupViewPager()
         setupApplyButton()
     }

@@ -13,6 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:menu="@menu/filters"
             app:navigationIcon="?iconBack"
             app:title="@string/filter_title" />
 

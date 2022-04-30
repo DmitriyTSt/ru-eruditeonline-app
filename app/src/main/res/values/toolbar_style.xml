@@ -16,10 +16,15 @@
         <item name="titleTextAppearance">@style/ToolbarTitleTextStyle</item>
         <item name="android:titleTextAppearance">@style/ToolbarTitleTextStyle</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="materialThemeOverlay">@style/ToolbarThemeOverlay</item>
     </style>
 
     <style name="ToolbarTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="fontFamily">@font/nunito_bold_font</item>
         <item name="android:textSize">@dimen/text_size_heading_2</item>
+    </style>
+
+    <style name="ToolbarThemeOverlay" parent="">
+        <item name="actionMenuTextColor">?appBarTextColor</item>
     </style>
 </resources>

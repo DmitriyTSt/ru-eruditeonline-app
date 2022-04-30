@@ -35,6 +35,15 @@ class CompetitionFilterViewModel @Inject constructor() : BaseViewModel() {
         )
     }
 
+    fun resetFilters() {
+        val oldFilters = _filtersLiveData.value.orEmpty()
+        _filtersLiveData.postValue(
+            oldFilters.map { group ->
+                group.copy(filters = group.filters.map { it.copy(selected = false) })
+            }
+        )
+    }
+
     fun applyFilter(groups: List<FilterGroup>) {
         val ageIds = groups.find { it.id == FilterGroupId.AGE }?.filters?.filter { it.selected }?.map { it.id }.orEmpty()
         val subjectIds = groups.find { it.id == FilterGroupId.SUBJECT }?.filters?.filter { it.selected }?.map { it.id }.orEmpty()
