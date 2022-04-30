@@ -54,6 +54,9 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }
+        stateViewFlipper.setRetryMethod {
+            viewModel.checkTest(args.data)
+        }
         setRequiredFieldHints()
         setupSaveButton()
         setupPrivacyPolicy()
