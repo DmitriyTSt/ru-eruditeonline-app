@@ -50,9 +50,17 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
         binding.recyclerView.updatePadding(bottom = bottomNavigationViewHeight + padding16)
     }
 
+    override fun onDestroyView() {
+        binding.recyclerView.adapter = null
+        super.onDestroyView()
+    }
+
     private fun setupList() = with(binding) {
-        mainSectionsAdapter.onCompetitionItemClick = viewModel::openCompetition
-        mainSectionsAdapter.onTaglineClick = viewModel::openTaglineContent
+        mainSectionsAdapter.apply {
+            onCompetitionItemClick = viewModel::openCompetition
+            onTaglineClick = viewModel::openTaglineContent
+            scrollState = viewModel.scrollState
+        }
         recyclerView.apply {
             adapter = mainSectionsAdapter
             addLinearSpaceItemDecoration(R.dimen.padding_16)

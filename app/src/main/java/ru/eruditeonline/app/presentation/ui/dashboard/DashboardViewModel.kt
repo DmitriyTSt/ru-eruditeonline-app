@@ -10,6 +10,7 @@ import ru.eruditeonline.app.data.model.main.Tagline
 import ru.eruditeonline.app.domain.usecase.main.GetMainSectionsUseCase
 import ru.eruditeonline.app.presentation.managers.DeepLinkManager
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.app.presentation.ui.views.ScrollStateHolder
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
@@ -21,7 +22,11 @@ class DashboardViewModel @Inject constructor(
     private val _mainSectionsLiveData = MutableLiveData<LoadableState<List<MainSection>>>()
     val mainSectionsLiveData: LiveData<LoadableState<List<MainSection>>> = _mainSectionsLiveData
 
+    /** Состояние скрола вложенных скролящихся элементов в списке контента */
+    val scrollState = ScrollStateHolder()
+
     fun loadMainSections() {
+        scrollState.clearScrollState()
         _mainSectionsLiveData.launchLoadData(getMainSectionsUseCase.executeFlow(Unit))
     }
 

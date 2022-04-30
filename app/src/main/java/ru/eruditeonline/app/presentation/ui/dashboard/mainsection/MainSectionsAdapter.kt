@@ -7,6 +7,8 @@ import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.data.model.main.Tagline
 import ru.eruditeonline.app.presentation.ui.base.BaseAdapter
+import ru.eruditeonline.app.presentation.ui.views.RecycledViewHolder
+import ru.eruditeonline.app.presentation.ui.views.ScrollStateHolder
 import javax.inject.Inject
 
 class MainSectionsAdapter @Inject constructor() : BaseAdapter<MainSection, RecyclerView.ViewHolder>() {
@@ -14,10 +16,20 @@ class MainSectionsAdapter @Inject constructor() : BaseAdapter<MainSection, Recyc
     lateinit var onCompetitionItemClick: (CompetitionItemShort) -> Unit
     lateinit var onTaglineClick: (Tagline) -> Unit
 
+    var scrollState: ScrollStateHolder? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            R.layout.item_main_section_competitions -> MainSectionCompetitionsViewHolder(parent, onCompetitionItemClick)
-            R.layout.item_main_section_taglines -> MainSectionTaglinesViewHolder(parent, onTaglineClick)
+            R.layout.item_main_section_competitions -> MainSectionCompetitionsViewHolder(
+                parent = parent,
+                onItemClick = onCompetitionItemClick,
+                scrollStateHolder = scrollState,
+            )
+            R.layout.item_main_section_taglines -> MainSectionTaglinesViewHolder(
+                parent = parent,
+                onTaglineClick = onTaglineClick,
+                scrollStateHolder = scrollState,
+            )
             else -> throw IllegalStateException("Unsupported view type")
         }
     }
@@ -38,6 +50,13 @@ class MainSectionsAdapter @Inject constructor() : BaseAdapter<MainSection, Recyc
         return when (getItem(position)) {
             is MainSection.CompetitionsBlock -> R.layout.item_main_section_competitions
             is MainSection.TaglineBlock -> R.layout.item_main_section_taglines
+        }
+    }
+
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        super.onViewRecycled(holder)
+        if (holder is RecycledViewHolder) {
+            holder.onRecycled()
         }
     }
 }
