@@ -2,6 +2,7 @@ package ru.eruditeonline.app.presentation.ui.webpage
 
 import android.annotation.SuppressLint
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
@@ -107,14 +108,22 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
                 }
             }
 
-            override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
-                super.onReceivedError(view, request, error)
-                setErrorState()
-            }
-
             override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
                 super.onReceivedError(view, errorCode, description, failingUrl)
-                setErrorState()
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                    if (!isErrorToSkip(errorCode)) {
+                        setErrorState()
+                    }
+                }
+            }
+
+            override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
+                super.onReceivedError(view, request, error)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (!isErrorToSkip(error?.errorCode)) {
+                        setErrorState()
+                    }
+                }
             }
 
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
@@ -133,6 +142,14 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
                 return true
             }
         }
+    }
+
+    private fun isErrorToSkip(errorCode: Int?): Boolean {
+        return listOf(
+            WebViewClient.ERROR_CONNECT,
+            WebViewClient.ERROR_TIMEOUT,
+            WebViewClient.ERROR_UNKNOWN,
+        ).contains(errorCode)
     }
 
     private fun openDeepLinkOrWebViewLoad(uri: Uri?) {
