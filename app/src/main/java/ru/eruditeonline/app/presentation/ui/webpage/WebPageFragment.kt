@@ -30,6 +30,7 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
 
     companion object {
         const val PERSONAL_DATA_PATH = "/personal-data.html"
+        const val RESTORE_PASSWORD_PATH = "/forget_password.html"
     }
 
     private val binding by viewBinding(FragmentWebPageBinding::bind)

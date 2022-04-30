@@ -27,4 +27,8 @@ class LoginViewModel @Inject constructor(
     fun openRegistration() {
         navigate(destinations.registration())
     }
+
+    fun openRestorePassword() {
+        navigate(destinations.restorePassword())
+    }
 }

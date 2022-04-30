@@ -38,6 +38,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         buttonRegistration.setOnClickListener {
             viewModel.openRegistration()
         }
+        buttonRestorePassword.setOnClickListener {
+            viewModel.openRestorePassword()
+        }
     }
 
     override fun onBindViewModel() = with(viewModel) {
