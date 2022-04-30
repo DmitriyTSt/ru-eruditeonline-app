@@ -16,7 +16,7 @@ class DiplomaViewHolder(
     private val binding by viewBinding(ItemDiplomaBinding::bind)
 
     fun bind(diploma: Diploma) = with(binding) {
-        imageViewDiploma.load(diploma.image)
+        imageViewDiploma.load(diploma.image, placeHolderRes = R.drawable.img_diploma_placeholder)
         root.setOnClickListener {
             onItemClick(diploma)
         }
