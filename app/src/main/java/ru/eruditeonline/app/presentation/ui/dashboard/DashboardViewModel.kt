@@ -7,6 +7,7 @@ import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.data.model.main.Tagline
+import ru.eruditeonline.app.domain.usecase.debug.IsDebugButtonVisibleUseCase
 import ru.eruditeonline.app.domain.usecase.main.GetMainSectionsUseCase
 import ru.eruditeonline.app.presentation.managers.DeepLinkManager
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
@@ -17,10 +18,15 @@ class DashboardViewModel @Inject constructor(
     private val getMainSectionsUseCase: GetMainSectionsUseCase,
     private val destinations: DashboardDestinations,
     private val deepLinkManager: DeepLinkManager,
+    private val isDebugButtonVisibleUseCase: IsDebugButtonVisibleUseCase,
 ) : BaseViewModel() {
     /** Блоки главной страницы */
     private val _mainSectionsLiveData = MutableLiveData<LoadableState<List<MainSection>>>()
     val mainSectionsLiveData: LiveData<LoadableState<List<MainSection>>> = _mainSectionsLiveData
+
+    /** Видимость кнопки дебага */
+    private val _isDebugButtonVisibleLiveData = MutableLiveData<LoadableState<Boolean>>()
+    val isDebugButtonVisibleLiveData: LiveData<LoadableState<Boolean>> = _isDebugButtonVisibleLiveData
 
     /** Состояние скрола вложенных скролящихся элементов в списке контента */
     val scrollState = ScrollStateHolder()
@@ -28,6 +34,14 @@ class DashboardViewModel @Inject constructor(
     fun loadMainSections() {
         scrollState.clearScrollState()
         _mainSectionsLiveData.launchLoadData(getMainSectionsUseCase.executeFlow(Unit))
+    }
+
+    fun initDebugButton() {
+        _isDebugButtonVisibleLiveData.launchLoadData(isDebugButtonVisibleUseCase.executeFlow(Unit))
+    }
+
+    fun openDebug() {
+        navigate(destinations.debug())
     }
 
     fun openCompetition(item: CompetitionItemShort) {

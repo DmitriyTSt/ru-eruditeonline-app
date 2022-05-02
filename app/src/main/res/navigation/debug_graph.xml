@@ -9,5 +9,8 @@
         android:id="@+id/debugFragment"
         android:name="ru.eruditeonline.app.presentation.ui.debug.DebugFragment"
         android:label="DebugFragment"
-        tools:layout="@layout/fragment_debug" />
+        tools:layout="@layout/fragment_debug">
+
+        <deepLink app:uri="@string/navigation_deep_link_to_debug" />
+    </fragment>
 </navigation>

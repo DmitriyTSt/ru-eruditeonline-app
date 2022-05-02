@@ -28,10 +28,12 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
     override fun callOperations() {
         viewModel.loadMainSections()
         viewModel.resolveDeepLink()
+        viewModel.initDebugButton()
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         appBarLayout.fitTopInsetsWithPadding()
+        setupDebugButton()
         setupList()
         stateViewFlipper.setRetryMethod { viewModel.loadMainSections() }
     }
@@ -44,6 +46,11 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
                 mainSectionsAdapter.submitList(list)
             }
         }
+        isDebugButtonVisibleLiveData.observe { state ->
+            state.doOnSuccess { isVisible ->
+                binding.toolbar.menu.findItem(R.id.debug).isVisible = isVisible
+            }
+        }
     }
 
     override fun applyBottomNavigationViewPadding(view: View, bottomNavigationViewHeight: Int) {
@@ -53,6 +60,16 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
     override fun onDestroyView() {
         binding.recyclerView.adapter = null
         super.onDestroyView()
+    }
+
+    private fun setupDebugButton() = with(binding) {
+        toolbar.menu.findItem(R.id.debug).apply {
+            isVisible = false
+            setOnMenuItemClickListener {
+                viewModel.openDebug()
+                true
+            }
+        }
     }
 
     private fun setupList() = with(binding) {

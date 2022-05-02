@@ -1,7 +1,7 @@
 package ru.eruditeonline.app.domain.usecase.debug
 
 import ru.eruditeonline.app.data.repository.EndpointRepository
-import ru.eruditeonline.app.domain.usecase.auth.LogoutUseCase
+import ru.eruditeonline.app.domain.usecase.auth.LocalLogoutUseCase
 import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
 import javax.inject.Inject
 
@@ -12,13 +12,13 @@ import javax.inject.Inject
  */
 class ChangeEndpointUseCase @Inject constructor(
     private val endpointRepository: EndpointRepository,
-    private val logoutUseCase: LogoutUseCase,
+    private val localLogoutUseCase: LocalLogoutUseCase,
 ) : UseCaseUnary<ChangeEndpointUseCase.Params, Boolean>() {
 
     override suspend fun execute(params: Params): Boolean {
         return if (params.newEndpoint != null && params.newEndpoint != endpointRepository.provideEndpoint()) {
             endpointRepository.updateEndpoint(params.newEndpoint)
-            logoutUseCase.execute(Unit)
+            localLogoutUseCase.execute(Unit)
             true
         } else {
             false
