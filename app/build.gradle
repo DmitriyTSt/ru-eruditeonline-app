@@ -23,10 +23,54 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    //для подписки релизного билда
+    File releaseSignFile = rootProject.file('release_keystore.properties')
+    Properties releaseSignProperties
+    if (releaseSignFile.exists()) {
+        releaseSignProperties = new Properties()
+        releaseSignProperties.load(new FileInputStream(releaseSignFile))
+    } else {
+        // fake keystore properties file
+        releaseSignProperties = new Properties()
+    }
+
+    signingConfigs {
         release {
+            storeFile file('keystore/' + releaseSignProperties['keystore'])
+            storePassword releaseSignProperties['storePassword']
+            keyAlias releaseSignProperties['keyAlias']
+            keyPassword releaseSignProperties['keyPassword']
+        }
+        debug {
+            storeFile file('keystore/debug.keystore')
+            keyAlias 'AndroidDebugKey'
+            storePassword 'android'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+        // release build for google play, master/release branches
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        // debug build for developers only
+        debug {
+            applicationIdSuffix ".develop"
+            signingConfig signingConfigs.debug
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
+        }
+
+        // internal build for testers
+        internal {
+            applicationIdSuffix ".develop"
+            initWith release
+            signingConfig signingConfigs.debug
+            debuggable true
         }
     }
 
