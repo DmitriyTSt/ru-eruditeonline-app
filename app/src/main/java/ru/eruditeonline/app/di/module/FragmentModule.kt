@@ -11,6 +11,7 @@ import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilter
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsFragment
 import ru.eruditeonline.app.presentation.ui.country.SelectCountryFragment
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardFragment
+import ru.eruditeonline.app.presentation.ui.debug.DebugFragment
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaFragment
 import ru.eruditeonline.app.presentation.ui.information.InformationFragment
 import ru.eruditeonline.app.presentation.ui.profile.ProfileFragment
@@ -112,4 +113,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun settingsFragment(): SettingsFragment
+
+    @ContributesAndroidInjector
+    abstract fun debugFragment(): DebugFragment
 }

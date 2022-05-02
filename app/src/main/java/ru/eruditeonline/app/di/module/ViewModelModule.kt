@@ -15,6 +15,7 @@ import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilter
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.country.SelectCountryViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
+import ru.eruditeonline.app.presentation.ui.debug.DebugViewModel
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaViewModel
 import ru.eruditeonline.app.presentation.ui.information.InformationViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
@@ -170,4 +171,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(SettingsViewModel::class)
     abstract fun settingsViewModel(viewModel: SettingsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DebugViewModel::class)
+    abstract fun debugViewModel(viewModel: DebugViewModel): ViewModel
 }
