@@ -28,4 +28,11 @@ class DashboardDestinations @Inject constructor(
             .fromUri(context.getString(R.string.navigation_deep_link_to_web_page_template, path).toUri())
             .build()
     )
+
+    /** Дебаг */
+    fun debug() = Destination.DeepLink(
+        NavDeepLinkRequest.Builder
+            .fromUri(context.getString(R.string.navigation_deep_link_to_debug).toUri())
+            .build()
+    )
 }

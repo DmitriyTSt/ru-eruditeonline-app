@@ -26,5 +26,6 @@
     <include app:graph="@navigation/auth_graph" />
     <include app:graph="@navigation/select_country_graph" />
     <include app:graph="@navigation/result_detail_graph" />
+    <include app:graph="@navigation/debug_graph" />
 
 </navigation>

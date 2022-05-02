@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.ui.splash
 
 import android.os.Bundle
+import androidx.core.view.isVisible
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.ParsedError
@@ -18,12 +19,14 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
     override fun callOperations() {
         viewModel.runStartFlow()
+        viewModel.initDebugButton()
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         buttonRepeat.setOnClickListener {
             viewModel.runStartFlow()
         }
+        setupDebugButton()
     }
 
     override fun onBindViewModel() = with(viewModel) {
@@ -37,6 +40,17 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
             state.doOnError { error ->
                 bindErrorText(error)
             }
+        }
+        isDebugButtonVisibleLiveData.observe { state ->
+            state.doOnSuccess { isVisible ->
+                binding.buttonDebug.isVisible = isVisible
+            }
+        }
+    }
+
+    private fun setupDebugButton() = with(binding) {
+        buttonDebug.setOnClickListener {
+            viewModel.openDebug()
         }
     }
 

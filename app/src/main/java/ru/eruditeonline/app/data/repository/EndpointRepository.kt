@@ -5,6 +5,7 @@ private const val PROD_ENDPOINT = "http://localhost:8080/api/"
 
 interface EndpointRepository {
     fun provideEndpoint(): String
+    fun updateEndpoint(newEndpoint: String)
     fun provideDevEndpoint() = DEV_ENDPOINT
     fun provideProdEndpoint() = PROD_ENDPOINT
 }

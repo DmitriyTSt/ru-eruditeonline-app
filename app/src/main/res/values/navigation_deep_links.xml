@@ -18,4 +18,5 @@
     <string name="navigation_deep_link_to_results_search_template">app://results_search/%s</string>
     <string name="navigation_deep_link_to_web_page">app://webpage?path={path}</string>
     <string name="navigation_deep_link_to_web_page_template">app://webpage?path=%s</string>
+    <string name="navigation_deep_link_to_debug">app://debug</string>
 </resources>
