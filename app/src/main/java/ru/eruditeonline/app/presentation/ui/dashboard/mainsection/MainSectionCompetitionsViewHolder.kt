@@ -58,7 +58,7 @@ class MainSectionCompetitionsViewHolder(
             }
             when (block.viewType) {
                 CompetitionViewType.ROW -> addLinearSpaceItemDecoration(R.dimen.padding_8)
-                CompetitionViewType.CARD -> addDefaultGridSpaceItemDecoration(R.dimen.padding_16)
+                CompetitionViewType.CARD -> addDefaultGridSpaceItemDecoration(2, R.dimen.padding_16)
             }
         }
         if (block.viewType == CompetitionViewType.ROW) {

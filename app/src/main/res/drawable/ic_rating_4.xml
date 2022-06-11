@@ -53,4 +53,24 @@
       android:pathData="M92,3.97L94.205,7.633L94.314,7.815L94.521,7.863L98.686,8.828L95.883,12.057L95.744,12.217L95.763,12.428L96.132,16.688L92.195,15.02L92,14.937L91.805,15.02L87.868,16.688L88.237,12.428L88.256,12.217L88.117,12.057L85.314,8.828L89.479,7.863L89.686,7.815L89.795,7.633L92,3.97Z"
       android:fillColor="#FFBA00"
       android:strokeColor="#646C76"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M21,11L28,11"
+      android:fillColor="#00000000"
+      android:strokeColor="#646C76"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M48,11L55,11"
+      android:fillColor="#00000000"
+      android:strokeColor="#646C76"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M75,11L82,11"
+      android:fillColor="#00000000"
+      android:strokeColor="#646C76"/>
+  <path
+      android:strokeWidth="1"
+      android:pathData="M102,11L109,11"
+      android:fillColor="#00000000"
+      android:strokeColor="#646C76"/>
 </vector>
