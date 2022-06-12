@@ -18,6 +18,7 @@ import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.load
+import ru.eruditeonline.app.presentation.extension.setTextFromHtml
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import java.util.Locale
@@ -112,7 +113,7 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
 
     @SuppressLint("SetTextI18n")
     private fun bindQuestion(index: Int, question: Question) = with(binding.content) {
-        textViewQuestionText.text = "№ ${index + 1}. ${question.text}"
+        textViewQuestionText.setTextFromHtml("№ ${index + 1}. ${question.text}")
         cardViewQuestionImage.isVisible = !question.image.isNullOrEmpty()
         if (cardViewQuestionImage.isVisible) {
             imageViewQuestion.load(question.image)
