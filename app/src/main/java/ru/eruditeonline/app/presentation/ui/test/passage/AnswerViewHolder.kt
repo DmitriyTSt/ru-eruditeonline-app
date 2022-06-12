@@ -10,6 +10,7 @@ import ru.eruditeonline.app.data.model.test.Answer
 import ru.eruditeonline.app.databinding.ItemTestQuestionAnswerBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.extension.load
+import ru.eruditeonline.app.presentation.extension.setTextFromHtml
 
 class AnswerViewHolder(
     parent: ViewGroup,
@@ -19,7 +20,7 @@ class AnswerViewHolder(
 
     @SuppressLint("ClickableViewAccessibility")
     fun bind(answer: Answer, isSelected: Boolean) = with(binding) {
-        textView.text = answer.text
+        textView.setTextFromHtml(answer.text)
         imageView.isVisible = !answer.image.isNullOrEmpty()
         if (imageView.isVisible) {
             imageView.load(answer.image)
