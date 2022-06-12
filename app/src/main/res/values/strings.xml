@@ -138,4 +138,5 @@
     <string name="endpoint_error">Введите base url, оканчивающийся на /</string>
     <string name="debug_save">Сохранить</string>
     <string name="custom_endpoint_hint">API endpoint</string>
+    <string name="server_env_title">Среда сервера</string>
 </resources>

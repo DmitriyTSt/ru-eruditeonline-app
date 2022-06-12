@@ -19,7 +19,11 @@ class EndpointRepositoryImpl @Inject constructor(
         return if (appInfoRepository.isRelease) {
             provideProdEndpoint()
         } else {
-            getSavedEndpoint() ?: provideDevEndpoint()
+            getSavedEndpoint() ?: if (appInfoRepository.isDebug) {
+                provideDevEndpoint()
+            } else {
+                provideProdEndpoint()
+            }
         }
     }
 
