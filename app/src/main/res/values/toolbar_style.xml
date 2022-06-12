@@ -19,6 +19,10 @@
         <item name="materialThemeOverlay">@style/ToolbarThemeOverlay</item>
     </style>
 
+    <style name="ToolbarStyle.Dashboard">
+        <item name="materialThemeOverlay">@style/ToolbarThemeOverlay.Dashboard</item>
+    </style>
+
     <style name="ToolbarTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="fontFamily">@font/nunito_bold_font</item>
         <item name="android:textSize">@dimen/text_size_heading_2</item>
@@ -26,5 +30,9 @@
 
     <style name="ToolbarThemeOverlay" parent="">
         <item name="actionMenuTextColor">?appBarTextColor</item>
+    </style>
+
+    <style name="ToolbarThemeOverlay.Dashboard">
+        <item name="actionMenuTextColor">?colorOnPrimary</item>
     </style>
 </resources>
