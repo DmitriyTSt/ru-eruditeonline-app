@@ -27,22 +27,26 @@ class RatingRowViewHolder(
     }
 
     private fun bindRankChanges(rank: Int, oldRank: Int?) = with(binding.textViewRatingChanges) {
-        isVisible = oldRank != null && oldRank != rank
+        isVisible = oldRank != null && oldRank != rank || oldRank == 0
         if (oldRank == null) return@with
 
         val diff = oldRank - rank
-        val color = if (diff < 0) {
-            R.color.red
-        } else {
+        val color = if (diff > 0 || oldRank == 0) {
             R.color.green
-        }
-        val icon = if (diff < 0) {
-            R.drawable.ic_rank_negative
         } else {
+            R.color.red
+        }
+        val icon = if (diff > 0 || oldRank == 0) {
             R.drawable.ic_rank_positive
+        } else {
+            R.drawable.ic_rank_negative
         }
         setCompoundDrawablesRelativeWithIntrinsicBounds(icon, 0, 0, 0)
         setTextColor(context.getColorCompat(color))
-        text = if (diff > 0) "+$diff" else diff.toString()
+        text = if (oldRank == 0) {
+            context.getString(R.string.new_rank_label)
+        } else {
+            if (diff > 0) "+$diff" else diff.toString()
+        }
     }
 }
