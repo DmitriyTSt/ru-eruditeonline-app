@@ -13,6 +13,9 @@ private const val KEY_REFRESH_TOKEN = "profile_refresh_token"
 private const val KEY_IS_SIGNED_IN = "is_signed_in"
 private const val KEY_CURRENT_THEME = "current_theme"
 
+/**
+ * FIXME securedPreferenceStorage javax.crypto.AEADBadTagException
+ */
 @Singleton
 class PreferencesStorage @Inject constructor(
     private val regularPreferenceStorage: RegularPreferenceStorage,
@@ -21,19 +24,19 @@ class PreferencesStorage @Inject constructor(
 ) {
 
     var accessToken: String?
-        get() = securedPreferenceStorage.getString(KEY_ACCESS_TOKEN, null)
+        get() = regularPreferenceStorage.getString(KEY_ACCESS_TOKEN, null)
         @SuppressLint("ApplySharedPref")
         internal set(accessToken) {
             // коммит тут стоит осознанно, для случаев с 401
-            securedPreferenceStorage.edit().putString(KEY_ACCESS_TOKEN, accessToken).commit()
+            regularPreferenceStorage.edit().putString(KEY_ACCESS_TOKEN, accessToken).commit()
         }
 
     var refreshToken: String?
-        get() = securedPreferenceStorage.getString(KEY_REFRESH_TOKEN, null)
+        get() = regularPreferenceStorage.getString(KEY_REFRESH_TOKEN, null)
         @SuppressLint("ApplySharedPref")
         internal set(refreshToken) {
             // коммит тут стоит осознанно, для случаев с 401
-            securedPreferenceStorage.edit().putString(KEY_REFRESH_TOKEN, refreshToken).commit()
+            regularPreferenceStorage.edit().putString(KEY_REFRESH_TOKEN, refreshToken).commit()
         }
 
     var isSignedIn: Boolean
