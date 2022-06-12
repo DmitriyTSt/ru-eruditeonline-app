@@ -30,7 +30,7 @@ class RatingRowViewHolder(
         isVisible = oldRank != null && oldRank != rank
         if (oldRank == null) return@with
 
-        val diff = rank - oldRank
+        val diff = oldRank - rank
         val color = if (diff < 0) {
             R.color.red
         } else {
