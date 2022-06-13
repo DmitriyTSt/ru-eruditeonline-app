@@ -4,11 +4,13 @@ import android.os.Bundle
 import androidx.core.view.isVisible
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.ParsedError
 import ru.eruditeonline.app.databinding.FragmentSplashBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import timber.log.Timber
 
 private const val STATE_DATA = 0
 private const val STATE_ERROR = 1
@@ -38,6 +40,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                 binding.root.displayedChild = STATE_DATA
             }
             state.doOnError { error ->
+                Timber.e((state as LoadableState.Error).throwable)
                 bindErrorText(error)
             }
         }

@@ -87,6 +87,15 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def appName = 'eruditeonline'
+            def buildType = variant.buildType.name
+            def newName = "${appName}-${defaultConfig.versionName}.${getVersionCode()}_${buildType}"
+            outputFileName = newName.toLowerCase() + ".apk"
+        }
+    }
 }
 
 def getVersionCode() {
