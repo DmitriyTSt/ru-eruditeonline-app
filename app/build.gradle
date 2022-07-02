@@ -69,8 +69,8 @@ android {
 
         // internal build for testers
         internal {
-            applicationIdSuffix ".develop"
             initWith release
+            applicationIdSuffix ".develop"
             signingConfig signingConfigs.debug
             debuggable true
         }
