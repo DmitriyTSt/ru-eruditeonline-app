@@ -29,6 +29,9 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
         radioButtonDebugCustom.setOnCheckedChangeListener { _, isChecked ->
             textInputLayoutCustomEndpoint.isVisible = isChecked
         }
+        buttonTestCrash.setOnClickListener {
+            throw RuntimeException("Test crash")
+        }
     }
 
     override fun onBindViewModel() = with(viewModel) {
