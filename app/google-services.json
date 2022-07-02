@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "970674755734",
+    "project_id": "erudite-online-ru",
+    "storage_bucket": "erudite-online-ru.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970674755734:android:d36b65feee746be5618ab7",
+        "android_client_info": {
+          "package_name": "ru.eruditeonline.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970674755734-9j04hau926mtdgm3okd88n4vs646j094.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGmy2r4lxFvjalppX_3ZAkksT_UxAyqrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970674755734-9j04hau926mtdgm3okd88n4vs646j094.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970674755734:android:18d195b327c3b07e618ab7",
+        "android_client_info": {
+          "package_name": "ru.eruditeonline.app.develop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970674755734-2iqr078kbg9f61svsttdnkgn160m2oba.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.eruditeonline.app.develop",
+            "certificate_hash": "cc37f5576d4c0ab48cb024458c86564cf797c433"
+          }
+        },
+        {
+          "client_id": "970674755734-9j04hau926mtdgm3okd88n4vs646j094.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGmy2r4lxFvjalppX_3ZAkksT_UxAyqrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970674755734-9j04hau926mtdgm3okd88n4vs646j094.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

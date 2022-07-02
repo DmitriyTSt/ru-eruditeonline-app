@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 apply from: '../config/quality/quality.gradle'
@@ -67,8 +69,8 @@ android {
 
         // internal build for testers
         internal {
-            applicationIdSuffix ".develop"
             initWith release
+            applicationIdSuffix ".develop"
             signingConfig signingConfigs.debug
             debuggable true
         }
@@ -152,4 +154,8 @@ dependencies {
 
     implementation chrometabs
     implementation security_crypto
+
+    implementation platform(firebase_bom)
+    implementation firebase_analytics
+    implementation firebase_crashlytics
 }
