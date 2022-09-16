@@ -37,6 +37,9 @@
         <item name="chipStyle">@style/ChipStyle</item>
         <item name="textInputStyle">@style/TextInputLayoutStyle</item>
         <item name="tabStyle">@style/TabStyle</item>
+        <item name="alertDialogStyle">@style/AlertDialogTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="materialAlertDialogTheme">@style/AlertDialogTheme</item>
 
         <item name="iconBack">@drawable/ic_back</item>
         <item name="iconClose">@drawable/ic_close</item>
