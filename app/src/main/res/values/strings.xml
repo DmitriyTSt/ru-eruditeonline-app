@@ -130,9 +130,9 @@
     <string name="reset_filters_label">Сбросить</string>
     <!-- ДЕБАГ -->
     <string name="debug_title">Дебаг</string>
-    <string name="debug_release">production</string>
-    <string name="debug_debug">develop</string>
-    <string name="debug_custom">custom</string>
+    <string name="debug_release">PRODUCTION %s</string>
+    <string name="debug_debug">DEVELOP %s</string>
+    <string name="debug_custom">CUSTOM</string>
     <string name="endpoint_placeholder">http://localhost:8080/api/</string>
     <string name="endpoint_regex">^(http|https):\/\/([^\/:]+)(:[0-9]+)?[^:]+\/$</string>
     <string name="endpoint_error">Введите base url, оканчивающийся на /</string>

@@ -52,6 +52,12 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
                 binding.editTextCustomEndpoint.setText(endpoint)
             }
         }
+        endpointDataLiveData.observe { result ->
+            result.doOnSuccess { data ->
+                binding.radioButtonDebugRelease.text = getString(R.string.debug_release, data.prodEndpoint)
+                binding.radioButtonDebugDebug.text = getString(R.string.debug_debug, data.devEndpoint)
+            }
+        }
         restartAppLiveEvent.observe { result ->
             binding.buttonDebugSave.setState(result)
             result.doOnSuccess { isChanged ->
