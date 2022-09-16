@@ -48,9 +48,6 @@
 
         <deepLink app:uri="@string/navigation_deep_link_to_results_search" />
 
-        <argument
-            android:name="mode"
-            app:argType="ru.eruditeonline.app.presentation.ui.result.search.SearchResultMode" />
         <action
             android:id="@+id/action_searchResultFragment_to_userResultListFragment"
             app:destination="@id/userResultListFragment" />

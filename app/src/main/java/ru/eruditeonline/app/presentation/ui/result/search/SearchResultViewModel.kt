@@ -7,7 +7,7 @@ class SearchResultViewModel @Inject constructor(
     private val destinations: SearchResultDestinations,
 ) : BaseViewModel() {
 
-    fun search(mode: SearchResultMode, text: String) {
-        navigate(destinations.resultList(mode, text))
+    fun search(text: String) {
+        navigate(destinations.resultList(text))
     }
 }

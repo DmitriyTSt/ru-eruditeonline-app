@@ -35,8 +35,8 @@ class UserProfileViewModel @Inject constructor(
         navigate(destinations.commonResults())
     }
 
-    fun openSearchResultsByQuery() {
-        navigate(destinations.searchResultsByQuery())
+    fun openSearchResultsByEmail() {
+        navigate(destinations.searchResultsByEmail())
     }
 
     fun openUserResults() {

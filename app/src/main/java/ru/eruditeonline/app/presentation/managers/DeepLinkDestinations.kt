@@ -7,7 +7,6 @@ import androidx.navigation.NavDeepLinkRequest
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.navigation.Destination
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemMode
-import ru.eruditeonline.app.presentation.ui.result.search.SearchResultMode
 import javax.inject.Inject
 
 class DeepLinkDestinations @Inject constructor(
@@ -55,7 +54,7 @@ class DeepLinkDestinations @Inject constructor(
 
     fun searchResultsByEmail() = Destination.DeepLink(
         NavDeepLinkRequest.Builder
-            .fromUri(context.getString(R.string.navigation_deep_link_to_results_search_template, SearchResultMode.EMAIL).toUri())
+            .fromUri(context.getString(R.string.navigation_deep_link_to_results_search).toUri())
             .build()
     )
 
