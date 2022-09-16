@@ -1,7 +1,10 @@
 package ru.eruditeonline.app.presentation.ui.result.user
 
 import android.os.Bundle
+import androidx.core.graphics.Insets
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -9,7 +12,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentUserResultListBinding
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.hideSoftKeyboard
 import ru.eruditeonline.app.presentation.extension.showSoftKeyboard
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -29,6 +32,7 @@ class UserResultListFragment : BaseFragment(R.layout.fragment_user_result_list) 
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
+        setupInsets()
         setupToolbar()
         setupSearch()
         stateViewFlipper.setRetryMethod { viewModel.init(args.params) }
@@ -45,10 +49,26 @@ class UserResultListFragment : BaseFragment(R.layout.fragment_user_result_list) 
         }
     }
 
+    private fun setupInsets() = with(binding) {
+        root.doOnApplyWindowInsets { _, insets, _ ->
+            val windowInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+            toolbar.updatePadding(top = windowInsets.top)
+            root.updatePadding(bottom = windowInsets.bottom)
+            WindowInsetsCompat.Builder().setInsets(
+                WindowInsetsCompat.Type.systemBars(),
+                Insets.of(
+                    windowInsets.left,
+                    0,
+                    windowInsets.right,
+                    0
+                )
+            ).build()
+        }
+    }
+
     private fun setupToolbar() = with(binding) {
         val params = args.params
         toolbar.apply {
-            fitTopInsetsWithPadding()
             setNavigationOnClickListener {
                 viewModel.navigateBack()
             }

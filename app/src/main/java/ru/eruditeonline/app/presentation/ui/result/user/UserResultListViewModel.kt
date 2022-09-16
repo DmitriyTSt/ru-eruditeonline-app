@@ -28,6 +28,7 @@ class UserResultListViewModel @Inject constructor(
     private val _pagingStateLiveData = MutableLiveData<LoadableState<Unit>>()
     val pagingStateLiveData: LiveData<LoadableState<Unit>> = _pagingStateLiveData
 
+    private var lastSearchQuery: String = ""
     private var searchJob: Job? = null
 
     fun init(params: UserResultParams) {
@@ -35,9 +36,11 @@ class UserResultListViewModel @Inject constructor(
     }
 
     fun search(query: String) {
+        if (lastSearchQuery == query) return
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(SEARCH_DELAY)
+            lastSearchQuery = query
             loadResults(email = null, query = query)
         }
     }
