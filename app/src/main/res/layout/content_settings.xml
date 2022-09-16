@@ -23,35 +23,6 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardViewColoredTheme"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_marginVertical="12dp"
-                android:layout_marginStart="16dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="4dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_theme_colored" />
-
-                <ImageView
-                    android:id="@+id/imageViewColoredSelector"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="12dp"
-                    android:background="@drawable/bg_theme_selector"
-                    android:contentDescription="@null"
-                    android:src="@drawable/ic_check"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardViewLightTheme"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
@@ -68,6 +39,35 @@
 
                 <ImageView
                     android:id="@+id/imageViewLightSelector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/bg_theme_selector"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_check"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewColoredTheme"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginVertical="12dp"
+                android:layout_marginStart="16dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_theme_colored" />
+
+                <ImageView
+                    android:id="@+id/imageViewColoredSelector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
