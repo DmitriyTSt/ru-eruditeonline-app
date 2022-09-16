@@ -21,4 +21,5 @@
     <attr name="iconViewTypeRow" format="reference" />
     <attr name="iconViewTypeCard" format="reference" />
     <attr name="iconFilter" format="reference" />
+    <attr name="iconSearch" format="reference" />
 </resources>

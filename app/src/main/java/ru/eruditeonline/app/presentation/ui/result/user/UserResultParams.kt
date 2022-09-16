@@ -8,8 +8,5 @@ sealed class UserResultParams : Parcelable {
     class Email(val email: String) : UserResultParams()
 
     @Parcelize
-    class Query(val query: String) : UserResultParams()
-
-    @Parcelize
     object All : UserResultParams()
 }

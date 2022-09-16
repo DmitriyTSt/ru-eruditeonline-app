@@ -38,7 +38,7 @@
     <string name="common_result_list_title">Итоги</string>
     <string name="search_result_by_email_hint">Введите email…</string>
     <string name="search_result_by_email_help_text">Напишите полностью email адрес, который указывали при прохождении теста, и нажмите поиск</string>
-    <string name="search_result_hint">Название конкурса или предмета…</string>
+    <string name="search_result_hint">Конкурс или предмет…</string>
     <string name="search_results_by_email_title">Поиск результатов по email</string>
     <string name="search_results_title">Поиск результатов</string>
     <string name="user_result_list_title">Результаты</string>
@@ -141,4 +141,6 @@
     <string name="custom_endpoint_hint">API endpoint</string>
     <string name="server_env_title">Среда сервера</string>
     <string name="new_rank_label">New</string>
+    <string name="search_label">Поиск</string>
+    <string name="search_close_label">Закрыть поиск</string>
 </resources>
