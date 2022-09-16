@@ -53,4 +53,21 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/textViewEmailSearchHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_16"
+            android:layout_marginTop="8dp"
+            android:text="@string/search_result_by_email_help_text"
+            android:textAlignment="center"
+            android:textAppearance="@style/Font.Body1.Regular" />
+
+    </FrameLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

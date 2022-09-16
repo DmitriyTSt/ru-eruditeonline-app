@@ -26,6 +26,7 @@ class SearchResultFragment : BaseFragment(R.layout.fragment_search_result) {
             viewModel.navigateBack()
         }
         setupSearch()
+        setupHelpText()
         imageViewClose.setOnClickListener {
             editTextSearch.setText("")
         }
@@ -56,5 +57,9 @@ class SearchResultFragment : BaseFragment(R.layout.fragment_search_result) {
             binding.imageViewClose.isVisible = !it.isNullOrEmpty()
         }
         activity?.showSoftKeyboard(this)
+    }
+
+    private fun setupHelpText() = with(binding) {
+        textViewEmailSearchHelp.isVisible = args.mode == SearchResultMode.EMAIL
     }
 }
