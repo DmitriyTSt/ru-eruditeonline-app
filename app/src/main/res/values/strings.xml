@@ -143,4 +143,9 @@
     <string name="new_rank_label">New</string>
     <string name="search_label">Поиск</string>
     <string name="search_close_label">Закрыть поиск</string>
+    <!-- ПУСТАЯ VIEW -->
+    <string name="empty_default_title">Здесь пока ничего нет</string>
+    <string name="empty_default_message">Но скоро обязательно появится</string>
+    <string name="user_result_empty_title">Результаты не найдены</string>
+    <string name="user_result_empty_comment">Попробуйте изменить запрос</string>
 </resources>

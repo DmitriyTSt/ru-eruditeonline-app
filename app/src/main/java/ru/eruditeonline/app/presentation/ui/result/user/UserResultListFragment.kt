@@ -136,6 +136,7 @@ class UserResultListFragment : BaseFragment(R.layout.fragment_user_result_list) 
         adapter = userResultsAdapter.withLoadStateFooter(
             footer = PagingLoadStateAdapter { userResultsAdapter.retry() }
         )
+        emptyView = binding.emptyView
         addLinearSpaceItemDecoration(R.dimen.padding_8)
     }
 }
