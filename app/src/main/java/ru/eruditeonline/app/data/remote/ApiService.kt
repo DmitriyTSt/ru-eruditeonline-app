@@ -56,8 +56,14 @@ interface ApiService {
 
     @GET("v1/user/results")
     suspend fun getUserResults(
-        @Query("email") email: String?,
         @Query("query") query: String?,
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
+    ): ListResponse<ApiTestUserResultRow>
+
+    @GET("v1/user/resultsByEmail")
+    suspend fun getResultsByEmail(
+        @Query("email") email: String,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int,
     ): ListResponse<ApiTestUserResultRow>

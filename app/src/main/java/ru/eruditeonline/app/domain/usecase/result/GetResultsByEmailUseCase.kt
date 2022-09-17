@@ -4,28 +4,28 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import ru.eruditeonline.app.data.model.test.TestUserResultRow
 import ru.eruditeonline.app.data.repository.ResultRepository
-import ru.eruditeonline.app.domain.paging.UserResultsPagingSource
+import ru.eruditeonline.app.domain.paging.ResultsByEmailPagingSource
 import ru.eruditeonline.app.domain.paging.base.createPager
 import ru.eruditeonline.app.domain.usecase.base.UseCasePaged
 import javax.inject.Inject
 
 /**
- * Получение результатов пользователя
+ * Получение результатов по email
  */
-class GetUserResultsUseCase @Inject constructor(
+class GetResultsByEmailUseCase @Inject constructor(
     private val resultRepository: ResultRepository,
-) : UseCasePaged<GetUserResultsUseCase.Params, TestUserResultRow>() {
+) : UseCasePaged<GetResultsByEmailUseCase.Params, TestUserResultRow>() {
 
     override fun execute(params: Params): Flow<PagingData<TestUserResultRow>> {
         return createPager(
-            UserResultsPagingSource(
-                query = params.query?.takeIf { it.isNotEmpty() },
+            ResultsByEmailPagingSource(
+                email = params.email,
                 repository = resultRepository,
             )
         ).flow
     }
 
     data class Params(
-        val query: String? = null,
+        val email: String,
     )
 }
