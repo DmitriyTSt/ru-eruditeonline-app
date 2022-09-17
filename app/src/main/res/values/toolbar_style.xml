@@ -30,9 +30,11 @@
 
     <style name="ToolbarThemeOverlay" parent="">
         <item name="actionMenuTextColor">?appBarTextColor</item>
+        <item name="actionMenuTextAppearance">@style/Font.Body2.Medium</item>
     </style>
 
     <style name="ToolbarThemeOverlay.Dashboard">
         <item name="actionMenuTextColor">?colorOnPrimary</item>
+        <item name="actionMenuTextAppearance">@style/Font.Body2.Medium</item>
     </style>
 </resources>
