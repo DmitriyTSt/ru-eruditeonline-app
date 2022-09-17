@@ -8,7 +8,10 @@ import ru.eruditeonline.app.data.remote.response.ListResponse
 
 interface ResultRepository {
     /** Получение результатов пользователя */
-    suspend fun getUserResults(email: String?, query: String?, offset: Int, limit: Int): ListResponse<TestUserResultRow>
+    suspend fun getUserResults(query: String?, offset: Int, limit: Int): ListResponse<TestUserResultRow>
+
+    /** Получение результатов по email */
+    suspend fun getResultsByEmail(email: String, offset: Int, limit: Int): ListResponse<TestUserResultRow>
 
     /** Получение общих результатов */
     suspend fun getCommonResults(offset: Int, limit: Int): ListResponse<TestCommonResultRow>

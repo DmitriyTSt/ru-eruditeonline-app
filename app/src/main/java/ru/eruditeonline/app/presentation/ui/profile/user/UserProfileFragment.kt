@@ -36,7 +36,7 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             viewModel.openCommonResults()
         }
         textViewSearchResultsByQuery.setOnClickListener {
-            viewModel.openSearchResultsByQuery()
+            viewModel.openSearchResultsByEmail()
         }
         textViewUserResults.setOnClickListener {
             viewModel.openUserResults()

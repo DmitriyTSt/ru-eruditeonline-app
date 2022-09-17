@@ -96,6 +96,7 @@ class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_item
             )
             itemAnimator = null
         }
+        recyclerView.emptyView = emptyView
         applyProductListViewType(itemsAdapter.viewType)
     }
 

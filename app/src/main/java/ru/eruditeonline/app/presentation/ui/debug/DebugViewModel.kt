@@ -16,6 +16,7 @@ class DebugViewModel @Inject constructor(
 ) : BaseViewModel() {
     /** Данные сервера */
     private val _endpointDataLiveData = MutableLiveData<LoadableState<GetEndpointDataUseCase.Result>>()
+    val endpointDataLiveData: LiveData<LoadableState<GetEndpointDataUseCase.Result>> = _endpointDataLiveData
 
     /** Отображение выбора Endpoint - Dev */
     val showDevEndpointLiveEvent: LiveData<Boolean> = _endpointDataLiveData.map { state ->

@@ -45,7 +45,7 @@ class PreferencesStorage @Inject constructor(
         }
 
     var currentTheme: String
-        get() = regularPreferenceStorage.getString(KEY_CURRENT_THEME, Theme.COLORED.toString()) ?: Theme.COLORED.toString()
+        get() = regularPreferenceStorage.getString(KEY_CURRENT_THEME, Theme.LIGHT.toString()) ?: Theme.LIGHT.toString()
         set(value) {
             regularPreferenceStorage.edit().putString(KEY_CURRENT_THEME, value).apply()
         }

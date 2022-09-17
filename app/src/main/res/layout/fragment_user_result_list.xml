@@ -13,6 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:menu="@menu/user_result_list"
             app:navigationIcon="?iconBack"
             app:title="@string/user_result_list_title">
 
@@ -29,7 +30,6 @@
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:focusable="false"
                     android:hint="@string/search_result_hint"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
@@ -39,17 +39,6 @@
                     android:textColor="?appBarTextColor"
                     android:textColorHint="?appBarTextColor"
                     android:textCursorDrawable="@null" />
-
-                <ImageView
-                    android:id="@+id/imageViewClose"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="10dp"
-                    android:background="?selectableItemBackgroundBorderless"
-                    android:contentDescription="@null"
-                    android:padding="2dp"
-                    android:src="?iconClose" />
             </LinearLayout>
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -60,14 +49,27 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/padding_16"
-            android:paddingVertical="16dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_user_result" />
+            android:layout_height="match_parent">
+
+            <ru.eruditeonline.app.presentation.ui.views.EmptyRecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingVertical="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_user_result" />
+
+            <ru.eruditeonline.app.presentation.ui.views.EmptyView
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:emptyComment="@string/user_result_empty_comment"
+                app:emptyTitle="@string/user_result_empty_title" />
+
+        </FrameLayout>
     </ru.eruditeonline.app.presentation.ui.views.StateViewFlipper>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

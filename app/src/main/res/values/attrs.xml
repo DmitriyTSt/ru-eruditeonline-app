@@ -11,6 +11,12 @@
         <attr name="backgroundColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="EmptyView">
+        <attr name="emptyTitle" format="string|reference" />
+        <attr name="emptyComment" format="string|reference" />
+        <attr name="emptyButton" format="string|reference" />
+    </declare-styleable>
+
     <attr name="brandBackground" format="color" />
     <attr name="appBarBackgroundColor" format="color" />
     <attr name="appBarTextColor" format="color" />
@@ -21,4 +27,5 @@
     <attr name="iconViewTypeRow" format="reference" />
     <attr name="iconViewTypeCard" format="reference" />
     <attr name="iconFilter" format="reference" />
+    <attr name="iconSearch" format="reference" />
 </resources>

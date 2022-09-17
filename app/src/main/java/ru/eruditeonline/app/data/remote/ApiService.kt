@@ -33,71 +33,77 @@ import ru.eruditeonline.app.data.remote.response.TokenData
 import ru.eruditeonline.app.data.remote.response.WebPageResponse
 
 interface ApiService {
-    @GET("main")
+    @GET("v1/main")
     suspend fun getMainSections(): ListResponse<ApiMainSection>
 
-    @POST("competition/items")
+    @POST("v1/competition/items")
     suspend fun getCompetitionItems(@Body params: CompetitionItemsParams): ObjectResponse<CompetitionItemsData>
 
-    @GET("competition/item/{id}")
+    @GET("v1/competition/item/{id}")
     suspend fun getCompetitionItem(@Path("id") id: Int): ObjectResponse<CompetitionItemData>
 
-    @GET("competition/test/{id}")
+    @GET("v1/competition/test/{id}")
     suspend fun getCompetitionTest(@Path("id") id: String): ObjectResponse<CompetitionTestData>
 
-    @POST("competition/check")
+    @POST("v1/competition/check")
     suspend fun checkTest(@Body params: CompetitionCheckParams): ObjectResponse<ApiTempResult>
 
-    @POST("result/save")
+    @POST("v1/result/save")
     suspend fun saveResult(@Body params: SaveResultParams): ObjectResponse<ApiCreatedResult>
 
-    @GET("profile")
+    @GET("v1/profile")
     suspend fun getProfile(): ObjectResponse<ProfileData>
 
-    @GET("user/results")
+    @GET("v1/user/results")
     suspend fun getUserResults(
-        @Query("email") email: String?,
         @Query("query") query: String?,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int,
     ): ListResponse<ApiTestUserResultRow>
 
-    @GET("result/{id}")
+    @GET("v1/user/resultsByEmail")
+    suspend fun getResultsByEmail(
+        @Query("email") email: String,
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int,
+    ): ListResponse<ApiTestUserResultRow>
+
+    @GET("v1/result/{id}")
     suspend fun getResult(@Path("id") id: Int): ObjectResponse<TestUserResultResponse>
 
-    @GET("results")
+    @GET("v1/results")
     suspend fun getCommonResults(
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): ListResponse<ApiTestCommonResultRow>
 
-    @POST("rating")
+    @POST("v1/rating")
     suspend fun getRating(@Body params: RatingParams): ListResponse<ApiRatingRow>
 
-    @GET("countries")
+    @GET("v1/countries")
     suspend fun getCountries(): ListResponse<ApiCountry>
 
-    @GET("diplomas")
+    @GET("v1/diplomas")
     suspend fun getDiplomas(): ListResponse<ApiDiploma>
 
-    @POST("auth/anonym")
+    @POST("v1/auth/anonym")
     suspend fun createAnonym(@Body params: CreateAnonymParams): ObjectResponse<TokenData>
 
-    @GET("auth/confirm")
+    @GET("v1/auth/confirm")
     suspend fun confirmEmail(@Query("token") token: String): EmptyResponse
 
-    @POST("auth/login")
+    @POST("v1/auth/login")
     suspend fun login(@Body params: LoginParams): ObjectResponse<TokenData>
 
-    @GET("auth/logout")
+    @GET("v1/auth/logout")
     suspend fun logout(): ObjectResponse<TokenData>
 
-    @POST("auth/registration")
+    @POST("v1/auth/registration")
     suspend fun registration(@Body params: RegistrationParams): EmptyResponse
 
-    @GET("webpages")
+    @GET("v1/webpages")
     suspend fun getWebPages(): ListResponse<ApiWebPageItem>
 
-    @GET("webpage")
+    @GET("v1/webpage")
     suspend fun getWebPage(@Query("path") path: String): ObjectResponse<WebPageResponse>
 }

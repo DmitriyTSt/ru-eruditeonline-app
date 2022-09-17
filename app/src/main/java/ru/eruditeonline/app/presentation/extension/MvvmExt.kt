@@ -8,14 +8,14 @@ import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 
 @MainThread
 inline fun <reified VM : ViewModel> BaseFragment.appViewModels() =
-    createViewModelLazy(VM::class, { this.viewModelStore }, { viewModelFactory })
+    createViewModelLazy(VM::class, { this.viewModelStore }, factoryProducer = { viewModelFactory })
 
 @MainThread
 inline fun <reified VM : ViewModel> BaseFragment.appActivityViewModels() =
     createViewModelLazy(
         VM::class,
         { requireActivity().viewModelStore },
-        {
+        factoryProducer = {
             if (requireActivity() is BaseActivity) {
                 (requireActivity() as BaseActivity).viewModelFactory
             } else {

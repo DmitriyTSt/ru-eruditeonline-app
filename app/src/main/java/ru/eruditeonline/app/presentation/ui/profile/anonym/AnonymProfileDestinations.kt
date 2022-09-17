@@ -7,7 +7,6 @@ import androidx.navigation.NavOptions
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.navigation.Destination
 import ru.eruditeonline.app.presentation.ui.profile.ProfileFragmentDirections
-import ru.eruditeonline.app.presentation.ui.result.search.SearchResultMode
 import javax.inject.Inject
 
 class AnonymProfileDestinations @Inject constructor(
@@ -32,7 +31,7 @@ class AnonymProfileDestinations @Inject constructor(
 
     /** Поиск результатов по email */
     fun searchResultsByEmail() = Destination.Action(
-        ProfileFragmentDirections.actionProfileFragmentToSearchResultFragment(SearchResultMode.EMAIL)
+        ProfileFragmentDirections.actionProfileFragmentToSearchResultFragment()
     )
 
     /** Перезагрузка стека */

@@ -15,13 +15,20 @@ class ResultRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val testMapper: TestMapper,
 ) : ResultRepository {
-    override suspend fun getUserResults(
-        email: String?,
-        query: String?,
-        offset: Int,
-        limit: Int
-    ): ListResponse<TestUserResultRow> {
-        return apiService.getUserResults(email, query, offset, limit).data?.let { data ->
+
+    override suspend fun getUserResults(query: String?, offset: Int, limit: Int): ListResponse<TestUserResultRow> {
+        return apiService.getUserResults(query, offset, limit).data?.let { data ->
+            ListResponse(
+                ListResponse.Data(
+                    list = data.list.orEmpty().map { testMapper.fromApiToModel(it) },
+                    hasMore = data.hasMore.orDefault(),
+                )
+            )
+        } ?: throw IllegalStateException("User results data null from api")
+    }
+
+    override suspend fun getResultsByEmail(email: String, offset: Int, limit: Int): ListResponse<TestUserResultRow> {
+        return apiService.getResultsByEmail(email, offset, limit).data?.let { data ->
             ListResponse(
                 ListResponse.Data(
                     list = data.list.orEmpty().map { testMapper.fromApiToModel(it) },

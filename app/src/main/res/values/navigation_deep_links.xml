@@ -14,8 +14,7 @@
     <string name="navigation_deep_link_to_results">app://results_common</string>
     <string name="navigation_deep_link_to_rating_single_tab">app://rating/by/{mode}</string>
     <string name="navigation_deep_link_to_rating_single_tab_template">app://rating/by/%s</string>
-    <string name="navigation_deep_link_to_results_search">app://results_search/{mode}</string>
-    <string name="navigation_deep_link_to_results_search_template">app://results_search/%s</string>
+    <string name="navigation_deep_link_to_results_search">app://results_search</string>
     <string name="navigation_deep_link_to_web_page">app://webpage?path={path}</string>
     <string name="navigation_deep_link_to_web_page_template">app://webpage?path=%s</string>
     <string name="navigation_deep_link_to_debug">app://debug</string>

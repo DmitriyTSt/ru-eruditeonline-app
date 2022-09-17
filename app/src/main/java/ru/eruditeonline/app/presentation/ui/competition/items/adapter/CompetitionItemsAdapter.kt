@@ -49,7 +49,7 @@ class CompetitionItemsAdapter @Inject constructor(
         val defaultColumns = maxColumns / spanCount
         recyclerView?.let { rv ->
             val concatAdapter = rv.adapter as ConcatAdapter
-            val itemsAmount = concatAdapter.adapters.sumBy {
+            val itemsAmount = concatAdapter.adapters.sumOf {
                 if (it !is LoadStateAdapter) it.itemCount else 0
             }
             return if (position >= itemsAmount) maxColumns else defaultColumns

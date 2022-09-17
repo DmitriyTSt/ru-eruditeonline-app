@@ -37,12 +37,16 @@
         <item name="chipStyle">@style/ChipStyle</item>
         <item name="textInputStyle">@style/TextInputLayoutStyle</item>
         <item name="tabStyle">@style/TabStyle</item>
+        <item name="alertDialogStyle">@style/AlertDialogTheme</item>
+        <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="materialAlertDialogTheme">@style/AlertDialogTheme</item>
 
         <item name="iconBack">@drawable/ic_back</item>
         <item name="iconClose">@drawable/ic_close</item>
         <item name="iconViewTypeCard">@drawable/ic_view_type_card</item>
         <item name="iconViewTypeRow">@drawable/ic_view_type_row</item>
         <item name="iconFilter">@drawable/ic_filter</item>
+        <item name="iconSearch">@drawable/ic_search</item>
     </style>
 
     <style name="Theme.EruditeOnline.Light">
@@ -61,6 +65,7 @@
         <item name="iconViewTypeCard">@drawable/ic_view_type_card_dark</item>
         <item name="iconViewTypeRow">@drawable/ic_view_type_row_dark</item>
         <item name="iconFilter">@drawable/ic_filter_dark</item>
+        <item name="iconSearch">@drawable/ic_search_dark</item>
     </style>
 
     <style name="RatingBarTheme" parent="Theme.EruditeOnline">

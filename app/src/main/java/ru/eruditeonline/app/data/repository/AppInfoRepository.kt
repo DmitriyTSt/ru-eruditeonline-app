@@ -7,6 +7,11 @@ interface AppInfoRepository {
 
     val userAgent: String
 
+    val versionCode: Int
+    val versionName: String
+
+    val versionNameWithSuffix: String
+
     companion object {
         // Build types
         const val RELEASE = "release"

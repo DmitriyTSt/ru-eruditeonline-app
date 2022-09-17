@@ -43,6 +43,13 @@
                     android:src="@drawable/img_logo"
                     app:shapeAppearanceOverlay="@style/RoundedImageOverlay" />
 
+                <TextView
+                    android:id="@+id/textViewAppVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/Font.Body2.Regular" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"

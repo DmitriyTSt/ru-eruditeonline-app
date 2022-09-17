@@ -9,5 +9,10 @@ class AppInfoRepositoryImpl @Inject constructor(
     override val isDebug: Boolean = buildConfigRepository.buildType == AppInfoRepository.DEBUG
     override val isInternal: Boolean = buildConfigRepository.buildType == AppInfoRepository.INTERNAL
 
-    override val userAgent: String = "android-${buildConfigRepository.versionName}(${buildConfigRepository.versionCode})"
+    override val versionCode: Int = buildConfigRepository.versionCode
+    override val versionName: String = buildConfigRepository.versionName
+    override val versionNameWithSuffix: String =
+        "${buildConfigRepository.versionName}${if (isRelease) "" else "-${buildConfigRepository.buildType}"}"
+
+    override val userAgent: String = "android-$versionNameWithSuffix($versionCode)"
 }

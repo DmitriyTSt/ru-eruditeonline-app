@@ -48,19 +48,22 @@
                     android:id="@+id/radioButtonDebugRelease"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/debug_release" />
+                    android:text="@string/debug_release"
+                    android:textAppearance="@style/Font.Body2.Regular" />
 
                 <RadioButton
                     android:id="@+id/radioButtonDebugDebug"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/debug_debug" />
+                    android:text="@string/debug_debug"
+                    android:textAppearance="@style/Font.Body2.Regular" />
 
                 <RadioButton
                     android:id="@+id/radioButtonDebugCustom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/debug_custom" />
+                    android:text="@string/debug_custom"
+                    android:textAppearance="@style/Font.Body2.Regular" />
 
             </RadioGroup>
 

@@ -37,7 +37,8 @@
     <string name="rating_single_tab_title_template">Рейтинг %s</string>
     <string name="common_result_list_title">Итоги</string>
     <string name="search_result_by_email_hint">Введите email…</string>
-    <string name="search_result_hint">Поиск…</string>
+    <string name="search_result_by_email_help_text">Напишите полностью email адрес, который указывали при прохождении теста, и нажмите поиск</string>
+    <string name="search_result_hint">Конкурс или предмет…</string>
     <string name="search_results_by_email_title">Поиск результатов по email</string>
     <string name="search_results_title">Поиск результатов</string>
     <string name="user_result_list_title">Результаты</string>
@@ -130,9 +131,9 @@
     <string name="reset_filters_label">Сбросить</string>
     <!-- ДЕБАГ -->
     <string name="debug_title">Дебаг</string>
-    <string name="debug_release">production</string>
-    <string name="debug_debug">develop</string>
-    <string name="debug_custom">custom</string>
+    <string name="debug_release">PRODUCTION %s</string>
+    <string name="debug_debug">DEVELOP %s</string>
+    <string name="debug_custom">CUSTOM</string>
     <string name="endpoint_placeholder">http://localhost:8080/api/</string>
     <string name="endpoint_regex">^(http|https):\/\/([^\/:]+)(:[0-9]+)?[^:]+\/$</string>
     <string name="endpoint_error">Введите base url, оканчивающийся на /</string>
@@ -140,4 +141,13 @@
     <string name="custom_endpoint_hint">API endpoint</string>
     <string name="server_env_title">Среда сервера</string>
     <string name="new_rank_label">New</string>
+    <string name="search_label">Поиск</string>
+    <string name="search_close_label">Закрыть поиск</string>
+    <!-- ПУСТАЯ VIEW -->
+    <string name="empty_default_title">Здесь пока ничего нет</string>
+    <string name="empty_default_message">Но скоро обязательно появится</string>
+    <string name="user_result_empty_title">Результаты не найдены</string>
+    <string name="user_result_empty_comment">Попробуйте изменить запрос</string>
+    <string name="competition_empty_title">Ничего не найдено</string>
+    <string name="competition_empty_comment">Попробуйте изменить настройки фильтрации</string>
 </resources>
