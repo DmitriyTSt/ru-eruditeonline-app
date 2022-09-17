@@ -94,7 +94,7 @@ android {
         variant.outputs.all { output ->
             def appName = 'eruditeonline'
             def buildType = variant.buildType.name
-            def newName = "${appName}-${defaultConfig.versionName}_${getVersionCode()}_${buildType}"
+            def newName = "${appName}-${defaultConfig.versionName}_${defaultConfig.versionCode}_${buildType}"
             outputFileName = newName.toLowerCase() + ".apk"
         }
     }
