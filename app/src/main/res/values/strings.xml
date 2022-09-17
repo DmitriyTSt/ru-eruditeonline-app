@@ -148,4 +148,6 @@
     <string name="empty_default_message">Но скоро обязательно появится</string>
     <string name="user_result_empty_title">Результаты не найдены</string>
     <string name="user_result_empty_comment">Попробуйте изменить запрос</string>
+    <string name="competition_empty_title">Ничего не найдено</string>
+    <string name="competition_empty_comment">Попробуйте изменить настройки фильтрации</string>
 </resources>
