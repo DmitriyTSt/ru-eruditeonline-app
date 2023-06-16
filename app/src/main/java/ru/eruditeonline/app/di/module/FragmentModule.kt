@@ -2,6 +2,7 @@ package ru.eruditeonline.app.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import ru.eruditeonline.app.presentation.ui.appupdate.AppUpdateFragment
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginFragment
 import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationFragment
 import ru.eruditeonline.app.presentation.ui.auth.registrationsuccess.RegistrationSuccessFragment
@@ -116,4 +117,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun debugFragment(): DebugFragment
+
+    @ContributesAndroidInjector
+    abstract fun appUpdateFragment(): AppUpdateFragment
 }

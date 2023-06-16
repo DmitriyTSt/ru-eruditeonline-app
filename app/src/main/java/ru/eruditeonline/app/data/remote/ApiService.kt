@@ -5,6 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import ru.eruditeonline.app.data.remote.model.base.ApiAppConfig
 import ru.eruditeonline.app.data.remote.model.base.ApiCountry
 import ru.eruditeonline.app.data.remote.model.base.ApiDiploma
 import ru.eruditeonline.app.data.remote.model.base.ApiWebPageItem
@@ -17,6 +18,7 @@ import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResultRow
 import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
 import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
 import ru.eruditeonline.app.data.remote.params.CreateAnonymParams
+import ru.eruditeonline.app.data.remote.params.GetAppConfigParams
 import ru.eruditeonline.app.data.remote.params.LoginParams
 import ru.eruditeonline.app.data.remote.params.RatingParams
 import ru.eruditeonline.app.data.remote.params.RegistrationParams
@@ -106,4 +108,7 @@ interface ApiService {
 
     @GET("v1/webpage")
     suspend fun getWebPage(@Query("path") path: String): ObjectResponse<WebPageResponse>
+
+    @POST("v1/app/config")
+    suspend fun getAppConfig(@Body params: GetAppConfigParams): ObjectResponse<ApiAppConfig>
 }

@@ -1,6 +1,8 @@
 package ru.eruditeonline.app.data.repository
 
 interface AppInfoRepository {
+    val buildType: String
+
     val isRelease: Boolean
     val isDebug: Boolean
     val isInternal: Boolean

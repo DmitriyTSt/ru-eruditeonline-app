@@ -16,6 +16,11 @@
             app:destination="@id/dashboard_graph"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_appUpdateFragment"
+            app:destination="@id/appUpdateFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <include app:graph="@navigation/dashboard_graph" />
@@ -27,5 +32,20 @@
     <include app:graph="@navigation/select_country_graph" />
     <include app:graph="@navigation/result_detail_graph" />
     <include app:graph="@navigation/debug_graph" />
+
+    <fragment
+        android:id="@+id/appUpdateFragment"
+        android:name="ru.eruditeonline.app.presentation.ui.appupdate.AppUpdateFragment"
+        android:label="AppUpdateFragment"
+        tools:layout="@layout/fragment_app_update">
+        <argument
+            android:name="appUpdate"
+            app:argType="ru.eruditeonline.app.data.model.base.AppUpdate" />
+        <action
+            android:id="@+id/action_appUpdateFragment_to_dashboard_graph"
+            app:destination="@id/dashboard_graph"
+            app:popUpTo="@id/appUpdateFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

@@ -150,4 +150,6 @@
     <string name="user_result_empty_comment">Попробуйте изменить запрос</string>
     <string name="competition_empty_title">Ничего не найдено</string>
     <string name="competition_empty_comment">Попробуйте изменить настройки фильтрации</string>
+    <string name="app_update_message">Появилось обновление для приложения. Пожалуйста, установите новую версию.</string>
+    <string name="app_update_label">Обновить приложение</string>
 </resources>

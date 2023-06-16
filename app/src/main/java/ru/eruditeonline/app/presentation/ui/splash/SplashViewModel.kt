@@ -16,8 +16,8 @@ class SplashViewModel @Inject constructor(
     private val isDebugButtonVisibleUseCase: IsDebugButtonVisibleUseCase,
 ) : BaseViewModel() {
     /** Начальная инициализация приложения */
-    private val _startFlowLiveEvent = SingleLiveEvent<LoadableState<Unit>>()
-    val startFlowLiveEvent: LiveData<LoadableState<Unit>> = _startFlowLiveEvent
+    private val _startFlowLiveEvent = SingleLiveEvent<LoadableState<SplashUseCase.Result>>()
+    val startFlowLiveEvent: LiveData<LoadableState<SplashUseCase.Result>> = _startFlowLiveEvent
 
     /** Видимость кнопки дебага */
     private val _isDebugButtonVisibleLiveData = MutableLiveData<LoadableState<Boolean>>()
@@ -26,8 +26,12 @@ class SplashViewModel @Inject constructor(
     fun runStartFlow() {
         _startFlowLiveEvent.launchLoadData(
             splashUseCase.executeFlow(Unit).map { state ->
-                if (state.isSuccess) {
-                    navigate(destinations.main())
+                state.doOnSuccess { result ->
+                    val destination = when (result) {
+                        is SplashUseCase.Result.AppUpdateScreen -> destinations.appUpdate(result.appUpdate)
+                        SplashUseCase.Result.MainScreen -> destinations.main()
+                    }
+                    navigate(destination)
                 }
                 state
             }

@@ -2,6 +2,8 @@ package ru.eruditeonline.app.di.module
 
 import dagger.Binds
 import dagger.Module
+import ru.eruditeonline.app.data.repository.AppConfigRepository
+import ru.eruditeonline.app.data.repository.AppConfigRepositoryImpl
 import ru.eruditeonline.app.data.repository.AppInfoRepository
 import ru.eruditeonline.app.data.repository.AppInfoRepositoryImpl
 import ru.eruditeonline.app.data.repository.AuthRepository
@@ -69,4 +71,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideEndpointRepository(endpointRepositoryImpl: EndpointRepositoryImpl): EndpointRepository
+
+    @Binds
+    abstract fun provideAppConfigRepository(appConfigRepositoryImpl: AppConfigRepositoryImpl): AppConfigRepository
 }
