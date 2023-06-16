@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.data.model.base.AppUpdate
 import ru.eruditeonline.app.presentation.navigation.Destination
 import javax.inject.Inject
 
@@ -20,5 +21,10 @@ class SplashDestinations @Inject constructor(
         NavDeepLinkRequest.Builder
             .fromUri(context.getString(R.string.navigation_deep_link_to_debug).toUri())
             .build()
+    )
+
+    /** Обновление приложения */
+    fun appUpdate(appUpdate: AppUpdate) = Destination.Action(
+        SplashFragmentDirections.actionSplashFragmentToAppUpdateFragment(appUpdate)
     )
 }

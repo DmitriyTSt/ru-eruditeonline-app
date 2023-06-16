@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.eruditeonline.app.di.module.viewmodel.BaseViewModelModule
 import ru.eruditeonline.app.di.util.ViewModelKey
+import ru.eruditeonline.app.presentation.ui.appupdate.AppUpdateViewModel
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginViewModel
 import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationViewModel
 import ru.eruditeonline.app.presentation.ui.auth.registrationsuccess.RegistrationSuccessViewModel
@@ -176,4 +177,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(DebugViewModel::class)
     abstract fun debugViewModel(viewModel: DebugViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AppUpdateViewModel::class)
+    abstract fun appUpdateViewModel(viewModel: AppUpdateViewModel): ViewModel
 }
