@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?colorPrimary"
+        app:titleTextColor="?colorOnPrimary"
         tools:title="@string/rating_day_hint" />
 
     <androidx.recyclerview.widget.RecyclerView
