@@ -121,7 +121,7 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
         }
         textViewSpentTime.text = getString(
             R.string.temp_result_spent_time_template,
-            "%02d.%02d".format(
+            "%02d:%02d".format(
                 result.spentTime / 60,
                 result.spentTime % 60,
             )
