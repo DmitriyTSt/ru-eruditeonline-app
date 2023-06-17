@@ -40,4 +40,8 @@ class DateFormatter @Inject constructor() {
     fun formatYear(date: LocalDate): String {
         return yearTemplate.format(date)
     }
+
+    fun formatStudyYear(date: LocalDate): String {
+        return "${formatYear(date)} - ${formatYear(date.plusYears(1))}"
+    }
 }

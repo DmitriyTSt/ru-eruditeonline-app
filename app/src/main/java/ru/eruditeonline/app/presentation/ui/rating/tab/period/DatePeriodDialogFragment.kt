@@ -62,9 +62,9 @@ class DatePeriodDialogFragment : DialogFragment(R.layout.fragment_date_period) {
 
     private fun bindYear() {
         periodsAdapter.submitList(
-            IntRange(1, 2)
-                .map { LocalDate.now().minusYears(it.toLong()) }
-                .map { DatePeriod(it, dateFormatter.formatYear(it)) }
+            IntRange(2020, LocalDate.now().year - 1)
+                .map { year -> LocalDate.now().withYear(year) }
+                .map { date -> DatePeriod(date, dateFormatter.formatStudyYear(date)) }
         )
     }
 }

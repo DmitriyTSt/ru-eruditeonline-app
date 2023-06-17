@@ -94,7 +94,7 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item), D
         val formattedDate = when (mode) {
             RatingTabItemMode.DAY -> dateFormatter.formatTextMonthFull(date)
             RatingTabItemMode.MONTH -> dateFormatter.formatTextMonthMonth(date)
-            RatingTabItemMode.YEAR -> dateFormatter.formatYear(date)
+            RatingTabItemMode.YEAR -> dateFormatter.formatStudyYear(date)
         }
         editText.setText(formattedDate)
         when (mode) {
