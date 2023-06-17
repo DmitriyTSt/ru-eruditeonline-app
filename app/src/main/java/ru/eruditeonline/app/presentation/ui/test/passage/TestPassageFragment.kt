@@ -138,6 +138,7 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
                 textInputLayoutAnswer.isVisible = true
                 recyclerView.isVisible = false
                 textInputLayoutAnswer.hint = question.label
+                editTextAnswer.setText("")
                 fabSelect.setOnClickListener {
                     viewModel.saveSingleAnswer(editTextAnswer.text.toString(), question.id)
                 }
