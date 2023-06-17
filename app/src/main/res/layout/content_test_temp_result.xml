@@ -106,11 +106,11 @@
                 android:id="@+id/imageViewAnswersToggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="8dp"
                 android:background="?selectableItemBackgroundBorderless"
                 android:contentDescription="@null"
                 android:padding="@dimen/clickable_image_padding"
-                android:src="@drawable/ic_arrow_up" />
+                android:src="@drawable/ic_arrow_down" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -120,8 +120,10 @@
             android:layout_marginBottom="12dp"
             android:nestedScrollingEnabled="false"
             android:paddingHorizontal="@dimen/padding_16"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_temp_result_answer" />
+            tools:listitem="@layout/item_temp_result_answer"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/textViewResultText"
