@@ -18,15 +18,13 @@ class CompetitionPassData(
         @Parcelize
         class ListAnswer(
             override val questionId: Int,
-            /** null, если не выбран */
-            val answerId: String?,
+            val answerId: String,
         ) : Question(questionId)
 
         @Parcelize
         class SingleAnswer(
             override val questionId: Int,
-            /** null, если не ответили */
-            val textAnswer: String?,
+            val textAnswer: String,
         ) : Question(questionId)
     }
 }

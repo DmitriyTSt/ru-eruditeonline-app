@@ -25,8 +25,12 @@ fun Fragment.errorSnackbar(error: ParsedError) {
     )
 }
 
-fun Fragment.errorSnackbar(message: String) {
-    showCustomSnackbar(if (this is BottomSheetDialogFragment) dialog?.window?.decorView else view, message)
+fun Fragment.errorSnackbar(message: String, marginBottom: Int = 0) {
+    showCustomSnackbar(
+        view = if (this is BottomSheetDialogFragment) dialog?.window?.decorView else view,
+        message = message,
+        marginBottom = marginBottom,
+    )
 }
 
 private fun showCustomSnackbar(

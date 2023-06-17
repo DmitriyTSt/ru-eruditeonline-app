@@ -17,6 +17,7 @@ import ru.eruditeonline.app.databinding.FragmentTestPassageBinding
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
+import ru.eruditeonline.app.presentation.extension.errorSnackbar
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.extension.setTextFromHtml
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -56,6 +57,9 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
         }
         questionLiveData.observe { (index, question) ->
             bindQuestion(index, question)
+        }
+        errorRequiredLiveEvent.observe {
+            errorSnackbar(getString(R.string.test_passage_required_answer_error), binding.content.fabSelect.height)
         }
     }
 
