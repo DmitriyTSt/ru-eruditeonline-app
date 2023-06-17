@@ -65,6 +65,24 @@
             tools:text="Международный онлайн-конкурс «Сервисы Интернет» с моментальным подведением итогов. Участникам предлагается ответить на 10-12 вопросов с вариантами ответов. Ограничение по времени не предусмотрено. Участие в конкурсе бесплатное, после подведения итогов можно заказать диплом для участника и грамоту для руководителя." />
 
         <TextView
+            android:id="@+id/textViewStartTestLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/competition_run_test_title"
+            android:textAppearance="@style/Font.Heading3.Medium" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_competition_test_button" />
+
+        <TextView
             android:id="@+id/textViewInfosTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,23 +99,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="2"
             tools:listitem="@layout/item_competition_info" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/competition_run_test_title"
-            android:textAppearance="@style/Font.Heading3.Medium" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewButtons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="16dp"
-            android:nestedScrollingEnabled="false"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_competition_test_button" />
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

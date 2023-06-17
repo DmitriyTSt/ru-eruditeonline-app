@@ -48,6 +48,7 @@ class CompetitionMapper @Inject constructor(
             id = api.id.orDefault(),
             title = api.title.orEmpty(),
             subject = api.subject.orEmpty(),
+            ages = api.ages.orEmpty(),
             icon = api.icon,
             difficulty = api.difficulty.orDefault(),
             tests = api.tests.orEmpty().map { fromApiToModel(it) },

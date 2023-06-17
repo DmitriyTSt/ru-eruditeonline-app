@@ -9,6 +9,7 @@ import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.model.test.Question
 import ru.eruditeonline.app.domain.usecase.test.GetTestUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import javax.inject.Inject
@@ -33,6 +34,10 @@ class TestPassageViewModel @Inject constructor(
     private val _questionLiveData = MutableLiveData<Pair<Int, Question>>()
     val questionLiveData: LiveData<Pair<Int, Question>> = _questionLiveData
 
+    /** Ошибка */
+    private val _errorRequiredLiveEvent = SingleLiveEvent<Unit>()
+    val errorRequiredLiveEvent: LiveData<Unit> = _errorRequiredLiveEvent
+
     private var startTestTime = 0L
     private val questionResults = mutableListOf<CompetitionPassData.Question>()
 
@@ -41,11 +46,19 @@ class TestPassageViewModel @Inject constructor(
     }
 
     fun saveSingleAnswer(text: String, questionId: Int) {
-        questionResults.add(CompetitionPassData.Question.SingleAnswer(questionId, text.takeIf { it.isNotEmpty() }))
+        if (text.isEmpty()) {
+            _errorRequiredLiveEvent.postValue(Unit)
+            return
+        }
+        questionResults.add(CompetitionPassData.Question.SingleAnswer(questionId, text))
         next()
     }
 
     fun saveListAnswer(answerId: String?, questionId: Int) {
+        if (answerId == null) {
+            _errorRequiredLiveEvent.postValue(Unit)
+            return
+        }
         questionResults.add(CompetitionPassData.Question.ListAnswer(questionId, answerId))
         next()
     }

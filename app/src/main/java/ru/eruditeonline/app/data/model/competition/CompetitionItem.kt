@@ -10,6 +10,8 @@ class CompetitionItem(
     val title: String,
     /** Предмет */
     val subject: String,
+    /** Возрастная категория */
+    val ages: String,
     /** Ссылка на изображение теста */
     val icon: String?,
     /** Сложность (от 1 до 5) */

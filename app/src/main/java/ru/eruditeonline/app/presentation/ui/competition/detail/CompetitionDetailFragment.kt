@@ -63,15 +63,20 @@ class CompetitionDetailFragment : BaseFragment(R.layout.fragment_competition_det
         binding.toolbar.title = item.subject
         imageView.load(item.icon)
         textViewTitle.text = item.title
-        textViewAges.text = getString(R.string.competition_ages_template, item.tests.joinToString { it.title })
+        textViewAges.text = getString(R.string.competition_ages_template, item.ages)
         imageViewDifficulty.setDifficulty(item.difficulty)
-        textViewDescription.text = item.description
+        val hasDescription = !item.description.isNullOrEmpty()
+        textViewDescription.isVisible = hasDescription
+        if (hasDescription) {
+            textViewDescription.text = item.description
+        }
         val hasInfos = item.infos.isNotEmpty()
         textViewInfosTitle.isVisible = hasInfos
         recyclerViewInfos.isVisible = hasInfos
         if (hasInfos) {
             infosAdapter.submitList(item.infos)
         }
+        textViewStartTestLabel.isVisible = item.tests.size > 1
         buttonsAdapter.submitList(item.tests)
     }
 }
