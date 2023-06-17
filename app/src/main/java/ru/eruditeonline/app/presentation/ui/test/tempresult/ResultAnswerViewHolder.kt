@@ -16,6 +16,12 @@ class ResultAnswerViewHolder(
 
     @SuppressLint("SetTextI18n")
     fun bind(answer: ResultAnswer) = with(binding) {
-        root.text = "${answer.question.title}. ${answer.answerText ?: root.context.getString(R.string.empty_answer)}"
+        root.text = buildString {
+            append("${answer.question.title}. ${answer.answerText ?: root.context.getString(R.string.empty_answer)}")
+            if (answer.correct != null && !answer.correct.isCorrect) {
+                append("\n")
+                append(root.context.getString(R.string.result_corrent_answer_template, answer.correct.answerText))
+            }
+        }
     }
 }

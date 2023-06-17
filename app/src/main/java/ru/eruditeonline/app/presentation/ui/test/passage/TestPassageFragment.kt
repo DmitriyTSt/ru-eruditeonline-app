@@ -2,11 +2,14 @@ package ru.eruditeonline.app.presentation.ui.test.passage
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.Insets
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updateMargins
 import androidx.core.view.updatePadding
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -18,6 +21,7 @@ import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.errorSnackbar
+import ru.eruditeonline.app.presentation.extension.hideSoftKeyboard
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.extension.setTextFromHtml
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -29,6 +33,8 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
     private val binding by viewBinding(FragmentTestPassageBinding::bind)
     private val viewModel: TestPassageViewModel by appViewModels()
     private val args: TestPassageFragmentArgs by navArgs()
+
+    private val margin16 by lazy { resources.getDimensionPixelSize(R.dimen.margin_16) }
 
     @Inject lateinit var answersAdapter: AnswersAdapter
 
@@ -65,9 +71,13 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
 
     private fun setupInsets() = with(binding) {
         root.doOnApplyWindowInsets { _, insets, _ ->
-            val windowInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val windowInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
             toolbarLoading.updatePadding(top = windowInsets.top)
             content.appBarLayout.updatePadding(top = windowInsets.top)
+            content.linearLayoutContent.updatePadding(bottom = windowInsets.bottom)
+            content.fabSelect.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                updateMargins(bottom = margin16 + windowInsets.bottom)
+            }
             WindowInsetsCompat.Builder().setInsets(
                 WindowInsetsCompat.Type.systemBars(),
                 Insets.of(
@@ -123,6 +133,7 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
             imageViewQuestion.load(question.image)
         }
         linearProgressIndicator.setProgressCompat(index + 1, false)
+        nestedScrollView.scrollTo(0, 0)
 
         when (question) {
             is Question.ListAnswer -> {
@@ -133,6 +144,7 @@ class TestPassageFragment : BaseFragment(R.layout.fragment_test_passage) {
                 fabSelect.setOnClickListener {
                     viewModel.saveListAnswer(answersAdapter.selectedAnswerId, question.id)
                 }
+                activity?.hideSoftKeyboard()
             }
             is Question.SingleAnswer -> {
                 textInputLayoutAnswer.isVisible = true
