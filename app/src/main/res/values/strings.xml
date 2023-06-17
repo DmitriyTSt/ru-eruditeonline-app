@@ -154,4 +154,6 @@
     <string name="app_update_label">Обновить приложение</string>
     <string name="test_passage_required_answer_error">Укажите ответ</string>
     <string name="result_corrent_answer_template">Правильный ответ: %s</string>
+    <string name="rating_empty_title">Результатов не найдено</string>
+    <string name="rating_empty_comment">Пройдите конкурс, и будете первым</string>
 </resources>

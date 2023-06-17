@@ -49,14 +49,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/padding_16"
-            android:paddingTop="@dimen/rating_selector_height"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_rating_row" />
+            android:layout_height="match_parent">
+
+            <ru.eruditeonline.app.presentation.ui.views.EmptyRecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:paddingTop="@dimen/rating_selector_height"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_rating_row" />
+
+            <ru.eruditeonline.app.presentation.ui.views.EmptyView
+                android:id="@+id/emptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:emptyComment="@string/rating_empty_comment"
+                app:emptyTitle="@string/rating_empty_title" />
+        </FrameLayout>
     </ru.eruditeonline.app.presentation.ui.views.StateViewFlipper>
 
 </FrameLayout>

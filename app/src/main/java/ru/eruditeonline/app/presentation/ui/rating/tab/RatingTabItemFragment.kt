@@ -80,6 +80,7 @@ class RatingTabItemFragment : BaseFragment(R.layout.fragment_rating_tab_item), D
 
     private fun setupList() = with(binding.recyclerView) {
         adapter = ratingRowsAdapter
+        emptyView = binding.emptyView
         addLinearSpaceItemDecoration(R.dimen.padding_8)
         addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
