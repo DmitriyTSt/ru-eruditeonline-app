@@ -12,6 +12,8 @@ class ApiCompetitionItem(
     @SerializedName("title") val title: String?,
     /** Предмет */
     @SerializedName("subject") val subject: String?,
+    /** Возрастная категория */
+    @SerializedName("ages") val ages: String?,
     /** Ссылка на изображение теста */
     @SerializedName("icon") val icon: String?,
     /** Сложность (от 1 до 5) */
