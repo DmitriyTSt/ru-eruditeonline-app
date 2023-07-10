@@ -9,6 +9,9 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.addCallback
+import androidx.core.graphics.Insets
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
@@ -16,7 +19,7 @@ import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.base.WebPage
 import ru.eruditeonline.app.databinding.FragmentWebPageBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.managers.InnerDeepLinkManager
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -45,7 +48,7 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
-        toolbar.fitTopInsetsWithPadding()
+        setupInsets()
         toolbar.setNavigationOnClickListener {
             viewModel.onBackPressed()
         }
@@ -88,6 +91,23 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
         // Чтобы коллбэки не вызывались после смерти вью
         binding.webView.webViewClient = object : WebViewClient() {}
         super.onDestroyView()
+    }
+
+    private fun setupInsets() = with(binding) {
+        root.doOnApplyWindowInsets { _, insets, _ ->
+            val windowInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+            toolbar.updatePadding(top = windowInsets.top)
+            root.updatePadding(bottom = windowInsets.bottom)
+            WindowInsetsCompat.Builder().setInsets(
+                WindowInsetsCompat.Type.systemBars(),
+                Insets.of(
+                    windowInsets.left,
+                    0,
+                    windowInsets.right,
+                    0,
+                )
+            ).build()
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
