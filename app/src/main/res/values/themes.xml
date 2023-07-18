@@ -73,9 +73,12 @@
         <item name="colorControlActivated">@color/selective_yellow</item>
     </style>
 
-    <style name="StartTheme" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/green_pea</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
-        <item name="postSplashScreenTheme">@style/Theme.EruditeOnline</item>
+    <style name="StartTheme" parent="Theme.EruditeOnline">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/bg_start</item>
     </style>
 </resources>
