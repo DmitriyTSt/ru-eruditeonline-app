@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding

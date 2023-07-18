@@ -1,8 +1,6 @@
 package ru.eruditeonline.app.domain.usecase
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
 import ru.eruditeonline.app.data.model.base.AppUpdate
 import ru.eruditeonline.app.data.repository.TokenRepository
 import ru.eruditeonline.app.domain.usecase.auth.CreateAnonymUseCase

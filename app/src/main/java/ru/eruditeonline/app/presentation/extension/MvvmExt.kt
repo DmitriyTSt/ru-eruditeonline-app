@@ -50,4 +50,3 @@ fun <VM : ViewModel> AppCompatActivity.createViewModelLazy(
     }
     return ViewModelLazy(viewModelClass, storeProducer, factoryPromise, extrasProducer)
 }
-

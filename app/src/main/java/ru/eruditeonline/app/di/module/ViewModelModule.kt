@@ -19,7 +19,6 @@ import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.debug.DebugViewModel
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaViewModel
 import ru.eruditeonline.app.presentation.ui.information.InformationViewModel
-import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
@@ -31,6 +30,7 @@ import ru.eruditeonline.app.presentation.ui.result.detail.ResultDetailViewModel
 import ru.eruditeonline.app.presentation.ui.result.search.SearchResultViewModel
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultListViewModel
 import ru.eruditeonline.app.presentation.ui.settings.SettingsViewModel
+import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 import ru.eruditeonline.app.presentation.ui.splash.SplashViewModel
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageViewModel
 import ru.eruditeonline.app.presentation.ui.test.successresult.SuccessSaveResultViewModel
