@@ -12,8 +12,8 @@ import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ActivityMainBinding
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseActivity
+import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 
 private const val EXTRA_FROM_401_ERROR = "extra_from_401_error"
 
@@ -28,8 +28,8 @@ class MainActivity : BaseActivity(), BottomNavigationViewManager {
     }
 
     private val binding by viewBinding(ActivityMainBinding::bind)
-    private val viewModel: MainActivityViewModel by lazy {
-        viewModelFactory.create(MainActivityViewModel::class.java)
+    private val viewModel: SplashStartFlowViewModel by lazy {
+        viewModelFactory.create(SplashStartFlowViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +46,6 @@ class MainActivity : BaseActivity(), BottomNavigationViewManager {
         binding.bottomNavigationView.apply {
             setupWithNavController(navController.apply { attachNavController(this) })
         }
-
-        observeNavigationCommands(viewModel, R.id.navHostFragment)
     }
 
     override fun setNavigationViewVisibility(isVisible: Boolean) {

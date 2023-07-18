@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.presentation.ui.mainactivity
+package ru.eruditeonline.app.presentation.ui.splash
 
 import androidx.lifecycle.LiveData
 import ru.eruditeonline.app.data.model.LoadableState
@@ -8,7 +8,7 @@ import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
 import ru.eruditeonline.app.presentation.ui.splash.SplashDestinations
 import javax.inject.Inject
 
-class MainActivityViewModel @Inject constructor(
+class SplashStartFlowViewModel @Inject constructor(
     private val splashUseCase: SplashUseCase,
     private val destinations: SplashDestinations,
 ) : BaseViewModel() {
