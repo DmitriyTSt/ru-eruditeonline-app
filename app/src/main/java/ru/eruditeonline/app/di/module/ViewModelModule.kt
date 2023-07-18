@@ -187,5 +187,5 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @Binds
     @IntoMap
     @ViewModelKey(SplashStartFlowViewModel::class)
-    abstract fun mainActivityViewModel(viewModel: SplashStartFlowViewModel): ViewModel
+    abstract fun splashStartFlowViewModel(viewModel: SplashStartFlowViewModel): ViewModel
 }

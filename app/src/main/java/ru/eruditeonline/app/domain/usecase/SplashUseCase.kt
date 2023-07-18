@@ -19,7 +19,6 @@ class SplashUseCase @Inject constructor(
             createAnonymUseCase.execute(Unit)
         }
         val appConfig = getAppConfigUseCase.execute(Unit)
-        delay(3000)
         return if (appConfig.appUpdate != null) {
             Result.AppUpdateScreen(appConfig.appUpdate)
         } else {
