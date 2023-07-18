@@ -34,6 +34,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
     override fun onBindViewModel() {
         observeNavigationCommands(viewModel)
+        observeNavigationCommands(splashStartFlowViewModel)
         splashStartFlowViewModel.initialFlowLiveEvent.observe { state ->
             if (state.isError) {
                 binding.root.displayedChild = STATE_ERROR
