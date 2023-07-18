@@ -19,6 +19,7 @@ import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.debug.DebugViewModel
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaViewModel
 import ru.eruditeonline.app.presentation.ui.information.InformationViewModel
+import ru.eruditeonline.app.presentation.ui.mainactivity.MainActivityViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileViewModel
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
@@ -182,4 +183,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(AppUpdateViewModel::class)
     abstract fun appUpdateViewModel(viewModel: AppUpdateViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainActivityViewModel::class)
+    abstract fun mainActivityViewModel(viewModel: MainActivityViewModel): ViewModel
 }

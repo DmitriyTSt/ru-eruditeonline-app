@@ -86,4 +86,6 @@ ext {
     firebase_analytics = 'com.google.firebase:firebase-analytics-ktx'
     firebase_crashlytics = 'com.google.firebase:firebase-crashlytics-ktx'
 
+    splashscreen = "androidx.core:core-splashscreen:1.0.1"
+
 }

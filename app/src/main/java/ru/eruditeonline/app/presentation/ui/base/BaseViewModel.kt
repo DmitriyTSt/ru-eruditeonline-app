@@ -9,8 +9,8 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.presentation.navigation.Destination
@@ -45,8 +45,24 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
+    protected fun <T> SingleLiveEvent<LoadableState<T>>.launchLoadData(
+        block: suspend () -> T,
+    ): Job = viewModelScope.launch {
+        flow {
+            try {
+                emit(LoadableState.Loading())
+                val result = block()
+                emit(LoadableState.Success(result))
+            } catch (t: Throwable) {
+                emit(LoadableState.Error(t))
+            }
+        }.collect { result ->
+            this@launchLoadData.postValue(result)
+        }
+    }
+
     protected fun <T : Any> MutableLiveData<PagingData<T>>.launchPagingData(
-        block: () -> Flow<PagingData<T>>
+        block: () -> Flow<PagingData<T>>,
     ): Job = viewModelScope.launch {
         block()
             .cachedIn(viewModelScope)

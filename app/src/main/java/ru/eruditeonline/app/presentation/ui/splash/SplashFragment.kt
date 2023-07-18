@@ -7,9 +7,11 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.ParsedError
 import ru.eruditeonline.app.databinding.FragmentSplashBinding
+import ru.eruditeonline.app.presentation.extension.appActivityViewModels
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.app.presentation.ui.mainactivity.MainActivityViewModel
 import timber.log.Timber
 
 private const val STATE_DATA = 0
@@ -18,22 +20,22 @@ private const val STATE_ERROR = 1
 class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     private val binding by viewBinding(FragmentSplashBinding::bind)
     private val viewModel: SplashViewModel by appViewModels()
+    private val mainActivityViewModel: MainActivityViewModel by appActivityViewModels()
 
     override fun callOperations() {
-        viewModel.runStartFlow()
         viewModel.initDebugButton()
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         buttonRepeat.setOnClickListener {
-            viewModel.runStartFlow()
+            mainActivityViewModel.repeatStartFlow()
         }
         setupDebugButton()
     }
 
-    override fun onBindViewModel() = with(viewModel) {
+    override fun onBindViewModel() {
         observeNavigationCommands(viewModel)
-        startFlowLiveEvent.observe { state ->
+        mainActivityViewModel.initialFlowLiveEvent.observe { state ->
             if (state.isError) {
                 binding.root.displayedChild = STATE_ERROR
             } else {
@@ -44,7 +46,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                 bindErrorText(error)
             }
         }
-        isDebugButtonVisibleLiveData.observe { state ->
+        viewModel.isDebugButtonVisibleLiveData.observe { state ->
             state.doOnSuccess { isVisible ->
                 binding.buttonDebug.isVisible = isVisible
             }

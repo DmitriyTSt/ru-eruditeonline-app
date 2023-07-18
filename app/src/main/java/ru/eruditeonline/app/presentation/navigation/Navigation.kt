@@ -1,34 +1,56 @@
 package ru.eruditeonline.app.presentation.navigation
 
+import android.content.Intent
+import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import timber.log.Timber
 
 fun Fragment.observeNavigationCommands(viewModel: BaseViewModel) {
     viewModel.destinationLiveEvent.observe(viewLifecycleOwner) { destination ->
-        processDestination(destination)
+        processDestination(
+            findNavController(),
+            ::startActivity,
+            destination,
+        )
     }
 }
 
-private fun Fragment.processDestination(destination: Destination) {
+fun AppCompatActivity.observeNavigationCommands(viewModel: BaseViewModel, @IdRes containerId: Int) {
+    viewModel.destinationLiveEvent.observe(this) { destination ->
+        processDestination(
+            findNavController(containerId),
+            ::startActivity,
+            destination,
+        )
+    }
+}
+
+private fun processDestination(
+    navController: NavController,
+    startActivity: (Intent) -> Unit,
+    destination: Destination,
+) {
     when (destination) {
-        is Destination.Action -> findNavController().navigateSafe(
+        is Destination.Action -> navController.navigateSafe(
             destination.direction,
             destination.navOptions,
         )
-        is Destination.Back -> findNavController().popBackStack()
-        is Destination.DeepLink -> findNavController().navigateSafe(
+        is Destination.Back -> navController.popBackStack()
+        is Destination.DeepLink -> navController.navigateSafe(
             destination.navDeepLinkRequest,
             destination.navOptions,
         )
         is Destination.Activity -> startActivity(destination.intent)
         is Destination.Stack -> {
-            destination.destinations.forEach { processDestination(it) }
+            destination.destinations.forEach { processDestination(navController, startActivity, it) }
         }
     }
 }
