@@ -30,6 +30,7 @@ import ru.eruditeonline.app.presentation.ui.result.detail.ResultDetailViewModel
 import ru.eruditeonline.app.presentation.ui.result.search.SearchResultViewModel
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultListViewModel
 import ru.eruditeonline.app.presentation.ui.settings.SettingsViewModel
+import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 import ru.eruditeonline.app.presentation.ui.splash.SplashViewModel
 import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageViewModel
 import ru.eruditeonline.app.presentation.ui.test.successresult.SuccessSaveResultViewModel
@@ -182,4 +183,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(AppUpdateViewModel::class)
     abstract fun appUpdateViewModel(viewModel: AppUpdateViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashStartFlowViewModel::class)
+    abstract fun splashStartFlowViewModel(viewModel: SplashStartFlowViewModel): ViewModel
 }

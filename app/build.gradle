@@ -125,6 +125,7 @@ dependencies {
     implementation flexbox
     implementation paging
     implementation swiperefreshlayout
+    implementation splashscreen
 
     implementation glide
     implementation glide_compiler
