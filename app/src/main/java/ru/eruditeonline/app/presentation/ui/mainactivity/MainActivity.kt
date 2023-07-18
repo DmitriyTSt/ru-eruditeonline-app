@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ActivityMainBinding
+import ru.eruditeonline.app.presentation.extension.appActivityViewModels
 import ru.eruditeonline.app.presentation.ui.base.BaseActivity
 import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 
@@ -28,9 +30,7 @@ class MainActivity : BaseActivity(), BottomNavigationViewManager {
     }
 
     private val binding by viewBinding(ActivityMainBinding::bind)
-    private val viewModel: SplashStartFlowViewModel by lazy {
-        viewModelFactory.create(SplashStartFlowViewModel::class.java)
-    }
+    private val viewModel: SplashStartFlowViewModel by appActivityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

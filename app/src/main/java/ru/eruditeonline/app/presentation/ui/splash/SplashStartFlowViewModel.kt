@@ -5,7 +5,6 @@ import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.SplashUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
-import ru.eruditeonline.app.presentation.ui.splash.SplashDestinations
 import javax.inject.Inject
 
 class SplashStartFlowViewModel @Inject constructor(
@@ -24,11 +23,7 @@ class SplashStartFlowViewModel @Inject constructor(
         runStartFlow()
     }
 
-    fun repeatStartFlow() {
-        runStartFlow()
-    }
-
-    private fun runStartFlow() {
+    fun runStartFlow() {
         _initialFlowLiveEvent.launchLoadData {
             val result = splashUseCase.execute(Unit)
             val destination = when (result) {

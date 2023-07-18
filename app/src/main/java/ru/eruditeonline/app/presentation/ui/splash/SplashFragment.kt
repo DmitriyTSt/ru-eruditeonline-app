@@ -27,7 +27,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         buttonRepeat.setOnClickListener {
-            splashStartFlowViewModel.repeatStartFlow()
+            splashStartFlowViewModel.runStartFlow()
         }
         setupDebugButton()
     }
