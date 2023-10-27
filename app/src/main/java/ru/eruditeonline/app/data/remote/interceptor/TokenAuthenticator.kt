@@ -22,7 +22,7 @@ class TokenAuthenticator @Inject constructor(
     private val refreshTokenLock: RefreshTokenLock,
 ) : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
-        if (response.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
+        if (response.code == HttpURLConnection.HTTP_UNAUTHORIZED) {
             val storedAccessToken = tokenRepository.accessToken
 
             synchronized(refreshTokenLock) {
@@ -30,7 +30,7 @@ class TokenAuthenticator @Inject constructor(
                 val potentiallyUpdatedAccessToken = tokenRepository.accessToken
                 if (potentiallyUpdatedAccessToken != null && storedAccessToken != potentiallyUpdatedAccessToken) {
                     // Токен был обновлен в другом потоке. Повторим запрос с новым токеном.
-                    return response.request().newBuilder()
+                    return response.request.newBuilder()
                         .header(ApiServiceModule.HEADER_AUTHORIZATION, potentiallyUpdatedAccessToken)
                         .build()
                 } else if (potentiallyUpdatedAccessToken == null) {
@@ -48,7 +48,7 @@ class TokenAuthenticator @Inject constructor(
                     }
 
                     if (updatedAccessToken != null) {
-                        return response.request().newBuilder()
+                        return response.request.newBuilder()
                             .header(ApiServiceModule.HEADER_AUTHORIZATION, updatedAccessToken)
                             .build()
                     }
