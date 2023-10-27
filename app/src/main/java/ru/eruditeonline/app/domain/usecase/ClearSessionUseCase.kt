@@ -6,6 +6,8 @@ import kotlinx.coroutines.withContext
 import ru.eruditeonline.app.di.module.DispatcherProvider
 import ru.eruditeonline.app.domain.usecase.auth.LocalLogoutUseCase
 import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.app.presentation.composeui.mainacitivty.MainComposeActivity
+import ru.eruditeonline.app.presentation.navigation.MainAppActivity
 import ru.eruditeonline.app.presentation.ui.mainactivity.MainActivity
 import javax.inject.Inject
 import kotlin.system.exitProcess
@@ -22,7 +24,7 @@ class ClearSessionUseCase @Inject constructor(
     override suspend fun execute(params: Unit) {
         localLogoutUseCase.execute(Unit)
         withContext(dispatcherProvider.main) {
-            val startActivity = MainActivity.createStartIntent(context, from401Error = true).apply {
+            val startActivity = MainAppActivity.createStartIntent(context, from401Error = true).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             context.startActivity(startActivity)

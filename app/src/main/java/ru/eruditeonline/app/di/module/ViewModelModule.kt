@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import ru.eruditeonline.app.di.module.viewmodel.BaseViewModelModule
 import ru.eruditeonline.app.di.util.ViewModelKey
+import ru.eruditeonline.app.presentation.composeui.competition.ComposeCompetitionViewModel
 import ru.eruditeonline.app.presentation.ui.appupdate.AppUpdateViewModel
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginViewModel
 import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationViewModel
@@ -188,4 +189,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(SplashStartFlowViewModel::class)
     abstract fun splashStartFlowViewModel(viewModel: SplashStartFlowViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ComposeCompetitionViewModel::class)
+    abstract fun composeCompetitionViewModel(viewModel: ComposeCompetitionViewModel): ViewModel
 }

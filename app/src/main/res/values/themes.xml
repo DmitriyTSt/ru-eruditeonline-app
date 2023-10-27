@@ -81,4 +81,6 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@drawable/bg_start</item>
     </style>
+
+    <style name="Theme.EruditeOnline.Compose" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

@@ -22,6 +22,11 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
+            android:name="ru.eruditeonline.app.presentation.composeui.mainacitivty.MainComposeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.EruditeOnline.Compose" />
+
+        <activity
             android:name=".presentation.ui.startactivity.StartActivity"
             android:exported="true"
             android:theme="@style/StartTheme">

@@ -2,6 +2,7 @@ package ru.eruditeonline.app.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import ru.eruditeonline.app.presentation.composeui.mainacitivty.MainComposeActivity
 import ru.eruditeonline.app.presentation.ui.mainactivity.MainActivity
 import ru.eruditeonline.app.presentation.ui.startactivity.DeepLinkStartActivity
 import ru.eruditeonline.app.presentation.ui.startactivity.StartActivity
@@ -16,4 +17,7 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     abstract fun deepLinkStartActivity(): DeepLinkStartActivity
+
+    @ContributesAndroidInjector
+    abstract fun mainComposeActivity(): MainComposeActivity
 }
