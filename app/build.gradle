@@ -12,6 +12,7 @@ apply from: '../config/quality/quality.gradle'
 apply from: '../dependencies.gradle'
 
 android {
+    namespace = "ru.eruditeonline.app"
     compileSdk 33
 
     defaultConfig {
@@ -72,12 +73,13 @@ android {
             initWith release
             applicationIdSuffix ".develop"
             signingConfig signingConfigs.debug
-            debuggable true
+            debuggable false
         }
     }
 
     buildFeatures {
-        viewBinding true
+        viewBinding = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -96,6 +98,12 @@ android {
             def buildType = variant.buildType.name
             def newName = "${appName}-${defaultConfig.versionName}_${defaultConfig.versionCode}_${buildType}"
             outputFileName = newName.toLowerCase() + ".apk"
+        }
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }

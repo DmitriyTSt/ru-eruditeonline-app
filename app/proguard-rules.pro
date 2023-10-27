@@ -1,5 +1,8 @@
 #Okhttp
 -dontwarn okhttp3.**
+# Please add these rules to your existing keep rules in order to suppress warnings.
+# This is generated automatically by the Android Gradle plugin.
+-dontwarn javax.lang.model.element.Modifier
 
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
