@@ -12,9 +12,6 @@ buildscript {
         classpath libs.google.services
         classpath libs.firebase.crashlytics.gradle
         classpath libs.androidx.navigation.safeargs
-
-        // NOTE: Do not place your application dependencies.gradle here; they belong
-        // in the individual module build.gradle files
     }
 }
 

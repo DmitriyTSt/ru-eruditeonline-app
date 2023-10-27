@@ -87,6 +87,6 @@ androidx-navigation-safeargs = { module = "androidx.navigation:navigation-safe-a
 [bundles]
 
 # --- Architecture ---
-dagger = ["dagger-core", "dagger-android-core", "dagger-android-support"]
+dagger-core = ["dagger-core", "dagger-android-core", "dagger-android-support"]
 dagger-kapt = ["dagger-android-processor", "dagger-compiler"]
 retrofit = ["retrofit-core", "retrofit-gson"]
