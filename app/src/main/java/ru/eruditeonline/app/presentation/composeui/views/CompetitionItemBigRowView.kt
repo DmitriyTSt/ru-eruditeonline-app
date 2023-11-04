@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
@@ -49,4 +50,18 @@ fun CompetitionItemBigRowView(
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun CompetitionItemBigRowViewPreview() {
+    val item = CompetitionItemShort(
+        id = 0,
+        title = "«Золотая осень»",
+        subject = "Литература",
+        ages = "5-11 классы, студенты, учителя",
+        difficulty = 2,
+        icon = "https://erudit-online.ru/assets/images/1/gold_autumn-9c6de671.jpg",
+    )
+    CompetitionItemBigRowView(item, {})
 }

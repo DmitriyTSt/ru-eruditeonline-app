@@ -16,8 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.eruditeonline.app.presentation.composeui.competition.CompetitionScreen
-import ru.eruditeonline.app.presentation.composeui.competition.CompetitionsScreen
 import ru.eruditeonline.app.presentation.composeui.competition.ComposeCompetitionViewModel
+import ru.eruditeonline.app.presentation.composeui.competition.items.CompetitionsScreen
 import ru.eruditeonline.app.presentation.composeui.dashboard.DashboardScreen
 import ru.eruditeonline.app.presentation.composeui.model.Screen
 import ru.eruditeonline.app.presentation.composeui.profile.ProfileScreen
@@ -25,6 +25,7 @@ import ru.eruditeonline.app.presentation.composeui.rating.RatingScreen
 import ru.eruditeonline.app.presentation.composeui.settings.SettingsScreen
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
+import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 
 @Composable
@@ -55,7 +56,14 @@ fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
                             }
                         )
                     }
-                    composable(Screen.Competitions.route) { CompetitionsScreen(/*...*/) }
+                    composable(Screen.Competitions.route) {
+                        CompetitionsScreen(
+                            navController = navController,
+                            viewModel = viewModel {
+                                viewModelFactory.create(CompetitionItemsViewModel::class.java)
+                            }
+                        )
+                    }
                     composable(Screen.Rating.route) { RatingScreen(/*...*/) }
                     composable(Screen.Profile.route) { ProfileScreen(navController) }
                     composable(Screen.Competition.route, Screen.Competition.arguments) { backStackEntry ->

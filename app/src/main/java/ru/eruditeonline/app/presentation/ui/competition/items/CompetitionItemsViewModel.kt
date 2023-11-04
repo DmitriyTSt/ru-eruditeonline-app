@@ -31,7 +31,7 @@ class CompetitionItemsViewModel @Inject constructor(
     val filtersLiveData: LiveData<CompetitionFilters> = _filtersLiveData
 
     fun loadCompetitions(
-        query: String?,
+        query: String? = null,
         ageIds: List<String> = emptyList(),
         subjectIds: List<String> = emptyList(),
     ) {

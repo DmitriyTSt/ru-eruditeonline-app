@@ -1,6 +1,5 @@
 package ru.eruditeonline.app.presentation.composeui.dashboard
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,17 +7,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
@@ -28,6 +24,7 @@ import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.presentation.composeui.model.Screen
+import ru.eruditeonline.app.presentation.composeui.views.StateFlipperView
 import ru.eruditeonline.app.presentation.composeui.views.TopAppBarView
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 
@@ -50,30 +47,26 @@ fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel)
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets.statusBars,
     ) { innerPaddings ->
-        Box(
+        StateFlipperView(
+            state = mainSectionsState,
+            onRetryClick = {
+                viewModel.loadMainSections()
+            },
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPaddings)
-        ) {
-            if (mainSectionsState.isLoading) {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            }
-            if (mainSectionsState.isSuccess) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                ) {
-                    (mainSectionsState as LoadableState.Success).data.forEach { mainSection ->
-                        MainSectionView(
-                            mainSection = mainSection,
-                            onCompetitionClick = { navController.navigate(Screen.Competition.route(1)) }
-                        )
-                    }
+                .padding(innerPaddings),
+        ) { mainSections ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+            ) {
+                mainSections.forEach { mainSection ->
+                    MainSectionView(
+                        mainSection = mainSection,
+                        onCompetitionClick = { navController.navigate(Screen.Competition.route(1)) }
+                    )
                 }
-            }
-            if (mainSectionsState.isError) {
-                Text(text = (mainSectionsState as LoadableState.Error).error.message, modifier = Modifier.align(Alignment.Center))
             }
         }
     }
