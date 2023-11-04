@@ -6,6 +6,7 @@ package ru.eruditeonline.app.presentation.ui.views
 interface TextInputValidator {
     fun validate(): Boolean
     val text: String
+
     /** Получение ID TextInputLayout'а для скролла к некорректным полям */
     fun getLayoutId(): Int
 }

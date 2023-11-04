@@ -185,7 +185,7 @@ class DrawableSpan(drawable: Drawable) : ImageSpan(drawable) {
         top: Int,
         y: Int,
         bottom: Int,
-        paint: Paint
+        paint: Paint,
     ) {
         val drawable = drawable
         canvas.save()

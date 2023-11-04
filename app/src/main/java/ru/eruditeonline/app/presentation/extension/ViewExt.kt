@@ -11,7 +11,6 @@ import androidx.core.view.updateMargins
 import androidx.core.view.updatePadding
 
 fun View.doOnApplyWindowInsets(block: (View, WindowInsetsCompat, Rect) -> WindowInsetsCompat) {
-
     val initialPadding = recordInitialPaddingForView(this)
 
     ViewCompat.setOnApplyWindowInsetsListener(this) { v, insets ->

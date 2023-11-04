@@ -8,6 +8,7 @@ import androidx.core.view.marginTop
 interface BottomNavigationViewManager {
     fun setNavigationViewVisibility(isVisible: Boolean)
     fun getNavigationView(): View
+
     /** Нижний отступ контента над нижнем меню */
     fun getMenuMarginBottom(): Int {
         return if (getNavigationView().isVisible) {

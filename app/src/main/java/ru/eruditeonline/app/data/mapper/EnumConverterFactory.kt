@@ -10,7 +10,9 @@ class EnumConverterFactory : Converter.Factory() {
     override fun stringConverter(type: Type, annotations: Array<Annotation>, retrofit: Retrofit): Converter<*, String>? {
         return if (type is Class<*> && type.isEnum) {
             Converter<Any?, String> { value -> getSerializedNameValue(value as Enum<*>) }
-        } else null
+        } else {
+            null
+        }
     }
 
     private fun <E : Enum<*>> getSerializedNameValue(e: E): String {

@@ -1,7 +1,7 @@
 package ru.eruditeonline.app.data.repository
 
 import ru.eruditeonline.app.data.model.competition.CompetitionItem
-import ru.eruditeonline.app.data.model.competition.CompetitionPagingData
+import ru.eruditeonline.app.data.model.competition.CompetitionPage
 
 interface CompetitionRepository {
     /** Список конкурсов */
@@ -10,8 +10,8 @@ interface CompetitionRepository {
         ageIds: List<String>?,
         subjectIds: List<String>?,
         offset: Int,
-        limit: Int
-    ): CompetitionPagingData
+        limit: Int,
+    ): CompetitionPage
 
     /** Получение конкурса */
     suspend fun getCompetitionItem(id: Int): CompetitionItem

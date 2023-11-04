@@ -89,7 +89,7 @@ class ApiServiceModule {
     fun provideRetrofit(
         endpointRepository: EndpointRepository,
         gson: Gson,
-        client: OkHttpClient
+        client: OkHttpClient,
     ): Retrofit {
         return Retrofit
             .Builder()
@@ -106,7 +106,7 @@ class ApiServiceModule {
     fun provideRefreshTokenRetrofit(
         endpointRepository: EndpointRepository,
         gson: Gson,
-        @RefreshTokenClient client: OkHttpClient
+        @RefreshTokenClient client: OkHttpClient,
     ): Retrofit {
         return Retrofit
             .Builder()
@@ -120,7 +120,7 @@ class ApiServiceModule {
     @Singleton
     @Provides
     fun provideApiService(
-        retrofit: Retrofit
+        retrofit: Retrofit,
     ): ApiService {
         return retrofit.create(ApiService::class.java)
     }
@@ -128,7 +128,7 @@ class ApiServiceModule {
     @Singleton
     @Provides
     fun provideRefreshApiService(
-        @RefreshTokenClient retrofit: Retrofit
+        @RefreshTokenClient retrofit: Retrofit,
     ): RefreshApiService {
         return retrofit.create(RefreshApiService::class.java)
     }

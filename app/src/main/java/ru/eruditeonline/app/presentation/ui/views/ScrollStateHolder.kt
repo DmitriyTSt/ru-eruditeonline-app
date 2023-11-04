@@ -23,7 +23,7 @@ class ScrollStateHolder(savedInstanceState: Bundle? = null) {
 
     @Parcelize
     private class IntWrap(
-        val value: Int
+        val value: Int,
     ) : Parcelable
 
     /**
@@ -93,7 +93,7 @@ class ScrollStateHolder(savedInstanceState: Bundle? = null) {
      */
     fun saveScrollState(
         recyclerView: RecyclerView,
-        scrollKeyProvider: ScrollStateKeyProvider
+        scrollKeyProvider: ScrollStateKeyProvider,
     ) {
         val key = scrollKeyProvider.getScrollStateKey() ?: return
         // Check if we scrolled the RecyclerView for this key
@@ -110,7 +110,7 @@ class ScrollStateHolder(savedInstanceState: Bundle? = null) {
     fun restoreScrollState(
         recyclerView: RecyclerView,
         scrollKeyProvider: ScrollStateKeyProvider,
-        defaultPosition: Int = 0
+        defaultPosition: Int = 0,
     ) {
         val key = scrollKeyProvider.getScrollStateKey() ?: return
         val layoutManager = recyclerView.layoutManager ?: return
