@@ -22,33 +22,35 @@ fun CompetitionItemSmallRowView(
     modifier: Modifier = Modifier,
 ) {
     Card(modifier = modifier) {
-        Row(modifier = Modifier.clickable { onClick(competitionItem) }) {
-            CompetitionImage(
-                imageUrl = competitionItem.icon.orEmpty(),
-                borderStroke = 6.dp,
-                backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
-                modifier = Modifier
-                    .padding(start = 8.dp, top = 8.dp)
-                    .size(64.dp),
-            )
-            Column(
-                modifier = Modifier.padding(horizontal = 8.dp, vertical = 12.dp),
-            ) {
-                CompetitionDifficultyView(
-                    difficulty = competitionItem.difficulty,
+        Column(modifier = Modifier.clickable { onClick(competitionItem) }) {
+            Row {
+                CompetitionImage(
+                    imageUrl = competitionItem.icon.orEmpty(),
+                    borderStroke = 5.dp,
+                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                    modifier = Modifier
+                        .padding(start = 8.dp, top = 8.dp)
+                        .size(64.dp),
                 )
-                Text(
-                    text = competitionItem.title,
-                    style = AppTypography.bodyMedium,
-                    modifier = Modifier.padding(top = 4.dp),
-                )
+                Column(
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 12.dp),
+                ) {
+                    CompetitionDifficultyView(
+                        difficulty = competitionItem.difficulty,
+                    )
+                    Text(
+                        text = competitionItem.title,
+                        style = AppTypography.bodyMedium,
+                        modifier = Modifier.padding(top = 4.dp),
+                    )
+                }
             }
+            Text(
+                text = competitionItem.ages,
+                modifier = Modifier.padding(top = 4.dp, start = 12.dp, end = 12.dp, bottom = 8.dp),
+                style = AppTypography.bodySmall,
+            )
         }
-        Text(
-            text = competitionItem.ages,
-            modifier = Modifier.padding(top = 4.dp, start = 12.dp, end = 12.dp, bottom = 8.dp),
-            style = AppTypography.bodySmall,
-        )
     }
 }
 
