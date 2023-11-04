@@ -5,8 +5,9 @@ import kotlinx.coroutines.flow.Flow
 import ru.eruditeonline.app.data.model.test.TestUserResultRow
 import ru.eruditeonline.app.domain.usecase.result.GetResultsByEmailPageUseCase
 import ru.eruditeonline.app.presentation.paging.base.BasePagingFlowFactory
+import javax.inject.Inject
 
-class ResultsByEmailPagingFlowFactory(
+class ResultsByEmailPagingFlowFactory @Inject constructor(
     private val getResultsByEmailPageUseCase: GetResultsByEmailPageUseCase,
 ) : BasePagingFlowFactory<ResultsByEmailPagingFlowFactory.Params, Int, TestUserResultRow>() {
 

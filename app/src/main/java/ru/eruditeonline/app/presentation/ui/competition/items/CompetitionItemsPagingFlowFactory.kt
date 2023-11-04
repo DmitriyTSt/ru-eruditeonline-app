@@ -6,8 +6,9 @@ import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.domain.usecase.competition.GetCompetitionsPageUseCase
 import ru.eruditeonline.app.presentation.paging.base.BasePagingFlowFactory
+import javax.inject.Inject
 
-class CompetitionItemsPagingFlowFactory(
+class CompetitionItemsPagingFlowFactory @Inject constructor(
     private val getCompetitionsPageUseCase: GetCompetitionsPageUseCase,
 ) : BasePagingFlowFactory<CompetitionItemsPagingFlowFactory.Params, Int, CompetitionItemShort>() {
 
