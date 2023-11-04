@@ -21,6 +21,15 @@ abstract class BaseViewModel : ViewModel() {
     private val _destinationLiveEvent = SingleLiveEvent<Destination>()
     val destinationLiveEvent: LiveData<Destination> = _destinationLiveEvent
 
+    private var isCallOperationProcessed = false
+
+    fun callOperations(block: () -> Unit) {
+        if (!isCallOperationProcessed) {
+            block()
+            isCallOperationProcessed = true
+        }
+    }
+
     fun navigate(destination: Destination) {
         _destinationLiveEvent.postValue(destination)
     }

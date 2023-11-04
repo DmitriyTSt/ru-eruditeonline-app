@@ -44,7 +44,7 @@ fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
             ) {
                 NavHost(
                     navController = navController,
-                    startDestination = "dashboard",
+                    startDestination = Screen.Dashboard.route,
                     modifier = Modifier.weight(1f),
                 ) {
                     composable(Screen.Dashboard.route) {

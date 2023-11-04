@@ -26,9 +26,11 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
     @Inject lateinit var mainSectionsAdapter: MainSectionsAdapter
 
     override fun callOperations() {
-        viewModel.loadMainSections()
+        viewModel.callOperations {
+            viewModel.loadMainSections()
+            viewModel.initDebugButton()
+        }
         viewModel.resolveDeepLink()
-        viewModel.initDebugButton()
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {

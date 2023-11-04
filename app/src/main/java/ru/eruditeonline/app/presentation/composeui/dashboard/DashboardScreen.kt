@@ -21,7 +21,9 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
@@ -38,11 +40,13 @@ fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel)
         .observeAsState(LoadableState.Loading())
 
     LaunchedEffect(Unit) {
-        viewModel.loadMainSections()
+        viewModel.callOperations {
+            viewModel.loadMainSections()
+        }
     }
 
     Scaffold(
-        topBar = { TopAppBarView(title = "Эрудит.Онлайн", scrollBehavior = scrollBehavior) },
+        topBar = { TopAppBarView(title = stringResource(id = R.string.app_name), scrollBehavior = scrollBehavior) },
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets.statusBars,
     ) { innerPaddings ->
