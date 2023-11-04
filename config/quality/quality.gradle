@@ -18,7 +18,7 @@ configurations {
 }
 
 dependencies {
-    ktlint("com.pinterest:ktlint:0.41.0") {
+    ktlint(libs.ktlint) {
         attributes {
             attribute(Bundling.BUNDLING_ATTRIBUTE, getObjects().named(Bundling, Bundling.EXTERNAL))
         }
@@ -33,7 +33,7 @@ def reportsDir = "$project.buildDir/reports"
 task ktlint(type: JavaExec, group: "verification") {
     description = "Check Kotlin code style."
     classpath = configurations.ktlint
-    main = "com.pinterest.ktlint.Main"
+    mainClass = "com.pinterest.ktlint.Main"
     args "src/**/*.kt"
     // print style violations as usual + create report in checkstyle format
     args "--reporter=html,output=${reportsDir}/ktlint.html"
@@ -44,7 +44,8 @@ task ktlint(type: JavaExec, group: "verification") {
 task ktlintFormat(type: JavaExec, group: "formatting") {
     description = "Fix Kotlin code style deviations."
     classpath = configurations.ktlint
-    main = "com.pinterest.ktlint.Main"
+    mainClass = "com.pinterest.ktlint.Main"
+    jvmArgs "--add-opens=java.base/java.lang=ALL-UNNAMED"
     args "-F", "src/**/*.kt"
 }
 
