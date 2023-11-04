@@ -29,6 +29,7 @@ import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
+import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 
 @Composable
 fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
@@ -75,7 +76,14 @@ fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
                         )
                     }
                     composable(Screen.Rating.route) { RatingScreen(/*...*/) }
-                    composable(Screen.Profile.route) { ProfileScreen(navController) }
+                    composable(Screen.Profile.route) {
+                        ProfileScreen(
+                            navController = navController,
+                            viewModel = viewModel {
+                                viewModelFactory.create(ProfileViewModel::class.java)
+                            },
+                        )
+                    }
                     composable(Screen.Competition.route, Screen.Competition.arguments) { backStackEntry ->
                         CompetitionScreen(
                             id = backStackEntry.arguments?.getInt("id") ?: 0,
@@ -85,7 +93,11 @@ fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
                             },
                         )
                     }
+                    composable(Screen.SearchResults.route) { }
+                    composable(Screen.UserResults.route) { }
+                    composable(Screen.CommonResults.route) { }
                     composable(Screen.Settings.route) { SettingsScreen(navController, eruditeTheme) { eruditeTheme = it } }
+                    composable(Screen.Info.route) { }
                 }
                 NavigationBarView(navController)
             }

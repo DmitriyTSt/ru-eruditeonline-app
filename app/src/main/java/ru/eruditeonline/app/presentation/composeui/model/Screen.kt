@@ -22,7 +22,11 @@ sealed class Screen(val route: String, val arguments: List<NamedNavArgument> = e
         }
     }
 
+    data object SearchResults : Screen(route = "searchResults")
+    data object UserResults : Screen(route = "userResults")
+    data object CommonResults : Screen(route = "commonResults")
     data object Settings : Screen(route = "settings")
+    data object Info : Screen(route = "info")
 
     open fun route(vararg args: Any): String {
         return this.route

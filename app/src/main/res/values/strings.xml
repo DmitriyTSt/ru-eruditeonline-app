@@ -156,4 +156,5 @@
     <string name="result_corrent_answer_template">Правильный ответ: %s</string>
     <string name="rating_empty_title">Результатов не найдено</string>
     <string name="rating_empty_comment">Пройдите конкурс, и будете первым</string>
+    <string name="profile_title">Профиль</string>
 </resources>
