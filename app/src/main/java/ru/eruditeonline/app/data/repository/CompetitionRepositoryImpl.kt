@@ -3,7 +3,7 @@ package ru.eruditeonline.app.data.repository
 import kotlinx.coroutines.delay
 import ru.eruditeonline.app.data.mapper.CompetitionMapper
 import ru.eruditeonline.app.data.model.competition.CompetitionItem
-import ru.eruditeonline.app.data.model.competition.CompetitionPagingData
+import ru.eruditeonline.app.data.model.competition.CompetitionPage
 import ru.eruditeonline.app.data.remote.ApiService
 import ru.eruditeonline.app.data.remote.params.CompetitionItemsParams
 import javax.inject.Inject
@@ -18,7 +18,7 @@ class CompetitionRepositoryImpl @Inject constructor(
         subjectIds: List<String>?,
         offset: Int,
         limit: Int
-    ): CompetitionPagingData {
+    ): CompetitionPage {
         delay(1000) // TODO remove
         return apiService.getCompetitionItems(
             CompetitionItemsParams(

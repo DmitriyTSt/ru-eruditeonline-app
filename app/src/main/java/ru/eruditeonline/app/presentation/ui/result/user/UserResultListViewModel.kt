@@ -10,16 +10,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.test.TestUserResultRow
-import ru.eruditeonline.app.domain.usecase.result.GetResultsByEmailUseCase
-import ru.eruditeonline.app.domain.usecase.result.GetUserResultsUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
 
 private const val SEARCH_DELAY = 300L
 
 class UserResultListViewModel @Inject constructor(
-    private val getUserResultsUseCase: GetUserResultsUseCase,
-    private val getResultsByEmailUseCase: GetResultsByEmailUseCase,
+    private val userResultsPagingFlowFactory: UserResultsPagingFlowFactory,
+    private val resultsByEmailPagingFlowFactory: ResultsByEmailPagingFlowFactory,
     private val destinations: UserResultListDestinations,
 ) : BaseViewModel() {
     /** Пагинация результатов */
@@ -60,21 +58,13 @@ class UserResultListViewModel @Inject constructor(
 
     private fun loadUserResults(query: String?) {
         _resultsLiveData.launchPagingData {
-            getUserResultsUseCase.executeFlow(
-                GetUserResultsUseCase.Params(
-                    query = query,
-                )
-            )
+            userResultsPagingFlowFactory.create(UserResultsPagingFlowFactory.Params(query))
         }
     }
 
     private fun loadResultsByEmail(email: String) {
         _resultsLiveData.launchPagingData {
-            getResultsByEmailUseCase.executeFlow(
-                GetResultsByEmailUseCase.Params(
-                    email = email,
-                )
-            )
+            resultsByEmailPagingFlowFactory.create(ResultsByEmailPagingFlowFactory.Params(email))
         }
     }
 }

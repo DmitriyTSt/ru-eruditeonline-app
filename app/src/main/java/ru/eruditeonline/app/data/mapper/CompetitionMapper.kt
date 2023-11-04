@@ -3,7 +3,7 @@ package ru.eruditeonline.app.data.mapper
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionItem
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
-import ru.eruditeonline.app.data.model.competition.CompetitionPagingData
+import ru.eruditeonline.app.data.model.competition.CompetitionPage
 import ru.eruditeonline.app.data.model.competition.FilterItem
 import ru.eruditeonline.app.data.model.competition.TestAgeGroup
 import ru.eruditeonline.app.data.remote.model.competition.ApiCompetitionFilters
@@ -35,8 +35,8 @@ class CompetitionMapper @Inject constructor(
         )
     }
 
-    fun fromApiToModel(api: CompetitionItemsData): CompetitionPagingData {
-        return CompetitionPagingData(
+    fun fromApiToModel(api: CompetitionItemsData): CompetitionPage {
+        return CompetitionPage(
             list = api.list.orEmpty().map { fromApiToModel(it) },
             filters = api.filters?.let { fromApiToModel(it) },
             hasMore = api.hasMore.orDefault()

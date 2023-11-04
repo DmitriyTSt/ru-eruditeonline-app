@@ -6,12 +6,11 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.test.TestCommonResultRow
-import ru.eruditeonline.app.domain.usecase.result.GetCommonResultsUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
 
 class CommonResultListViewModel @Inject constructor(
-    private val getCommonResultsUseCase: GetCommonResultsUseCase,
+    private val commonResultsPagingFlowFactory: CommonResultsPagingFlowFactory,
     private val destinations: CommonResultListDestinations,
 ) : BaseViewModel() {
 
@@ -24,7 +23,7 @@ class CommonResultListViewModel @Inject constructor(
     val pagingStateLiveData: LiveData<LoadableState<Unit>> = _pagingStateLiveData
 
     fun load() {
-        _resultsLiveData.launchPagingData { getCommonResultsUseCase.executeFlow(Unit) }
+        _resultsLiveData.launchPagingData { commonResultsPagingFlowFactory.create(Unit) }
     }
 
     fun bindPagingState(loadState: CombinedLoadStates) {

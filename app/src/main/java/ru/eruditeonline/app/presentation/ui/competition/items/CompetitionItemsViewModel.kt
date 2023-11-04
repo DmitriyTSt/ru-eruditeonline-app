@@ -7,12 +7,11 @@ import androidx.paging.PagingData
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
-import ru.eruditeonline.app.domain.usecase.competition.FilterCompetitionsUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
 
 class CompetitionItemsViewModel @Inject constructor(
-    private val filterCompetitionsUseCase: FilterCompetitionsUseCase,
+    private val competitionItemsPagingFlowFactory: CompetitionItemsPagingFlowFactory,
     private val destinations: CompetitionItemsDestinations,
 ) : BaseViewModel() {
     /** Данные пагинации */
@@ -38,8 +37,8 @@ class CompetitionItemsViewModel @Inject constructor(
     ) {
         _pagingStateLiveData.postValue(LoadableState.Loading())
         _pagingDataLiveData.launchPagingData {
-            filterCompetitionsUseCase.executeFlow(
-                FilterCompetitionsUseCase.Params(
+            competitionItemsPagingFlowFactory.create(
+                CompetitionItemsPagingFlowFactory.Params(
                     query = query.orEmpty(),
                     ageIds = ageIds,
                     subjectIds = subjectIds,
