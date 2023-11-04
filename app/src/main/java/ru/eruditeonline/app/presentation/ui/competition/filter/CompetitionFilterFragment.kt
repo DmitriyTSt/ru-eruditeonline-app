@@ -62,7 +62,9 @@ class CompetitionFilterFragment : BaseFragment(R.layout.fragment_competition_fil
 
     private fun setupViewPager() = with(binding) {
         viewPager.offscreenPageLimit = 2
-        viewPager.adapter = groupsAdapter
+        viewPager.adapter = groupsAdapter.apply {
+            onFilterItemClick = viewModel::onFilterClick
+        }
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = getString(TITLES[position])
         }.attach()

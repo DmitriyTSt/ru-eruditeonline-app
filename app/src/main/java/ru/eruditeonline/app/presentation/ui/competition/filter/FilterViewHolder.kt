@@ -10,6 +10,7 @@ import ru.eruditeonline.app.presentation.extension.inflate
 
 class FilterViewHolder(
     parent: ViewGroup,
+    private val onItemClick: (FilterItem) -> Unit,
 ) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_filter)) {
     private val binding by viewBinding(ItemFilterBinding::bind)
 
@@ -17,7 +18,7 @@ class FilterViewHolder(
         text = filterItem.title
         isChecked = filterItem.selected
         setOnClickListener {
-            filterItem.selected = !filterItem.selected
+            onItemClick(filterItem)
         }
     }
 }

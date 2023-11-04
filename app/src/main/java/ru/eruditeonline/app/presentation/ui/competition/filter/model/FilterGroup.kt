@@ -5,6 +5,7 @@ import ru.eruditeonline.app.data.model.competition.FilterItem
 
 data class FilterGroup(
     val id: FilterGroupId,
+    val titleRes: Int,
     val filters: List<FilterItem>,
 ) : Similarable<FilterGroup> {
     override fun areItemsTheSame(other: FilterGroup): Boolean {

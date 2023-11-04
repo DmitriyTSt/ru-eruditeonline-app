@@ -7,6 +7,7 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.data.model.competition.FilterItem
 import ru.eruditeonline.app.databinding.ItemFilterGroupBinding
 import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.paging.DiffUtilItemCallbackFactory
@@ -16,6 +17,7 @@ import ru.eruditeonline.app.presentation.ui.views.FlexboxSpaceItemDecoration
 class FilterGroupViewHolder(
     parent: ViewGroup,
     diffUtilItemCallbackFactory: DiffUtilItemCallbackFactory,
+    private val onFilterItemClick: (FilterItem) -> Unit,
 ) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_filter_group)) {
     private val binding by viewBinding(ItemFilterGroupBinding::bind)
 
@@ -23,7 +25,9 @@ class FilterGroupViewHolder(
 
     init {
         binding.root.apply {
-            adapter = filtersAdapter
+            adapter = filtersAdapter.apply {
+                onItemClick = onFilterItemClick
+            }
             layoutManager = FlexboxLayoutManager(context).apply {
                 flexDirection = FlexDirection.ROW
                 flexWrap = FlexWrap.WRAP

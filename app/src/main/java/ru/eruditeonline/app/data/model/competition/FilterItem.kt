@@ -14,7 +14,7 @@ data class FilterItem(
     /** Название */
     val title: String,
     /** Выбран ли фильтр */
-    var selected: Boolean,
+    val selected: Boolean,
 ) : Similarable<FilterItem>, Parcelable {
     override fun areItemsTheSame(other: FilterItem): Boolean {
         return this.id == other.id

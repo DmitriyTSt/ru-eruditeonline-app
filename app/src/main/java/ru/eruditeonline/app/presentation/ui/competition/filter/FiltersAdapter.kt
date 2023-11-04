@@ -10,8 +10,10 @@ class FiltersAdapter @Inject constructor(
     diffUtilItemCallbackFactory: DiffUtilItemCallbackFactory,
 ) : ListAdapter<FilterItem, FilterViewHolder>(diffUtilItemCallbackFactory.create()) {
 
+    lateinit var onItemClick: (FilterItem) -> Unit
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilterViewHolder {
-        return FilterViewHolder(parent)
+        return FilterViewHolder(parent, onItemClick)
     }
 
     override fun onBindViewHolder(holder: FilterViewHolder, position: Int) {

@@ -2,7 +2,9 @@ package ru.eruditeonline.app.presentation.ui.competition.filter
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
+import ru.eruditeonline.app.data.model.competition.FilterItem
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterGroup
@@ -25,10 +27,12 @@ class CompetitionFilterViewModel @Inject constructor() : BaseViewModel() {
             listOf(
                 FilterGroup(
                     FilterGroupId.AGE,
+                    R.string.filter_ages_title,
                     filters.ages,
                 ),
                 FilterGroup(
                     FilterGroupId.SUBJECT,
+                    R.string.filter_subjects_title,
                     filters.subjects,
                 ),
             )
@@ -42,6 +46,22 @@ class CompetitionFilterViewModel @Inject constructor() : BaseViewModel() {
                 group.copy(filters = group.filters.map { it.copy(selected = false) })
             }
         )
+    }
+
+    fun onFilterClick(filterItem: FilterItem) {
+        val oldFilters = _filtersLiveData.value.orEmpty()
+        val newFilters = oldFilters.map { filterGroup ->
+            filterGroup.copy(
+                filters = filterGroup.filters.map {
+                    if (it.id == filterItem.id) {
+                        it.copy(selected = !it.selected)
+                    } else {
+                        it
+                    }
+                }
+            )
+        }
+        _filtersLiveData.postValue(newFilters)
     }
 
     fun applyFilter(groups: List<FilterGroup>) {
