@@ -35,7 +35,6 @@ class MainComposeActivity : ComponentActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        viewModel.runStartFlow()
         viewModel.initialFlowLiveEvent.observe(this) { result ->
             result.doOnSuccess { initResult ->
                 when (initResult) {
