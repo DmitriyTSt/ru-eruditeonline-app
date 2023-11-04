@@ -30,8 +30,11 @@ abstract class BasePreferencesStorage constructor(
     @WorkerThread
     suspend fun clear(commitNow: Boolean = false) = suspendCoroutine<Unit> {
         val editor = pref.edit().clear()
-        if (commitNow) editor.commit()
-        else editor.apply()
+        if (commitNow) {
+            editor.commit()
+        } else {
+            editor.apply()
+        }
         it.resume(Unit)
     }
 }

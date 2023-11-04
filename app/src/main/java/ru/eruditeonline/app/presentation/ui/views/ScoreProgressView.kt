@@ -44,14 +44,20 @@ class ScoreProgressView : View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         canvas.drawArc(
-            strokeWidthPart, strokeWidthPart, width.toFloat() - strokeWidthPart, height.toFloat() - strokeWidthPart,
+            strokeWidthPart,
+            strokeWidthPart,
+            width.toFloat() - strokeWidthPart,
+            height.toFloat() - strokeWidthPart,
             startAngle,
             endAngle - startAngle,
             false,
             backgroundPaint
         )
         canvas.drawArc(
-            strokeWidthPart, strokeWidthPart, width.toFloat() - strokeWidthPart, height.toFloat() - strokeWidthPart,
+            strokeWidthPart,
+            strokeWidthPart,
+            width.toFloat() - strokeWidthPart,
+            height.toFloat() - strokeWidthPart,
             startAngle,
             progressAngle - startAngle,
             false,

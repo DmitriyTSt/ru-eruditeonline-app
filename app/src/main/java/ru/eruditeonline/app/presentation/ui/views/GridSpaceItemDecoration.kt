@@ -9,7 +9,7 @@ class GridSpaceItemDecoration(
     private val spanCount: Int,
     private val spacing: Int,
     private val includeEdge: Boolean,
-    private val excludeTopEdge: Boolean
+    private val excludeTopEdge: Boolean,
 ) : RecyclerView.ItemDecoration() {
     private var orientation = -1
 

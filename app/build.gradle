@@ -9,9 +9,9 @@ plugins {
 }
 
 apply from: '../config/quality/quality.gradle'
-apply from: '../dependencies.gradle'
 
 android {
+    namespace = "ru.eruditeonline.app"
     compileSdk 33
 
     defaultConfig {
@@ -22,6 +22,7 @@ android {
         versionCode this.getVersionCode()
         versionName "1.0.0"
 
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -72,22 +73,27 @@ android {
             initWith release
             applicationIdSuffix ".develop"
             signingConfig signingConfigs.debug
-            debuggable true
+            debuggable false
         }
     }
 
     buildFeatures {
-        viewBinding true
+        viewBinding = true
+        buildConfig = true
     }
 
     compileOptions {
         coreLibraryDesugaringEnabled true
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = '17'
+    }
+
+    kotlin {
+        jvmToolchain(17)
     }
 
     applicationVariants.all { variant ->
@@ -96,6 +102,12 @@ android {
             def buildType = variant.buildType.name
             def newName = "${appName}-${defaultConfig.versionName}_${defaultConfig.versionCode}_${buildType}"
             outputFileName = newName.toLowerCase() + ".apk"
+        }
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
@@ -113,50 +125,45 @@ def getVersionCode() {
 }
 
 dependencies {
-    coreLibraryDesugaring code_desugaring
+    coreLibraryDesugaring(libs.code.desugaring)
 
-    implementation core_ktx
-    implementation appcompat
-    implementation material
-    implementation constraintlayout
-    implementation fragment_ktx
-    implementation multidex
-    implementation view_pager_2
-    implementation flexbox
-    implementation paging
-    implementation swiperefreshlayout
-    implementation splashscreen
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.viewpager2)
+    implementation(libs.flexbox)
+    implementation(libs.androidx.paging)
+    implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.androidx.splashscreen)
 
-    implementation glide
-    implementation glide_compiler
+    implementation(libs.glide.core)
+    implementation(libs.glide.compiler)
 
-    implementation viewbinding_delegate
+    implementation(libs.viewbinding.delegate)
 
-    implementation coroutines_core
-    implementation coroutines_android
-    implementation livedata_ktx
-    implementation lifecycle_process
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+    implementation(libs.androidx.livedata)
+    implementation(libs.androidx.lifecycle.process)
 
-    implementation retrofit
-    implementation gson
-    implementation gson_converter
+    implementation(libs.bundles.retrofit)
+    implementation(libs.gson)
 
-    implementation navigation_fragment
-    implementation navigation_ui
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
 
-    implementation dagger
-    implementation dagger_android
-    implementation dagger_android_support
-    kapt dagger_android_processor
-    kapt dagger_compiler
+    implementation(libs.bundles.dagger.core)
+    kapt(libs.bundles.dagger.kapt)
 
-    implementation timber
-    implementation chucker
+    implementation(libs.timber)
+    implementation(libs.chucker)
 
-    implementation chrometabs
-    implementation security_crypto
+    implementation(libs.androidx.browser)
+    implementation(libs.androidx.security.crypto)
 
-    implementation platform(firebase_bom)
-    implementation firebase_analytics
-    implementation firebase_crashlytics
+    implementation platform(libs.firebase.bom)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics.asProvider())
 }

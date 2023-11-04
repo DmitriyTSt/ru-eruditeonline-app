@@ -62,6 +62,7 @@ private val Throwable.isNetworkError: Boolean
     get() = when (this) {
         is ConnectException,
         is UnknownHostException,
-        is SocketTimeoutException -> true
+        is SocketTimeoutException,
+        -> true
         else -> false
     }

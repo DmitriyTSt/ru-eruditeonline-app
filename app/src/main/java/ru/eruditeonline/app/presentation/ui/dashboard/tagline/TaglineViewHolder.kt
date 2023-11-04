@@ -9,6 +9,7 @@ import ru.eruditeonline.app.databinding.ItemTaglineBinding
 import ru.eruditeonline.app.presentation.extension.getColorFromAttribute
 import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.extension.load
+import com.google.android.material.R as MaterialR
 
 class TaglineViewHolder(
     parent: ViewGroup,
@@ -20,7 +21,7 @@ class TaglineViewHolder(
         imageView.load(tagline.icon)
         textViewTitle.text = tagline.title
         textViewDescription.text = tagline.text
-        textViewTitle.setTextColor(tagline.titleColor ?: root.context.getColorFromAttribute(R.attr.colorOnSurface))
+        textViewTitle.setTextColor(tagline.titleColor ?: root.context.getColorFromAttribute(MaterialR.attr.colorOnSurface))
         root.setOnClickListener {
             onItemClick(tagline)
         }

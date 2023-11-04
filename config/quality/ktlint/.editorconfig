@@ -3,3 +3,6 @@
 # it's automatically set to 100 on `ktlint --android ...` (per Android Kotlin Style Guide)
 max_line_length=130
 disabled_rules=no-wildcard-imports
+ktlint_standard_spacing-between-declarations-with-annotations = disabled
+ktlint_standard_annotation = disabled
+ktlint_standard_trailing-comma-on-call-site = disabled

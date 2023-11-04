@@ -5,7 +5,7 @@ import ru.eruditeonline.app.data.remote.model.profile.ApiProfile
 import javax.inject.Inject
 
 class ProfileMapper @Inject constructor(
-    private val baseMapper: BaseMapper
+    private val baseMapper: BaseMapper,
 ) {
 
     fun fromApiToModel(api: ApiProfile): Profile {

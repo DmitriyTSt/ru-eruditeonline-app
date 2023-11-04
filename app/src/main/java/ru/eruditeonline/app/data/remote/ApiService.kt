@@ -76,7 +76,7 @@ interface ApiService {
     @GET("v1/results")
     suspend fun getCommonResults(
         @Query("offset") offset: Int,
-        @Query("limit") limit: Int
+        @Query("limit") limit: Int,
     ): ListResponse<ApiTestCommonResultRow>
 
     @POST("v1/rating")

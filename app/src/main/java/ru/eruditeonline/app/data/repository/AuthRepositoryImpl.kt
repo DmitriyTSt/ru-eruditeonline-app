@@ -51,7 +51,7 @@ class AuthRepositoryImpl @Inject constructor(
         city: String,
         region: String?,
         country: String,
-        emailAgreement: Boolean
+        emailAgreement: Boolean,
     ) {
         apiService.registration(
             RegistrationParams(

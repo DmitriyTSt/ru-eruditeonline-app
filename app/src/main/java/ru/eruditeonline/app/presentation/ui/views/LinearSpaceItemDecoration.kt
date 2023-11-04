@@ -58,10 +58,12 @@ class LinearSpaceItemDecoration(
                         }
                     }
                     HORIZONTAL -> {
-                        if (position != 0) left = space / 2
-                        else if (showFirstVerticalDivider) left = space
-                        if (position != state.itemCount - 1) right = space / 2
-                        else if (showLastVerticalDivider) right = space
+                        if (position != 0) {
+                            left = space / 2
+                        } else if (showFirstVerticalDivider) left = space
+                        if (position != state.itemCount - 1) {
+                            right = space / 2
+                        } else if (showLastVerticalDivider) right = space
                     }
                 }
             }

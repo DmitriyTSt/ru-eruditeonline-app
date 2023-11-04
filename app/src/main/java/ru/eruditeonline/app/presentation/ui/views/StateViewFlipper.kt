@@ -17,7 +17,7 @@ class StateViewFlipper(context: Context, attrs: AttributeSet? = null) : ViewFlip
         LOADING(0),
         ERROR(1),
         DATA(2),
-        CUSTOM(3)
+        CUSTOM(3),
     }
 
     private val loadingBinding = ViewLoadingStateBinding.inflate(LayoutInflater.from(context), this, true)

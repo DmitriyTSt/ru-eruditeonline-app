@@ -31,7 +31,7 @@ fun RecyclerView.addDefaultGridSpaceItemDecoration(
     spanCount: Int,
     @DimenRes spacing: Int = R.dimen.padding_8,
     includeEdge: Boolean = false,
-    excludeTopEdge: Boolean = true
+    excludeTopEdge: Boolean = true,
 ) {
     val itemDecoration = GridSpaceItemDecoration(
         spanCount,
