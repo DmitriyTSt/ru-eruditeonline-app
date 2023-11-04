@@ -4,7 +4,6 @@ import ru.eruditeonline.app.data.model.test.CreatedResult
 import ru.eruditeonline.app.data.model.test.TestCommonResultRow
 import ru.eruditeonline.app.data.model.test.TestUserResult
 import ru.eruditeonline.app.data.model.test.TestUserResultRow
-import ru.eruditeonline.app.data.remote.response.ListResponse
 
 interface ResultRepository {
     /** Получение результатов пользователя */

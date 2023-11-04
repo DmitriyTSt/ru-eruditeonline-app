@@ -10,7 +10,7 @@ import javax.inject.Inject
 abstract class CoroutineModule {
     @Binds
     abstract fun provideDispatcherProvider(
-        dispatcherProvider: DispatcherProviderImpl
+        dispatcherProvider: DispatcherProviderImpl,
     ): DispatcherProvider
 }
 

@@ -28,14 +28,13 @@ fun ImageView.load(
         .apply { placeHolderRes?.let(::placeholder) }
         .apply { errorRes?.let(::error) }
         .apply { fallbackRes?.let(::fallback) }
-
         .addListener(
             object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,
                     target: Target<Drawable>?,
-                    isFirstResource: Boolean
+                    isFirstResource: Boolean,
                 ): Boolean {
                     e?.printStackTrace()
                     doOnFailure.invoke()
@@ -47,7 +46,7 @@ fun ImageView.load(
                     model: Any?,
                     target: Target<Drawable>?,
                     dataSource: DataSource?,
-                    isFirstResource: Boolean
+                    isFirstResource: Boolean,
                 ): Boolean {
                     doOnSuccess.invoke(resource)
                     return false

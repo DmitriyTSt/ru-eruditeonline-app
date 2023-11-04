@@ -13,7 +13,7 @@ import ru.eruditeonline.app.R
 class MainBottomNavigationView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : BottomNavigationView(context, attrs, defStyleAttr),
     NavController.OnDestinationChangedListener {
 
@@ -41,7 +41,7 @@ class MainBottomNavigationView @JvmOverloads constructor(
     override fun onDestinationChanged(
         controller: NavController,
         destination: NavDestination,
-        arguments: Bundle?
+        arguments: Bundle?,
     ) {
         // определяем относится ли данный дейстинейшон к основному меню
         val graphId = destination.parent?.id ?: return

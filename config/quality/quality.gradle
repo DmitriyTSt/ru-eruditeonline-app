@@ -47,6 +47,7 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     mainClass = "com.pinterest.ktlint.Main"
     jvmArgs "--add-opens=java.base/java.lang=ALL-UNNAMED"
     args "-F", "src/**/*.kt"
+    args "--editorconfig=${qualityConfigDir}/ktlint/.editorconfig"
 }
 
 //check.dependsOn 'checkstyle', 'findbugs', 'pmd'

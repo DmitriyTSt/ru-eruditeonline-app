@@ -53,7 +53,7 @@ class ResultRepositoryImpl @Inject constructor(
         diplomaType: String,
         quality: Int?,
         difficulty: Int?,
-        interest: Int?
+        interest: Int?,
     ): CreatedResult {
         return apiService.saveResult(
             SaveResultParams(

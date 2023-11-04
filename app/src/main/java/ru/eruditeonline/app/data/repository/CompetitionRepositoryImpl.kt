@@ -17,7 +17,7 @@ class CompetitionRepositoryImpl @Inject constructor(
         ageIds: List<String>?,
         subjectIds: List<String>?,
         offset: Int,
-        limit: Int
+        limit: Int,
     ): CompetitionPage {
         delay(1000) // TODO remove
         return apiService.getCompetitionItems(

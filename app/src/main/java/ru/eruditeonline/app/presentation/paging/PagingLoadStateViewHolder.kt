@@ -14,7 +14,7 @@ import ru.eruditeonline.app.presentation.extension.inflate
  */
 class PagingLoadStateViewHolder(
     parent: ViewGroup,
-    retry: () -> Unit
+    retry: () -> Unit,
 ) : RecyclerView.ViewHolder(
     parent.inflate(R.layout.item_paging_state)
 ) {

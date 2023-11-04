@@ -10,7 +10,7 @@ interface CompetitionRepository {
         ageIds: List<String>?,
         subjectIds: List<String>?,
         offset: Int,
-        limit: Int
+        limit: Int,
     ): CompetitionPage
 
     /** Получение конкурса */

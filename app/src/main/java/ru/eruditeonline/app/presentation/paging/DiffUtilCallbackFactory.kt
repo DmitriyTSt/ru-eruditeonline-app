@@ -9,11 +9,10 @@ import javax.inject.Inject
  * It used in RecyclerView Adapters through Dagger's injections
  */
 class DiffUtilCallbackFactory @Inject constructor(
-    private val diffUtilItemCallbackFactory: DiffUtilItemCallbackFactory
+    private val diffUtilItemCallbackFactory: DiffUtilItemCallbackFactory,
 ) {
 
     fun <T : Similarable<T>> create(oldList: List<T>, newList: List<T>): DiffUtil.Callback {
-
         val diffUtilItemCallback = diffUtilItemCallbackFactory.create<T>()
 
         return object : DiffUtil.Callback() {
