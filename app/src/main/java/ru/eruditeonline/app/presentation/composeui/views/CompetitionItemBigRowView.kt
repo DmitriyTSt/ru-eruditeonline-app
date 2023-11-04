@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
+import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 
 @Composable
 fun CompetitionItemBigRowView(
@@ -63,5 +64,7 @@ private fun CompetitionItemBigRowViewPreview() {
         difficulty = 2,
         icon = "https://erudit-online.ru/assets/images/1/gold_autumn-9c6de671.jpg",
     )
-    CompetitionItemBigRowView(item, {})
+    EruditeTheme {
+        CompetitionItemBigRowView(item, {})
+    }
 }

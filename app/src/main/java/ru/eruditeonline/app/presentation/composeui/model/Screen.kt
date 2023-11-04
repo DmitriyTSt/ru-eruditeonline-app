@@ -7,6 +7,9 @@ import androidx.navigation.navArgument
 sealed class Screen(val route: String, val arguments: List<NamedNavArgument> = emptyList()) {
     data object Dashboard : Screen(route = "dashboard")
     data object Competitions : Screen(route = "competitions")
+    data object CompetitionFilter : Screen(
+        route = "competitionFilter"
+    )
     data object Rating : Screen(route = "rating")
     data object Profile : Screen(route = "profile")
 

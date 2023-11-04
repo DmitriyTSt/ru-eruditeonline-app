@@ -31,12 +31,16 @@ import androidx.lifecycle.asFlow
 import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.data.model.competition.CompetitionFilters
+import ru.eruditeonline.app.presentation.composeui.base.SetResultListener
+import ru.eruditeonline.app.presentation.composeui.base.setNextScreenArguments
 import ru.eruditeonline.app.presentation.composeui.model.Screen
 import ru.eruditeonline.app.presentation.composeui.paging.PagingStateFlipperView
 import ru.eruditeonline.app.presentation.composeui.paging.applyFooterState
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionItemBigGridView
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionItemSmallRowView
+import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterRequest
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewType
 import kotlin.random.Random
@@ -48,6 +52,14 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
 
     val competitionPagingItems = viewModel.pagingDataLiveData.asFlow().collectAsLazyPagingItems()
     val listViewType by viewModel.listViewTypeLiveData.observeAsState(CompetitionItemsViewType.CARD)
+    val filters by viewModel.filtersLiveData.observeAsState(CompetitionFilters(emptyList(), emptyList()))
+
+    navController.SetResultListener<FilterRequest> { filterRequest ->
+        viewModel.loadCompetitions(
+            ageIds = filterRequest.ageIds,
+            subjectIds = filterRequest.subjectIds,
+        )
+    }
 
     LaunchedEffect(Unit) {
         viewModel.callOperations {
@@ -76,7 +88,10 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
                             contentDescription = null,
                         )
                     }
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.setNextScreenArguments(filters)
+                        navController.navigate(Screen.CompetitionFilter.route)
+                    }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_filter),
                             contentDescription = null,
@@ -103,7 +118,6 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
                 columns = GridCells.Fixed(spanCount),
                 contentPadding = PaddingValues(12.dp),
             ) {
-
                 when (listViewType) {
                     CompetitionItemsViewType.CARD -> {
                         items(competitionPagingItems.itemCount) { index ->

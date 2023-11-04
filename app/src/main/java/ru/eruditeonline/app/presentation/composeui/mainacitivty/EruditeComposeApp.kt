@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import ru.eruditeonline.app.presentation.composeui.competition.CompetitionScreen
 import ru.eruditeonline.app.presentation.composeui.competition.ComposeCompetitionViewModel
+import ru.eruditeonline.app.presentation.composeui.competition.filter.CompetitionFilterScreen
 import ru.eruditeonline.app.presentation.composeui.competition.items.CompetitionsScreen
 import ru.eruditeonline.app.presentation.composeui.dashboard.DashboardScreen
 import ru.eruditeonline.app.presentation.composeui.model.Screen
@@ -25,6 +26,7 @@ import ru.eruditeonline.app.presentation.composeui.rating.RatingScreen
 import ru.eruditeonline.app.presentation.composeui.settings.SettingsScreen
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
+import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 
@@ -53,7 +55,7 @@ fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
                             navController = navController,
                             viewModel = viewModel {
                                 viewModelFactory.create(DashboardViewModel::class.java)
-                            }
+                            },
                         )
                     }
                     composable(Screen.Competitions.route) {
@@ -61,7 +63,15 @@ fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
                             navController = navController,
                             viewModel = viewModel {
                                 viewModelFactory.create(CompetitionItemsViewModel::class.java)
-                            }
+                            },
+                        )
+                    }
+                    composable(Screen.CompetitionFilter.route) {
+                        CompetitionFilterScreen(
+                            navController = navController,
+                            viewModel = viewModel {
+                                viewModelFactory.create(CompetitionFilterViewModel::class.java)
+                            },
                         )
                     }
                     composable(Screen.Rating.route) { RatingScreen(/*...*/) }
@@ -72,7 +82,7 @@ fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
                             navController = navController,
                             viewModel = viewModel {
                                 viewModelFactory.create(ComposeCompetitionViewModel::class.java)
-                            }
+                            },
                         )
                     }
                     composable(Screen.Settings.route) { SettingsScreen(navController, eruditeTheme) { eruditeTheme = it } }
