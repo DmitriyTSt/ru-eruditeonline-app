@@ -34,7 +34,7 @@ import ru.eruditeonline.app.presentation.ui.debug.DebugViewModel
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 
 @Composable
-fun EruditeComposeApp(viewModelFactory: ViewModelProvider.Factory) {
+fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.Factory) {
     var eruditeTheme by remember { mutableStateOf(EruditeThemeModel.STANDARD_LIGHT) }
     val navController = rememberNavController()
 

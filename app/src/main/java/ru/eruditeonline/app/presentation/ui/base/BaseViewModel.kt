@@ -63,6 +63,7 @@ abstract class BaseViewModel : ViewModel() {
                 val result = block()
                 emit(LoadableState.Success(result))
             } catch (t: Throwable) {
+                println("START_FLOW catch $t")
                 emit(LoadableState.Error(t))
             }
         }.collect { result ->

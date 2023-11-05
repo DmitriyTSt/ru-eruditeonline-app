@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavController
 
-inline fun <reified T : Parcelable> NavController.setNextScreenArguments(result: T) {
-    currentBackStackEntry?.savedStateHandle?.set(T::class.java.name, result)
+inline fun <reified T : Parcelable> NavController.setNextScreenArguments(arg: T) {
+    currentBackStackEntry?.savedStateHandle?.set(T::class.java.name, arg)
 }
 
 @Composable

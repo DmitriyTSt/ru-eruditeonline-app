@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.MainThread
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModel
@@ -14,7 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.viewmodel.CreationExtras
 import dagger.android.AndroidInjection
+import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.SplashUseCase
+import ru.eruditeonline.app.presentation.composeui.model.Screen
 import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 import javax.inject.Inject
 import kotlin.reflect.KClass
@@ -35,19 +39,18 @@ class MainComposeActivity : ComponentActivity() {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        viewModel.initialFlowLiveEvent.observe(this) { result ->
-            result.doOnSuccess { initResult ->
-                when (initResult) {
-                    is SplashUseCase.Result.AppUpdateScreen -> Unit // TODO
-                    SplashUseCase.Result.MainScreen -> Unit // TODO()
-                }
-            }
-        }
         installSplashScreen().setKeepOnScreenCondition {
             viewModel.isReady
         }
         setContent {
-            EruditeComposeApp(viewModelFactory = viewModelFactory)
+            val startScreenState by viewModel.initialFlowLiveEvent.observeAsState(LoadableState.Loading())
+
+            val screen = when (startScreenState.getOrNull()) {
+                is SplashUseCase.Result.AppUpdateScreen -> Screen.AppUpdate
+                SplashUseCase.Result.MainScreen -> Screen.Dashboard
+                null -> null
+            }
+            EruditeComposeApp(startScreen = screen, viewModelFactory = viewModelFactory)
         }
     }
 
