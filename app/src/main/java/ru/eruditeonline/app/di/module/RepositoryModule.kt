@@ -12,6 +12,7 @@ import ru.eruditeonline.app.data.repository.BuildConfigRepository
 import ru.eruditeonline.app.data.repository.BuildConfigRepositoryImpl
 import ru.eruditeonline.app.data.repository.CompetitionRepository
 import ru.eruditeonline.app.data.repository.CompetitionRepositoryImpl
+import ru.eruditeonline.app.data.repository.DebugRepositoryImpl
 import ru.eruditeonline.app.data.repository.EndpointRepository
 import ru.eruditeonline.app.data.repository.EndpointRepositoryImpl
 import ru.eruditeonline.app.data.repository.MainRepository
@@ -30,6 +31,7 @@ import ru.eruditeonline.app.data.repository.TokenRepository
 import ru.eruditeonline.app.data.repository.TokenRepositoryImpl
 import ru.eruditeonline.app.data.repository.UtilsRepository
 import ru.eruditeonline.app.data.repository.UtilsRepositoryImpl
+import ru.eruditeonline.app.domain.repository.DebugRepository
 
 @Module
 abstract class RepositoryModule {
@@ -74,4 +76,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideAppConfigRepository(appConfigRepositoryImpl: AppConfigRepositoryImpl): AppConfigRepository
+
+    @Binds
+    abstract fun provideDebugRepository(debugRepository: DebugRepositoryImpl): DebugRepository
 }

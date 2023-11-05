@@ -157,4 +157,5 @@
     <string name="rating_empty_title">Результатов не найдено</string>
     <string name="rating_empty_comment">Пройдите конкурс, и будете первым</string>
     <string name="profile_title">Профиль</string>
+    <string name="debug_compose_enabled_switch_label">Использовать compose</string>
 </resources>

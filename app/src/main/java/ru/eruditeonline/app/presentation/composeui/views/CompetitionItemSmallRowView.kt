@@ -40,7 +40,7 @@ fun CompetitionItemSmallRowView(
                         difficulty = competitionItem.difficulty,
                     )
                     Text(
-                        text = competitionItem.title,
+                        text = "${competitionItem.subject} ${competitionItem.title}",
                         style = AppTypography.bodyMedium,
                         modifier = Modifier.padding(top = 4.dp),
                     )

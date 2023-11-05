@@ -12,6 +12,7 @@ private const val KEY_ACCESS_TOKEN = "profile_access_token"
 private const val KEY_REFRESH_TOKEN = "profile_refresh_token"
 private const val KEY_IS_SIGNED_IN = "is_signed_in"
 private const val KEY_CURRENT_THEME = "current_theme"
+private const val KEY_COMPOSE_ENABLED = "key_compose_enabled"
 
 @Singleton
 class PreferencesStorage @Inject constructor(
@@ -48,5 +49,11 @@ class PreferencesStorage @Inject constructor(
         get() = regularPreferenceStorage.getString(KEY_CURRENT_THEME, Theme.LIGHT.toString()) ?: Theme.LIGHT.toString()
         set(value) {
             regularPreferenceStorage.edit().putString(KEY_CURRENT_THEME, value).apply()
+        }
+
+    var isComposeEnabled: Boolean
+        get() = userIndependentPreferenceStorage.getBoolean(KEY_COMPOSE_ENABLED, false)
+        set(value) {
+            userIndependentPreferenceStorage.edit().putBoolean(KEY_COMPOSE_ENABLED, value).commit()
         }
 }

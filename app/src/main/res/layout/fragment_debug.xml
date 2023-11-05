@@ -94,6 +94,15 @@
                 android:layout_marginEnd="@dimen/margin_16"
                 android:text="@string/debug_save" />
 
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchComposeEnabled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingHorizontal="@dimen/padding_16"
+                android:text="@string/debug_compose_enabled_switch_label"
+                android:textAppearance="@style/Font.Body1.Regular" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

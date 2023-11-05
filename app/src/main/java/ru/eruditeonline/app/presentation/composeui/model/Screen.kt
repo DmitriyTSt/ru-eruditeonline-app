@@ -27,6 +27,7 @@ sealed class Screen(val route: String, val arguments: List<NamedNavArgument> = e
     data object CommonResults : Screen(route = "commonResults")
     data object Settings : Screen(route = "settings")
     data object Info : Screen(route = "info")
+    data object Debug : Screen(route = "debug")
 
     open fun route(vararg args: Any): String {
         return this.route

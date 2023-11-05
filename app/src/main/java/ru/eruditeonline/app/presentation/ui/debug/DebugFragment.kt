@@ -6,18 +6,25 @@ import androidx.core.view.isVisible
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentDebugBinding
+import ru.eruditeonline.app.domain.usecase.debug.GetDebugDataUseCase
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
+import ru.eruditeonline.app.presentation.navigation.AppStarter
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import javax.inject.Inject
 import kotlin.system.exitProcess
 
 class DebugFragment : BaseFragment(R.layout.fragment_debug) {
     private val binding by viewBinding(FragmentDebugBinding::bind)
     private val viewModel: DebugViewModel by appViewModels()
 
+    @Inject lateinit var appStarter: AppStarter
+
     override fun callOperations() {
-        viewModel.initEndpoint()
+        viewModel.callOperations {
+            viewModel.initData()
+        }
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
@@ -33,29 +40,9 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
 
     override fun onBindViewModel() = with(viewModel) {
         observeNavigationCommands(viewModel)
-        showDevEndpointLiveEvent.observe { isShow ->
-            if (isShow) {
-                binding.radioGroupDebugServer.clearCheck()
-                binding.radioButtonDebugDebug.isChecked = true
-            }
-        }
-        showReleaseEndpointLiveEvent.observe { isShow ->
-            if (isShow) {
-                binding.radioGroupDebugServer.clearCheck()
-                binding.radioButtonDebugRelease.isChecked = true
-            }
-        }
-        showCustomEndpointLiveEvent.observe { endpoint ->
-            if (endpoint.isNotEmpty()) {
-                binding.radioGroupDebugServer.clearCheck()
-                binding.radioButtonDebugCustom.isChecked = true
-                binding.editTextCustomEndpoint.setText(endpoint)
-            }
-        }
-        endpointDataLiveData.observe { result ->
+        debugDataLiveData.observe { result ->
             result.doOnSuccess { data ->
-                binding.radioButtonDebugRelease.text = getString(R.string.debug_release, data.prodEndpoint)
-                binding.radioButtonDebugDebug.text = getString(R.string.debug_debug, data.devEndpoint)
+                bindData(data)
             }
         }
         restartAppLiveEvent.observe { result ->
@@ -65,6 +52,21 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
                     restartApp()
                 }
             }
+        }
+    }
+
+    private fun bindData(data: GetDebugDataUseCase.Result) = with(binding) {
+        radioButtonDebugRelease.text = getString(R.string.debug_release, data.prodEndpoint)
+        radioButtonDebugDebug.text = getString(R.string.debug_debug, data.devEndpoint)
+        radioButtonDebugDebug.isChecked = data.devEndpointEnabled
+        radioButtonDebugRelease.isChecked = data.prodEndpointEnabled
+        radioButtonDebugCustom.isChecked = data.customEndpointEnabled
+        if (data.customEndpointEnabled) {
+            editTextCustomEndpoint.setText(data.customEndpoint)
+        }
+        switchComposeEnabled.isChecked = data.isComposeEnabled
+        switchComposeEnabled.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.setComposeEnabled(isChecked)
         }
     }
 
@@ -84,10 +86,8 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
     }
 
     private fun restartApp() {
-        val intent = context
-            ?.packageManager
-            ?.getLaunchIntentForPackage(requireContext().packageName)
-        intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val intent = appStarter.createStartIntent(requireContext())
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         exitProcess(0)
     }

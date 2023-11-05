@@ -87,7 +87,7 @@ fun CompetitionFilterScreen(navController: NavController, viewModel: Competition
                 scrollBehavior = scrollBehavior,
                 actions = {
                     TextButton(onClick = { viewModel.resetFilters() }) {
-                        Text(text = stringResource(R.string.reset_filters_label))
+                        Text(text = stringResource(R.string.reset_filters_label), style = AppTypography.bodyMedium)
                     }
                 }
             )
