@@ -26,7 +26,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
-import ru.eruditeonline.app.presentation.composeui.model.Screen
+import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.views.StateFlipperView
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
@@ -34,6 +34,7 @@ import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel) {
+    ObserveDestinations(navController, viewModel)
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     val mainSectionsState: LoadableState<List<MainSection>> by viewModel.mainSectionsLiveData
@@ -59,7 +60,7 @@ fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel)
                 },
                 actions = {
                     if ((isDebugButtonVisibleState as? LoadableState.Success)?.data == true) {
-                        TextButton(onClick = { navController.navigate(Screen.Debug.route) }) {
+                        TextButton(onClick = { viewModel.openDebug() }) {
                             Text(text = stringResource(R.string.debug_title), style = AppTypography.bodyMedium)
                         }
                     }
@@ -87,7 +88,7 @@ fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel)
                 mainSections.forEach { mainSection ->
                     MainSectionView(
                         mainSection = mainSection,
-                        onCompetitionClick = { navController.navigate(Screen.Competition.route(1)) }
+                        onCompetitionClick = { viewModel.openCompetition(it) }
                     )
                 }
             }

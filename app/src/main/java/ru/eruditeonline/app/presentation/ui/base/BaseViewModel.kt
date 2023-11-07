@@ -1,6 +1,5 @@
 package ru.eruditeonline.app.presentation.ui.base
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,9 +7,11 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.presentation.navigation.Destination
@@ -18,8 +19,8 @@ import androidx.paging.LoadState as PagingLoadState
 
 abstract class BaseViewModel : ViewModel() {
     /** Навигации */
-    private val _destinationLiveEvent = SingleLiveEvent<Destination>()
-    val destinationLiveEvent: LiveData<Destination> = _destinationLiveEvent
+    private val _destinationChannel = Channel<Destination>()
+    val destinationChannel = _destinationChannel.receiveAsFlow()
 
     private var isCallOperationProcessed = false
 
@@ -31,11 +32,11 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     fun navigate(destination: Destination) {
-        _destinationLiveEvent.postValue(destination)
+        viewModelScope.launch { _destinationChannel.send(destination) }
     }
 
     fun navigateBack() {
-        _destinationLiveEvent.postValue(Destination.Back)
+        viewModelScope.launch { _destinationChannel.send(Destination.Back) }
     }
 
     protected fun <T> MutableLiveData<LoadableState<T>>.launchLoadData(

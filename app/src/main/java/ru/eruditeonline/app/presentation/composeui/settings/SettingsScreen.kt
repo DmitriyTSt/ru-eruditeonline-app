@@ -36,10 +36,7 @@ fun SettingsScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = stringResource(R.string.settings_title),
-                        style = AppTypography.titleLarge,
-                    )
+                    Text(text = stringResource(R.string.settings_title))
                 },
                 navigationIcon = {
                     NavigationIcon(navController)

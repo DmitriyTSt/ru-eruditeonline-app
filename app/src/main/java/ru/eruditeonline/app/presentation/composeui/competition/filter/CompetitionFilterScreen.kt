@@ -76,10 +76,7 @@ fun CompetitionFilterScreen(navController: NavController, viewModel: Competition
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = stringResource(id = R.string.filter_title),
-                        style = AppTypography.titleLarge,
-                    )
+                    Text(text = stringResource(id = R.string.filter_title))
                 },
                 navigationIcon = {
                     NavigationIcon(navController)

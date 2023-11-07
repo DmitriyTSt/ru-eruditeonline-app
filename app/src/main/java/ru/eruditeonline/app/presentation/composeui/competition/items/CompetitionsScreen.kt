@@ -71,10 +71,7 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = stringResource(id = R.string.competition_items_title),
-                        style = AppTypography.titleLarge,
-                    )
+                    Text(text = stringResource(id = R.string.competition_items_title))
                 },
                 scrollBehavior = scrollBehavior,
                 actions = {

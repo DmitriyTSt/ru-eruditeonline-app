@@ -59,10 +59,7 @@ fun DebugScreen(navController: NavController, viewModel: DebugViewModel) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = stringResource(id = R.string.debug_title),
-                        style = AppTypography.titleLarge,
-                    )
+                    Text(text = stringResource(id = R.string.debug_title))
                 },
                 navigationIcon = {
                     NavigationIcon(navController)
