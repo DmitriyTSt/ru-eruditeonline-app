@@ -25,7 +25,9 @@ class CompetitionDetailFragment : BaseFragment(R.layout.fragment_competition_det
     @Inject lateinit var buttonsAdapter: CompetitionTestButtonsAdapter
 
     override fun callOperations() {
-        viewModel.loadCompetitionItem(args.id)
+        viewModel.callOperations {
+            viewModel.loadCompetitionItem(args.id)
+        }
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {

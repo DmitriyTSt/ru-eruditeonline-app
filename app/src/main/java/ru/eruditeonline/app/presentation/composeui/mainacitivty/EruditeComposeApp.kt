@@ -15,8 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import ru.eruditeonline.app.presentation.composeui.competition.CompetitionScreen
-import ru.eruditeonline.app.presentation.composeui.competition.ComposeCompetitionViewModel
+import ru.eruditeonline.app.presentation.composeui.competition.detail.CompetitionScreen
 import ru.eruditeonline.app.presentation.composeui.competition.filter.CompetitionFilterScreen
 import ru.eruditeonline.app.presentation.composeui.competition.items.CompetitionsScreen
 import ru.eruditeonline.app.presentation.composeui.dashboard.DashboardScreen
@@ -27,6 +26,7 @@ import ru.eruditeonline.app.presentation.composeui.rating.RatingScreen
 import ru.eruditeonline.app.presentation.composeui.settings.SettingsScreen
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
+import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetailViewModel
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
@@ -91,7 +91,7 @@ fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.
                             id = backStackEntry.arguments?.getInt("id") ?: 0,
                             navController = navController,
                             viewModel = viewModel {
-                                viewModelFactory.create(ComposeCompetitionViewModel::class.java)
+                                viewModelFactory.create(CompetitionDetailViewModel::class.java)
                             },
                         )
                     }
