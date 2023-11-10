@@ -2,10 +2,13 @@ package ru.eruditeonline.app.presentation.composeui.profile
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -20,8 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.model.Screen
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
@@ -31,6 +36,7 @@ import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 fun ProfileScreen(
     navController: NavController,
     viewModel: ProfileViewModel,
+    viewModelFactory: ViewModelProvider.Factory,
 ) {
     val isAuthorized by viewModel.isAuthorizedLiveData.observeAsState(false)
 
@@ -45,12 +51,30 @@ fun ProfileScreen(
                     Text(text = stringResource(R.string.profile_title))
                 }
             )
-        }
+        },
+        contentWindowInsets = WindowInsets.statusBars,
     ) { innerPaddings ->
         Column(
             Modifier
                 .padding(innerPaddings)
         ) {
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+            ) {
+                if (isAuthorized) {
+                    UserProfileContent(
+                        navController = navController,
+                        viewModel = appViewModel(viewModelFactory),
+                    )
+                } else {
+                    AnonymProfileContent(
+                        navController = navController,
+                        viewModel = appViewModel(viewModelFactory),
+                    )
+                }
+            }
             ProfileMenuItem(
                 text = stringResource(R.string.profile_search_results_button_label),
                 icon = R.drawable.ic_search_results,

@@ -84,6 +84,7 @@ fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.
                             viewModel = viewModel {
                                 viewModelFactory.create(ProfileViewModel::class.java)
                             },
+                            viewModelFactory = viewModelFactory,
                         )
                     }
                     composable(Screen.Competition.route, Screen.Competition.arguments) { backStackEntry ->
