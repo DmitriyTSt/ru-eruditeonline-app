@@ -1,15 +1,17 @@
 package ru.eruditeonline.app.presentation.composeui.competition.items
 
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -97,7 +99,6 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets.statusBars,
     ) { innerPaddings ->
-        val spanCount = 2
         PagingStateFlipperView(
             items = competitionPagingItems,
             onRetryClick = {
@@ -108,31 +109,64 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
                 .fillMaxSize()
                 .padding(innerPaddings),
         ) {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(spanCount),
+            LazyColumn(
                 contentPadding = PaddingValues(12.dp),
             ) {
                 when (listViewType) {
                     CompetitionItemsViewType.CARD -> {
-                        items(competitionPagingItems.itemCount) { index ->
-                            val competitionItem = competitionPagingItems[index]
-                            if (competitionItem != null) {
-                                CompetitionItemBigGridView(
-                                    competitionItem = competitionItem,
-                                    modifier = Modifier
-                                        .padding(4.dp)
-                                        .fillMaxHeight(),
-                                    onClick = { item ->
-                                        viewModel.openCompetition(item)
-                                    }
-                                )
+                        items(
+                            count = (competitionPagingItems.itemCount + 1) / 2,
+                        ) { index ->
+                            val competitionItemLeft = competitionPagingItems[index * 2]
+                            val rightIndex = index * 2 + 1
+                            val competitionItemRight = if (rightIndex < competitionPagingItems.itemCount) {
+                                competitionPagingItems[index * 2 + 1]
+                            } else {
+                                null
+                            }
+                            Row(
+                                modifier = Modifier
+                                    // весь хак с двумя айтемами в строке вместо грида из-за этого
+                                    .height(IntrinsicSize.Min)
+                                    .fillMaxWidth()
+                            ) {
+                                if (competitionItemLeft != null) {
+                                    CompetitionItemBigGridView(
+                                        competitionItem = competitionItemLeft,
+                                        modifier = Modifier
+                                            .padding(4.dp)
+                                            .weight(1f)
+                                            .fillMaxHeight(),
+                                        onClick = { item ->
+                                            viewModel.openCompetition(item)
+                                        }
+                                    )
+                                }
+                                if (competitionItemRight != null) {
+                                    CompetitionItemBigGridView(
+                                        competitionItem = competitionItemRight,
+                                        modifier = Modifier
+                                            .padding(4.dp)
+                                            .weight(1f)
+                                            .fillMaxHeight(),
+                                        onClick = { item ->
+                                            viewModel.openCompetition(item)
+                                        }
+                                    )
+                                } else {
+                                    Spacer(
+                                        modifier = Modifier
+                                            .padding(4.dp)
+                                            .weight(1f)
+                                            .fillMaxHeight(),
+                                    )
+                                }
                             }
                         }
                     }
                     CompetitionItemsViewType.ROW -> {
                         items(
                             count = competitionPagingItems.itemCount,
-                            span = { GridItemSpan(2) },
                         ) { index ->
                             val competitionItem = competitionPagingItems[index]
                             if (competitionItem != null) {
@@ -150,7 +184,7 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
                     }
                 }
 
-                applyFooterState(spanCount, competitionPagingItems)
+                applyFooterState(competitionPagingItems)
             }
         }
     }

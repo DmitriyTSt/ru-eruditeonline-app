@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.composeui.paging
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.ui.Modifier
@@ -16,6 +17,22 @@ fun LazyGridScope.applyFooterState(spanCount: Int, items: LazyPagingItems<*>) {
         is LoadState.Error -> {
             val error = items.loadState.append as LoadState.Error
             item(span = { GridItemSpan(spanCount) }) {
+                PageError(throwable = error.error, modifier = Modifier.fillMaxSize(), onRetryClick = { items.retry() })
+            }
+        }
+        is LoadState.NotLoading -> Unit
+    }
+}
+
+fun LazyListScope.applyFooterState(items: LazyPagingItems<*>) {
+    when (items.loadState.append) {
+        is LoadState.Loading -> {
+            item { PageLoader(modifier = Modifier.fillMaxSize()) }
+        }
+
+        is LoadState.Error -> {
+            val error = items.loadState.append as LoadState.Error
+            item {
                 PageError(throwable = error.error, modifier = Modifier.fillMaxSize(), onRetryClick = { items.retry() })
             }
         }
