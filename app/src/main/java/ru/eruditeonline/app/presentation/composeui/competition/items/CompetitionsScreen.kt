@@ -38,6 +38,7 @@ import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.SetResultListener
 import ru.eruditeonline.app.presentation.composeui.paging.PagingStateFlipperView
 import ru.eruditeonline.app.presentation.composeui.paging.applyFooterState
+import ru.eruditeonline.app.presentation.composeui.paging.isSuccess
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionItemBigGridView
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionItemSmallRowView
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterRequest
@@ -75,23 +76,25 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
                 },
                 scrollBehavior = scrollBehavior,
                 actions = {
-                    IconButton(onClick = { viewModel.changeListViewType() }) {
-                        val viewTypeIconRes = when (listViewType) {
-                            CompetitionItemsViewType.CARD -> R.drawable.ic_view_type_card
-                            CompetitionItemsViewType.ROW -> R.drawable.ic_view_type_row
+                    if (competitionPagingItems.isSuccess) {
+                        IconButton(onClick = { viewModel.changeListViewType() }) {
+                            val viewTypeIconRes = when (listViewType) {
+                                CompetitionItemsViewType.CARD -> R.drawable.ic_view_type_card
+                                CompetitionItemsViewType.ROW -> R.drawable.ic_view_type_row
+                            }
+                            Icon(
+                                painter = painterResource(id = viewTypeIconRes),
+                                contentDescription = null,
+                            )
                         }
-                        Icon(
-                            painter = painterResource(id = viewTypeIconRes),
-                            contentDescription = null,
-                        )
-                    }
-                    IconButton(onClick = {
-                        viewModel.openFilter(filters)
-                    }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_filter),
-                            contentDescription = null,
-                        )
+                        IconButton(onClick = {
+                            viewModel.openFilter(filters)
+                        }) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_filter),
+                                contentDescription = null,
+                            )
+                        }
                     }
                 }
             )
