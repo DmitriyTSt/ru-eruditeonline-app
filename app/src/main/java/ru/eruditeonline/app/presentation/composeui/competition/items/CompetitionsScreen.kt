@@ -32,22 +32,20 @@ import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
+import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.SetResultListener
-import ru.eruditeonline.app.presentation.composeui.base.setNextScreenArguments
-import ru.eruditeonline.app.presentation.composeui.model.Screen
 import ru.eruditeonline.app.presentation.composeui.paging.PagingStateFlipperView
 import ru.eruditeonline.app.presentation.composeui.paging.applyFooterState
-import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionItemBigGridView
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionItemSmallRowView
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterRequest
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewType
-import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItemsViewModel) {
+    ObserveDestinations(navController, viewModel)
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     val competitionPagingItems = viewModel.pagingDataLiveData.asFlow().collectAsLazyPagingItems()
@@ -86,8 +84,7 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
                         )
                     }
                     IconButton(onClick = {
-                        navController.setNextScreenArguments(filters)
-                        navController.navigate(Screen.CompetitionFilter.route)
+                        viewModel.openFilter(filters)
                     }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_filter),
@@ -125,8 +122,8 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
                                     modifier = Modifier
                                         .padding(4.dp)
                                         .fillMaxHeight(),
-                                    onClick = {
-                                        navController.navigate(Screen.Competition.route(Random.nextInt()))
+                                    onClick = { item ->
+                                        viewModel.openCompetition(item)
                                     }
                                 )
                             }
@@ -144,8 +141,8 @@ fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItems
                                     modifier = Modifier
                                         .padding(4.dp)
                                         .fillMaxWidth(),
-                                    onClick = {
-                                        navController.navigate(Screen.Competition.route(Random.nextInt()))
+                                    onClick = { item ->
+                                        viewModel.openCompetition(item)
                                     }
                                 )
                             }
