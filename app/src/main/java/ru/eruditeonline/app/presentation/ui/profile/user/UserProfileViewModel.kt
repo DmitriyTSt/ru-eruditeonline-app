@@ -13,7 +13,6 @@ import javax.inject.Inject
 class UserProfileViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
     private val logoutUseCase: LogoutUseCase,
-    private val destinations: UserProfileDestinations,
 ) : BaseViewModel() {
     /** Профиль */
     private val _profileLiveData = MutableLiveData<LoadableState<Profile>>()
@@ -29,29 +28,5 @@ class UserProfileViewModel @Inject constructor(
 
     fun logout() {
         _logoutLiveEvent.launchLoadData(logoutUseCase.executeFlow(Unit))
-    }
-
-    fun openCommonResults() {
-        navigate(destinations.commonResults())
-    }
-
-    fun openSearchResultsByEmail() {
-        navigate(destinations.searchResultsByEmail())
-    }
-
-    fun openUserResults() {
-        navigate(destinations.userResults())
-    }
-
-    fun reloadStack() {
-        navigate(destinations.reloadStack())
-    }
-
-    fun openInformation() {
-        navigate(destinations.information())
-    }
-
-    fun openSettings() {
-        navigate(destinations.settings())
     }
 }

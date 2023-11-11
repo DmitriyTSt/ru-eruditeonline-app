@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.presentation.ui.profile.user
+package ru.eruditeonline.app.presentation.ui.profile
 
 import android.content.Context
 import androidx.core.net.toUri
@@ -6,30 +6,30 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.navigation.Destination
-import ru.eruditeonline.app.presentation.ui.profile.ProfileFragmentDirections
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultParams
 import javax.inject.Inject
 
-class UserProfileDestinations @Inject constructor(
+class CommonProfileDestinationsImpl @Inject constructor(
     private val context: Context,
-) {
-    /** Поиск результатов по email */
-    fun searchResultsByEmail() = Destination.Action(
-        ProfileFragmentDirections.actionProfileFragmentToSearchResultFragment()
-    )
+) : CommonProfileDestinations {
 
     /** Результаты пользователя */
-    fun userResults() = Destination.Action(
+    override fun userResults() = Destination.Action(
         ProfileFragmentDirections.actionProfileFragmentToUserResultListFragment(UserResultParams.All)
     )
 
     /** Итоги */
-    fun commonResults() = Destination.Action(
+    override fun commonResults() = Destination.Action(
         ProfileFragmentDirections.actionProfileFragmentToCommonResultListFragment()
     )
 
+    /** Поиск результатов по email */
+    override fun searchResultsByEmail() = Destination.Action(
+        ProfileFragmentDirections.actionProfileFragmentToSearchResultFragment()
+    )
+
     /** Перезагрузка стека */
-    fun reloadStack() = Destination.Stack(
+    override fun reloadStack() = Destination.Stack(
         Destination.DeepLink(
             NavDeepLinkRequest.Builder.fromUri(context.getString(R.string.navigation_deep_link_to_dashboard).toUri()).build(),
             NavOptions.Builder()
@@ -42,12 +42,12 @@ class UserProfileDestinations @Inject constructor(
     )
 
     /** Информация */
-    fun information() = Destination.Action(
+    override fun information() = Destination.Action(
         ProfileFragmentDirections.actionProfileFragmentToInformationFragment()
     )
 
     /** Настройки */
-    fun settings() = Destination.Action(
+    override fun settings() = Destination.Action(
         ProfileFragmentDirections.actionProfileFragmentToSettingsFragment()
     )
 }

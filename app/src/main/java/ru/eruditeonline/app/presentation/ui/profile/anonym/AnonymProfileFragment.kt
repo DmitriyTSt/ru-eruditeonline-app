@@ -11,6 +11,7 @@ import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginFragment
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 
 class AnonymProfileFragment : BaseFragment(R.layout.fragment_anonym_profile) {
 
@@ -22,6 +23,7 @@ class AnonymProfileFragment : BaseFragment(R.layout.fragment_anonym_profile) {
 
     private val binding by viewBinding(FragmentAnonymProfileBinding::bind)
     private val viewModel: AnonymProfileViewModel by appViewModels()
+    private val commonViewModel: ProfileViewModel by appViewModels()
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         root.fitTopInsetsWithPadding()
@@ -32,24 +34,25 @@ class AnonymProfileFragment : BaseFragment(R.layout.fragment_anonym_profile) {
             viewModel.openRegistration()
         }
         textViewCommonResults.setOnClickListener {
-            viewModel.openCommonResults()
+            commonViewModel.openCommonResults()
         }
         textViewSearchResultsByEmail.setOnClickListener {
-            viewModel.openSearchResultsByEmail()
+            commonViewModel.openSearchResultsByEmail()
         }
         setFragmentResultListener(LoginFragment.REQUEST_CODE) { _, _ ->
-            viewModel.reloadStack()
+            commonViewModel.reloadStack()
         }
         textViewSettings.setOnClickListener {
-            viewModel.openSettings()
+            commonViewModel.openSettings()
         }
         textViewInfo.setOnClickListener {
-            viewModel.openInformation()
+            commonViewModel.openInformation()
         }
     }
 
-    override fun onBindViewModel() = with(viewModel) {
+    override fun onBindViewModel() {
         observeNavigationCommands(viewModel)
+        observeNavigationCommands(commonViewModel)
     }
 
     override fun applyBottomNavigationViewPadding(view: View, bottomNavigationViewHeight: Int) = Unit

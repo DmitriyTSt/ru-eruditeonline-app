@@ -10,6 +10,7 @@ sealed class Screen(val route: String, val arguments: List<NamedNavArgument> = e
     data object CompetitionFilter : Screen(
         route = "competitionFilter"
     )
+
     data object Rating : Screen(route = "rating")
     data object Profile : Screen(route = "profile")
 
@@ -29,6 +30,8 @@ sealed class Screen(val route: String, val arguments: List<NamedNavArgument> = e
     data object Info : Screen(route = "info")
     data object Debug : Screen(route = "debug")
     data object AppUpdate : Screen(route = "appUpdate")
+    data object Login : Screen(route = "login")
+    data object Registration : Screen(route = "registration")
 
     open fun route(vararg args: Any): String {
         return this.route

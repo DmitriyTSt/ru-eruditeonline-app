@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import ru.eruditeonline.app.presentation.composeui.auth.login.LoginScreen
+import ru.eruditeonline.app.presentation.composeui.auth.registration.RegistrationScreen
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.competition.detail.CompetitionScreen
 import ru.eruditeonline.app.presentation.composeui.competition.filter.CompetitionFilterScreen
@@ -90,6 +92,12 @@ fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.
                             navController = navController,
                             viewModel = appViewModel(viewModelFactory),
                         )
+                    }
+                    composable(Screen.Login.route) {
+                        LoginScreen(navController, appViewModel(viewModelFactory))
+                    }
+                    composable(Screen.Registration.route) {
+                        RegistrationScreen(navController, appViewModel(viewModelFactory))
                     }
                 }
                 NavigationBarView(navController)

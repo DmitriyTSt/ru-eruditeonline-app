@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
-import ru.eruditeonline.app.presentation.composeui.model.Screen
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 
@@ -38,6 +38,7 @@ fun ProfileScreen(
     viewModel: ProfileViewModel,
     viewModelFactory: ViewModelProvider.Factory,
 ) {
+    ObserveDestinations(navController, viewModel)
     val isAuthorized by viewModel.isAuthorizedLiveData.observeAsState(false)
 
     LaunchedEffect(Unit) {
@@ -79,7 +80,7 @@ fun ProfileScreen(
                 text = stringResource(R.string.profile_search_results_button_label),
                 icon = R.drawable.ic_search_results,
                 onClick = {
-                    navController.navigate(Screen.SearchResults.route)
+                    viewModel.openSearchResultsByEmail()
                 }
             )
             if (isAuthorized) {
@@ -87,7 +88,7 @@ fun ProfileScreen(
                     text = stringResource(R.string.profile_user_results_button_label),
                     icon = R.drawable.ic_user_results,
                     onClick = {
-                        navController.navigate(Screen.UserResults.route)
+                        viewModel.openUserResults()
                     }
                 )
             }
@@ -95,21 +96,21 @@ fun ProfileScreen(
                 text = stringResource(R.string.profile_common_results_button_label),
                 icon = R.drawable.ic_common_results,
                 onClick = {
-                    navController.navigate(Screen.CommonResults.route)
+                    viewModel.openCommonResults()
                 }
             )
             ProfileMenuItem(
                 text = stringResource(R.string.profile_settings_button_label),
                 icon = R.drawable.ic_settings,
                 onClick = {
-                    navController.navigate(Screen.Settings.route)
+                    viewModel.openSettings()
                 }
             )
             ProfileMenuItem(
                 text = stringResource(R.string.profile_information_button_label),
                 icon = R.drawable.ic_info,
                 onClick = {
-                    navController.navigate(Screen.Info.route)
+                    viewModel.openInformation()
                 }
             )
         }

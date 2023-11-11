@@ -13,6 +13,7 @@ import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 
 class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
@@ -24,6 +25,7 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private val binding by viewBinding(FragmentUserProfileBinding::bind)
     private val viewModel: UserProfileViewModel by appViewModels()
+    private val commonViewModel: ProfileViewModel by appViewModels()
 
     override fun callOperations() {
         viewModel.loadProfile()
@@ -33,27 +35,28 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
         root.fitTopInsetsWithPadding()
         stateViewFlipper.setRetryMethod { viewModel.loadProfile() }
         textViewCommonResults.setOnClickListener {
-            viewModel.openCommonResults()
+            commonViewModel.openCommonResults()
         }
         textViewSearchResultsByQuery.setOnClickListener {
-            viewModel.openSearchResultsByEmail()
+            commonViewModel.openSearchResultsByEmail()
         }
         textViewUserResults.setOnClickListener {
-            viewModel.openUserResults()
+            commonViewModel.openUserResults()
         }
         imageViewLogout.setOnClickListener {
             viewModel.logout()
         }
         textViewSettings.setOnClickListener {
-            viewModel.openSettings()
+            commonViewModel.openSettings()
         }
         textViewInfo.setOnClickListener {
-            viewModel.openInformation()
+            commonViewModel.openInformation()
         }
     }
 
     override fun onBindViewModel() = with(viewModel) {
         observeNavigationCommands(viewModel)
+        observeNavigationCommands(commonViewModel)
         profileLiveData.observe { state ->
             binding.stateViewFlipper.setState(state)
             state.doOnSuccess { profile ->
@@ -64,7 +67,7 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
             binding.imageViewLogout.isVisible = !state.isLoading
             binding.progressBarLogout.isVisible = state.isLoading
             state.doOnSuccess {
-                reloadStack()
+                commonViewModel.reloadStack()
             }
             state.doOnError { error ->
                 errorSnackbar(error)

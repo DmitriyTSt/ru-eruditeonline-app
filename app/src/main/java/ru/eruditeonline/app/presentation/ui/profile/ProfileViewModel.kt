@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 class ProfileViewModel @Inject constructor(
     private val preferencesStorage: PreferencesStorage,
+    private val destinations: CommonProfileDestinations,
 ) : BaseViewModel() {
 
     /** Авторизован ли пользователь */
@@ -16,5 +17,29 @@ class ProfileViewModel @Inject constructor(
 
     fun resolveAuthState() {
         _isAuthorizedLiveData.postValue(preferencesStorage.isSignedIn)
+    }
+
+    fun openUserResults() {
+        navigate(destinations.userResults())
+    }
+
+    fun openCommonResults() {
+        navigate(destinations.commonResults())
+    }
+
+    fun openSearchResultsByEmail() {
+        navigate(destinations.searchResultsByEmail())
+    }
+
+    fun reloadStack() {
+        navigate(destinations.reloadStack())
+    }
+
+    fun openInformation() {
+        navigate(destinations.information())
+    }
+
+    fun openSettings() {
+        navigate(destinations.settings())
     }
 }
