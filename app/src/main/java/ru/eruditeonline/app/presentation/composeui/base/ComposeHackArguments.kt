@@ -9,15 +9,16 @@ import androidx.navigation.NavController
 // TODO Этот файл - костыли, пока не придумаю нормальную типизированную удобную навигацию по роутам
 //
 
-inline fun <reified T : Parcelable> NavController.setNextScreenArguments(arg: T) {
-    currentBackStackEntry?.savedStateHandle?.set(T::class.java.name, arg)
+inline fun <reified T : Parcelable> NavController.setNextScreenArguments(arg: T, key: String = T::class.java.name) {
+    currentBackStackEntry?.savedStateHandle?.set(key, arg)
 }
 
 @Composable
 inline fun <reified T> NavController.GetScreenArguments(block: (T) -> Unit) {
+    val key = T::class.java.name
     val screenResultState = previousBackStackEntry
         ?.savedStateHandle
-        ?.getLiveData<T>(T::class.java.name)?.observeAsState()
+        ?.getLiveData<T>(key)?.observeAsState()
 
     screenResultState?.value?.let {
         block(it)

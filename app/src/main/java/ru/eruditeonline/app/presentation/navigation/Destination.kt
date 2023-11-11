@@ -12,5 +12,6 @@ sealed class Destination {
     class DeepLink(val navDeepLinkRequest: NavDeepLinkRequest, val navOptions: NavOptions? = null) : Destination()
     class Stack(vararg val destinations: Destination) : Destination()
     data object Back : Destination()
-    class ComposeScreen(val route: String, val arg: Parcelable? = null) : Destination()
+    class ComposeScreenWithArg<T : Parcelable>(val route: String, val arg: T, val key: String) : Destination()
+    class ComposeScreen(val route: String) : Destination()
 }

@@ -28,11 +28,10 @@ private fun observeDestination(context: Context, navController: NavController, d
         is Destination.Stack -> destination.destinations.forEach { innerDestination ->
             observeDestination(context, navController, innerDestination)
         }
-        is Destination.ComposeScreen -> {
-            destination.arg?.let { arg ->
-                navController.setNextScreenArguments(arg)
-            }
+        is Destination.ComposeScreenWithArg<*> -> {
+            navController.setNextScreenArguments(destination.arg, destination.key)
             navController.navigate(destination.route)
         }
+        is Destination.ComposeScreen -> navController.navigate(destination.route)
     }
 }

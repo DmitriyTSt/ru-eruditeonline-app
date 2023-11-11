@@ -65,6 +65,7 @@ private fun processDestination(
             destination.destinations.forEach { processDestination(navController, startActivity, it) }
         }
         is Destination.ComposeScreen -> error("Destination.ComposeScreen is not supported in fragments")
+        is Destination.ComposeScreenWithArg<*> -> error("Destination.ComposeScreenWithArg is not supported in fragments")
     }
 }
 
