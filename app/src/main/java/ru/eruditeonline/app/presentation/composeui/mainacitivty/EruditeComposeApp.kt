@@ -25,6 +25,7 @@ import ru.eruditeonline.app.presentation.composeui.debug.DebugScreen
 import ru.eruditeonline.app.presentation.composeui.model.Screen
 import ru.eruditeonline.app.presentation.composeui.profile.ProfileScreen
 import ru.eruditeonline.app.presentation.composeui.rating.RatingScreen
+import ru.eruditeonline.app.presentation.composeui.result.common.CommonResultListScreen
 import ru.eruditeonline.app.presentation.composeui.settings.SettingsScreen
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
@@ -84,7 +85,9 @@ fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.
                     }
                     composable(Screen.SearchResults.route) { }
                     composable(Screen.UserResults.route) { }
-                    composable(Screen.CommonResults.route) { }
+                    composable(Screen.CommonResults.route) {
+                        CommonResultListScreen(navController, appViewModel(viewModelFactory))
+                    }
                     composable(Screen.Settings.route) { SettingsScreen(navController, eruditeTheme) { eruditeTheme = it } }
                     composable(Screen.Info.route) { }
                     composable(Screen.Debug.route) {

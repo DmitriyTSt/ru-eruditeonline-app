@@ -10,6 +10,7 @@ import android.text.style.StyleSpan
 import android.text.style.URLSpan
 import android.text.style.UnderlineSpan
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -48,7 +49,7 @@ fun HtmlText(
             annotatedText.getStringAnnotations(offset, offset).firstOrNull()?.let { uriHandler.openUri(it.item) }
         },
         modifier = modifier,
-        style = style,
+        style = style.merge(TextStyle.Default.copy(color = LocalContentColor.current)),
         softWrap = softWrap,
         overflow = overflow,
         maxLines = maxLines,
