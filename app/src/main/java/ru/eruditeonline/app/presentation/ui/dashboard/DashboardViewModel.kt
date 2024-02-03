@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.ui.dashboard
 
 import android.net.Uri
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.eruditeonline.app.data.model.LoadableState
@@ -44,7 +45,7 @@ class DashboardViewModel @Inject constructor(
         navigate(destinations.debug())
     }
 
-    fun openCompetition(item: CompetitionItemShort) {
+    fun openCompetition(item: CompetitionItemShort, imageView: ImageView) {
         navigate(destinations.competitionItem(item.id))
     }
 

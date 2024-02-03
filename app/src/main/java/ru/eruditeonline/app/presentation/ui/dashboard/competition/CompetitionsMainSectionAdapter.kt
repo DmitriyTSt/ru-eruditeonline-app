@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.ui.dashboard.competition
 
 import android.view.ViewGroup
+import android.widget.ImageView
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.CompetitionViewType
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class CompetitionsMainSectionAdapter @Inject constructor() : BaseAdapter<CompetitionItemShort, BaseCompetitionViewHolder>() {
 
     var viewType: CompetitionViewType = CompetitionViewType.CARD
-    lateinit var onItemClick: (CompetitionItemShort) -> Unit
+    lateinit var onItemClick: (CompetitionItemShort, ImageView) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseCompetitionViewHolder {
         return when (viewType) {

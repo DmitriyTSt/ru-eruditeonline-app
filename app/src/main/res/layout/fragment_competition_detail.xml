@@ -17,16 +17,36 @@
             tools:title="Информатика" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ru.eruditeonline.app.presentation.ui.views.StateViewFlipper
-        android:id="@+id/stateViewFlipper"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include
-            android:id="@+id/content"
-            layout="@layout/content_competition_detail" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </ru.eruditeonline.app.presentation.ui.views.StateViewFlipper>
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageView"
+                android:layout_width="164dp"
+                android:layout_height="164dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                app:shapeAppearanceOverlay="@style/RoundedImageOverlay" />
+
+            <ru.eruditeonline.app.presentation.ui.views.StateViewFlipper
+                android:id="@+id/stateViewFlipper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/content"
+                    layout="@layout/content_competition_detail" />
+
+            </ru.eruditeonline.app.presentation.ui.views.StateViewFlipper>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

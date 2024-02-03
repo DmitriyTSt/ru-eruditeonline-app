@@ -4,11 +4,17 @@ import android.content.Intent
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 
 sealed class Destination {
     class Activity(val intent: Intent) : Destination()
     class Action(val direction: NavDirections, val navOptions: NavOptions? = null) : Destination()
-    class DeepLink(val navDeepLinkRequest: NavDeepLinkRequest, val navOptions: NavOptions? = null) : Destination()
+    class DeepLink(
+        val navDeepLinkRequest: NavDeepLinkRequest,
+        val navOptions: NavOptions? = null,
+        val extras: Navigator.Extras? = null,
+    ) : Destination()
+
     class Stack(vararg val destinations: Destination) : Destination()
     object Back : Destination()
 }

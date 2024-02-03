@@ -19,6 +19,9 @@ class CompetitionItemShort(
     /** Ссылка на изображение */
     val icon: String?,
 ) : Similarable<CompetitionItemShort> {
+
+    val transitionName: String = "transition_comp_image_$icon"
+
     override fun areItemsTheSame(other: CompetitionItemShort): Boolean {
         return this.id == other.id
     }

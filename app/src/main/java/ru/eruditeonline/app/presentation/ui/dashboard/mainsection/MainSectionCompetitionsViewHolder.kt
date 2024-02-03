@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.ui.dashboard.mainsection
 
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -22,7 +23,7 @@ private const val GRID_SPAN_COUNT = 2
 
 class MainSectionCompetitionsViewHolder(
     parent: ViewGroup,
-    onItemClick: (CompetitionItemShort) -> Unit,
+    onItemClick: (CompetitionItemShort, ImageView) -> Unit,
     private val scrollStateHolder: ScrollStateHolder?,
 ) : RecyclerView.ViewHolder(parent.inflate(R.layout.item_main_section_competitions)),
     ScrollStateHolder.ScrollStateKeyProvider,

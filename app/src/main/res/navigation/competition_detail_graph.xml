@@ -18,6 +18,16 @@
         <action
             android:id="@+id/action_competitionDetailFragment_to_testPassageFragment"
             app:destination="@id/testPassageFragment" />
+        <argument
+            android:name="transitionName"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/testPassageFragment"

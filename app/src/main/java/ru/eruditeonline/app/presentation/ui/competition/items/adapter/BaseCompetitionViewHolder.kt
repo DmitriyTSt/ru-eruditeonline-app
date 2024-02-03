@@ -10,7 +10,7 @@ import ru.eruditeonline.app.presentation.extension.setDifficulty
 
 abstract class BaseCompetitionViewHolder(
     itemView: View,
-    private val onItemClick: (CompetitionItemShort) -> Unit,
+    private val onItemClick: (CompetitionItemShort, ImageView) -> Unit,
 ) : RecyclerView.ViewHolder(itemView) {
     abstract val imageViewImage: ImageView
     abstract val imageViewDifficulty: ImageView?
@@ -20,11 +20,12 @@ abstract class BaseCompetitionViewHolder(
 
     fun bind(competitionItem: CompetitionItemShort) {
         imageViewImage.load(competitionItem.icon)
+        imageViewImage.transitionName = competitionItem.transitionName
         textViewTitle.text = competitionItem.title
         textViewAges?.text = competitionItem.ages
         imageViewDifficulty?.setDifficulty(competitionItem.difficulty)
         clickableView.setOnClickListener {
-            onItemClick(competitionItem)
+            onItemClick(competitionItem, imageViewImage)
         }
     }
 }

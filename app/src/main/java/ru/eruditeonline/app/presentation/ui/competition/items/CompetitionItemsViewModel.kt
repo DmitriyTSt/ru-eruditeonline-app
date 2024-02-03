@@ -1,5 +1,6 @@
 package ru.eruditeonline.app.presentation.ui.competition.items
 
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.CombinedLoadStates
@@ -63,7 +64,7 @@ class CompetitionItemsViewModel @Inject constructor(
         navigate(destinations.filter(filter))
     }
 
-    fun openCompetition(item: CompetitionItemShort) {
-        navigate(destinations.competitionItem(item.id))
+    fun openCompetition(item: CompetitionItemShort, imageView: ImageView) {
+        navigate(destinations.competitionItem(item, imageView))
     }
 }

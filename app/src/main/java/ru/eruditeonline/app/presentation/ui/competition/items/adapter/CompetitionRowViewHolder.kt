@@ -12,7 +12,7 @@ import ru.eruditeonline.app.presentation.extension.inflate
 
 class CompetitionRowViewHolder(
     parent: ViewGroup,
-    onItemClick: (CompetitionItemShort) -> Unit,
+    onItemClick: (CompetitionItemShort, ImageView) -> Unit,
 ) : BaseCompetitionViewHolder(parent.inflate(R.layout.item_competition_row), onItemClick) {
     private val binding by viewBinding(ItemCompetitionRowBinding::bind)
 

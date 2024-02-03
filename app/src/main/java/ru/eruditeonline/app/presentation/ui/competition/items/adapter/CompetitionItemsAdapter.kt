@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.ui.competition.items.adapter
 
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.paging.LoadStateAdapter
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ConcatAdapter
@@ -17,7 +18,7 @@ class CompetitionItemsAdapter @Inject constructor(
 ) : PagingDataAdapter<CompetitionItemShort, BaseCompetitionViewHolder>(diffUtilItemCallbackFactory.create()),
     RecyclerViewAdapterWithCustomSpanSize {
 
-    lateinit var onItemClick: (CompetitionItemShort) -> Unit
+    lateinit var onItemClick: (CompetitionItemShort, ImageView) -> Unit
 
     var spanCount = 2
     var viewType = CompetitionItemsViewType.CARD

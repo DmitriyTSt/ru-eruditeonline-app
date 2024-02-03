@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="navigation_deep_link_to_competition_detail">app://competition/{id}</string>
+    <string name="navigation_deep_link_to_competition_detail">app://competition/{id}?transitionName={transitionName}&amp;imageUrl={imageUrl}</string>
     <string name="navigation_deep_link_to_competition_detail_template">app://competition/%d</string>
+    <string name="navigation_deep_link_to_competition_detail_with_transition_template">app://competition/%d?transitionName=%s&amp;imageUrl=%s</string>
     <string name="navigation_deep_link_to_test_passage">app://test/{id}</string>
     <string name="navigation_deep_link_to_test_passage_template">app://test/%s</string>
     <string name="navigation_deep_link_to_dashboard">app://dashboard</string>

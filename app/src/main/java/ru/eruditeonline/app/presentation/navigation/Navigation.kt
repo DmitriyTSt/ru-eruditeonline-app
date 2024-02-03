@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
+import androidx.navigation.Navigator
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
@@ -47,6 +48,7 @@ private fun processDestination(
         is Destination.DeepLink -> navController.navigateSafe(
             destination.navDeepLinkRequest,
             destination.navOptions,
+            destination.extras,
         )
         is Destination.Activity -> startActivity(destination.intent)
         is Destination.Stack -> {
@@ -60,9 +62,13 @@ private fun NavController.navigateSafe(direction: NavDirections, navOptions: Nav
 }
 
 // В блоке try/catch защита от неправильных диплинков
-private fun NavController.navigateSafe(navDeepLinkRequest: NavDeepLinkRequest, navOptions: NavOptions? = null) {
+private fun NavController.navigateSafe(
+    navDeepLinkRequest: NavDeepLinkRequest,
+    navOptions: NavOptions? = null,
+    extras: Navigator.Extras? = null,
+) {
     try {
-        currentDestination?.let { navigate(navDeepLinkRequest, navOptions) }
+        currentDestination?.let { navigate(navDeepLinkRequest, navOptions, extras) }
     } catch (ex: IllegalStateException) {
         Timber.e(ex)
     }

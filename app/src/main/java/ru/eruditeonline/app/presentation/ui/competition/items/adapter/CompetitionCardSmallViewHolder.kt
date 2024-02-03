@@ -12,7 +12,7 @@ import ru.eruditeonline.app.presentation.extension.inflate
 
 class CompetitionCardSmallViewHolder(
     parent: ViewGroup,
-    onItemClick: (CompetitionItemShort) -> Unit,
+    onItemClick: (CompetitionItemShort, ImageView) -> Unit,
 ) : BaseCompetitionViewHolder(parent.inflate(R.layout.item_competition_card_small), onItemClick) {
     private val binding by viewBinding(ItemCompetitionCardSmallBinding::bind)
 

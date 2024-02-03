@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.ui.dashboard.mainsection
 
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class MainSectionsAdapter @Inject constructor() : BaseAdapter<MainSection, RecyclerView.ViewHolder>() {
 
-    lateinit var onCompetitionItemClick: (CompetitionItemShort) -> Unit
+    lateinit var onCompetitionItemClick: (CompetitionItemShort, ImageView) -> Unit
     lateinit var onTaglineClick: (Tagline) -> Unit
 
     var scrollState: ScrollStateHolder? = null
