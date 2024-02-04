@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.viewmodel.CreationExtras
 import ru.eruditeonline.app.presentation.ui.base.BaseActivity
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
-import ru.eruditeonline.app.presentation.ui.dashboard.DashboardFragment
 import kotlin.reflect.KClass
 
 @MainThread
@@ -20,7 +19,7 @@ inline fun <reified VM : ViewModel> BaseFragment.appViewModels() =
     createViewModelLazy(VM::class, { this.viewModelStore }, factoryProducer = { viewModelFactory })
 
 @MainThread
-inline fun <reified VM : ViewModel> DashboardFragment.appAssistedViewModels() =
+inline fun <reified VM : ViewModel> BaseFragment.appAssistedViewModels() =
     createViewModelLazy(VM::class, { this.viewModelStore }, factoryProducer = {
         val vmf = assistedViewModelFactoryFactory.create(VM::class.java)
         object : AbstractSavedStateViewModelFactory(this@appAssistedViewModels, arguments) {
