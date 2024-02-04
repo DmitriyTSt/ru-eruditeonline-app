@@ -4,23 +4,33 @@ import android.net.Uri
 import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.data.model.main.Tagline
+import ru.eruditeonline.app.di.util.AbstractAssistedViewModelFactory
 import ru.eruditeonline.app.domain.usecase.debug.IsDebugButtonVisibleUseCase
 import ru.eruditeonline.app.domain.usecase.main.GetMainSectionsUseCase
 import ru.eruditeonline.app.presentation.managers.DeepLinkManager
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import ru.eruditeonline.app.presentation.ui.views.ScrollStateHolder
-import javax.inject.Inject
 
-class DashboardViewModel @Inject constructor(
+class DashboardViewModel @AssistedInject constructor(
+    @Assisted private val savedStateHandle: SavedStateHandle,
     private val getMainSectionsUseCase: GetMainSectionsUseCase,
     private val destinations: DashboardDestinations,
     private val deepLinkManager: DeepLinkManager,
     private val isDebugButtonVisibleUseCase: IsDebugButtonVisibleUseCase,
 ) : BaseViewModel() {
+
+    init {
+        println("DASHBOARD: ${savedStateHandle.get<String>("dashboard_key")}")
+    }
+
     /** Блоки главной страницы */
     private val _mainSectionsLiveData = MutableLiveData<LoadableState<List<MainSection>>>()
     val mainSectionsLiveData: LiveData<LoadableState<List<MainSection>>> = _mainSectionsLiveData
@@ -89,5 +99,10 @@ class DashboardViewModel @Inject constructor(
                 append(query)
             }
         }
+    }
+
+    @AssistedFactory
+    interface Factory : AbstractAssistedViewModelFactory<DashboardViewModel> {
+        override fun create(savedStateHandle: SavedStateHandle): DashboardViewModel
     }
 }

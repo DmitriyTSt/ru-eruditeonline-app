@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelLazy
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.viewmodel.CreationExtras
+import ru.eruditeonline.app.di.util.AssistedViewModelFactory
 import ru.eruditeonline.app.presentation.ui.base.BaseActivity
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import kotlin.reflect.KClass

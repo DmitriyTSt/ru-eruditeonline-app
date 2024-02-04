@@ -15,7 +15,6 @@ import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetail
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewModel
 import ru.eruditeonline.app.presentation.ui.country.SelectCountryViewModel
-import ru.eruditeonline.app.presentation.ui.dashboard.DashboardViewModel
 import ru.eruditeonline.app.presentation.ui.debug.DebugViewModel
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaViewModel
 import ru.eruditeonline.app.presentation.ui.information.InformationViewModel
@@ -39,10 +38,6 @@ import ru.eruditeonline.app.presentation.ui.webpage.WebPageViewModel
 
 @Module
 abstract class ViewModelModule : BaseViewModelModule() {
-    @Binds
-    @IntoMap
-    @ViewModelKey(DashboardViewModel::class)
-    abstract fun dashboardViewModel(viewModel: DashboardViewModel): ViewModel
 
     @Binds
     @IntoMap
