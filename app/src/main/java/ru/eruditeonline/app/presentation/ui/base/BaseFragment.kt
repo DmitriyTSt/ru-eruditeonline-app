@@ -13,6 +13,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import dagger.android.support.AndroidSupportInjection
+import ru.eruditeonline.app.di.util.AssistedViewModelFactoryFactory
 import ru.eruditeonline.app.presentation.ui.mainactivity.BottomNavigationViewManager
 import javax.inject.Inject
 
@@ -24,6 +25,7 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
     protected var bottomNavigationViewManager: BottomNavigationViewManager? = null
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var assistedViewModelFactoryFactory: AssistedViewModelFactoryFactory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)

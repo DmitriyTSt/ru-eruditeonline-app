@@ -2,17 +2,12 @@ package ru.eruditeonline.app.presentation.ui.dashboard
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.MainThread
-import androidx.core.os.bundleOf
 import androidx.core.view.updatePadding
-import androidx.fragment.app.createViewModelLazy
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentDashboardBinding
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
+import ru.eruditeonline.app.presentation.extension.appAssistedViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -29,22 +24,6 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
     private val padding16 by lazy { resources.getDimensionPixelSize(R.dimen.padding_16) }
 
     @Inject lateinit var mainSectionsAdapter: MainSectionsAdapter
-
-    //    @Inject lateinit var assistedViewModelFactoryFactory: AssistedViewModelFactoryFactory
-    @Inject lateinit var dashboardViewModelFactory: DashboardViewModel.Factory
-
-    @MainThread
-    inline fun <reified VM : ViewModel> DashboardFragment.appAssistedViewModels() =
-        createViewModelLazy(VM::class, { this.viewModelStore }, factoryProducer = {
-            val vmf = dashboardViewModelFactory
-            arguments = bundleOf("dashboard_key" to "dashboard_value")
-            object : AbstractSavedStateViewModelFactory(this@DashboardFragment, arguments) {
-                override fun <T : ViewModel> create(key: String, modelClass: Class<T>, handle: SavedStateHandle): T {
-                    @Suppress("UNCHECKED_CAST")
-                    return vmf.create(handle) as T
-                }
-            }
-        })
 
     override fun callOperations() {
         viewModel.loadMainSections()

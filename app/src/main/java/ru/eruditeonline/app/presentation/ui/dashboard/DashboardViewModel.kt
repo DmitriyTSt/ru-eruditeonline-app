@@ -5,6 +5,7 @@ import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -26,10 +27,6 @@ class DashboardViewModel @AssistedInject constructor(
     private val deepLinkManager: DeepLinkManager,
     private val isDebugButtonVisibleUseCase: IsDebugButtonVisibleUseCase,
 ) : BaseViewModel() {
-
-    init {
-        println("DASHBOARD: ${savedStateHandle.get<String>("dashboard_key")}")
-    }
 
     /** Блоки главной страницы */
     private val _mainSectionsLiveData = MutableLiveData<LoadableState<List<MainSection>>>()
@@ -102,7 +99,7 @@ class DashboardViewModel @AssistedInject constructor(
     }
 
     @AssistedFactory
-    interface Factory : AbstractAssistedViewModelFactory<DashboardViewModel> {
+    interface Factory : AbstractAssistedViewModelFactory<ViewModel> {
         override fun create(savedStateHandle: SavedStateHandle): DashboardViewModel
     }
 }

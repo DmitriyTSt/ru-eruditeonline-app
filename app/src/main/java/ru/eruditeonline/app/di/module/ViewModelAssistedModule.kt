@@ -1,5 +1,6 @@
 package ru.eruditeonline.app.di.module
 
+import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -13,6 +14,5 @@ abstract class ViewModelAssistedModule {
     @Binds
     @IntoMap
     @ViewModelFactoryKey(DashboardViewModel::class)
-    abstract fun dashboardViewModel(viewModel: DashboardViewModel.Factory): AbstractAssistedViewModelFactory<DashboardViewModel>
-
+    abstract fun dashboardViewModelFactory(viewModel: DashboardViewModel.Factory): AbstractAssistedViewModelFactory<ViewModel>
 }
