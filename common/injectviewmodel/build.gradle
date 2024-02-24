@@ -8,7 +8,7 @@ apply from: "$project.rootDir/config/android_common.gradle"
 
 
 android {
-    namespace 'ru.eruditeoneline.injectviewmodel'
+    namespace 'ru.eruditeonline.injectviewmodel'
 
     resourcePrefix 'common_injectviewmodel_'
 }

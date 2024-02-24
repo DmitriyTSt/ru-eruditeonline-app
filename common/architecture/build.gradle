@@ -8,7 +8,7 @@ apply from: "$project.rootDir/config/android_common.gradle"
 
 
 android {
-    namespace 'ru.eruditeonelin.architecture'
+    namespace 'ru.eruditeonline.architecture'
 
     resourcePrefix 'common_architecture_'
 }
