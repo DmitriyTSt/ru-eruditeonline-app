@@ -12,7 +12,7 @@ inline fun <reified VM : ViewModel> BaseFragment.appViewModels() = appViewModels
 
 @MainThread
 inline fun <reified VM : ViewModel> BaseFragment.appActivityViewModels() =
-    appActivityViewModels<VM> { (activity as? BaseActivity)?.viewModelFactory }
+    appActivityViewModels<VM> { viewModelFactory }
 
 @MainThread
 inline fun <reified VM : ViewModel> BaseActivity.appActivityViewModels() =

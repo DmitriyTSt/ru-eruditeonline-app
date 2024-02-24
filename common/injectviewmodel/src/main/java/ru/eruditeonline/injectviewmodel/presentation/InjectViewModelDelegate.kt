@@ -18,12 +18,12 @@ inline fun <reified VM : ViewModel> Fragment.appViewModels(
 
 @MainThread
 inline fun <reified VM : ViewModel> Fragment.appActivityViewModels(
-    noinline viewModelFactoryProvider: () -> ViewModelProvider.Factory?,
+    noinline viewModelFactoryProvider: () -> ViewModelProvider.Factory,
 ) = createViewModelLazy(
     VM::class,
     { requireActivity().viewModelStore },
     factoryProducer = {
-        viewModelFactoryProvider() ?: requireActivity().defaultViewModelProviderFactory
+        viewModelFactoryProvider()
     },
 )
 
