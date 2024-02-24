@@ -2,8 +2,8 @@ package ru.eruditeonline.app.domain.usecase
 
 import ru.eruditeonline.app.data.model.base.AppConfig
 import ru.eruditeonline.app.data.repository.AppConfigRepository
-import ru.eruditeonline.app.data.repository.AppInfoRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.core.domain.repository.AppInfoRepository
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class GetAppConfigUseCase @Inject constructor(
     private val appInfoRepository: AppInfoRepository,
     private val appConfigRepository: AppConfigRepository,
-) : UseCaseUnary<Unit, AppConfig>() {
+) : UseCaseUnary<Unit, AppConfig> {
 
     override suspend fun execute(params: Unit): AppConfig {
         val appVersion = buildString {

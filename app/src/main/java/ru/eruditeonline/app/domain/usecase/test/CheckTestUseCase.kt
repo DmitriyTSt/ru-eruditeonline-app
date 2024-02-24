@@ -6,8 +6,8 @@ import ru.eruditeonline.app.data.model.competition.CompetitionPassData
 import ru.eruditeonline.app.data.model.test.TempResultWithProfile
 import ru.eruditeonline.app.data.preferences.PreferencesStorage
 import ru.eruditeonline.app.data.repository.TestRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
 import ru.eruditeonline.app.domain.usecase.profile.GetProfileUseCase
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -17,7 +17,7 @@ class CheckTestUseCase @Inject constructor(
     private val testRepository: TestRepository,
     private val preferencesStorage: PreferencesStorage,
     private val profileUseCase: GetProfileUseCase,
-) : UseCaseUnary<CheckTestUseCase.Params, TempResultWithProfile>() {
+) : UseCaseUnary<CheckTestUseCase.Params, TempResultWithProfile> {
 
     override suspend fun execute(params: Params): TempResultWithProfile = coroutineScope {
         val tempResultRequest = async { testRepository.checkTest(params.passData) }

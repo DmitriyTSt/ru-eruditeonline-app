@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.domain.usecase.auth
 
 import ru.eruditeonline.app.data.model.auth.Token
-import ru.eruditeonline.app.data.repository.TokenRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.network.domain.model.AccessToken
+import ru.eruditeonline.network.domain.model.RefreshToken
+import ru.eruditeonline.network.domain.repository.TokenRepository
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -10,11 +12,11 @@ import javax.inject.Inject
  */
 class SaveTokenUseCase @Inject constructor(
     private val tokenRepository: TokenRepository,
-) : UseCaseUnary<SaveTokenUseCase.Params, Unit>() {
+) : UseCaseUnary<SaveTokenUseCase.Params, Unit> {
 
     override suspend fun execute(params: Params) {
-        tokenRepository.accessToken = params.token.accessToken
-        tokenRepository.refreshToken = params.token.refreshToken
+        tokenRepository.accessToken = AccessToken(params.token.accessToken)
+        tokenRepository.refreshToken = RefreshToken(params.token.refreshToken)
     }
 
     data class Params(

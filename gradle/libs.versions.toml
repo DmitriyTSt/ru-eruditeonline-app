@@ -8,9 +8,8 @@ constraintlayout = "2.1.4"
 navigation = "2.5.2"
 paging = "3.1.1"
 viewpager2 = "1.0.0"
-livedata = "2.5.1"
+lifecycle = "2.5.1"
 browser = "1.4.0"
-lifecycle-process = "2.5.1"
 security-crypto = "1.0.0"
 swiperefreshlayout = "1.1.0"
 splashscreen = "1.0.1"
@@ -27,7 +26,7 @@ timber = "5.0.1"
 chucker = "3.5.2"
 glide = "4.13.2"
 firebase-bom = "30.4.1"
-
+inject = "1"
 
 gradle = "8.1.2"
 kotlin-gradle-plugin = "1.9.10"
@@ -44,9 +43,10 @@ androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragme
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
 androidx-paging = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
-androidx-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "livedata" }
+androidx-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
+androidx-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle" }
 androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
-androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle-process" }
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "security-crypto" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
@@ -83,6 +83,7 @@ gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
 androidx-navigation-safeargs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref = "navigation" }
 ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
+inject = { module = "javax.inject:javax.inject", version.ref = "inject" }
 
 [plugins]
 

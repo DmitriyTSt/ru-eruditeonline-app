@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.map
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.base.WebPage
 import ru.eruditeonline.app.domain.usecase.GetWebPageUseCase
+import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import javax.inject.Inject
 

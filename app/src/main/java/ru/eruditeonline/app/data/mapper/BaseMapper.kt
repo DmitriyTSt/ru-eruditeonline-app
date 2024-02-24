@@ -7,6 +7,7 @@ import ru.eruditeonline.app.data.model.base.Score
 import ru.eruditeonline.app.data.remote.model.base.ApiCountry
 import ru.eruditeonline.app.data.remote.model.base.ApiDiploma
 import ru.eruditeonline.app.data.remote.model.base.ApiScore
+import ru.eruditeonline.core.domain.ext.orDefault
 import javax.inject.Inject
 
 class BaseMapper @Inject constructor() {

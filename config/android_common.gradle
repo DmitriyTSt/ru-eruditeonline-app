@@ -1,0 +1,58 @@
+apply from: "$project.rootDir/config/android_sdk_version.gradle"
+
+android {
+
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        // release build for google play, master/release branches
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        // debug build for developers only
+        debug {
+            minifyEnabled false
+            debuggable true
+        }
+
+        // internal build for testers
+        internal {
+            initWith release
+            debuggable false
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    kotlin {
+        jvmToolchain(17)
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+}
+
+dependencies {
+    // code desugaring (for java.time)
+    coreLibraryDesugaring libs.code.desugaring
+}

@@ -12,6 +12,7 @@ import ru.eruditeonline.app.data.remote.model.competition.ApiCompetitionItemShor
 import ru.eruditeonline.app.data.remote.model.competition.ApiFilterItem
 import ru.eruditeonline.app.data.remote.model.competition.ApiTestAgeGroup
 import ru.eruditeonline.app.data.remote.response.CompetitionItemsData
+import ru.eruditeonline.core.domain.ext.orDefault
 import javax.inject.Inject
 
 class CompetitionMapper @Inject constructor(

@@ -4,16 +4,12 @@ import dagger.Binds
 import dagger.Module
 import ru.eruditeonline.app.data.repository.AppConfigRepository
 import ru.eruditeonline.app.data.repository.AppConfigRepositoryImpl
-import ru.eruditeonline.app.data.repository.AppInfoRepository
-import ru.eruditeonline.app.data.repository.AppInfoRepositoryImpl
 import ru.eruditeonline.app.data.repository.AuthRepository
 import ru.eruditeonline.app.data.repository.AuthRepositoryImpl
 import ru.eruditeonline.app.data.repository.BuildConfigRepository
 import ru.eruditeonline.app.data.repository.BuildConfigRepositoryImpl
 import ru.eruditeonline.app.data.repository.CompetitionRepository
 import ru.eruditeonline.app.data.repository.CompetitionRepositoryImpl
-import ru.eruditeonline.app.data.repository.EndpointRepository
-import ru.eruditeonline.app.data.repository.EndpointRepositoryImpl
 import ru.eruditeonline.app.data.repository.MainRepository
 import ru.eruditeonline.app.data.repository.MainRepositoryImpl
 import ru.eruditeonline.app.data.repository.ProfileRepository
@@ -26,8 +22,6 @@ import ru.eruditeonline.app.data.repository.ResultRepository
 import ru.eruditeonline.app.data.repository.ResultRepositoryImpl
 import ru.eruditeonline.app.data.repository.TestRepository
 import ru.eruditeonline.app.data.repository.TestRepositoryImpl
-import ru.eruditeonline.app.data.repository.TokenRepository
-import ru.eruditeonline.app.data.repository.TokenRepositoryImpl
 import ru.eruditeonline.app.data.repository.UtilsRepository
 import ru.eruditeonline.app.data.repository.UtilsRepositoryImpl
 
@@ -38,9 +32,6 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideRefreshTokenRepository(refreshTokenRepositoryImpl: RefreshTokenRepositoryImpl): RefreshTokenRepository
-
-    @Binds
-    abstract fun provideTokenRepository(tokenRepositoryImpl: TokenRepositoryImpl): TokenRepository
 
     @Binds
     abstract fun provideProfileRepository(profileRepositoryImpl: ProfileRepositoryImpl): ProfileRepository
@@ -65,12 +56,6 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideBuildConfigRepository(buildConfigRepositoryImpl: BuildConfigRepositoryImpl): BuildConfigRepository
-
-    @Binds
-    abstract fun provideAppInfoRepository(appInfoRepositoryImpl: AppInfoRepositoryImpl): AppInfoRepository
-
-    @Binds
-    abstract fun provideEndpointRepository(endpointRepositoryImpl: EndpointRepositoryImpl): EndpointRepository
 
     @Binds
     abstract fun provideAppConfigRepository(appConfigRepositoryImpl: AppConfigRepositoryImpl): AppConfigRepository

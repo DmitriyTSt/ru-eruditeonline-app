@@ -3,7 +3,7 @@ package ru.eruditeonline.app.domain.usecase.competition
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionPage
 import ru.eruditeonline.app.data.repository.CompetitionRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -11,7 +11,7 @@ import javax.inject.Inject
  */
 class GetCompetitionsPageUseCase @Inject constructor(
     private val competitionRepository: CompetitionRepository,
-) : UseCaseUnary<GetCompetitionsPageUseCase.Params, CompetitionPage>() {
+) : UseCaseUnary<GetCompetitionsPageUseCase.Params, CompetitionPage> {
 
     override suspend fun execute(params: Params): CompetitionPage {
         return competitionRepository.getCompetitionItems(

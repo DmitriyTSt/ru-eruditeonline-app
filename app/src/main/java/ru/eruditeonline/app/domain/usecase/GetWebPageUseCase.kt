@@ -2,7 +2,7 @@ package ru.eruditeonline.app.domain.usecase
 
 import ru.eruditeonline.app.data.model.base.WebPage
 import ru.eruditeonline.app.data.repository.UtilsRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -10,10 +10,10 @@ import javax.inject.Inject
  */
 class GetWebPageUseCase @Inject constructor(
     private val utilsRepository: UtilsRepository,
-) : UseCaseUnary<GetWebPageUseCase.Params, WebPage>() {
+) : UseCaseUnary<GetWebPageUseCase.Params, WebPage> {
 
     override suspend fun execute(params: Params): WebPage {
-        return utilsRepository.getWebPage(params.path).let { it.copy(path = params.path) }
+        return utilsRepository.getWebPage(params.path).copy(path = params.path)
     }
 
     data class Params(

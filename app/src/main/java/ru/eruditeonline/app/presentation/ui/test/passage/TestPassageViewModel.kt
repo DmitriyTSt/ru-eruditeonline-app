@@ -7,6 +7,7 @@ import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionPassData
 import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.model.test.Question
+import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.test.GetTestUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent

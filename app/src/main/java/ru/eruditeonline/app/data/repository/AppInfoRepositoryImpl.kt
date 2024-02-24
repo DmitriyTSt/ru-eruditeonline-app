@@ -1,5 +1,6 @@
 package ru.eruditeonline.app.data.repository
 
+import ru.eruditeonline.core.domain.repository.AppInfoRepository
 import javax.inject.Inject
 
 class AppInfoRepositoryImpl @Inject constructor(

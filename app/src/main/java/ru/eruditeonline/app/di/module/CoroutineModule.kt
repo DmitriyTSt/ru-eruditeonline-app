@@ -1,27 +1,14 @@
 package ru.eruditeonline.app.di.module
 
-import dagger.Binds
 import dagger.Module
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import javax.inject.Inject
+import dagger.Provides
+import ru.eruditeonline.coroutine.DispatcherProvider
 
 @Module
-abstract class CoroutineModule {
-    @Binds
-    abstract fun provideDispatcherProvider(
-        dispatcherProvider: DispatcherProviderImpl,
-    ): DispatcherProvider
-}
+class CoroutineModule {
 
-class DispatcherProviderImpl @Inject constructor() : DispatcherProvider {
-    override val io = Dispatchers.IO
-    override val main = Dispatchers.Main
-    override val default = Dispatchers.Default
-}
-
-interface DispatcherProvider {
-    val io: CoroutineDispatcher
-    val main: CoroutineDispatcher
-    val default: CoroutineDispatcher
+    @Provides
+    fun provideDispatcherProvider(): DispatcherProvider {
+        return DispatcherProvider()
+    }
 }

@@ -4,6 +4,7 @@ import ru.eruditeonline.app.data.model.base.AppConfig
 import ru.eruditeonline.app.data.model.base.AppUpdate
 import ru.eruditeonline.app.data.remote.model.base.ApiAppConfig
 import ru.eruditeonline.app.data.remote.model.base.ApiAppUpdate
+import ru.eruditeonline.core.domain.ext.orDefault
 import javax.inject.Inject
 
 class AppConfigMapper @Inject constructor() {

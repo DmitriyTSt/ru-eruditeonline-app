@@ -2,7 +2,7 @@ package ru.eruditeonline.app.domain.usecase.test
 
 import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.repository.TestRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -10,7 +10,7 @@ import javax.inject.Inject
  */
 class GetTestUseCase @Inject constructor(
     private val testRepository: TestRepository,
-) : UseCaseUnary<GetTestUseCase.Params, CompetitionTest>() {
+) : UseCaseUnary<GetTestUseCase.Params, CompetitionTest> {
 
     override suspend fun execute(params: Params): CompetitionTest {
         return testRepository.getCompetitionTest(params.id)

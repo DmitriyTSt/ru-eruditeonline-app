@@ -3,6 +3,7 @@ package ru.eruditeonline.app.presentation.ui.auth.validationsuccess
 import androidx.lifecycle.LiveData
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.auth.ConfirmEmailUseCase
+import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
 import javax.inject.Inject

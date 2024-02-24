@@ -10,10 +10,10 @@ import androidx.core.view.marginTop
 import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import dagger.android.support.AndroidSupportInjection
 import ru.eruditeonline.app.presentation.ui.mainactivity.BottomNavigationViewManager
+import ru.eruditeonline.injectviewmodel.di.util.InjectViewModelFactory
 import javax.inject.Inject
 
 abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
@@ -23,7 +23,7 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
 
     protected var bottomNavigationViewManager: BottomNavigationViewManager? = null
 
-    @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject lateinit var viewModelFactory: InjectViewModelFactory
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)

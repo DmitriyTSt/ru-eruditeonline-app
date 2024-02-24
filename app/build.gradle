@@ -8,22 +8,18 @@ plugins {
     id 'com.google.firebase.crashlytics'
 }
 
-apply from: '../config/quality/quality.gradle'
+apply from: "${project.rootDir}/config/android_common.gradle"
+apply from: "${project.rootDir}/config/quality/quality.gradle"
 
 android {
     namespace = "ru.eruditeonline.app"
-    compileSdk 33
 
     defaultConfig {
         applicationId "ru.eruditeonline.app"
-        multiDexEnabled true
-        minSdk 21
-        targetSdk 33
         versionCode this.getVersionCode()
         versionName "1.0.0"
 
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     //для подписки релизного билда
@@ -56,44 +52,23 @@ android {
         // release build for google play, master/release branches
         release {
             signingConfig signingConfigs.release
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         // debug build for developers only
         debug {
             applicationIdSuffix ".develop"
             signingConfig signingConfigs.debug
-            minifyEnabled false
-            debuggable true
         }
 
         // internal build for testers
         internal {
             initWith release
             applicationIdSuffix ".develop"
-            signingConfig signingConfigs.debug
-            debuggable false
         }
     }
 
     buildFeatures {
-        viewBinding = true
         buildConfig = true
-    }
-
-    compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = '17'
-    }
-
-    kotlin {
-        jvmToolchain(17)
     }
 
     applicationVariants.all { variant ->
@@ -102,12 +77,6 @@ android {
             def buildType = variant.buildType.name
             def newName = "${appName}-${defaultConfig.versionName}_${defaultConfig.versionCode}_${buildType}"
             outputFileName = newName.toLowerCase() + ".apk"
-        }
-    }
-
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
@@ -125,7 +94,12 @@ def getVersionCode() {
 }
 
 dependencies {
-    coreLibraryDesugaring(libs.code.desugaring)
+    implementation(project(":common:core"))
+    implementation(project(":common:serializer"))
+    implementation(project(":common:coroutine"))
+    implementation(project(":common:injectviewmodel"))
+    implementation(project(":common:usecase"))
+    implementation(project(":common:network"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

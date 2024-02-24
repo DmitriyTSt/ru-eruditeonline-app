@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import ru.eruditeonline.app.di.module.viewmodel.BaseViewModelModule
-import ru.eruditeonline.app.di.util.ViewModelKey
 import ru.eruditeonline.app.presentation.ui.appupdate.AppUpdateViewModel
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginViewModel
 import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationViewModel
@@ -36,9 +34,10 @@ import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageViewModel
 import ru.eruditeonline.app.presentation.ui.test.successresult.SuccessSaveResultViewModel
 import ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultViewModel
 import ru.eruditeonline.app.presentation.ui.webpage.WebPageViewModel
+import ru.eruditeonline.injectviewmodel.di.util.ViewModelKey
 
 @Module
-abstract class ViewModelModule : BaseViewModelModule() {
+abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(DashboardViewModel::class)

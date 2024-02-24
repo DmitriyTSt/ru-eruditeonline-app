@@ -23,6 +23,7 @@ import ru.eruditeonline.app.data.remote.model.test.ApiTestCommonResultRow
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResult
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResultRow
 import ru.eruditeonline.app.data.remote.params.CompetitionCheckParams
+import ru.eruditeonline.core.domain.ext.orDefault
 import java.time.Instant
 import java.time.ZoneId
 import javax.inject.Inject

@@ -6,12 +6,12 @@ import android.view.View
 import androidx.core.view.updatePadding
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.repository.AppInfoRepository
 import ru.eruditeonline.app.databinding.FragmentInformationBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.core.domain.repository.AppInfoRepository
 import javax.inject.Inject
 
 class InformationFragment : BaseFragment(R.layout.fragment_information) {

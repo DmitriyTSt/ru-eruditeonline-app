@@ -1,7 +1,7 @@
 package ru.eruditeonline.app.domain.usecase.debug
 
-import ru.eruditeonline.app.data.repository.EndpointRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.network.domain.repository.EndpointRepository
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -9,7 +9,7 @@ import javax.inject.Inject
  */
 class GetEndpointDataUseCase @Inject constructor(
     private val endpointRepository: EndpointRepository,
-) : UseCaseUnary<Unit, GetEndpointDataUseCase.Result>() {
+) : UseCaseUnary<Unit, GetEndpointDataUseCase.Result> {
     override suspend fun execute(params: Unit): Result {
         return Result(
             currentEndpoint = endpointRepository.provideEndpoint(),

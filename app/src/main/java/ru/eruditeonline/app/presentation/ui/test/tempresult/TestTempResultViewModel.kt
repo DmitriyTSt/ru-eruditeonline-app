@@ -12,6 +12,7 @@ import ru.eruditeonline.app.data.model.competition.CompetitionPassData
 import ru.eruditeonline.app.data.model.profile.Profile
 import ru.eruditeonline.app.data.model.test.CreatedResult
 import ru.eruditeonline.app.data.model.test.TempResultWithProfile
+import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.result.SaveResultUseCase
 import ru.eruditeonline.app.domain.usecase.test.CheckTestUseCase
 import ru.eruditeonline.app.presentation.extension.validateAllFields

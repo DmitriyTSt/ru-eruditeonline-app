@@ -2,7 +2,7 @@ package ru.eruditeonline.app.domain.usecase.result
 
 import ru.eruditeonline.app.data.model.test.TestUserResultRow
 import ru.eruditeonline.app.data.repository.ResultRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -10,7 +10,7 @@ import javax.inject.Inject
  */
 class GetResultsByEmailPageUseCase @Inject constructor(
     private val resultRepository: ResultRepository,
-) : UseCaseUnary<GetResultsByEmailPageUseCase.Params, List<TestUserResultRow>>() {
+) : UseCaseUnary<GetResultsByEmailPageUseCase.Params, List<TestUserResultRow>> {
 
     override suspend fun execute(params: Params): List<TestUserResultRow> {
         return resultRepository.getResultsByEmail(params.email, params.offset, params.limit)

@@ -3,7 +3,7 @@ package ru.eruditeonline.app.domain.usecase.auth
 import com.google.gson.annotations.SerializedName
 import ru.eruditeonline.app.data.model.auth.Gender
 import ru.eruditeonline.app.data.repository.AuthRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -11,7 +11,7 @@ import javax.inject.Inject
  */
 class RegistrationUseCase @Inject constructor(
     private val authRepository: AuthRepository,
-) : UseCaseUnary<RegistrationUseCase.Params, Unit>() {
+) : UseCaseUnary<RegistrationUseCase.Params, Unit> {
 
     override suspend fun execute(params: Params) {
         authRepository.registration(

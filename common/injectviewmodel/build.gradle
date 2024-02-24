@@ -1,0 +1,22 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "$project.rootDir/config/android_common.gradle"
+
+
+android {
+    namespace 'ru.eruditeoneline.injectviewmodel'
+
+    resourcePrefix 'common_injectviewmodel_'
+}
+
+dependencies {
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.viewmodel
+
+    implementation libs.bundles.dagger.core
+    kapt libs.bundles.dagger.kapt
+}

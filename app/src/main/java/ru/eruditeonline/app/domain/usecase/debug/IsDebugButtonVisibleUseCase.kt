@@ -1,7 +1,7 @@
 package ru.eruditeonline.app.domain.usecase.debug
 
-import ru.eruditeonline.app.data.repository.AppInfoRepository
-import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
+import ru.eruditeonline.core.domain.repository.AppInfoRepository
+import ru.eruditeonline.usecase.UseCaseUnary
 import javax.inject.Inject
 
 /**
@@ -9,7 +9,7 @@ import javax.inject.Inject
  */
 class IsDebugButtonVisibleUseCase @Inject constructor(
     private val appInfoRepository: AppInfoRepository,
-) : UseCaseUnary<Unit, Boolean>() {
+) : UseCaseUnary<Unit, Boolean> {
 
     override suspend fun execute(params: Unit): Boolean {
         return !appInfoRepository.isRelease

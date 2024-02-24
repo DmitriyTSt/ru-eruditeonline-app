@@ -1,0 +1,15 @@
+def sdkVersions =
+        [
+                "minSdk"    : 23,
+                "targetSdk" : 33,
+                "compileSdk": 33
+        ]
+
+android {
+    compileSdkVersion sdkVersions.compileSdk
+
+    defaultConfig {
+        minSdkVersion sdkVersions.minSdk
+        targetSdkVersion sdkVersions.targetSdk
+    }
+}

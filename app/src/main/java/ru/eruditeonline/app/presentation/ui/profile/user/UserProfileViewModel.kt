@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.profile.Profile
 import ru.eruditeonline.app.domain.usecase.auth.LogoutUseCase
+import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.profile.GetProfileUseCase
 import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent

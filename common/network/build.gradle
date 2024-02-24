@@ -1,0 +1,28 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "$project.rootDir/config/android_common.gradle"
+
+
+android {
+    namespace 'ru.eruditeonelin.network'
+
+    resourcePrefix 'common_network_'
+}
+
+dependencies {
+    implementation(project(":common:core"))
+    implementation(project(":common:usecase"))
+    implementation(project(":common:serializer"))
+    implementation libs.retrofit.core
+    implementation libs.retrofit.gson
+    implementation libs.chucker
+    implementation libs.timber
+
+    // dagger 2
+    implementation libs.bundles.dagger.core
+    kapt libs.bundles.dagger.kapt
+}

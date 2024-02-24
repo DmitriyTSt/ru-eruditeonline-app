@@ -7,3 +7,10 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Erudite.Online"
 include ':app'
+
+include(":common:core")
+include(":common:coroutine")
+include(":common:serializer")
+include(":common:injectviewmodel")
+include(":common:usecase")
+include(":common:network")

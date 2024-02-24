@@ -2,6 +2,7 @@ package ru.eruditeonline.app.data.mapper
 
 import ru.eruditeonline.app.data.model.profile.Profile
 import ru.eruditeonline.app.data.remote.model.profile.ApiProfile
+import ru.eruditeonline.core.domain.ext.orDefault
 import javax.inject.Inject
 
 class ProfileMapper @Inject constructor(
