@@ -3,7 +3,6 @@ package ru.eruditeonline.app.presentation.ui.dashboard
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.data.model.main.Tagline
@@ -11,8 +10,9 @@ import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.debug.IsDebugButtonVisibleUseCase
 import ru.eruditeonline.app.domain.usecase.main.GetMainSectionsUseCase
 import ru.eruditeonline.app.presentation.managers.DeepLinkManager
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
 import ru.eruditeonline.app.presentation.ui.views.ScrollStateHolder
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(

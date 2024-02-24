@@ -3,14 +3,14 @@ package ru.eruditeonline.app.presentation.ui.test.passage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionPassData
 import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.model.test.Question
 import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.test.GetTestUseCase
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
-import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import javax.inject.Inject

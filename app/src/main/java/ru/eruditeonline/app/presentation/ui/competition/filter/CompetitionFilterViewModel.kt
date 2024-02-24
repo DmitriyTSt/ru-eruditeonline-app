@@ -3,11 +3,11 @@ package ru.eruditeonline.app.presentation.ui.competition.filter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
-import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterGroup
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterGroupId
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterRequest
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.SingleLiveEvent
 import javax.inject.Inject
 
 class CompetitionFilterViewModel @Inject constructor() : BaseViewModel() {

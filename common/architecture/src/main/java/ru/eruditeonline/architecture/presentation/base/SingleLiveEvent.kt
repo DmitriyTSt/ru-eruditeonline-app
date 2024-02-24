@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.presentation.ui.base
+package ru.eruditeonline.architecture.presentation.base
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner

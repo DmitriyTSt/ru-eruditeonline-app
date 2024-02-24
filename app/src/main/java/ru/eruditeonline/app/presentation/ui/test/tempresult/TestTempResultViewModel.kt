@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import kotlinx.coroutines.flow.map
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.base.Country
 import ru.eruditeonline.app.data.model.base.Diploma
 import ru.eruditeonline.app.data.model.competition.CompetitionPassData
@@ -16,9 +15,10 @@ import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.result.SaveResultUseCase
 import ru.eruditeonline.app.domain.usecase.test.CheckTestUseCase
 import ru.eruditeonline.app.presentation.extension.validateAllFields
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
-import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
 import ru.eruditeonline.app.presentation.ui.views.TextInputValidator
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class TestTempResultViewModel @Inject constructor(

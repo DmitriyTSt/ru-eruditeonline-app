@@ -10,7 +10,8 @@ import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.navigation.Destination
 import timber.log.Timber
 
 fun Fragment.observeNavigationCommands(viewModel: BaseViewModel) {
@@ -39,15 +40,20 @@ private fun processDestination(
     destination: Destination,
 ) {
     when (destination) {
-        is Destination.Action -> navController.navigateSafe(
-            destination.direction,
-            destination.navOptions,
-        )
+        is Destination.Screen -> {
+            when (val screenDestination = destination.screen) {
+                is ActionDestination -> navController.navigateSafe(
+                    screenDestination.direction,
+                    screenDestination.navOptions,
+                )
+                is DeepLinkDestination -> navController.navigateSafe(
+                    screenDestination.navDeepLinkRequest,
+                    screenDestination.navOptions,
+                )
+                else -> error("Not supported AbstractScreenDestination")
+            }
+        }
         is Destination.Back -> navController.popBackStack()
-        is Destination.DeepLink -> navController.navigateSafe(
-            destination.navDeepLinkRequest,
-            destination.navOptions,
-        )
         is Destination.Activity -> startActivity(destination.intent)
         is Destination.Stack -> {
             destination.destinations.forEach { processDestination(navController, startActivity, it) }

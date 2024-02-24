@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.widget.ViewFlipper
 import androidx.annotation.StringRes
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.LoadableState
-import ru.eruditeonline.app.data.model.ParsedError
+import ru.eruditeonline.app.data.mapper.parseError
 import ru.eruditeonline.app.databinding.ViewErrorStateBinding
 import ru.eruditeonline.app.databinding.ViewLoadingStateBinding
+import ru.eruditeonline.architecture.domain.ParsedError
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 
 class StateViewFlipper(context: Context, attrs: AttributeSet? = null) : ViewFlipper(context, attrs) {
 
@@ -27,7 +28,7 @@ class StateViewFlipper(context: Context, attrs: AttributeSet? = null) : ViewFlip
         when (loadableResult) {
             is LoadableState.Loading -> setStateLoading()
             is LoadableState.Success -> setStateData()
-            is LoadableState.Error -> setStateError(loadableResult.error)
+            is LoadableState.Error -> setStateError(loadableResult.throwable.parseError())
         }
     }
 

@@ -2,7 +2,7 @@ package ru.eruditeonline.app.presentation.managers
 
 import android.content.Context
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.ParsedError
+import ru.eruditeonline.architecture.domain.ParsedError
 import javax.inject.Inject
 
 class ErrorTextInitializer @Inject constructor(

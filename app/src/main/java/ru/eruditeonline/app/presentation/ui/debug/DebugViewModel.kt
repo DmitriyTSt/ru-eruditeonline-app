@@ -3,12 +3,12 @@ package ru.eruditeonline.app.presentation.ui.debug
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.debug.ChangeEndpointUseCase
 import ru.eruditeonline.app.domain.usecase.debug.GetEndpointDataUseCase
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
-import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class DebugViewModel @Inject constructor(

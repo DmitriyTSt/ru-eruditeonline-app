@@ -11,6 +11,7 @@ include ':app'
 include(":common:core")
 include(":common:coroutine")
 include(":common:serializer")
-include(":common:injectviewmodel")
 include(":common:usecase")
+include(":common:injectviewmodel")
+include(":common:architecture")
 include(":common:network")

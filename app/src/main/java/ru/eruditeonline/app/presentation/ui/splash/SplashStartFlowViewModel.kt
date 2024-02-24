@@ -1,10 +1,10 @@
 package ru.eruditeonline.app.presentation.ui.splash
 
 import androidx.lifecycle.LiveData
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.SplashUseCase
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
-import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class SplashStartFlowViewModel @Inject constructor(

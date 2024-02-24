@@ -1,25 +1,15 @@
-package ru.eruditeonline.app.data.model
+package ru.eruditeonline.app.data.mapper
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
 import retrofit2.HttpException
 import ru.eruditeonline.app.data.remote.response.ErrorResponse
+import ru.eruditeonline.architecture.domain.ParsedError
 import timber.log.Timber
 import java.io.IOException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
-
-sealed class ParsedError(val code: String, val message: String) {
-    companion object {
-        var DEFAULT_CODE = "SOMETHING_WRONG"
-        var DEFAULT_MESSAGE = ""
-    }
-
-    class NetworkError(code: String, message: String) : ParsedError(code, message)
-    class GeneralError(code: String, message: String) : ParsedError(code, message)
-    class ApiError(code: String, message: String) : ParsedError(code, message)
-}
 
 fun Throwable.parseError(): ParsedError {
     Timber.e(this)

@@ -12,8 +12,8 @@ import androidx.annotation.ColorRes
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.google.android.material.button.MaterialButton
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.presentation.extension.getColorCompat
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import kotlin.math.max
 
 /**

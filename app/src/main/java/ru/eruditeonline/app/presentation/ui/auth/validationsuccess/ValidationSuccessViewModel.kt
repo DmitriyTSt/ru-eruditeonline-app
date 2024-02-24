@@ -1,11 +1,11 @@
 package ru.eruditeonline.app.presentation.ui.auth.validationsuccess
 
 import androidx.lifecycle.LiveData
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.auth.ConfirmEmailUseCase
 import ru.eruditeonline.app.domain.usecase.base.executeFlow
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
-import ru.eruditeonline.app.presentation.ui.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.SingleLiveEvent
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class ValidationSuccessViewModel @Inject constructor(

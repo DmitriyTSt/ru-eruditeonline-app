@@ -1,0 +1,21 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "$project.rootDir/config/android_common.gradle"
+
+
+android {
+    namespace 'ru.eruditeonelin.architecture'
+
+    resourcePrefix 'common_architecture_'
+}
+
+dependencies {
+    api(project(":common:usecase"))
+    implementation libs.androidx.viewmodel
+    implementation libs.androidx.livedata
+    implementation libs.timber
+}

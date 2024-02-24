@@ -1,8 +1,8 @@
 package ru.eruditeonline.app.presentation.managers
 
 import android.net.Uri
-import ru.eruditeonline.app.presentation.navigation.Destination
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemMode
+import ru.eruditeonline.architecture.presentation.navigation.Destination
 import javax.inject.Inject
 import javax.inject.Singleton
 

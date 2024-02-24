@@ -2,12 +2,15 @@ package ru.eruditeonline.app.presentation.ui.competition.items
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.app.presentation.extension.bindPagingState
+import ru.eruditeonline.app.presentation.extension.launchPagingData
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class CompetitionItemsViewModel @Inject constructor(
@@ -36,7 +39,7 @@ class CompetitionItemsViewModel @Inject constructor(
         subjectIds: List<String> = emptyList(),
     ) {
         _pagingStateLiveData.postValue(LoadableState.Loading())
-        _pagingDataLiveData.launchPagingData {
+        _pagingDataLiveData.launchPagingData(viewModelScope) {
             competitionItemsPagingFlowFactory.create(
                 CompetitionItemsPagingFlowFactory.Params(
                     query = query.orEmpty(),

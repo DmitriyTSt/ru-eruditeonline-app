@@ -2,12 +2,12 @@ package ru.eruditeonline.app.presentation.ui.competition.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItem
 import ru.eruditeonline.app.data.model.competition.TestAgeGroup
 import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.competition.GetCompetitionItemUseCase
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class CompetitionDetailViewModel @Inject constructor(

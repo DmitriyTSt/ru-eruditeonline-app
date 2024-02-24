@@ -1,6 +1,6 @@
 package ru.eruditeonline.app.presentation.ui.appupdate
 
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
 import javax.inject.Inject
 
 class AppUpdateViewModel @Inject constructor(

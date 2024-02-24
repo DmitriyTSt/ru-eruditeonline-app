@@ -2,11 +2,11 @@ package ru.eruditeonline.app.presentation.ui.information
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.base.WebPageItem
 import ru.eruditeonline.app.domain.usecase.GetWebPagesUseCase
 import ru.eruditeonline.app.domain.usecase.base.executeFlow
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class InformationViewModel @Inject constructor(

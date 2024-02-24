@@ -1,9 +1,9 @@
-package ru.eruditeonline.app.data.model
+package ru.eruditeonline.architecture.presentation.model
 
 sealed class LoadableState<T> {
     class Loading<T> : LoadableState<T>()
     class Success<T>(val data: T) : LoadableState<T>()
-    class Error<T>(val throwable: Throwable, val error: ParsedError = throwable.parseError()) : LoadableState<T>()
+    class Error<T>(val throwable: Throwable) : LoadableState<T>()
 
     val isSuccess by lazy { this is Success }
     val isError by lazy { this is Error }
@@ -15,9 +15,9 @@ sealed class LoadableState<T> {
         }
     }
 
-    fun doOnError(block: (ParsedError) -> Unit) {
+    fun doOnError(block: (Throwable) -> Unit) {
         if (isError) {
-            block((this as Error).error)
+            block((this as Error).throwable)
         }
     }
 

@@ -5,13 +5,16 @@ import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.presentation.navigation.Destination
+import ru.eruditeonline.app.presentation.navigation.Action
+import ru.eruditeonline.app.presentation.navigation.DeepLink
 import ru.eruditeonline.app.presentation.ui.profile.ProfileFragmentDirections
+import ru.eruditeonline.architecture.presentation.navigation.Destination
+import ru.eruditeonline.architecture.presentation.navigation.Destinations
 import javax.inject.Inject
 
 class AnonymProfileDestinations @Inject constructor(
     private val context: Context,
-) {
+) : Destinations {
     /** Вход */
     fun login() = Destination.Action(
         ProfileFragmentDirections.actionProfileFragmentToAuthGraph()

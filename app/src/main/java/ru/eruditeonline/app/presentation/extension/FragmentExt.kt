@@ -11,13 +11,25 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.ParsedError
+import ru.eruditeonline.app.data.mapper.parseError
+import ru.eruditeonline.architecture.domain.ParsedError
 import kotlin.math.max
 
 fun Fragment.errorSnackbar(error: ParsedError) {
     showCustomSnackbar(
         if (this is BottomSheetDialogFragment) dialog?.window?.decorView else view,
         when (error) {
+            is ParsedError.ApiError -> error.message
+            is ParsedError.GeneralError -> requireContext().getString(R.string.error_something_wrong_title)
+            is ParsedError.NetworkError -> requireContext().getString(R.string.error_no_network_title)
+        }
+    )
+}
+
+fun Fragment.errorSnackbar(throwable: Throwable) {
+    showCustomSnackbar(
+        if (this is BottomSheetDialogFragment) dialog?.window?.decorView else view,
+        when (val error = throwable.parseError()) {
             is ParsedError.ApiError -> error.message
             is ParsedError.GeneralError -> requireContext().getString(R.string.error_something_wrong_title)
             is ParsedError.NetworkError -> requireContext().getString(R.string.error_no_network_title)

@@ -2,11 +2,11 @@ package ru.eruditeonline.app.presentation.ui.rating.tab
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.rating.RatingRow
 import ru.eruditeonline.app.domain.usecase.base.executeFlow
 import ru.eruditeonline.app.domain.usecase.rating.GetRatingUseCase
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.model.LoadableState
 import java.time.LocalDate
 import javax.inject.Inject
 

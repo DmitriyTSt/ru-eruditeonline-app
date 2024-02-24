@@ -1,6 +1,6 @@
 package ru.eruditeonline.app.presentation.ui.profile.anonym
 
-import ru.eruditeonline.app.presentation.ui.base.BaseViewModel
+import ru.eruditeonline.architecture.presentation.base.BaseViewModel
 import javax.inject.Inject
 
 class AnonymProfileViewModel @Inject constructor(
