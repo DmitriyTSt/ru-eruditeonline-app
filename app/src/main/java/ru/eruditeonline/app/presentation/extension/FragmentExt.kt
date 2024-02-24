@@ -27,14 +27,7 @@ fun Fragment.errorSnackbar(error: ParsedError) {
 }
 
 fun Fragment.errorSnackbar(throwable: Throwable) {
-    showCustomSnackbar(
-        if (this is BottomSheetDialogFragment) dialog?.window?.decorView else view,
-        when (val error = throwable.parseError()) {
-            is ParsedError.ApiError -> error.message
-            is ParsedError.GeneralError -> requireContext().getString(R.string.error_something_wrong_title)
-            is ParsedError.NetworkError -> requireContext().getString(R.string.error_no_network_title)
-        }
-    )
+    errorSnackbar(throwable.parseError())
 }
 
 fun Fragment.errorSnackbar(message: String, marginBottom: Int = 0) {
