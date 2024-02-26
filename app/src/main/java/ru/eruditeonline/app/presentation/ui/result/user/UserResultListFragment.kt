@@ -10,14 +10,14 @@ import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentUserResultListBinding
-import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
-import ru.eruditeonline.app.presentation.extension.hideSoftKeyboard
-import ru.eruditeonline.app.presentation.extension.showSoftKeyboard
 import ru.eruditeonline.app.presentation.paging.PagingLoadStateAdapter
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.addLinearSpaceItemDecoration
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.doOnApplyWindowInsets
+import ru.eruditeonline.ui.presentation.ext.hideSoftKeyboard
+import ru.eruditeonline.ui.presentation.ext.showSoftKeyboard
 import javax.inject.Inject
 
 class UserResultListFragment : BaseFragment(R.layout.fragment_user_result_list) {

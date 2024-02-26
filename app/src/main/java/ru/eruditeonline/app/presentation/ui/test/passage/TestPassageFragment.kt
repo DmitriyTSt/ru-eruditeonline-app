@@ -17,15 +17,15 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.test.CompetitionTest
 import ru.eruditeonline.app.data.model.test.Question
 import ru.eruditeonline.app.databinding.FragmentTestPassageBinding
-import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.errorSnackbar
-import ru.eruditeonline.app.presentation.extension.hideSoftKeyboard
-import ru.eruditeonline.app.presentation.extension.load
-import ru.eruditeonline.app.presentation.extension.setTextFromHtml
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.addLinearSpaceItemDecoration
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.doOnApplyWindowInsets
+import ru.eruditeonline.ui.presentation.ext.hideSoftKeyboard
+import ru.eruditeonline.ui.presentation.ext.load
+import ru.eruditeonline.ui.presentation.ext.setTextFromHtml
 import java.util.Locale
 import javax.inject.Inject
 

@@ -8,10 +8,10 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ItemFilterGroupBinding
-import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.paging.DiffUtilItemCallbackFactory
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterGroup
-import ru.eruditeonline.app.presentation.ui.views.FlexboxSpaceItemDecoration
+import ru.eruditeonline.ui.presentation.ext.inflate
+import ru.eruditeonline.ui.presentation.views.FlexboxSpaceItemDecoration
 
 class FilterGroupViewHolder(
     parent: ViewGroup,

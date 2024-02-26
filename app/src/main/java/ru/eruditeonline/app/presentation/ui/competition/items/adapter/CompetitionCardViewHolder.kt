@@ -8,7 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.databinding.ItemCompetitionCardBinding
-import ru.eruditeonline.app.presentation.extension.inflate
+import ru.eruditeonline.ui.presentation.ext.inflate
 
 class CompetitionCardViewHolder(
     parent: ViewGroup,

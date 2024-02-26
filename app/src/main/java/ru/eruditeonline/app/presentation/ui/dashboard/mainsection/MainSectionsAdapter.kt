@@ -6,9 +6,9 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.data.model.main.Tagline
-import ru.eruditeonline.app.presentation.ui.base.BaseAdapter
 import ru.eruditeonline.app.presentation.ui.views.RecycledViewHolder
 import ru.eruditeonline.app.presentation.ui.views.ScrollStateHolder
+import ru.eruditeonline.ui.presentation.base.BaseAdapter
 import javax.inject.Inject
 
 class MainSectionsAdapter @Inject constructor() : BaseAdapter<MainSection, RecyclerView.ViewHolder>() {

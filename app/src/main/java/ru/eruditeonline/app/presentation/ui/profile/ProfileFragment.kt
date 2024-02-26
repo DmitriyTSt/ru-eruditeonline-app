@@ -4,10 +4,10 @@ import android.os.Bundle
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentProfileBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileFragment
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileFragment
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
 
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 

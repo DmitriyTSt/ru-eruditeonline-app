@@ -9,12 +9,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentCompetitionFilterBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterGroup
 import ru.eruditeonline.architecture.presentation.model.LoadableState
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.fitTopInsetsWithPadding
 import javax.inject.Inject
 
 private val TITLES = arrayOf(R.string.filter_ages_title, R.string.filter_subjects_title)

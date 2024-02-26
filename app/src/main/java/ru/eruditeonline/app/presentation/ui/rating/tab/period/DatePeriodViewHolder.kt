@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ItemDatePeriodBinding
-import ru.eruditeonline.app.presentation.extension.inflate
+import ru.eruditeonline.ui.presentation.ext.inflate
 
 class DatePeriodViewHolder(
     parent: ViewGroup,

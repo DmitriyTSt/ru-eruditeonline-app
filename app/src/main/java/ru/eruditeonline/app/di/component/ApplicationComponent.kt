@@ -14,6 +14,7 @@ import ru.eruditeonline.app.di.module.FragmentModule
 import ru.eruditeonline.app.di.module.NetworkModule
 import ru.eruditeonline.app.di.module.RepositoryModule
 import ru.eruditeonline.app.di.module.SerializerModule
+import ru.eruditeonline.app.di.module.ThemeModule
 import ru.eruditeonline.app.di.module.ViewModelModule
 import ru.eruditeonline.app.presentation.EruditeApplication
 import javax.inject.Singleton
@@ -33,6 +34,7 @@ import javax.inject.Singleton
         RepositoryModule::class,
         ApiServiceModule::class,
         DeepLinkManagerModule::class,
+        ThemeModule::class,
     ]
 )
 interface ApplicationComponent : AndroidInjector<EruditeApplication> {

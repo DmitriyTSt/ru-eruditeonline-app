@@ -7,8 +7,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.test.TestUserResultRow
 import ru.eruditeonline.app.databinding.ItemUserResultBinding
-import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.managers.DateFormatter
+import ru.eruditeonline.ui.presentation.ext.inflate
 
 class UserResultViewHolder(
     parent: ViewGroup,

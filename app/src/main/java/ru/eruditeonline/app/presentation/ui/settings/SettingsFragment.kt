@@ -6,11 +6,11 @@ import androidx.core.view.isVisible
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentSettingsBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.managers.Theme
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.fitTopInsetsWithPadding
 
 class SettingsFragment : BaseFragment(R.layout.fragment_settings) {
     private val binding by viewBinding(FragmentSettingsBinding::bind)

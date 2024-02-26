@@ -12,11 +12,11 @@ import androidx.fragment.app.setFragmentResult
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentLoginBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.errorSnackbar
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.doOnApplyWindowInsets
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
 

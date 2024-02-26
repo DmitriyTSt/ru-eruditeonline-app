@@ -7,11 +7,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.base.AppUpdate
 import ru.eruditeonline.app.databinding.FragmentAppUpdateBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
-import ru.eruditeonline.app.presentation.extension.getDrawableCompat
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.fitTopInsetsWithPadding
+import ru.eruditeonline.ui.presentation.ext.getDrawableCompat
 
 /**
  * Экран обновления приложения

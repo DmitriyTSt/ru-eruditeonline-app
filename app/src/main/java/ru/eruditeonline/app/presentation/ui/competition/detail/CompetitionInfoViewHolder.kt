@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ItemCompetitionInfoBinding
-import ru.eruditeonline.app.presentation.extension.inflate
-import ru.eruditeonline.app.presentation.extension.setTextFromHtml
-import ru.eruditeonline.app.presentation.extension.stripUnderlines
+import ru.eruditeonline.ui.presentation.ext.inflate
+import ru.eruditeonline.ui.presentation.ext.setTextFromHtml
+import ru.eruditeonline.ui.presentation.ext.stripUnderlines
 
 class CompetitionInfoViewHolder(
     parent: ViewGroup,

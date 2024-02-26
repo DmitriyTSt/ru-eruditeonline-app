@@ -7,13 +7,13 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItem
 import ru.eruditeonline.app.databinding.FragmentCompetitionDetailBinding
-import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
-import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.extension.setDifficulty
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.addLinearSpaceItemDecoration
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.fitTopInsetsWithPadding
+import ru.eruditeonline.ui.presentation.ext.load
 import javax.inject.Inject
 
 class CompetitionDetailFragment : BaseFragment(R.layout.fragment_competition_detail) {

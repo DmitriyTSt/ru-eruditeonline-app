@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.base.Score
-import ru.eruditeonline.app.presentation.extension.getColorCompat
+import ru.eruditeonline.ui.presentation.ext.getColorCompat
 
 class ScoreProgressView : View {
     constructor(context: Context) : super(context)

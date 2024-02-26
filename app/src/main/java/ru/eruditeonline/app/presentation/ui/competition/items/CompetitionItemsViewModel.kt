@@ -7,10 +7,10 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
-import ru.eruditeonline.app.presentation.extension.bindPagingState
-import ru.eruditeonline.app.presentation.extension.launchPagingData
 import ru.eruditeonline.architecture.presentation.base.BaseViewModel
 import ru.eruditeonline.architecture.presentation.model.LoadableState
+import ru.eruditeonline.ui.presentation.ext.bindPagingState
+import ru.eruditeonline.ui.presentation.ext.launchPagingData
 import javax.inject.Inject
 
 class CompetitionItemsViewModel @Inject constructor(

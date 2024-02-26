@@ -7,12 +7,12 @@ import androidx.core.widget.doAfterTextChanged
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentSearchResultBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
-import ru.eruditeonline.app.presentation.extension.hideSoftKeyboard
-import ru.eruditeonline.app.presentation.extension.showSoftKeyboard
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.fitTopInsetsWithPadding
+import ru.eruditeonline.ui.presentation.ext.hideSoftKeyboard
+import ru.eruditeonline.ui.presentation.ext.showSoftKeyboard
 
 /**
  * Поиск результатов по email

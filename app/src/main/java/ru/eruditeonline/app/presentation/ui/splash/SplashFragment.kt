@@ -6,12 +6,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.mapper.parseError
 import ru.eruditeonline.app.databinding.FragmentSplashBinding
-import ru.eruditeonline.app.presentation.extension.appActivityViewModels
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.architecture.domain.ParsedError
 import ru.eruditeonline.architecture.presentation.model.LoadableState
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appActivityViewModels
+import ru.eruditeonline.ui.presentation.ext.appViewModels
 import timber.log.Timber
 
 private const val STATE_DATA = 0

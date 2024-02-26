@@ -8,11 +8,11 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.data.model.main.Tagline
 import ru.eruditeonline.app.databinding.ItemMainSectionTaglinesBinding
-import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
-import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.ui.dashboard.tagline.TaglinesAdapter
 import ru.eruditeonline.app.presentation.ui.views.RecycledViewHolder
 import ru.eruditeonline.app.presentation.ui.views.ScrollStateHolder
+import ru.eruditeonline.ui.presentation.ext.addLinearSpaceItemDecoration
+import ru.eruditeonline.ui.presentation.ext.inflate
 
 class MainSectionTaglinesViewHolder(
     parent: ViewGroup,

@@ -7,8 +7,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.TestAgeGroup
 import ru.eruditeonline.app.databinding.ItemCompetitionTestButtonBinding
-import ru.eruditeonline.app.presentation.extension.getColorFromAttribute
-import ru.eruditeonline.app.presentation.extension.inflate
+import ru.eruditeonline.ui.presentation.ext.getColorFromAttribute
+import ru.eruditeonline.ui.presentation.ext.inflate
 
 class CompetitionTestButtonViewHolder(
     parent: ViewGroup,

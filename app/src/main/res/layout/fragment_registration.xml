@@ -32,7 +32,7 @@
             android:orientation="vertical"
             android:paddingTop="8dp">
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutSurname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,9 +47,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,9 +64,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutPatronymic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                 android:layout_marginHorizontal="@dimen/margin_16"
                 android:layout_marginTop="8dp">
 
-                <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+                <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                     android:id="@+id/textInputLayoutBirthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textCapWords" />
 
-                </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+                </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
                 <View
                     android:id="@+id/viewSelectBirthday"
@@ -148,7 +148,7 @@
                     android:textAppearance="@style/Font.Body2.Regular" />
             </RadioGroup>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutSchool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,9 +162,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,9 +179,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutRegion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayoutCountry"
@@ -204,7 +204,7 @@
                 android:layout_marginHorizontal="@dimen/margin_16"
                 android:layout_marginTop="8dp">
 
-                <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+                <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                     android:id="@+id/textInputLayoutCountry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -218,7 +218,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textCapWords" />
 
-                </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+                </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -242,7 +242,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -257,9 +257,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textWebEmailAddress" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -277,9 +277,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutPasswordConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -297,7 +297,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
 
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -2,7 +2,7 @@ package ru.eruditeonline.app.presentation.ui.competition.detail
 
 import android.view.ViewGroup
 import ru.eruditeonline.app.data.model.competition.TestAgeGroup
-import ru.eruditeonline.app.presentation.ui.base.BaseAdapter
+import ru.eruditeonline.ui.presentation.base.BaseAdapter
 import javax.inject.Inject
 
 class CompetitionTestButtonsAdapter @Inject constructor() : BaseAdapter<TestAgeGroup, CompetitionTestButtonViewHolder>() {

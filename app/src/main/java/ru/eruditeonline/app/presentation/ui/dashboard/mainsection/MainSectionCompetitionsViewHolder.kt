@@ -11,12 +11,12 @@ import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.CompetitionViewType
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.databinding.ItemMainSectionCompetitionsBinding
-import ru.eruditeonline.app.presentation.extension.addDefaultGridSpaceItemDecoration
-import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
-import ru.eruditeonline.app.presentation.extension.inflate
 import ru.eruditeonline.app.presentation.ui.dashboard.competition.CompetitionsMainSectionAdapter
 import ru.eruditeonline.app.presentation.ui.views.RecycledViewHolder
 import ru.eruditeonline.app.presentation.ui.views.ScrollStateHolder
+import ru.eruditeonline.ui.presentation.ext.addDefaultGridSpaceItemDecoration
+import ru.eruditeonline.ui.presentation.ext.addLinearSpaceItemDecoration
+import ru.eruditeonline.ui.presentation.ext.inflate
 
 private const val GRID_SPAN_COUNT = 2
 

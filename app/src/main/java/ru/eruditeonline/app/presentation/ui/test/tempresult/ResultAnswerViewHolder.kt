@@ -7,7 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.test.ResultAnswer
 import ru.eruditeonline.app.databinding.ItemTempResultAnswerBinding
-import ru.eruditeonline.app.presentation.extension.inflate
+import ru.eruditeonline.ui.presentation.ext.inflate
 
 class ResultAnswerViewHolder(
     parent: ViewGroup,

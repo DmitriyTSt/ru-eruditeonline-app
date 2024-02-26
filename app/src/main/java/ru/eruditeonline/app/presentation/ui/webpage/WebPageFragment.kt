@@ -17,12 +17,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.base.WebPage
 import ru.eruditeonline.app.databinding.FragmentWebPageBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.managers.InnerDeepLinkManager
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.architecture.presentation.model.LoadableState
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.doOnApplyWindowInsets
 import javax.inject.Inject
 
 private const val ERUDITE_DOMAIN = "erudit-online.ru"

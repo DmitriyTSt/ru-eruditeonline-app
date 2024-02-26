@@ -7,12 +7,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.profile.Profile
 import ru.eruditeonline.app.databinding.FragmentUserProfileBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.errorSnackbar
-import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
-import ru.eruditeonline.app.presentation.extension.load
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.fitTopInsetsWithPadding
+import ru.eruditeonline.ui.presentation.ext.load
 
 class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 

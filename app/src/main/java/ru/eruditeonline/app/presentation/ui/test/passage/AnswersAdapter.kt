@@ -2,7 +2,7 @@ package ru.eruditeonline.app.presentation.ui.test.passage
 
 import android.view.ViewGroup
 import ru.eruditeonline.app.data.model.test.Answer
-import ru.eruditeonline.app.presentation.ui.base.BaseAdapter
+import ru.eruditeonline.ui.presentation.base.BaseAdapter
 import javax.inject.Inject
 
 class AnswersAdapter @Inject constructor() : BaseAdapter<Answer, AnswerViewHolder>() {

@@ -6,9 +6,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.main.Tagline
 import ru.eruditeonline.app.databinding.ItemTaglineBinding
-import ru.eruditeonline.app.presentation.extension.getColorFromAttribute
-import ru.eruditeonline.app.presentation.extension.inflate
-import ru.eruditeonline.app.presentation.extension.load
+import ru.eruditeonline.ui.presentation.ext.getColorFromAttribute
+import ru.eruditeonline.ui.presentation.ext.inflate
+import ru.eruditeonline.ui.presentation.ext.load
 import com.google.android.material.R as MaterialR
 
 class TaglineViewHolder(

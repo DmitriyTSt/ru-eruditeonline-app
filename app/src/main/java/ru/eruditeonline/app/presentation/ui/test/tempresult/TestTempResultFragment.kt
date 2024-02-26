@@ -26,16 +26,16 @@ import ru.eruditeonline.app.data.model.base.Diploma
 import ru.eruditeonline.app.data.model.profile.Profile
 import ru.eruditeonline.app.data.model.test.TempResult
 import ru.eruditeonline.app.databinding.FragmentTestTempResultBinding
-import ru.eruditeonline.app.presentation.extension.appViewModels
-import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.errorSnackbar
-import ru.eruditeonline.app.presentation.extension.getColorCompat
-import ru.eruditeonline.app.presentation.extension.link
-import ru.eruditeonline.app.presentation.extension.load
-import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.app.presentation.ui.country.SelectCountryFragment
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaFragment
 import ru.eruditeonline.navigation.observeNavigationCommands
+import ru.eruditeonline.ui.presentation.base.BaseFragment
+import ru.eruditeonline.ui.presentation.ext.appViewModels
+import ru.eruditeonline.ui.presentation.ext.doOnApplyWindowInsets
+import ru.eruditeonline.ui.presentation.ext.getColorCompat
+import ru.eruditeonline.ui.presentation.ext.link
+import ru.eruditeonline.ui.presentation.ext.load
 import javax.inject.Inject
 
 class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) {

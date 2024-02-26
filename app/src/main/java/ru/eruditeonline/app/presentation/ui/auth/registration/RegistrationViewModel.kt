@@ -8,12 +8,12 @@ import ru.eruditeonline.app.data.model.auth.Gender
 import ru.eruditeonline.app.data.model.base.Country
 import ru.eruditeonline.app.domain.usecase.auth.RegistrationUseCase
 import ru.eruditeonline.app.domain.usecase.base.executeFlow
-import ru.eruditeonline.app.presentation.extension.validateAllFields
-import ru.eruditeonline.app.presentation.ui.views.TextInputValidator
 import ru.eruditeonline.architecture.presentation.base.BaseViewModel
 import ru.eruditeonline.architecture.presentation.base.SingleLiveEvent
 import ru.eruditeonline.architecture.presentation.model.LoadableState
 import ru.eruditeonline.core.domain.ext.orDefault
+import ru.eruditeonline.ui.presentation.ext.validateAllFields
+import ru.eruditeonline.ui.presentation.views.TextInputValidator
 import javax.inject.Inject
 
 class RegistrationViewModel @Inject constructor(

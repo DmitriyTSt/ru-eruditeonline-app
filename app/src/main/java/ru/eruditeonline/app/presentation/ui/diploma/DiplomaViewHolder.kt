@@ -6,8 +6,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.base.Diploma
 import ru.eruditeonline.app.databinding.ItemDiplomaBinding
-import ru.eruditeonline.app.presentation.extension.inflate
-import ru.eruditeonline.app.presentation.extension.load
+import ru.eruditeonline.ui.presentation.ext.inflate
+import ru.eruditeonline.ui.presentation.ext.load
 
 class DiplomaViewHolder(
     parent: ViewGroup,

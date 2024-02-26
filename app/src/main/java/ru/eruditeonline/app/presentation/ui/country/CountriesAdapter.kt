@@ -2,7 +2,7 @@ package ru.eruditeonline.app.presentation.ui.country
 
 import android.view.ViewGroup
 import ru.eruditeonline.app.data.model.base.Country
-import ru.eruditeonline.app.presentation.ui.base.BaseAdapter
+import ru.eruditeonline.ui.presentation.base.BaseAdapter
 import javax.inject.Inject
 
 class CountriesAdapter @Inject constructor() : BaseAdapter<Country, CountryViewHolder>() {

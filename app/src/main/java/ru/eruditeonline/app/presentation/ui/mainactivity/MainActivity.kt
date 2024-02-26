@@ -12,9 +12,10 @@ import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ActivityMainBinding
-import ru.eruditeonline.app.presentation.extension.appActivityViewModels
-import ru.eruditeonline.app.presentation.ui.base.BaseActivity
 import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
+import ru.eruditeonline.ui.presentation.base.BaseActivity
+import ru.eruditeonline.ui.presentation.base.BottomNavigationViewManager
+import ru.eruditeonline.ui.presentation.ext.appActivityViewModels
 
 private const val EXTRA_FROM_401_ERROR = "extra_from_401_error"
 

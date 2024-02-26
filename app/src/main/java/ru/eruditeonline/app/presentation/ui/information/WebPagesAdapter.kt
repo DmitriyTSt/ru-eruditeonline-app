@@ -2,7 +2,7 @@ package ru.eruditeonline.app.presentation.ui.information
 
 import android.view.ViewGroup
 import ru.eruditeonline.app.data.model.base.WebPageItem
-import ru.eruditeonline.app.presentation.ui.base.BaseAdapter
+import ru.eruditeonline.ui.presentation.base.BaseAdapter
 import javax.inject.Inject
 
 class WebPagesAdapter @Inject constructor() : BaseAdapter<WebPageItem, WebPageViewHolder>() {

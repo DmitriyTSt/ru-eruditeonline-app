@@ -3,8 +3,8 @@ package ru.eruditeonline.app.presentation.ui.startactivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import ru.eruditeonline.app.presentation.managers.DeepLinkManager
-import ru.eruditeonline.app.presentation.ui.base.BaseActivity
 import ru.eruditeonline.app.presentation.ui.mainactivity.MainActivity
+import ru.eruditeonline.ui.presentation.base.BaseActivity
 import javax.inject.Inject
 
 class DeepLinkStartActivity : BaseActivity() {

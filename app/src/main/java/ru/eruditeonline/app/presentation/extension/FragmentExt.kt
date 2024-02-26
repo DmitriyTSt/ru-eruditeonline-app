@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.mapper.parseError
 import ru.eruditeonline.architecture.domain.ParsedError
+import ru.eruditeonline.ui.presentation.ext.getColorCompat
 import kotlin.math.max
 
 fun Fragment.errorSnackbar(error: ParsedError) {

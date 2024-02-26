@@ -1,0 +1,31 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "$project.rootDir/config/android_common.gradle"
+
+
+android {
+    namespace 'ru.eruditeonline.ui'
+
+    resourcePrefix 'common_ui_'
+}
+
+dependencies {
+    implementation(project(":common:navigation-ui"))
+    implementation(project(":common:architecture"))
+    implementation(project(":common:injectviewmodel"))
+    api(libs.viewbinding.delegate)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime)
+    implementation(libs.material)
+    implementation(libs.flexbox)
+    implementation(libs.androidx.paging)
+    implementation(libs.glide.core)
+
+    implementation(libs.bundles.dagger.core)
+    kapt(libs.bundles.dagger.kapt)
+}

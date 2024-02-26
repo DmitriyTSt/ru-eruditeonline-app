@@ -9,7 +9,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.presentation.paging.DiffUtilItemCallbackFactory
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsViewType
-import ru.eruditeonline.app.presentation.ui.views.RecyclerViewAdapterWithCustomSpanSize
+import ru.eruditeonline.ui.presentation.views.RecyclerViewAdapterWithCustomSpanSize
 import javax.inject.Inject
 
 class CompetitionItemsAdapter @Inject constructor(

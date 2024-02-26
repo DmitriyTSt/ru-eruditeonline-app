@@ -3,14 +3,14 @@ package ru.eruditeonline.app.presentation.ui.settings
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ru.eruditeonline.app.presentation.managers.Theme
-import ru.eruditeonline.app.presentation.managers.ThemeManager
+import ru.eruditeonline.app.presentation.managers.ThemeManagerImpl
 import ru.eruditeonline.architecture.presentation.base.BaseViewModel
 import ru.eruditeonline.architecture.presentation.base.SingleLiveEvent
 import ru.eruditeonline.architecture.presentation.model.LoadableState
 import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(
-    private val themeManager: ThemeManager,
+    private val themeManager: ThemeManagerImpl,
     private val destinations: SettingsDestinations,
 ) : BaseViewModel() {
 

@@ -5,8 +5,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
-import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.extension.setDifficulty
+import ru.eruditeonline.ui.presentation.ext.load
 
 abstract class BaseCompetitionViewHolder(
     itemView: View,

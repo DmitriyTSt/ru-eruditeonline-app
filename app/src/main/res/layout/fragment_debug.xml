@@ -67,7 +67,7 @@
 
             </RadioGroup>
 
-            <ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout
+            <ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout
                 android:id="@+id/textInputLayoutCustomEndpoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                     android:id="@+id/editTextCustomEndpoint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-            </ru.eruditeonline.app.presentation.ui.views.ValidationTextInputLayout>
+            </ru.eruditeonline.ui.presentation.views.ValidationTextInputLayout>
 
             <ru.eruditeonline.app.presentation.ui.views.StatefulMaterialButton
                 android:id="@+id/buttonDebugSave"

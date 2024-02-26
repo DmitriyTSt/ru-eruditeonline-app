@@ -4,10 +4,10 @@ import android.view.ViewGroup
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.CompetitionViewType
-import ru.eruditeonline.app.presentation.ui.base.BaseAdapter
 import ru.eruditeonline.app.presentation.ui.competition.items.adapter.BaseCompetitionViewHolder
 import ru.eruditeonline.app.presentation.ui.competition.items.adapter.CompetitionCardSmallViewHolder
 import ru.eruditeonline.app.presentation.ui.competition.items.adapter.CompetitionRowBigViewHolder
+import ru.eruditeonline.ui.presentation.base.BaseAdapter
 import javax.inject.Inject
 
 class CompetitionsMainSectionAdapter @Inject constructor() : BaseAdapter<CompetitionItemShort, BaseCompetitionViewHolder>() {

@@ -6,7 +6,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.FilterItem
 import ru.eruditeonline.app.databinding.ItemFilterBinding
-import ru.eruditeonline.app.presentation.extension.inflate
+import ru.eruditeonline.ui.presentation.ext.inflate
 
 class FilterViewHolder(
     parent: ViewGroup,
