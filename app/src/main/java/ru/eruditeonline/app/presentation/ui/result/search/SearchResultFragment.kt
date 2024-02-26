@@ -11,8 +11,8 @@ import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.extension.hideSoftKeyboard
 import ru.eruditeonline.app.presentation.extension.showSoftKeyboard
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.navigation.observeNavigationCommands
 
 /**
  * Поиск результатов по email

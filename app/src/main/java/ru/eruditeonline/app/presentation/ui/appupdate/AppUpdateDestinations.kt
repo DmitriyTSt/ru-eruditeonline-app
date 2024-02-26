@@ -3,9 +3,10 @@ package ru.eruditeonline.app.presentation.ui.appupdate
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import ru.eruditeonline.app.presentation.navigation.Action
-import ru.eruditeonline.architecture.presentation.navigation.Destination
-import ru.eruditeonline.architecture.presentation.navigation.Destinations
+import ru.eruditeonline.navigation.Action
+import ru.eruditeonline.navigation.Activity
+import ru.eruditeonline.navigation.Destination
+import ru.eruditeonline.navigation.Destinations
 import javax.inject.Inject
 
 class AppUpdateDestinations @Inject constructor(

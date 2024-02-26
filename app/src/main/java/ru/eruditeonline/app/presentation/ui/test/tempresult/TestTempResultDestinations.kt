@@ -5,11 +5,11 @@ import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.test.CreatedResult
-import ru.eruditeonline.app.presentation.navigation.Action
-import ru.eruditeonline.app.presentation.navigation.DeepLink
 import ru.eruditeonline.app.presentation.ui.webpage.WebPageFragment
-import ru.eruditeonline.architecture.presentation.navigation.Destination
-import ru.eruditeonline.architecture.presentation.navigation.Destinations
+import ru.eruditeonline.navigation.Action
+import ru.eruditeonline.navigation.DeepLink
+import ru.eruditeonline.navigation.Destination
+import ru.eruditeonline.navigation.Destinations
 import javax.inject.Inject
 
 class TestTempResultDestinations @Inject constructor(

@@ -15,9 +15,9 @@ import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.hideSoftKeyboard
 import ru.eruditeonline.app.presentation.extension.showSoftKeyboard
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.paging.PagingLoadStateAdapter
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.navigation.observeNavigationCommands
 import javax.inject.Inject
 
 class UserResultListFragment : BaseFragment(R.layout.fragment_user_result_list) {

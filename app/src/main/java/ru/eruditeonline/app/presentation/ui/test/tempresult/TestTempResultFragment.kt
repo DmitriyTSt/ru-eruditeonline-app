@@ -32,10 +32,10 @@ import ru.eruditeonline.app.presentation.extension.errorSnackbar
 import ru.eruditeonline.app.presentation.extension.getColorCompat
 import ru.eruditeonline.app.presentation.extension.link
 import ru.eruditeonline.app.presentation.extension.load
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.app.presentation.ui.country.SelectCountryFragment
 import ru.eruditeonline.app.presentation.ui.diploma.SelectDiplomaFragment
+import ru.eruditeonline.navigation.observeNavigationCommands
 import javax.inject.Inject
 
 class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) {

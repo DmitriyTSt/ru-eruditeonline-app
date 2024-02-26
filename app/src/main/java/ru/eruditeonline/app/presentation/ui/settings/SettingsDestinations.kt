@@ -3,8 +3,9 @@ package ru.eruditeonline.app.presentation.ui.settings
 import android.content.Context
 import android.content.Intent
 import ru.eruditeonline.app.presentation.ui.mainactivity.MainActivity
-import ru.eruditeonline.architecture.presentation.navigation.Destination
-import ru.eruditeonline.architecture.presentation.navigation.Destinations
+import ru.eruditeonline.navigation.Activity
+import ru.eruditeonline.navigation.Destination
+import ru.eruditeonline.navigation.Destinations
 import javax.inject.Inject
 
 class SettingsDestinations @Inject constructor(

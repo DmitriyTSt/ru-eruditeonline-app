@@ -1,0 +1,21 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "$project.rootDir/config/android_common.gradle"
+
+
+android {
+    namespace 'ru.eruditeonline.navigationui'
+
+    resourcePrefix 'common_navigationui_'
+}
+
+dependencies {
+    api(project(":common:navigation-core"))
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.timber)
+}

@@ -19,10 +19,6 @@ class SplashStartFlowViewModel @Inject constructor(
     val isReady: Boolean
         get() = !(initialFlowLiveEvent.value?.isLoading ?: true)
 
-    init {
-        runStartFlow()
-    }
-
     fun runStartFlow() {
         _initialFlowLiveEvent.launchLoadData {
             val result = splashUseCase.execute(Unit)

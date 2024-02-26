@@ -1,6 +1,5 @@
 package ru.eruditeonline.architecture.presentation.base
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,20 +8,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import ru.eruditeonline.architecture.presentation.model.LoadableState
-import ru.eruditeonline.architecture.presentation.navigation.Destination
+import ru.eruditeonline.navigation.NavigationController
+import ru.eruditeonline.navigation.NavigationControllerImpl
 
-abstract class BaseViewModel : ViewModel() {
-    /** Навигации */
-    private val _destinationLiveEvent = SingleLiveEvent<Destination>()
-    val destinationLiveEvent: LiveData<Destination> = _destinationLiveEvent
-
-    fun navigate(destination: Destination) {
-        _destinationLiveEvent.postValue(destination)
-    }
-
-    fun navigateBack() {
-        _destinationLiveEvent.postValue(Destination.Back)
-    }
+abstract class BaseViewModel : ViewModel(),
+    NavigationController by NavigationControllerImpl() {
 
     protected fun <T> MutableLiveData<LoadableState<T>>.launchLoadData(
         block: Flow<LoadableState<T>>,

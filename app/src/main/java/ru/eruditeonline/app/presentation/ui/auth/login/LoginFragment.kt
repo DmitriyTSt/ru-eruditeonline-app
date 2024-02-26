@@ -15,8 +15,8 @@ import ru.eruditeonline.app.databinding.FragmentLoginBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
 import ru.eruditeonline.app.presentation.extension.errorSnackbar
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.navigation.observeNavigationCommands
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
 

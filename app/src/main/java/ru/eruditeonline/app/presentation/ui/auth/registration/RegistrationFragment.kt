@@ -27,9 +27,9 @@ import ru.eruditeonline.app.presentation.extension.errorSnackbar
 import ru.eruditeonline.app.presentation.extension.getColorCompat
 import ru.eruditeonline.app.presentation.extension.link
 import ru.eruditeonline.app.presentation.managers.DateFormatter
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.app.presentation.ui.country.SelectCountryFragment
+import ru.eruditeonline.navigation.observeNavigationCommands
 import java.time.Instant
 import java.time.ZoneId
 import javax.inject.Inject

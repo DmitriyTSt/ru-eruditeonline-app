@@ -8,8 +8,8 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentDebugBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.navigation.observeNavigationCommands
 import kotlin.system.exitProcess
 
 class DebugFragment : BaseFragment(R.layout.fragment_debug) {

@@ -13,11 +13,11 @@ import ru.eruditeonline.app.databinding.FragmentRatingTabItemBinding
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.managers.DateFormatter
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.app.presentation.ui.rating.tab.period.DatePeriodDialogFragment
 import ru.eruditeonline.app.presentation.ui.rating.tab.period.DatePeriodListener
 import ru.eruditeonline.app.presentation.ui.rating.tab.row.RatingRowsAdapter
+import ru.eruditeonline.navigation.observeNavigationCommands
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId

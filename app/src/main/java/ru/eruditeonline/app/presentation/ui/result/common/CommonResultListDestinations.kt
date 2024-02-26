@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.core.net.toUri
 import androidx.navigation.NavDeepLinkRequest
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.presentation.navigation.DeepLink
-import ru.eruditeonline.architecture.presentation.navigation.Destination
-import ru.eruditeonline.architecture.presentation.navigation.Destinations
+import ru.eruditeonline.navigation.DeepLink
+import ru.eruditeonline.navigation.Destination
+import ru.eruditeonline.navigation.Destinations
 import javax.inject.Inject
 
 class CommonResultListDestinations @Inject constructor(

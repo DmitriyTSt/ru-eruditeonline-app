@@ -15,6 +15,7 @@ android {
 
 dependencies {
     api(project(":common:usecase"))
+    api(project(':common:navigation-core'))
     implementation libs.androidx.viewmodel
     implementation libs.androidx.livedata
     implementation libs.timber

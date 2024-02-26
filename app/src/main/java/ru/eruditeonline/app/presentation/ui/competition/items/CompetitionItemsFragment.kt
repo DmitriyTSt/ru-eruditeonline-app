@@ -16,13 +16,13 @@ import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.extension.resolveAttribute
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.paging.PagingLoadStateAdapter
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterFragment
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterRequest
 import ru.eruditeonline.app.presentation.ui.competition.items.adapter.CompetitionItemsAdapter
 import ru.eruditeonline.architecture.presentation.model.LoadableState
+import ru.eruditeonline.navigation.observeNavigationCommands
 import javax.inject.Inject
 
 class CompetitionItemsFragment : BaseFragment(R.layout.fragment_competition_items) {

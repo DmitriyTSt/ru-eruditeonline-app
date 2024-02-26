@@ -10,8 +10,8 @@ import ru.eruditeonline.app.databinding.FragmentResultDetailBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.managers.DateFormatter
-import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
+import ru.eruditeonline.navigation.observeNavigationCommands
 import javax.inject.Inject
 
 class ResultDetailFragment : BaseFragment(R.layout.fragment_result_detail) {
