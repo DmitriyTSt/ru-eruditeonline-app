@@ -16,4 +16,8 @@ class NavigationControllerImpl : NavigationController {
     override fun navigateBack() {
         _destinationFlow.tryEmit(Destination.Back)
     }
+
+    override fun navigated() {
+        _destinationFlow.tryEmit(Destination.Idle)
+    }
 }

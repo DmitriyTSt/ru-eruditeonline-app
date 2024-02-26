@@ -19,4 +19,10 @@ interface NavigationController {
      * Навигация назад
      */
     fun navigateBack()
+
+    /**
+     * Отметка о том, что мы снавигировались
+     * TODO пока не починен SingleSharedFlow
+     */
+    fun navigated()
 }

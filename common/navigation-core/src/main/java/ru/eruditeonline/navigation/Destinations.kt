@@ -3,6 +3,12 @@ package ru.eruditeonline.navigation
 sealed class Destination {
 
     /**
+     * Никуда не навигируемся
+     * TODO пока не починен SingleSharedFlow
+     */
+    data object Idle : Destination()
+
+    /**
      * Навигация на определенный экран (что угодно, в рамках UI слоя)
      */
     class Screen(val screen: AbstractScreenDestination) : Destination()
