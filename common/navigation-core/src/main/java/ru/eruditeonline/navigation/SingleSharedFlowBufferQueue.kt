@@ -14,7 +14,7 @@ import kotlin.coroutines.EmptyCoroutineContext
  * Исправляет ситуацию с SharedFlow без буфера, когда у него еще нет подписчиков, и значение теряется,
  * так как tryEmit просто не шлет значение (с обычным emit работает и без этого)
  * По сути это кастомный буфер вместо буфера SharedFlow, потому что буфер SharedFlow будет возвращать новым подписичкам кеш
- * (Допил SharedFlow(0,0,SUSPED) до SingleLiveEvent)
+ * (Допил SharedFlow(0,0,SUSPEND) до SingleLiveEvent)
  */
 class SingleSharedFlowBufferQueue<T> {
 
