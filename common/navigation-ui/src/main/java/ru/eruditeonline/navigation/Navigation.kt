@@ -17,12 +17,9 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 fun Fragment.observeNavigationCommands(navigationController: NavigationController) {
-    lifecycleScope.launch {
+    viewLifecycleOwner.lifecycleScope.launch {
         lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
             navigationController.destinationFlow.collect { destination ->
-                if (destination != Destination.Idle) {
-                    navigationController.navigated()
-                }
                 processDestination(
                     findNavController(),
                     ::startActivity,
@@ -37,9 +34,6 @@ fun AppCompatActivity.observeNavigationCommands(navigationController: Navigation
     lifecycleScope.launch {
         lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
             navigationController.destinationFlow.collect { destination ->
-                if (destination != Destination.Idle) {
-                    navigationController.navigated()
-                }
                 processDestination(
                     findNavController(containerId),
                     ::startActivity,
@@ -56,7 +50,6 @@ private fun processDestination(
     destination: Destination,
 ) {
     when (destination) {
-        is Destination.Idle -> Unit
         is Destination.Screen -> {
             when (val screenDestination = destination.screen as NavigationUiScreenDestination) {
                 is NavigationUiScreenDestination.Action -> navController.navigateSafe(
