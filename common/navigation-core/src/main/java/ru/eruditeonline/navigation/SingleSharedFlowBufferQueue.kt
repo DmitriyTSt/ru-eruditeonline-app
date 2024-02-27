@@ -11,8 +11,9 @@ import kotlin.coroutines.EmptyCoroutineContext
 
 /**
  * Буфер для значений SharedFlow.
- * TODO возможно дело не в этом, пока что не используется
- * Исправляет ситуацию с SharedFlow без буфера, когда у него еще нет подписчиков, и значение теряется
+ * Исправляет ситуацию с SharedFlow без буфера, когда у него еще нет подписчиков, и значение теряется,
+ * так как tryEmit просто не шлет значение (с обычным emit работает и без этого)
+ * По сути это кастомный буфер вместо буфера SharedFlow, потому что буфер SharedFlow будет возвращать новым подписичкам кеш
  * (Допил SharedFlow(0,0,SUSPED) до SingleLiveEvent)
  */
 class SingleSharedFlowBufferQueue<T> {
@@ -44,9 +45,7 @@ fun <T> MutableSharedFlow<T>.asSingleSharedFlow(buffer: SingleSharedFlowBufferQu
 }
 
 fun <T> MutableSharedFlow<T>.tryEmitWithBuffer(buffer: SingleSharedFlowBufferQueue<T>, value: T) {
-    if (subscriptionCount.value > 0) {
-        tryEmit(value)
-    } else {
+    if (!tryEmit(value)) {
         buffer.put(value)
     }
 }
