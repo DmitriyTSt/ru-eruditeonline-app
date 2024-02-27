@@ -15,6 +15,10 @@ import kotlin.coroutines.EmptyCoroutineContext
  * так как tryEmit просто не шлет значение (с обычным emit работает и без этого)
  * По сути это кастомный буфер вместо буфера SharedFlow, потому что буфер SharedFlow будет возвращать новым подписичкам кеш
  * (Допил SharedFlow(0,0,SUSPEND) до SingleLiveEvent)
+ *
+ * TODO класс не готов к использованию, пока что есть баг, что onSubscription происходит раньше чем возможный tryEmit,
+ *  поэтому буффер очищается еще когда он пустой
+ *  Пока что следует использовать SharedFlow.emit
  */
 class SingleSharedFlowBufferQueue<T> {
 
