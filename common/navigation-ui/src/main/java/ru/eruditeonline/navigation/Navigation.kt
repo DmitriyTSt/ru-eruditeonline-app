@@ -4,9 +4,7 @@ import android.content.Intent
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavDirections
@@ -18,28 +16,24 @@ import timber.log.Timber
 
 fun Fragment.observeNavigationCommands(navigationController: NavigationController) {
     viewLifecycleOwner.lifecycleScope.launch {
-        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            navigationController.destinationFlow.collect { destination ->
-                processDestination(
-                    findNavController(),
-                    ::startActivity,
-                    destination,
-                )
-            }
+        navigationController.destinationFlow.collect { destination ->
+            processDestination(
+                findNavController(),
+                ::startActivity,
+                destination,
+            )
         }
     }
 }
 
 fun AppCompatActivity.observeNavigationCommands(navigationController: NavigationController, @IdRes containerId: Int) {
     lifecycleScope.launch {
-        lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            navigationController.destinationFlow.collect { destination ->
-                processDestination(
-                    findNavController(containerId),
-                    ::startActivity,
-                    destination,
-                )
-            }
+        navigationController.destinationFlow.collect { destination ->
+            processDestination(
+                findNavController(containerId),
+                ::startActivity,
+                destination,
+            )
         }
     }
 }
