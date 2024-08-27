@@ -23,7 +23,7 @@ class ThemeManager @Inject constructor(
     }
 
     private fun initTheme(): Theme {
-        return preferencesStorage.currentTheme.let {
+        return (preferencesStorage.currentTheme ?: Theme.LIGHT.toString()).let {
             try {
                 Theme.valueOf(it)
             } catch (e: Exception) {

@@ -26,6 +26,16 @@ abstract class BasePreferencesStorage constructor(
 
     fun edit(): SharedPreferences.Editor = pref.edit()
 
+    fun edit(sync: Boolean, block: SharedPreferences.Editor.() -> SharedPreferences.Editor) {
+        pref.edit().block().apply {
+            if (sync) {
+                commit()
+            } else {
+                apply()
+            }
+        }
+    }
+
     @SuppressLint("ApplySharedPref")
     @WorkerThread
     suspend fun clear(commitNow: Boolean = false) = suspendCoroutine<Unit> {

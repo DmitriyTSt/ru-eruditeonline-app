@@ -1,9 +1,9 @@
 package ru.eruditeonline.app.data.preferences
 
-import android.annotation.SuppressLint
 import ru.eruditeonline.app.data.preferences.base.RegularPreferenceStorage
 import ru.eruditeonline.app.data.preferences.base.SecuredPreferenceStorage
-import ru.eruditeonline.app.data.preferences.base.UserIndependentPreferenceStorage
+import ru.eruditeonline.app.data.preferences.base.boolean
+import ru.eruditeonline.app.data.preferences.base.string
 import ru.eruditeonline.app.presentation.managers.Theme
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -15,38 +15,19 @@ private const val KEY_CURRENT_THEME = "current_theme"
 
 @Singleton
 class PreferencesStorage @Inject constructor(
-    private val regularPreferenceStorage: RegularPreferenceStorage,
-    private val securedPreferenceStorage: SecuredPreferenceStorage,
-    private val userIndependentPreferenceStorage: UserIndependentPreferenceStorage,
+    regularPreferenceStorage: RegularPreferenceStorage,
+    securedPreferenceStorage: SecuredPreferenceStorage,
 ) {
 
-    var accessToken: String?
-        get() = securedPreferenceStorage.getString(KEY_ACCESS_TOKEN, null)
-        @SuppressLint("ApplySharedPref")
-        internal set(accessToken) {
-            // коммит тут стоит осознанно, для случаев с 401
-            securedPreferenceStorage.edit().putString(KEY_ACCESS_TOKEN, accessToken).commit()
-        }
+    /** Аксес токен */
+    var accessToken: String? by securedPreferenceStorage.string(KEY_ACCESS_TOKEN, sync = true)
 
-    var refreshToken: String?
-        get() = securedPreferenceStorage.getString(KEY_REFRESH_TOKEN, null)
-        @SuppressLint("ApplySharedPref")
-        internal set(refreshToken) {
-            // коммит тут стоит осознанно, для случаев с 401
-            securedPreferenceStorage.edit().putString(KEY_REFRESH_TOKEN, refreshToken).commit()
-        }
+    /** Рефреш токен */
+    var refreshToken: String? by securedPreferenceStorage.string(KEY_REFRESH_TOKEN, sync = true)
 
-    var isSignedIn: Boolean
-        get() = regularPreferenceStorage.getBoolean(KEY_IS_SIGNED_IN, false)
-        @SuppressLint("ApplySharedPref")
-        internal set(value) {
-            // коммит тут стоит осознанно, для случаев с 401
-            regularPreferenceStorage.edit().putBoolean(KEY_IS_SIGNED_IN, value).commit()
-        }
+    /** Авторизован ли пользователь */
+    var isSignedIn: Boolean by regularPreferenceStorage.boolean(KEY_IS_SIGNED_IN, sync = true)
 
-    var currentTheme: String
-        get() = regularPreferenceStorage.getString(KEY_CURRENT_THEME, Theme.LIGHT.toString()) ?: Theme.LIGHT.toString()
-        set(value) {
-            regularPreferenceStorage.edit().putString(KEY_CURRENT_THEME, value).apply()
-        }
+    /** Текущая тема */
+    var currentTheme: String? by regularPreferenceStorage.string(KEY_CURRENT_THEME, Theme.LIGHT.toString())
 }
