@@ -28,8 +28,7 @@ chucker = "3.5.2"
 glide = "4.13.2"
 firebase-bom = "30.4.1"
 
-
-gradle = "8.1.2"
+gradle = "8.13.2"
 kotlin-gradle-plugin = "1.9.10"
 google-services = "4.4.0"
 firebase-crashlytics-gradle = "2.9.9"
