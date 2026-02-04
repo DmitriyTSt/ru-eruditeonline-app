@@ -21,7 +21,7 @@ class DetektConventionPlugin : Plugin<Project> {
 
             with(extensions.getByType<DetektExtension>()) {
                 source.setFrom(files(buildSourcePaths(target)))
-                config.setFrom(files(buildDetektConfigs(target)))
+                config.setFrom(files(listOf("${project.rootDir}/config/quality/detekt/detekt-config.yml")))
                 baseline = file("lint/detekt/baseline.xml")
 
                 buildUponDefaultConfig = true
@@ -48,56 +48,19 @@ class DetektConventionPlugin : Plugin<Project> {
         }
     }
 
-
-    /**
-     * Построение списка путей конфига
-     * Дефолтный конфиг buildDefaultDetektConfigPath() всегда первый.
-     * Если есть свойство detektCustomRulesConfigs, то добавляются пути указанные в этом свойстве(Необходимо для добавления своих правил)
-     */
-    private fun buildDetektConfigs(project: Project): List<String> {
-        val configs = mutableListOf<String>()
-        configs.add(buildDefaultDetektConfigPath(project))
-        if (project.extra.has("detektCustomRulesConfigs")) {
-            configs.addAll((project.extra["detektCustomRulesConfigs"] as List<*>).map { it.toString() })
-        }
-        return configs
-    }
-
-    private fun buildDefaultDetektConfigPath(project: Project): String {
-        val detektConfigFileName = "detekt-config.yml"
-
-        return if (project.extra.has("detektConfigPath")) {
-            "${project.rootDir}/${project.extra["detektConfigPath"]}/$detektConfigFileName"
-        } else {
-            "${project.rootDir}/config/quality/detekt/$detektConfigFileName"
-        }
-    }
-
-    /**
-     *  Логика работы по определению путей исходников следующая:
-     *  1. находим хвосты путей от корня модуля. Либо установленная на уровне проекта переменная
-     *     'detektSource' либо дефолтные пути (kotlin/java)
-     *  2. определяем модули если они имеются (не монолит кода). если скрипт изначально прикрепили в
-     *     корень - то будут искаться подмодули (как минимум будет найден дефолтный модуль app). Если
-     *     скрипт применяли к каждому модулю отдельно - то в нем не будет подпроектов и путь будет
-     *     изначальный до самого модуля
-     */
     private fun buildSourcePaths(project: Project): Set<String> {
-        // определяем хвосты путей исходников
         val paths = if (project.extra.has("detektSource")) {
             (project.extra["detektSource"] as List<*>).map { it.toString() }
         } else {
             listOf("src/main/kotlin", "src/main/java")
         }
 
-        // определяем зависимые модули
         val modulePaths = mutableSetOf<String>()
         val root = project.subprojects
         if (root.isEmpty()) {
             root.add(project)
         }
 
-        // склеиваем пути модулей и хвосты до исходников
         root.iterator().forEachRemaining {
             paths.iterator().forEachRemaining { path ->
                 modulePaths.add("${it.projectDir.absolutePath}/$path")
