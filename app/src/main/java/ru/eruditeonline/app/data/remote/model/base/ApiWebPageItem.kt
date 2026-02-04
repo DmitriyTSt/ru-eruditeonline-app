@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.model.base
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiWebPageItem(
-    @SerializedName("path") val path: String?,
-    @SerializedName("name") val name: String?,
+@Serializable
+data class ApiWebPageItem(
+    @SerialName("path") val path: String? = null,
+    @SerialName("name") val name: String? = null,
 )

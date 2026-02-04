@@ -2,13 +2,13 @@ package ru.eruditeonline.app.di.module
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import ru.eruditeonline.app.data.mapper.EnumConverterFactory
 import ru.eruditeonline.app.data.remote.ApiService
 import ru.eruditeonline.app.data.remote.RefreshApiService
@@ -88,14 +88,15 @@ class ApiServiceModule {
     @Provides
     fun provideRetrofit(
         endpointRepository: EndpointRepository,
-        gson: Gson,
+        json: Json,
         client: OkHttpClient,
     ): Retrofit {
+        val contentType = "application/json".toMediaType()
         return Retrofit
             .Builder()
             .client(client)
             .baseUrl(endpointRepository.provideEndpoint())
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(json.asConverterFactory(contentType))
             .addConverterFactory(EnumConverterFactory())
             .build()
     }
@@ -105,14 +106,15 @@ class ApiServiceModule {
     @RefreshTokenClient
     fun provideRefreshTokenRetrofit(
         endpointRepository: EndpointRepository,
-        gson: Gson,
+        json: Json,
         @RefreshTokenClient client: OkHttpClient,
     ): Retrofit {
+        val contentType = "application/json".toMediaType()
         return Retrofit
             .Builder()
             .client(client)
             .baseUrl(endpointRepository.provideEndpoint())
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(json.asConverterFactory(contentType))
             .addConverterFactory(EnumConverterFactory())
             .build()
     }
@@ -135,8 +137,12 @@ class ApiServiceModule {
 
     @Singleton
     @Provides
-    fun provideGson(): Gson {
-        return GsonBuilder().create()
+    fun provideJson(): Json {
+        return Json {
+            ignoreUnknownKeys = true
+            isLenient = true
+            encodeDefaults = false
+        }
     }
 
     private fun OkHttpClient.Builder.setTimeouts() {

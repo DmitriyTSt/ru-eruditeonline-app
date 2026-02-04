@@ -1,16 +1,18 @@
 package ru.eruditeonline.app.data.remote.model.main
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiTagline(
+@Serializable
+data class ApiTagline(
     /** Заголовок */
-    @SerializedName("title") val title: String?,
+    @SerialName("title") val title: String? = null,
     /** Текст */
-    @SerializedName("text") val text: String?,
+    @SerialName("text") val text: String? = null,
     /** Ссылка на иконку */
-    @SerializedName("icon") val icon: String?,
+    @SerialName("icon") val icon: String? = null,
     /** Цвет заголовка */
-    @SerializedName("titleColor") val titleColor: String?,
+    @SerialName("titleColor") val titleColor: String? = null,
     /** Диплинк */
-    @SerializedName("url") val url: String?,
+    @SerialName("url") val url: String? = null,
 )

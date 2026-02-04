@@ -1,12 +1,14 @@
 package ru.eruditeonline.app.data.remote.model.main
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import ru.eruditeonline.app.data.remote.model.competition.ApiCompetitionItemShort
 
-class ApiMainSection(
-    @SerializedName("type") val type: ApiMainSectionType?,
-    @SerializedName("taglines") val taglines: List<ApiTagline>?,
-    @SerializedName("title") val title: String?,
-    @SerializedName("competitionViewType") val competitionViewType: ApiCompetitionViewType?,
-    @SerializedName("competitionItems") val competitionItems: List<ApiCompetitionItemShort>?,
+@Serializable
+data class ApiMainSection(
+    @SerialName("type") val type: ApiMainSectionType? = null,
+    @SerialName("taglines") val taglines: List<ApiTagline>? = null,
+    @SerialName("title") val title: String? = null,
+    @SerialName("competitionViewType") val competitionViewType: ApiCompetitionViewType? = null,
+    @SerialName("competitionItems") val competitionItems: List<ApiCompetitionItemShort>? = null,
 )

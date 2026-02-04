@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.params
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class RefreshTokenParams(
-    @SerializedName("deviceId") val deviceId: String,
-    @SerializedName("refreshToken") val refreshToken: String,
+@Serializable
+data class RefreshTokenParams(
+    @SerialName("deviceId") val deviceId: String,
+    @SerialName("refreshToken") val refreshToken: String,
 )

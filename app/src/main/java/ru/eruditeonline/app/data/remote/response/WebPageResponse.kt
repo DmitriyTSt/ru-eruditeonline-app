@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.response
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import ru.eruditeonline.app.data.remote.model.base.ApiWebPage
 
-class WebPageResponse(
-    @SerializedName("page") val page: ApiWebPage?,
+@Serializable
+data class WebPageResponse(
+    @SerialName("page") val page: ApiWebPage? = null,
 )

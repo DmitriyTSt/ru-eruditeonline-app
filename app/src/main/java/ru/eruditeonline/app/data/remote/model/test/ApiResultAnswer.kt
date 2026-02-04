@@ -1,26 +1,30 @@
 package ru.eruditeonline.app.data.remote.model.test
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiResultAnswer(
+@Serializable
+data class ApiResultAnswer(
     /** Вопрос */
-    @SerializedName("question") val question: Question?,
+    @SerialName("question") val question: Question? = null,
     /** Текст ответа */
-    @SerializedName("answerText") val answerText: String?,
+    @SerialName("answerText") val answerText: String? = null,
     /** Правильность */
-    @SerializedName("correct") val correct: Correction?,
+    @SerialName("correct") val correct: Correction? = null,
 ) {
-    class Question(
+    @Serializable
+    data class Question(
         /** Заголовок */
-        @SerializedName("title") val title: String?,
+        @SerialName("title") val title: String? = null,
         /** Текст вопроса */
-        @SerializedName("text") val text: String?,
+        @SerialName("text") val text: String? = null,
     )
 
-    class Correction(
+    @Serializable
+    data class Correction(
         /** Текст правильного ответа */
-        @SerializedName("answerText") val answerText: String?,
+        @SerialName("answerText") val answerText: String? = null,
         /** Правильно ли ответил */
-        @SerializedName("isCorrect") val isCorrect: Boolean?,
+        @SerialName("isCorrect") val isCorrect: Boolean? = null,
     )
 }

@@ -1,21 +1,23 @@
 package ru.eruditeonline.app.data.remote.model.competition
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Сокращенная модель конкурса для списков
  */
-class ApiCompetitionItemShort(
+@Serializable
+data class ApiCompetitionItemShort(
     /** Идентификатор теста */
-    @SerializedName("id") val id: Int?,
+    @SerialName("id") val id: Int? = null,
     /** Название теста */
-    @SerializedName("title") val title: String?,
+    @SerialName("title") val title: String? = null,
     /** Предмет(ы) */
-    @SerializedName("subject") val subject: String?,
+    @SerialName("subject") val subject: String? = null,
     /** Возрастные группы */
-    @SerializedName("ages") val ages: String?,
+    @SerialName("ages") val ages: String? = null,
     /** Сложность (1-5) */
-    @SerializedName("difficulty") val difficulty: Int?,
+    @SerialName("difficulty") val difficulty: Int? = null,
     /** Ссылка на изображение */
-    @SerializedName("icon") val icon: String?,
+    @SerialName("icon") val icon: String? = null,
 )

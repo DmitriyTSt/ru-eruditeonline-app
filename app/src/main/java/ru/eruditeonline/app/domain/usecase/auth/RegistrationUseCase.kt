@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.domain.usecase.auth
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import ru.eruditeonline.app.data.model.auth.Gender
 import ru.eruditeonline.app.data.repository.AuthRepository
 import ru.eruditeonline.app.domain.usecase.base.UseCaseUnary
@@ -30,18 +31,19 @@ class RegistrationUseCase @Inject constructor(
         )
     }
 
+    @Serializable
     data class Params(
-        @SerializedName("email") val email: String,
-        @SerializedName("password") val password: String,
-        @SerializedName("name") val name: String,
-        @SerializedName("surname") val surname: String,
-        @SerializedName("patronymic") val patronymic: String,
-        @SerializedName("birthday") val birthday: Long,
-        @SerializedName("gender") val gender: Gender,
-        @SerializedName("company") val company: String,
-        @SerializedName("city") val city: String,
-        @SerializedName("region") val region: String,
-        @SerializedName("country") val country: String,
-        @SerializedName("emailAgreement") val emailAgreement: Boolean,
+        @SerialName("email") val email: String,
+        @SerialName("password") val password: String,
+        @SerialName("name") val name: String,
+        @SerialName("surname") val surname: String,
+        @SerialName("patronymic") val patronymic: String,
+        @SerialName("birthday") val birthday: Long,
+        @SerialName("gender") val gender: Gender,
+        @SerialName("company") val company: String,
+        @SerialName("city") val city: String,
+        @SerialName("region") val region: String,
+        @SerialName("country") val country: String,
+        @SerialName("emailAgreement") val emailAgreement: Boolean,
     )
 }

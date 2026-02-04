@@ -1,28 +1,33 @@
 package ru.eruditeonline.app.data.remote.params
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class CompetitionCheckParams(
+@Serializable
+data class CompetitionCheckParams(
     /** Идентификатор теста */
-    @SerializedName("testId") val testId: String,
+    @SerialName("testId") val testId: String,
     /** Ответы на вопросы */
-    @SerializedName("questionResults") val questionResults: List<Question>,
+    @SerialName("questionResults") val questionResults: List<Question>,
     /** Потраченное на прохождение время в секундах */
-    @SerializedName("spentTime") val spentTime: Long,
+    @SerialName("spentTime") val spentTime: Long,
 ) {
-    sealed class Question(
-        @SerializedName("questionId") val questionId: Int,
-    ) {
-        class ListAnswer(
-            questionId: Int,
-            /** null, если не выбрали */
-            @SerializedName("answerId") val answerId: String?,
-        ) : Question(questionId)
+    @Serializable
+    sealed class Question {
+        abstract val questionId: Int
 
-        class SingleAnswer(
-            questionId: Int,
+        @Serializable
+        data class ListAnswer(
+            @SerialName("questionId") override val questionId: Int,
+            /** null, если не выбрали */
+            @SerialName("answerId") val answerId: String? = null,
+        ) : Question()
+
+        @Serializable
+        data class SingleAnswer(
+            @SerialName("questionId") override val questionId: Int,
             /** null, если не ответили */
-            @SerializedName("textAnswer") val textAnswer: String?,
-        ) : Question(questionId)
+            @SerialName("textAnswer") val textAnswer: String? = null,
+        ) : Question()
     }
 }

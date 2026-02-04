@@ -1,18 +1,20 @@
 package ru.eruditeonline.app.data.remote.model.test
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiQuestion(
+@Serializable
+data class ApiQuestion(
     /** Идентификатор вопроса */
-    @SerializedName("id") val id: Int?,
+    @SerialName("id") val id: Int? = null,
     /** Вопрос */
-    @SerializedName("text") val text: String?,
+    @SerialName("text") val text: String? = null,
     /** Ссылка на изображение */
-    @SerializedName("image") val image: String?,
+    @SerialName("image") val image: String? = null,
     /** Тип вопроса */
-    @SerializedName("type") val type: ApiQuestionType?,
+    @SerialName("type") val type: ApiQuestionType? = null,
     /** Варианты ответов (для LIST_ANSWER) */
-    @SerializedName("answers") val answers: List<ApiAnswer>?,
+    @SerialName("answers") val answers: List<ApiAnswer>? = null,
     /** Подпись для поля ответа (для SINGLE_ANSWER) */
-    @SerializedName("label") val label: String?,
+    @SerialName("label") val label: String? = null,
 )
