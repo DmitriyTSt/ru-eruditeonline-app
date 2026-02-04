@@ -1,13 +1,15 @@
 package ru.eruditeonline.app.data.remote.model.test
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiCreatedResult(
+@Serializable
+data class ApiCreatedResult(
     /** Идентификатор результата */
-    @SerializedName("id") val id: Int?,
+    @SerialName("id") val id: Int? = null,
     /** Участник */
-    @SerializedName("username") val username: String?,
+    @SerialName("username") val username: String? = null,
     /** Постоянная ссылка на результат прохождения */
-    @SerializedName("resultLink") val resultLink: String?,
-    @SerializedName("achievementText") val achievementText: String?,
+    @SerialName("resultLink") val resultLink: String? = null,
+    @SerialName("achievementText") val achievementText: String? = null,
 )

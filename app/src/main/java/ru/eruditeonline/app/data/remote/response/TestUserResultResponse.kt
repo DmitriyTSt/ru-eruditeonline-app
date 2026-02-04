@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.response
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import ru.eruditeonline.app.data.remote.model.test.ApiTestUserResult
 
-class TestUserResultResponse(
-    @SerializedName("result") val result: ApiTestUserResult?,
+@Serializable
+data class TestUserResultResponse(
+    @SerialName("result") val result: ApiTestUserResult? = null,
 )

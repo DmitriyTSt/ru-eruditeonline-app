@@ -1,7 +1,9 @@
 package ru.eruditeonline.app.data.remote.params
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class GetAppConfigParams(
-    @SerializedName("appVersion") val appVersion: String,
+@Serializable
+data class GetAppConfigParams(
+    @SerialName("appVersion") val appVersion: String,
 )

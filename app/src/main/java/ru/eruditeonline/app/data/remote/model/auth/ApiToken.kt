@@ -1,9 +1,11 @@
 package ru.eruditeonline.app.data.remote.model.auth
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiToken(
-    @SerializedName("accessToken") val accessToken: String?,
-    @SerializedName("refreshToken") val refreshToken: String?,
-    @SerializedName("expiresIn") val expiresIn: Long?,
+@Serializable
+data class ApiToken(
+    @SerialName("accessToken") val accessToken: String? = null,
+    @SerialName("refreshToken") val refreshToken: String? = null,
+    @SerialName("expiresIn") val expiresIn: Long? = null,
 )

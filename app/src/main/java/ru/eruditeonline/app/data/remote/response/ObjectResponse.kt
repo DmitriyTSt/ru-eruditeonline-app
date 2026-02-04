@@ -1,7 +1,9 @@
 package ru.eruditeonline.app.data.remote.response
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ObjectResponse<T>(
-    @SerializedName("data") val data: T,
+@Serializable
+data class ObjectResponse<T>(
+    @SerialName("data") val data: T,
 )

@@ -1,9 +1,11 @@
 package ru.eruditeonline.app.data.remote.params
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class RatingParams(
-    @SerializedName("day") val day: Int?,
-    @SerializedName("month") val month: Int?,
-    @SerializedName("year") val year: Int,
+@Serializable
+data class RatingParams(
+    @SerialName("day") val day: Int? = null,
+    @SerialName("month") val month: Int? = null,
+    @SerialName("year") val year: Int,
 )

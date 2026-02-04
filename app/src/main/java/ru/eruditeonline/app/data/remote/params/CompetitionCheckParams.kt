@@ -1,28 +1,33 @@
 package ru.eruditeonline.app.data.remote.params
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class CompetitionCheckParams(
+@Serializable
+data class CompetitionCheckParams(
     /** Идентификатор теста */
-    @SerializedName("testId") val testId: String,
+    @SerialName("testId") val testId: String,
     /** Ответы на вопросы */
-    @SerializedName("questionResults") val questionResults: List<Question>,
+    @SerialName("questionResults") val questionResults: List<Question>,
     /** Потраченное на прохождение время в секундах */
-    @SerializedName("spentTime") val spentTime: Long,
+    @SerialName("spentTime") val spentTime: Long,
 ) {
+    @Serializable
     sealed class Question(
-        @SerializedName("questionId") val questionId: Int,
+        @SerialName("questionId") val questionId: Int,
     ) {
-        class ListAnswer(
+        @Serializable
+        data class ListAnswer(
             questionId: Int,
             /** null, если не выбрали */
-            @SerializedName("answerId") val answerId: String?,
+            @SerialName("answerId") val answerId: String? = null,
         ) : Question(questionId)
 
-        class SingleAnswer(
+        @Serializable
+        data class SingleAnswer(
             questionId: Int,
             /** null, если не ответили */
-            @SerializedName("textAnswer") val textAnswer: String?,
+            @SerialName("textAnswer") val textAnswer: String? = null,
         ) : Question(questionId)
     }
 }

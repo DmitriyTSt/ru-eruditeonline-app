@@ -1,29 +1,31 @@
 package ru.eruditeonline.app.data.remote.model.competition
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Конкурс с тестами
  */
-class ApiCompetitionItem(
+@Serializable
+data class ApiCompetitionItem(
     /** Идентификатор конкурса */
-    @SerializedName("id") val id: Int?,
+    @SerialName("id") val id: Int? = null,
     /** Полное название конкурса */
-    @SerializedName("title") val title: String?,
+    @SerialName("title") val title: String? = null,
     /** Предмет */
-    @SerializedName("subject") val subject: String?,
+    @SerialName("subject") val subject: String? = null,
     /** Возрастная категория */
-    @SerializedName("ages") val ages: String?,
+    @SerialName("ages") val ages: String? = null,
     /** Ссылка на изображение теста */
-    @SerializedName("icon") val icon: String?,
+    @SerialName("icon") val icon: String? = null,
     /** Сложность (от 1 до 5) */
-    @SerializedName("difficulty") val difficulty: Int?,
+    @SerialName("difficulty") val difficulty: Int? = null,
     /** Список тестов в конкурсе */
-    @SerializedName("tests") val tests: List<ApiTestAgeGroup>?,
+    @SerialName("tests") val tests: List<ApiTestAgeGroup>? = null,
     /** Аннотация */
-    @SerializedName("annotation") val annotation: String?,
+    @SerialName("annotation") val annotation: String? = null,
     /** Описание */
-    @SerializedName("description") val description: String?,
+    @SerialName("description") val description: String? = null,
     /** Дополнительные материалы, могут содержать ссылки */
-    @SerializedName("infos") val infos: List<String>?,
+    @SerialName("infos") val infos: List<String>? = null,
 )

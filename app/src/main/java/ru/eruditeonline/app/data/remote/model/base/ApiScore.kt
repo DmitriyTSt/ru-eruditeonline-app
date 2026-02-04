@@ -1,15 +1,17 @@
 package ru.eruditeonline.app.data.remote.model.base
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Результат
  */
-class ApiScore(
+@Serializable
+data class ApiScore(
     /** Набранные баллы */
-    @SerializedName("current") val current: Int?,
+    @SerialName("current") val current: Int? = null,
     /** Из скольки */
-    @SerializedName("max") val max: Int?,
+    @SerialName("max") val max: Int? = null,
     /** Цвет */
-    @SerializedName("color") val color: Int?,
+    @SerialName("color") val color: Int? = null,
 )

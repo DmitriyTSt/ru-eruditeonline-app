@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.model.base
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiDiploma(
-    @SerializedName("type") val type: String?,
-    @SerializedName("image") val image: String?,
+@Serializable
+data class ApiDiploma(
+    @SerialName("type") val type: String? = null,
+    @SerialName("image") val image: String? = null,
 )

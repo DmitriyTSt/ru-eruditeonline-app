@@ -1,11 +1,13 @@
 package ru.eruditeonline.app.data.remote.model.main
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 enum class ApiMainSectionType {
     /** Слоганы */
-    @SerializedName("TAGLINE") TAGLINE,
+    @SerialName("TAGLINE") TAGLINE,
 
     /** КОнкурсы */
-    @SerializedName("COMPETITION_ITEM") COMPETITION_ITEM,
+    @SerialName("COMPETITION_ITEM") COMPETITION_ITEM,
 }

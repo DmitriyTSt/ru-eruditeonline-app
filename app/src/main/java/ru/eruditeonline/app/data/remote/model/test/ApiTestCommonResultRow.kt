@@ -1,20 +1,22 @@
 package ru.eruditeonline.app.data.remote.model.test
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiTestCommonResultRow(
+@Serializable
+data class ApiTestCommonResultRow(
     /** Дата прохождения */
-    @SerializedName("date") val date: Long?,
+    @SerialName("date") val date: Long? = null,
     /** Участник */
-    @SerializedName("username") val username: String?,
+    @SerialName("username") val username: String? = null,
     /** Регион (населенный пункт) */
-    @SerializedName("city") val city: String?,
+    @SerialName("city") val city: String? = null,
     /** Ссылка на иконку страны */
-    @SerializedName("countryIcon") val countryIcon: String?,
+    @SerialName("countryIcon") val countryIcon: String? = null,
     /** Идентификатор конкурса */
-    @SerializedName("competitionId") val competitionId: Int?,
+    @SerialName("competitionId") val competitionId: Int? = null,
     /** Конкурс */
-    @SerializedName("competitionTitle") val competitionTitle: String?,
+    @SerialName("competitionTitle") val competitionTitle: String? = null,
     /** Текст результата */
-    @SerializedName("resultText") val resultText: String?,
+    @SerialName("resultText") val resultText: String? = null,
 )

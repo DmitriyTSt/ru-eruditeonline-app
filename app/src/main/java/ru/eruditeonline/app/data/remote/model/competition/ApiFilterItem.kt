@@ -1,15 +1,17 @@
 package ru.eruditeonline.app.data.remote.model.competition
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Элемент фильтра
  */
-class ApiFilterItem(
+@Serializable
+data class ApiFilterItem(
     /** Идентификатор */
-    @SerializedName("id") val id: String?,
+    @SerialName("id") val id: String? = null,
     /** Название */
-    @SerializedName("title") val title: String?,
+    @SerialName("title") val title: String? = null,
     /** Выбран ли фильтр */
-    @SerializedName("selected") val selected: Boolean?,
+    @SerialName("selected") val selected: Boolean? = null,
 )

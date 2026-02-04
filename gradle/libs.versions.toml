@@ -19,8 +19,8 @@ code-desugaring = "2.1.3"
 
 viewbinding-delegate = "1.5.3"
 coroutines = "1.10.2"
-retrofit = "2.9.0"
-gson = "2.13.2"
+retrofit = "3.0.0"
+kotlinx-serialization = "1.9.0"
 dagger = "2.59"
 timber = "5.0.1"
 chucker = "4.3.0"
@@ -55,8 +55,8 @@ viewbinding-delegate = { module = "com.github.kirich1409:viewbindingpropertydele
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 retrofit-core = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
-gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+retrofit-kotlinx-serialization = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 dagger-core = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-android-core = { module = "com.google.dagger:dagger-android", version.ref = "dagger" }
@@ -82,10 +82,11 @@ androidx-navigation-safeargs = { module = "androidx.navigation:navigation-safe-a
 ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
 
 [plugins]
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-gradle-plugin" }
 
 [bundles]
 
 # --- Architecture ---
 dagger-core = ["dagger-core", "dagger-android-core", "dagger-android-support"]
 dagger-kapt = ["dagger-android-processor", "dagger-compiler"]
-retrofit = ["retrofit-core", "retrofit-gson"]
+retrofit = ["retrofit-core", "retrofit-kotlinx-serialization"]
