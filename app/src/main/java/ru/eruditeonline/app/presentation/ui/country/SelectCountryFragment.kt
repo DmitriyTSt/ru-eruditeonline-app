@@ -7,6 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentSelectCountryBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -30,6 +31,7 @@ class SelectCountryFragment : BaseFragment(R.layout.fragment_select_country) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        recyclerView.fitBottomInsetsPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }

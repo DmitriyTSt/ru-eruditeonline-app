@@ -8,6 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentSearchResultBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.extension.hideSoftKeyboard
 import ru.eruditeonline.app.presentation.extension.showSoftKeyboard
@@ -22,6 +23,7 @@ class SearchResultFragment : BaseFragment(R.layout.fragment_search_result) {
     private val viewModel: SearchResultViewModel by appViewModels()
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
+        root.fitBottomInsetsPadding()
         toolbar.fitTopInsetsWithPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()

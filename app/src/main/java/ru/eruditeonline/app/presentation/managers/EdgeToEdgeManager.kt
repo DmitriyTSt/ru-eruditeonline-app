@@ -19,7 +19,7 @@ import com.google.android.material.internal.EdgeToEdgeUtils
 object EdgeToEdgeManager {
 
     /** Флаг, который говорит о том, что во всём приложении должен использоваться светлый Navigation bar */
-    private const val IS_LIGHT_NAVIGATION_BAR = true
+    private const val IS_LIGHT_NAVIGATION_BAR = false
 
     /**
      * Включает edge-to-edge на всех версиях Android.

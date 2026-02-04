@@ -6,6 +6,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentSuccessSaveResultBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -16,6 +17,7 @@ class SuccessSaveResultFragment : BaseFragment(R.layout.fragment_success_save_re
     private val args: SuccessSaveResultFragmentArgs by navArgs()
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
+        root.fitBottomInsetsPadding()
         toolbar.fitTopInsetsWithPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
