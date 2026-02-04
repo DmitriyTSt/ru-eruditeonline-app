@@ -18,6 +18,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ActivityMainBinding
 import ru.eruditeonline.app.presentation.extension.appActivityViewModels
 import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
+import ru.eruditeonline.app.presentation.managers.EdgeToEdgeManager
 import ru.eruditeonline.app.presentation.ui.base.BaseActivity
 import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 
@@ -38,6 +39,11 @@ class MainActivity : BaseActivity(), BottomNavigationViewManager {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        EdgeToEdgeManager.enableEdgeToEdge(
+            activity = this,
+            defaultLightScrim = R.color.navigation_bar_light_scrim,
+            defaultDarkScrim = R.color.navigation_bar_dark_scrim
+        )
         setContentView(R.layout.activity_main)
 
         splashScreenWait()

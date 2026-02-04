@@ -9,6 +9,7 @@ import ru.eruditeonline.app.data.model.ParsedError
 import ru.eruditeonline.app.databinding.FragmentSplashBinding
 import ru.eruditeonline.app.presentation.extension.appActivityViewModels
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.managers.EdgeToEdgeManager
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
 import timber.log.Timber
@@ -26,6 +27,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     }
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
+        EdgeToEdgeManager.enableNoLimits(activity, safeInsets = false)
         buttonRepeat.setOnClickListener {
             splashStartFlowViewModel.runStartFlow()
         }
@@ -51,6 +53,11 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                 binding.buttonDebug.isVisible = isVisible
             }
         }
+    }
+
+    override fun onDestroyView() {
+        EdgeToEdgeManager.disableNoLimits(activity)
+        super.onDestroyView()
     }
 
     private fun setupDebugButton() = with(binding) {
