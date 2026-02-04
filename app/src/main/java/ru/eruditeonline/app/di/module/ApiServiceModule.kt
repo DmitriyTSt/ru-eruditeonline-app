@@ -153,7 +153,7 @@ class ApiServiceModule {
             val request = original.newBuilder()
                 .header(HEADER_USER_AGENT, appInfoRepository.userAgent)
                 .header(HEADER_CONTENT_TYPE, "application/json")
-                .method(original.method(), original.body())
+                .method(original.method, original.body)
                 .build()
             chain.proceed(request)
         }
@@ -171,7 +171,7 @@ class ApiServiceModule {
                         header(HEADER_AUTHORIZATION, token)
                     }
                 }
-                .method(original.method(), original.body())
+                .method(original.method, original.body)
                 .build()
             chain.proceed(request)
         }

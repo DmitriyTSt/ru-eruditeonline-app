@@ -88,7 +88,9 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
             ?.packageManager
             ?.getLaunchIntentForPackage(requireContext().packageName)
         intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        exitProcess(0)
+        intent?.let {
+            startActivity(it)
+            exitProcess(0)
+        }
     }
 }
