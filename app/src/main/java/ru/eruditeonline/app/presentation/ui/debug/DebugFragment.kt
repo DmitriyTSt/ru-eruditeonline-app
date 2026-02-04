@@ -7,6 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentDebugBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -22,6 +23,7 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        linearLayoutContent.fitBottomInsetsPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }
@@ -88,7 +90,9 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
             ?.packageManager
             ?.getLaunchIntentForPackage(requireContext().packageName)
         intent?.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        startActivity(intent)
-        exitProcess(0)
+        intent?.let {
+            startActivity(it)
+            exitProcess(0)
+        }
     }
 }

@@ -4,15 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.Toast
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
+import androidx.core.view.updateMargins
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.ActivityMainBinding
 import ru.eruditeonline.app.presentation.extension.appActivityViewModels
+import ru.eruditeonline.app.presentation.extension.doOnApplyWindowInsets
+import ru.eruditeonline.app.presentation.managers.EdgeToEdgeManager
 import ru.eruditeonline.app.presentation.ui.base.BaseActivity
 import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 
@@ -33,6 +39,11 @@ class MainActivity : BaseActivity(), BottomNavigationViewManager {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        EdgeToEdgeManager.enableEdgeToEdge(
+            activity = this,
+            defaultLightScrim = R.color.navigation_bar_light_scrim,
+            defaultDarkScrim = R.color.navigation_bar_dark_scrim
+        )
         setContentView(R.layout.activity_main)
 
         splashScreenWait()
@@ -45,6 +56,7 @@ class MainActivity : BaseActivity(), BottomNavigationViewManager {
         binding.bottomNavigationView.apply {
             setupWithNavController(navController.apply { attachNavController(this) })
         }
+        setupNavigationInsets()
     }
 
     override fun setNavigationViewVisibility(isVisible: Boolean) {
@@ -53,6 +65,19 @@ class MainActivity : BaseActivity(), BottomNavigationViewManager {
 
     override fun getNavigationView(): View {
         return binding.bottomNavigationView
+    }
+
+    private fun setupNavigationInsets() = with(binding.bottomNavigationView) {
+        // BottomNavigationView из коробки обрабатывает нижние insets, поглощая их.
+        // Нам такое поведение не нужно, поэтому мы пишем свой обработчик
+        doOnApplyWindowInsets { _, insets, _ ->
+            val marginFromNavigationView = resources.getDimensionPixelSize(R.dimen.bottom_navigation_view_margin_bottom)
+            val navigationBarInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
+            updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                updateMargins(bottom = marginFromNavigationView + navigationBarInset)
+            }
+            insets
+        }
     }
 
     private fun splashScreenWait() {

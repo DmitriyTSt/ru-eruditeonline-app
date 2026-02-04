@@ -9,6 +9,7 @@ import ru.eruditeonline.app.data.model.competition.CompetitionItem
 import ru.eruditeonline.app.databinding.FragmentCompetitionDetailBinding
 import ru.eruditeonline.app.presentation.extension.addLinearSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.extension.load
 import ru.eruditeonline.app.presentation.extension.setDifficulty
@@ -30,6 +31,7 @@ class CompetitionDetailFragment : BaseFragment(R.layout.fragment_competition_det
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        content.linearLayout.fitBottomInsetsPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }
