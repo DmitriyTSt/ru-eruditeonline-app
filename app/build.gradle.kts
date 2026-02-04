@@ -1,3 +1,4 @@
+import ru.dmitriyt.android.plugins.util.VersionMaker
 import java.util.Properties
 
 plugins {
@@ -9,20 +10,8 @@ plugins {
     alias(libs.plugins.androidx.navigation.safeargs)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics.gradle)
-}
-
-fun getVersionCode(): Int {
-    return try {
-        val process = ProcessBuilder("git", "rev-list", "--count", "HEAD")
-            .directory(project.rootProject.projectDir)
-            .start()
-        val versionCode = process.inputStream.bufferedReader().readText().trim()
-        process.waitFor()
-        versionCode.toInt()
-    } catch (e: Exception) {
-        println("Error getting version code: ${e.localizedMessage}")
-        -1
-    }
+    id("ru.dmitriyt.detekt")
+    id("ru.dmitriyt.versionmaker")
 }
 
 android {
@@ -34,7 +23,7 @@ android {
         multiDexEnabled = true
         minSdk = 23
         targetSdk = 36
-        versionCode = getVersionCode()
+        versionCode = VersionMaker.getVersionCode(rootProject)
         versionName = "1.0.0"
 
         vectorDrawables.useSupportLibrary = true

@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Erudite.Online"
 include(":app")
+includeBuild("infrastructure/conventionplugins")
