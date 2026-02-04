@@ -2,6 +2,7 @@ package ru.eruditeonline.app.di.module
 
 import dagger.Binds
 import dagger.Module
+import ru.eruditeonline.app.data.AuthorizationManagerImpl
 import ru.eruditeonline.app.data.repository.AppConfigRepository
 import ru.eruditeonline.app.data.repository.AppConfigRepositoryImpl
 import ru.eruditeonline.app.data.repository.AppInfoRepository
@@ -30,6 +31,7 @@ import ru.eruditeonline.app.data.repository.TokenRepository
 import ru.eruditeonline.app.data.repository.TokenRepositoryImpl
 import ru.eruditeonline.app.data.repository.UtilsRepository
 import ru.eruditeonline.app.data.repository.UtilsRepositoryImpl
+import ru.eruditeonline.app.domain.AuthorizationManager
 
 @Module
 abstract class RepositoryModule {
@@ -74,4 +76,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideAppConfigRepository(appConfigRepositoryImpl: AppConfigRepositoryImpl): AppConfigRepository
+
+    @Binds
+    abstract fun provideAuthorizationManager(authorizationManager: AuthorizationManagerImpl): AuthorizationManager
 }
