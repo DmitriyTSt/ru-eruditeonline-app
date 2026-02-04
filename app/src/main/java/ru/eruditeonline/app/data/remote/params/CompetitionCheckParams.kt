@@ -13,21 +13,21 @@ data class CompetitionCheckParams(
     @SerialName("spentTime") val spentTime: Long,
 ) {
     @Serializable
-    sealed class Question(
-        @SerialName("questionId") val questionId: Int,
-    ) {
+    sealed class Question {
+        abstract val questionId: Int
+
         @Serializable
         data class ListAnswer(
-            questionId: Int,
+            @SerialName("questionId") override val questionId: Int,
             /** null, если не выбрали */
             @SerialName("answerId") val answerId: String? = null,
-        ) : Question(questionId)
+        ) : Question()
 
         @Serializable
         data class SingleAnswer(
-            questionId: Int,
+            @SerialName("questionId") override val questionId: Int,
             /** null, если не ответили */
             @SerialName("textAnswer") val textAnswer: String? = null,
-        ) : Question(questionId)
+        ) : Question()
     }
 }
