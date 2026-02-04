@@ -130,6 +130,7 @@ class WebPageFragment : BaseFragment(R.layout.fragment_web_page) {
 
             @Deprecated("Deprecated in Java")
             override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
+                @Suppress("DEPRECATION")
                 super.onReceivedError(view, errorCode, description, failingUrl)
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                     if (!isErrorToSkip(errorCode)) {

@@ -56,20 +56,24 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
         if (showBottomNavigationView) {
             bottomNavigationViewManager?.getNavigationView()?.apply {
                 if (height > 0) {
-                    applyBottomNavigationViewPadding(
-                        view,
-                        height + marginTop + marginBottom
-                    )
+                    applyBottomNavigationViewPadding(view, getMenuMarginBottom())
                 } else {
                     doOnPreDraw {
-                        applyBottomNavigationViewPadding(
-                            view,
-                            height + marginTop + marginBottom
-                        )
+                        if (this@BaseFragment.view != null) {
+                            applyBottomNavigationViewPadding(view, getMenuMarginBottom())
+                        }
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Нижний отступ контента над нижнем меню
+     */
+    fun getMenuMarginBottom(): Int {
+        // Будет включать в себя нижний инсет от навигации
+        return bottomNavigationViewManager?.getMenuMarginBottom() ?: 0
     }
 
     /**
