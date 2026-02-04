@@ -43,9 +43,9 @@ abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupLayout(savedInstanceState)
-        onBindViewModel()
-        applyBottomNavigationPadding(view)
         bottomNavigationViewManager?.setNavigationViewVisibility(showBottomNavigationView)
+        applyBottomNavigationPadding(view)
+        onBindViewModel()
     }
 
     open fun callOperations() = Unit
