@@ -1,7 +1,9 @@
 package ru.eruditeonline.app.data.remote.model.base
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiAppUpdate(
-    @SerializedName("forceUpdate") val forceUpdate: Boolean?,
+@Serializable
+data class ApiAppUpdate(
+    @SerialName("forceUpdate") val forceUpdate: Boolean? = null,
 )

@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.params
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class LoginParams(
-    @SerializedName("login") val login: String,
-    @SerializedName("password") val password: String,
+@Serializable
+data class LoginParams(
+    @SerialName("login") val login: String,
+    @SerialName("password") val password: String,
 )

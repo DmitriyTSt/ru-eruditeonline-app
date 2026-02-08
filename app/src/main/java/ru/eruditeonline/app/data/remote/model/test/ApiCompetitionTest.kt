@@ -1,17 +1,19 @@
 package ru.eruditeonline.app.data.remote.model.test
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Тест в выбранной возрастной категории конкурса
  */
-class ApiCompetitionTest(
+@Serializable
+data class ApiCompetitionTest(
     /** Идентификатор */
-    @SerializedName("id") val id: String?,
+    @SerialName("id") val id: String? = null,
     /** Название конкурса с предметом */
-    @SerializedName("title") val title: String?,
+    @SerialName("title") val title: String? = null,
     /** Возрастная категория */
-    @SerializedName("ageCategoryTitle") val ageCategoryTitle: String?,
+    @SerialName("ageCategoryTitle") val ageCategoryTitle: String? = null,
     /** Список вопросов */
-    @SerializedName("questions") val questions: List<ApiQuestion>?,
+    @SerialName("questions") val questions: List<ApiQuestion>? = null,
 )

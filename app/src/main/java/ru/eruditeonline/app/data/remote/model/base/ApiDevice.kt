@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.model.base
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiDevice(
-    @SerializedName("id") val id: String,
-    @SerializedName("os") val os: String = "android",
+@Serializable
+data class ApiDevice(
+    @SerialName("id") val id: String,
+    @SerialName("os") val os: String = "android",
 )

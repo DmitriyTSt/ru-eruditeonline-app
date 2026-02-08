@@ -8,6 +8,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.test.TestUserResult
 import ru.eruditeonline.app.databinding.FragmentResultDetailBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.managers.DateFormatter
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -28,6 +29,7 @@ class ResultDetailFragment : BaseFragment(R.layout.fragment_result_detail) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        content.linearLayoutContent.fitBottomInsetsPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }

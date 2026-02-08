@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.model.main
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 enum class ApiCompetitionViewType {
-    @SerializedName("ROW") ROW,
-    @SerializedName("CARD") CARD,
+    @SerialName("ROW") ROW,
+    @SerialName("CARD") CARD,
 }

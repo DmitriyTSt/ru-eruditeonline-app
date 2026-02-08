@@ -27,6 +27,6 @@ jobs:
         run: ./gradlew assembleInternal
 
       - name: Upload internal build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: app/build/outputs/apk/internal/*.apk

@@ -1,17 +1,19 @@
 package ru.eruditeonline.app.data.remote.model.test
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import ru.eruditeonline.app.data.remote.model.base.ApiScore
 
-class ApiTempResult(
+@Serializable
+data class ApiTempResult(
     /** Временный идентификатор прохождения теста */
-    @SerializedName("id") val id: Int?,
+    @SerialName("id") val id: Int? = null,
     /** Выбранные ответы */
-    @SerializedName("answers") val answers: List<ApiResultAnswer>?,
+    @SerialName("answers") val answers: List<ApiResultAnswer>? = null,
     /** Набранные баллы */
-    @SerializedName("score") val score: ApiScore?,
+    @SerialName("score") val score: ApiScore? = null,
     /** Затраченное время, в секундах */
-    @SerializedName("spentTime") val spentTime: Long?,
+    @SerialName("spentTime") val spentTime: Long? = null,
     /** Данные результата (null если олимпиада) */
-    @SerializedName("resultInfo") val resultInfo: ApiResultInfo?,
+    @SerialName("resultInfo") val resultInfo: ApiResultInfo? = null,
 )

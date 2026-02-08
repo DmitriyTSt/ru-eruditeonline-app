@@ -20,7 +20,7 @@ class ResultAnswerViewHolder(
             append("${answer.question.title}. ${answer.answerText ?: root.context.getString(R.string.empty_answer)}")
             if (answer.correct != null && !answer.correct.isCorrect) {
                 append("\n")
-                append(root.context.getString(R.string.result_corrent_answer_template, answer.correct.answerText))
+                append(root.context.getString(R.string.result_correct_answer_template, answer.correct.answerText))
             }
         }
     }

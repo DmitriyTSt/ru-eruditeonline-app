@@ -1,12 +1,14 @@
 package ru.eruditeonline.app.data.remote.model.test
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiResultInfo(
+@Serializable
+data class ApiResultInfo(
     /** Место (Победитель (2 место)) */
-    @SerializedName("placeText") val placeText: String?,
+    @SerialName("placeText") val placeText: String? = null,
     /** Средний балл по вем участникам в процентах */
-    @SerializedName("averageScore") val averageScore: Int?,
+    @SerialName("averageScore") val averageScore: Int? = null,
     /** Описание результата */
-    @SerializedName("resultText") val resultText: String?,
+    @SerialName("resultText") val resultText: String? = null,
 )

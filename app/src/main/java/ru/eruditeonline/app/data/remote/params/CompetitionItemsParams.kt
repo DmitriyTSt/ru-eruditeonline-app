@@ -1,16 +1,18 @@
 package ru.eruditeonline.app.data.remote.params
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class CompetitionItemsParams(
+@Serializable
+data class CompetitionItemsParams(
     /** Поисковой запрос */
-    @SerializedName("query") val query: String?,
+    @SerialName("query") val query: String? = null,
     /** Список идентификаторов возрастной категории для фильтрации */
-    @SerializedName("ageIds") val ageIds: List<String>?,
+    @SerialName("ageIds") val ageIds: List<String>? = null,
     /** Список идентификаторов предметов для фильтрации */
-    @SerializedName("subjectIds") val subjectIds: List<String>?,
+    @SerialName("subjectIds") val subjectIds: List<String>? = null,
     /** Смещение */
-    @SerializedName("offset") val offset: Int,
+    @SerialName("offset") val offset: Int,
     /** Количество */
-    @SerializedName("limit") val limit: Int,
+    @SerialName("limit") val limit: Int,
 )

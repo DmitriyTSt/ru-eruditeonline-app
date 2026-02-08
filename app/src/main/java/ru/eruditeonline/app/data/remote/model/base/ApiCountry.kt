@@ -1,9 +1,11 @@
 package ru.eruditeonline.app.data.remote.model.base
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class ApiCountry(
-    @SerializedName("name") val name: String?,
-    @SerializedName("code") val code: String?,
-    @SerializedName("image") val image: String?,
+@Serializable
+data class ApiCountry(
+    @SerialName("name") val name: String? = null,
+    @SerialName("code") val code: String? = null,
+    @SerialName("image") val image: String? = null,
 )

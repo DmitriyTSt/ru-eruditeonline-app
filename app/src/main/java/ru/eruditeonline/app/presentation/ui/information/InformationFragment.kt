@@ -9,6 +9,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.repository.AppInfoRepository
 import ru.eruditeonline.app.databinding.FragmentInformationBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -31,6 +32,7 @@ class InformationFragment : BaseFragment(R.layout.fragment_information) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        linearLayoutContent.fitBottomInsetsPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }

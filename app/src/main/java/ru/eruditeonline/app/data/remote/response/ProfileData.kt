@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.response
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import ru.eruditeonline.app.data.remote.model.profile.ApiProfile
 
-class ProfileData(
-    @SerializedName("user") val profile: ApiProfile?,
+@Serializable
+data class ProfileData(
+    @SerialName("user") val profile: ApiProfile? = null,
 )

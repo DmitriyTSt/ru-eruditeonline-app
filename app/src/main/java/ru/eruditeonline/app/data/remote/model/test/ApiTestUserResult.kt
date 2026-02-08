@@ -1,25 +1,27 @@
 package ru.eruditeonline.app.data.remote.model.test
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import ru.eruditeonline.app.data.remote.model.base.ApiScore
 
-class ApiTestUserResult(
+@Serializable
+data class ApiTestUserResult(
     /** Идентификатор результата */
-    @SerializedName("id") val id: Int?,
+    @SerialName("id") val id: Int? = null,
     /** Дата прохождения */
-    @SerializedName("date") val date: Long?,
+    @SerialName("date") val date: Long? = null,
     /** Участник */
-    @SerializedName("username") val username: String?,
+    @SerialName("username") val username: String? = null,
     /** Идентификатор теста */
-    @SerializedName("testId") val testId: String?,
+    @SerialName("testId") val testId: String? = null,
     /** Название конкурса */
-    @SerializedName("competitionTitle") val competitionTitle: String?,
+    @SerialName("competitionTitle") val competitionTitle: String? = null,
     /** Место */
-    @SerializedName("place") val place: String?,
+    @SerialName("place") val place: String? = null,
     /** Балл */
-    @SerializedName("score") val score: ApiScore?,
+    @SerialName("score") val score: ApiScore? = null,
     /** Затраченное время */
-    @SerializedName("spentTime") val spentTime: Long?,
+    @SerialName("spentTime") val spentTime: Long? = null,
     /** Ответы */
-    @SerializedName("answers") val answers: List<ApiResultAnswer>?,
+    @SerialName("answers") val answers: List<ApiResultAnswer>? = null,
 )

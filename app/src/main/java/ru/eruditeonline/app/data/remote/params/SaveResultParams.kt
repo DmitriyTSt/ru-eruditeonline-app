@@ -1,43 +1,46 @@
 package ru.eruditeonline.app.data.remote.params
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-class SaveResultParams(
+@Serializable
+data class SaveResultParams(
     /** Временный идентификатор прохождения теста */
-    @SerializedName("completeId") val completeId: Int,
+    @SerialName("completeId") val completeId: Int,
     /** Имя */
-    @SerializedName("name") val name: String,
+    @SerialName("name") val name: String,
     /** Фамилия */
-    @SerializedName("surname") val surname: String,
+    @SerialName("surname") val surname: String,
     /** Отчество */
-    @SerializedName("patronymic") val patronymic: String?,
+    @SerialName("patronymic") val patronymic: String? = null,
     /** Образовательное учреждение */
-    @SerializedName("school") val school: String?,
+    @SerialName("school") val school: String? = null,
     /** Должность */
-    @SerializedName("position") val position: String?,
+    @SerialName("position") val position: String? = null,
     /** Руководитель */
-    @SerializedName("teacher") val teacher: String?,
+    @SerialName("teacher") val teacher: String? = null,
     /** Страна (выбор из списка) */
-    @SerializedName("country") val country: String,
+    @SerialName("country") val country: String,
     /** Населенный пункт */
-    @SerializedName("city") val city: String,
+    @SerialName("city") val city: String,
     /** Регион */
-    @SerializedName("region") val region: String?,
+    @SerialName("region") val region: String? = null,
     /** E-mail */
-    @SerializedName("email") val email: String,
+    @SerialName("email") val email: String,
     /** E-mail руководителя */
-    @SerializedName("teacherEmail") val teacherEmail: String?,
+    @SerialName("teacherEmail") val teacherEmail: String? = null,
     /** Идентифифкатор типа диплома */
-    @SerializedName("diplomaType") val diplomaType: String,
+    @SerialName("diplomaType") val diplomaType: String,
     /** Оценка */
-    @SerializedName("review") val review: Review,
+    @SerialName("review") val review: Review,
 ) {
-    class Review(
+    @Serializable
+    data class Review(
         /** Качество и понятность вопросов */
-        @SerializedName("quality") val quality: Int?,
+        @SerialName("quality") val quality: Int? = null,
         /** Сложность вопросов */
-        @SerializedName("difficulty") val difficulty: Int?,
+        @SerialName("difficulty") val difficulty: Int? = null,
         /** Насколько интересными были вопросы */
-        @SerializedName("interest") val interest: Int?,
+        @SerialName("interest") val interest: Int? = null,
     )
 }

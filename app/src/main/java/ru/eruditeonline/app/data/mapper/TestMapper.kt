@@ -164,10 +164,11 @@ class TestMapper @Inject constructor(
         )
     }
 
-    private fun fromApiToModel(api: ApiResultAnswer.Correction?): ResultAnswer.Correction {
+    private fun fromApiToModel(api: ApiResultAnswer.Correction?): ResultAnswer.Correction? {
+        if (api == null) return null
         return ResultAnswer.Correction(
-            answerText = api?.answerText.orEmpty(),
-            isCorrect = api?.isCorrect.orDefault(),
+            answerText = api.answerText.orEmpty(),
+            isCorrect = api.isCorrect.orDefault(),
         )
     }
 }

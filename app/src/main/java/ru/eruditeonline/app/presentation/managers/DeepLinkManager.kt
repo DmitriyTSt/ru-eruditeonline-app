@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.managers
 
 import android.net.Uri
+import ru.eruditeonline.app.domain.AuthorizationManager
 import ru.eruditeonline.app.presentation.navigation.Destination
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemMode
 import javax.inject.Inject
@@ -9,6 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class DeepLinkManager @Inject constructor(
     private val destinations: DeepLinkDestinations,
+    private val authorizationManager: AuthorizationManager,
 ) : InnerDeepLinkManager {
 
     private var deepLink: Uri? = null
@@ -32,14 +34,22 @@ class DeepLinkManager @Inject constructor(
     private fun resolveDeepLinkDestination(deepLink: Uri): Destination? {
         return when (deepLink.path) {
             DeepLink.Auth.REGISTRATION -> {
-                val token = deepLink.getQueryParameter(DeepLink.Auth.CONFIRM_EMAIL_QUERY_NAME)
-                if (token.isNullOrEmpty()) {
-                    destinations.registration()
+                if (authorizationManager.isAuthorized) {
+                    destinations.profile()
                 } else {
-                    destinations.confirmEmail(token)
+                    val token = deepLink.getQueryParameter(DeepLink.Auth.CONFIRM_EMAIL_QUERY_NAME)
+                    if (token.isNullOrEmpty()) {
+                        destinations.registration()
+                    } else {
+                        destinations.confirmEmail(token)
+                    }
                 }
             }
-            DeepLink.Auth.LOGIN -> destinations.login()
+            DeepLink.Auth.LOGIN -> if (authorizationManager.isAuthorized) {
+                destinations.profile()
+            } else {
+                destinations.login()
+            }
             DeepLink.Profile.PROFILE -> destinations.profile()
             DeepLink.Profile.COMMON_RESULTS -> destinations.commonResults()
             DeepLink.Competition.TEST -> {

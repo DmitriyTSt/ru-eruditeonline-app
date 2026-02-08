@@ -8,6 +8,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentSelectDiplomaBinding
 import ru.eruditeonline.app.presentation.extension.addDefaultGridSpaceItemDecoration
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
 import ru.eruditeonline.app.presentation.ui.base.BaseFragment
@@ -31,6 +32,7 @@ class SelectDiplomaFragment : BaseFragment(R.layout.fragment_select_diploma) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        recyclerView.fitBottomInsetsPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }

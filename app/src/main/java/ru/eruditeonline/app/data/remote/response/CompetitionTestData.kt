@@ -1,8 +1,10 @@
 package ru.eruditeonline.app.data.remote.response
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import ru.eruditeonline.app.data.remote.model.test.ApiCompetitionTest
 
-class CompetitionTestData(
-    @SerializedName("test") val test: ApiCompetitionTest?,
+@Serializable
+data class CompetitionTestData(
+    @SerialName("test") val test: ApiCompetitionTest? = null,
 )

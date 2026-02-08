@@ -1,0 +1,46 @@
+complexity:
+  TooManyFunctions:
+    active: false
+  LongParameterList:
+    ignoreDefaultParameters: true
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
+  InstanceOfCheckForException:
+    active: false
+
+formatting:
+  MaximumLineLength:
+    maxLineLength: 130
+  ArgumentListWrapping:
+    maxLineLength: 130
+  ParameterListWrapping:
+    maxLineLength: 130
+  NoEmptyFirstLineInMethodBlock:
+    active: false
+  SpacingBetweenDeclarationsWithAnnotations:
+    active: false
+  Wrapping:
+    active: false
+
+naming:
+  FunctionNaming:
+    ignoreAnnotated: [ 'Composable' ]
+
+performance:
+  SpreadOperator:
+    active: false
+
+style:
+  MaxLineLength:
+    maxLineLength: 130
+    excludePackageStatements: true
+    excludeImportStatements: true
+    excludeCommentStatements: true
+  MagicNumber:
+    active: false
+  ReturnCount:
+    active: false
+  UnusedPrivateMember:
+    ignoreAnnotated: [ 'Preview' ]

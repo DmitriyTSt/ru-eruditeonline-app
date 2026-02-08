@@ -8,6 +8,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.databinding.FragmentDebugBinding
 import ru.eruditeonline.app.domain.usecase.debug.GetDebugDataUseCase
 import ru.eruditeonline.app.presentation.extension.appViewModels
+import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
 import ru.eruditeonline.app.presentation.extension.fitTopInsetsWithPadding
 import ru.eruditeonline.app.presentation.navigation.AppStarter
 import ru.eruditeonline.app.presentation.navigation.observeNavigationCommands
@@ -29,6 +30,7 @@ class DebugFragment : BaseFragment(R.layout.fragment_debug) {
 
     override fun setupLayout(savedInstanceState: Bundle?) = with(binding) {
         toolbar.fitTopInsetsWithPadding()
+        linearLayoutContent.fitBottomInsetsPadding()
         toolbar.setNavigationOnClickListener {
             viewModel.navigateBack()
         }

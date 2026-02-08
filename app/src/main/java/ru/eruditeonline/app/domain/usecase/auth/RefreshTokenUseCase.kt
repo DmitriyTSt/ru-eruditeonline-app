@@ -1,6 +1,6 @@
 package ru.eruditeonline.app.domain.usecase.auth
 
-import com.google.gson.JsonParseException
+import kotlinx.serialization.SerializationException
 import org.json.JSONObject
 import retrofit2.HttpException
 import ru.eruditeonline.app.data.repository.RefreshTokenRepository
@@ -49,7 +49,9 @@ private fun Throwable.isRefreshTokenError(): Boolean {
             val jsonError = JSONObject(error.orEmpty())
             val code = jsonError.getJSONObject(ERROR_FIELD_ERROR).getString(ERROR_FIELD_CODE)
             code == ERROR_CODE_WRONG_TOKEN
-        } catch (e: JsonParseException) {
+        } catch (e: SerializationException) {
+            false
+        } catch (e: org.json.JSONException) {
             false
         }
     } else {

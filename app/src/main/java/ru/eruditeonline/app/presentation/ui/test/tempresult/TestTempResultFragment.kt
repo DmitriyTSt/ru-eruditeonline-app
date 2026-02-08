@@ -148,9 +148,7 @@ class TestTempResultFragment : BaseFragment(R.layout.fragment_test_temp_result) 
             toolbar.updatePadding(
                 top = windowInsets.top,
             )
-            root.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                updateMargins(bottom = windowInsets.bottom)
-            }
+            content.linearLayoutContent.updatePadding(bottom = windowInsets.bottom)
             WindowInsetsCompat.Builder().setInsets(
                 WindowInsetsCompat.Type.systemBars(),
                 Insets.of(

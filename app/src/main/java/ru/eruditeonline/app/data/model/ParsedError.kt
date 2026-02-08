@@ -1,7 +1,7 @@
 package ru.eruditeonline.app.data.model
 
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonSyntaxException
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.Json
 import retrofit2.HttpException
 import ru.eruditeonline.app.data.remote.response.ErrorResponse
 import timber.log.Timber
@@ -31,16 +31,19 @@ fun Throwable.parseError(): ParsedError {
         /** General Http error */
         this is HttpException -> {
             val body = response()?.errorBody()
-            val gson = GsonBuilder().create()
+            val json = Json { ignoreUnknownKeys = true }
             var error: ParsedError? = null
             try {
-                val apiError = gson.fromJson(body?.string(), ErrorResponse::class.java)
-                response()?.code()?.let { error = apiError?.toParsedError() }
+                val bodyString = body?.string()
+                if (!bodyString.isNullOrEmpty()) {
+                    val apiError = json.decodeFromString<ErrorResponse>(bodyString)
+                    response()?.code()?.let { error = apiError.toParsedError() }
+                }
             } catch (ioEx: IOException) {
                 Timber.e(ioEx)
             } catch (isEx: IllegalStateException) {
                 Timber.e(isEx)
-            } catch (isEx: JsonSyntaxException) {
+            } catch (isEx: SerializationException) {
                 Timber.e(isEx)
             }
             error ?: ParsedError.GeneralError(code, message)

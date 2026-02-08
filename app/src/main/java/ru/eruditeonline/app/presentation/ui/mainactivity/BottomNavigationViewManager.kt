@@ -12,9 +12,7 @@ interface BottomNavigationViewManager {
     /** Нижний отступ контента над нижнем меню */
     fun getMenuMarginBottom(): Int {
         return if (getNavigationView().isVisible) {
-            getNavigationView().let { navigationView ->
-                navigationView.height + navigationView.marginTop + navigationView.marginBottom
-            }
+            getNavigationView().run { height + marginTop + marginBottom }
         } else {
             0
         }
