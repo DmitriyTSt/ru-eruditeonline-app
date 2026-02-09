@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -50,8 +51,9 @@ fun MainSectionCompetitionsBlock(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun CompetitionItemsRow(mainSection: MainSection.CompetitionsBlock, onCompetitionClick: (CompetitionItemShort) -> Unit) {
+    val state = rememberPagerState { mainSection.items.size }
     HorizontalPager(
-        pageCount = mainSection.items.size,
+        state = state,
         contentPadding = PaddingValues(horizontal = 12.dp),
     ) {
         Row {

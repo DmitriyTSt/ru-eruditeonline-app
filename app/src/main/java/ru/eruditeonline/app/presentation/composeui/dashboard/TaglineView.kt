@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import ru.eruditeonline.app.data.model.main.Tagline
-import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
+import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 
 @Composable
 fun TaglineView(tagline: Tagline, modifier: Modifier = Modifier) {

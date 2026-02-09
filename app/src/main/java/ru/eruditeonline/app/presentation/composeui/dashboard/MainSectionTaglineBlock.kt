@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -14,8 +15,9 @@ import ru.eruditeonline.app.data.model.main.MainSection
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainSectionTaglineBlock(mainSection: MainSection.TaglineBlock, modifier: Modifier = Modifier) {
+    val state = rememberPagerState { mainSection.taglines.size }
     HorizontalPager(
-        pageCount = mainSection.taglines.size,
+        state = state,
         contentPadding = PaddingValues(12.dp),
         modifier = modifier,
     ) {
