@@ -141,7 +141,7 @@ class ApiServiceModule {
         return Json {
             ignoreUnknownKeys = true
             isLenient = true
-            encodeDefaults = false
+            encodeDefaults = true
         }
     }
 
