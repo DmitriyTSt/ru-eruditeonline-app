@@ -192,6 +192,9 @@ dependencies {
     
     // Paging Compose
     implementation(libs.androidx.paging.compose)
+
+    implementation(libs.haze)
+    implementation(libs.haze.materials)
     
     // Debug Tooling
     debugImplementation(libs.androidx.ui.tooling)

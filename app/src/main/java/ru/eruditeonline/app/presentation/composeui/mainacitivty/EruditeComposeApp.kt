@@ -1,7 +1,10 @@
 package ru.eruditeonline.app.presentation.composeui.mainacitivty
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -9,11 +12,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.rememberHazeState
+import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.composeui.auth.login.LoginScreen
 import ru.eruditeonline.app.presentation.composeui.auth.registration.RegistrationScreen
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
@@ -34,6 +44,7 @@ import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
 fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.Factory) {
     var eruditeTheme by remember { mutableStateOf(EruditeThemeModel.STANDARD_LIGHT) }
     val navController = rememberNavController()
+    val hazeState = rememberHazeState()
 
     EruditeTheme(
         eruditeTheme = eruditeTheme,
@@ -42,13 +53,15 @@ fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background,
         ) {
-            Column(
+            Box(
                 modifier = Modifier.fillMaxSize(),
             ) {
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.Dashboard.route,
-                    modifier = Modifier.weight(1f),
+                    startDestination = startScreen?.route ?: Screen.Dashboard.route,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .hazeSource(hazeState),
                 ) {
                     composable(Screen.Dashboard.route) {
                         DashboardScreen(
@@ -103,7 +116,20 @@ fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.
                         RegistrationScreen(navController, appViewModel(viewModelFactory))
                     }
                 }
-                NavigationBarView(navController)
+
+                val density = LocalDensity.current
+                val horizontalPadding = 24.dp
+                val bottomPadding = dimensionResource(id = R.dimen.bottom_navigation_view_margin_bottom)
+                NavigationBarView(
+                    navController,
+                    hazeState,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .padding(horizontal = horizontalPadding)
+                        .padding(bottom = bottomPadding + with(density) {
+                            WindowInsets.navigationBars.getBottom(density).toDp()
+                        }),
+                )
             }
         }
     }

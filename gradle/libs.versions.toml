@@ -6,6 +6,7 @@ appcompat = "1.7.1"
 fragment-ktx = "1.8.9"
 constraintlayout = "2.2.1"
 
+haze = "1.7.1"
 navigation = "2.9.7"
 paging = "3.4.0"
 viewpager2 = "1.1.0"
@@ -63,6 +64,8 @@ androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefre
 androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
+haze-materials = { module = "dev.chrisbanes.haze:haze-materials", version.ref = "haze" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
 code-desugaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "code-desugaring" }
