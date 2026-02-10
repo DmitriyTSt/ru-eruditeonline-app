@@ -155,8 +155,8 @@ fun RatingScreen() {
                     .fillMaxWidth()
                     .padding(
                         top = innerPaddings.calculateTopPadding() + 4.dp,
-                        start = 16.dp,
-                        end = 16.dp,
+                        start = 12.dp,
+                        end = 12.dp,
                     )
                     .onSizeChanged {
                         dateSelectorHeight = it.height
