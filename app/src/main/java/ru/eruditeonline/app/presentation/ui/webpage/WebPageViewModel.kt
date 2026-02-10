@@ -43,7 +43,7 @@ class WebPageViewModel @Inject constructor(
 
     fun onBackPressed() {
         if (_webPageLiveData.value?.isSuccess == true) {
-            backStack.removeLast()
+            backStack.removeLastOrNull()
         }
         if (backStack.isNotEmpty()) {
             _webPageLiveData.postValue(LoadableState.Success(backStack.last()))
