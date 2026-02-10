@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -76,9 +75,6 @@ fun CommonResultListScreen(viewModel: CommonResultListViewModel = appViewModel()
                     val item = resultsPagingItems[index]
                     if (item != null) {
                         TopResultView(topResult = item, onClick = {})
-                        if (index < resultsPagingItems.itemCount - 1) {
-                            HorizontalDivider()
-                        }
                     }
                 }
                 applyFooterState(resultsPagingItems)
