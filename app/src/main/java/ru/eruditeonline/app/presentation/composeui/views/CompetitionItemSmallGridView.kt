@@ -35,7 +35,7 @@ fun CompetitionItemSmallGridView(
         ) {
             CompetitionImage(
                 imageUrl = competitionItem.icon.orEmpty(),
-                borderStroke = 12.dp,
+                borderStroke = 14.dp,
                 backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
                 modifier = Modifier.fillMaxWidth(),
             )
