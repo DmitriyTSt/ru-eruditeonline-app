@@ -11,13 +11,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -57,52 +61,69 @@ internal fun RatingList(
 @Composable
 private fun RatingRowCard(ratingRow: RatingRow) {
     OutlinedCard(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.outlinedCardColors(
+            containerColor = MaterialTheme.colorScheme.surface,
+        ),
     ) {
-        Column(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp)
+                .padding(horizontal = 14.dp, vertical = 12.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.weight(1f),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Surface(
+                    shape = RoundedCornerShape(10.dp),
+                    color = MaterialTheme.colorScheme.secondaryContainer,
+                ) {
                     Text(
-                        text = "${ratingRow.rank}.",
+                        text = "#${ratingRow.rank}",
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                         style = AppTypography.titleSmall,
                         fontWeight = FontWeight.SemiBold,
                     )
+                }
+
+                Column(modifier = Modifier.padding(start = 10.dp)) {
                     RankChangeView(
                         rank = ratingRow.rank,
                         oldRank = ratingRow.oldRank,
-                        modifier = Modifier.padding(start = 8.dp),
+                        modifier = Modifier.padding(top = 4.dp),
                     )
+                    Row(verticalAlignment = Alignment.Top) {
+                        AsyncImage(
+                            model = ratingRow.countryIcon,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .padding(top = 3.dp)
+                                .size(18.dp),
+                        )
+                        Text(
+                            text = ratingRow.username,
+                            modifier = Modifier.padding(start = 8.dp),
+                            style = AppTypography.bodyLarge,
+                            fontWeight = FontWeight.Medium,
+                        )
+                    }
                 }
-                Text(
-                    text = ratingRow.score.toString(),
-                    style = AppTypography.titleSmall,
-                    fontWeight = FontWeight.SemiBold,
-                )
             }
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp),
-                verticalAlignment = Alignment.CenterVertically,
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.primaryContainer,
             ) {
-                AsyncImage(
-                    model = ratingRow.countryIcon,
-                    contentDescription = null,
-                    modifier = Modifier.size(16.dp),
-                )
                 Text(
-                    text = ratingRow.username,
-                    modifier = Modifier.padding(start = 8.dp),
-                    style = AppTypography.bodyLarge,
+                    text = ratingRow.score.toString(),
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                    style = AppTypography.titleSmall,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    fontWeight = FontWeight.SemiBold,
                 )
             }
         }
@@ -120,6 +141,9 @@ private fun RankChangeView(
 
     val diff = oldRank - rank
     val isPositive = diff > 0 || oldRank == 0
+    val positiveColor = Color(0xFF00AA00)
+    val negativeColor = Color(0xFFFF0000)
+    val ratingColor = if (isPositive) positiveColor else negativeColor
     val iconRes = if (isPositive) R.drawable.ic_rank_positive else R.drawable.ic_rank_negative
     val text = if (oldRank == 0) {
         stringResource(R.string.new_rank_label)
@@ -135,11 +159,12 @@ private fun RankChangeView(
             painter = painterResource(id = iconRes),
             contentDescription = null,
             modifier = Modifier.size(14.dp),
+            tint = ratingColor,
         )
         Text(
             text = text,
             style = AppTypography.bodyMedium,
-            color = if (isPositive) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.error,
+            color = ratingColor,
             modifier = Modifier.padding(start = 2.dp),
         )
     }
