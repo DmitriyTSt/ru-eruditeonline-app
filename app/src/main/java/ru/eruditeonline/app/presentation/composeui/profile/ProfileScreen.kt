@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -53,10 +56,10 @@ fun ProfileScreen(viewModel: ProfileViewModel = appViewModel()) {
         Column(
             Modifier
                 .padding(top = innerPaddings.calculateTopPadding())
+                .verticalScroll(rememberScrollState())
         ) {
             Box(
                 modifier = Modifier
-                    .weight(1f)
                     .fillMaxWidth(),
             ) {
                 if (isAuthorized) {
@@ -69,43 +72,47 @@ fun ProfileScreen(viewModel: ProfileViewModel = appViewModel()) {
                     )
                 }
             }
-            ProfileMenuItem(
-                text = stringResource(R.string.profile_search_results_button_label),
-                icon = R.drawable.ic_search_results,
-                onClick = {
-                    viewModel.openSearchResultsByEmail()
-                }
-            )
-            if (isAuthorized) {
+            Card(
+                Modifier.padding(16.dp)
+            ) {
                 ProfileMenuItem(
-                    text = stringResource(R.string.profile_user_results_button_label),
-                    icon = R.drawable.ic_user_results,
+                    text = stringResource(R.string.profile_search_results_button_label),
+                    icon = R.drawable.ic_search_results,
                     onClick = {
-                        viewModel.openUserResults()
+                        viewModel.openSearchResultsByEmail()
+                    }
+                )
+                if (isAuthorized) {
+                    ProfileMenuItem(
+                        text = stringResource(R.string.profile_user_results_button_label),
+                        icon = R.drawable.ic_user_results,
+                        onClick = {
+                            viewModel.openUserResults()
+                        }
+                    )
+                }
+                ProfileMenuItem(
+                    text = stringResource(R.string.profile_common_results_button_label),
+                    icon = R.drawable.ic_common_results,
+                    onClick = {
+                        viewModel.openCommonResults()
+                    }
+                )
+                ProfileMenuItem(
+                    text = stringResource(R.string.profile_settings_button_label),
+                    icon = R.drawable.ic_settings,
+                    onClick = {
+                        viewModel.openSettings()
+                    }
+                )
+                ProfileMenuItem(
+                    text = stringResource(R.string.profile_information_button_label),
+                    icon = R.drawable.ic_info,
+                    onClick = {
+                        viewModel.openInformation()
                     }
                 )
             }
-            ProfileMenuItem(
-                text = stringResource(R.string.profile_common_results_button_label),
-                icon = R.drawable.ic_common_results,
-                onClick = {
-                    viewModel.openCommonResults()
-                }
-            )
-            ProfileMenuItem(
-                text = stringResource(R.string.profile_settings_button_label),
-                icon = R.drawable.ic_settings,
-                onClick = {
-                    viewModel.openSettings()
-                }
-            )
-            ProfileMenuItem(
-                text = stringResource(R.string.profile_information_button_label),
-                icon = R.drawable.ic_info,
-                onClick = {
-                    viewModel.openInformation()
-                }
-            )
             BottomNavigationSpaceWithInset(innerPaddings, 16.dp)
         }
     }
