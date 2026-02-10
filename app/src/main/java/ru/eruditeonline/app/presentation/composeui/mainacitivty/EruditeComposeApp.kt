@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,12 +28,13 @@ import dev.chrisbanes.haze.rememberHazeState
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.composeui.appupdate.AppUpdate
 import ru.eruditeonline.app.presentation.composeui.appupdate.AppUpdateScreen
-import ru.eruditeonline.app.presentation.composeui.auth.login.LoginScreen
 import ru.eruditeonline.app.presentation.composeui.auth.login.Login
-import ru.eruditeonline.app.presentation.composeui.auth.registration.RegistrationScreen
+import ru.eruditeonline.app.presentation.composeui.auth.login.LoginScreen
 import ru.eruditeonline.app.presentation.composeui.auth.registration.Registration
+import ru.eruditeonline.app.presentation.composeui.auth.registration.RegistrationScreen
 import ru.eruditeonline.app.presentation.composeui.base.BaseScreen
 import ru.eruditeonline.app.presentation.composeui.base.LocalBackStack
+import ru.eruditeonline.app.presentation.composeui.base.LocalBottomNavigationPadding
 import ru.eruditeonline.app.presentation.composeui.base.LocalScreenResultDispatcher
 import ru.eruditeonline.app.presentation.composeui.base.LocalViewModelFactory
 import ru.eruditeonline.app.presentation.composeui.base.ScreenWithBottomNavigation
@@ -51,8 +53,8 @@ import ru.eruditeonline.app.presentation.composeui.profile.Profile
 import ru.eruditeonline.app.presentation.composeui.profile.ProfileScreen
 import ru.eruditeonline.app.presentation.composeui.rating.Rating
 import ru.eruditeonline.app.presentation.composeui.rating.RatingScreen
-import ru.eruditeonline.app.presentation.composeui.result.common.CommonResults
 import ru.eruditeonline.app.presentation.composeui.result.common.CommonResultListScreen
+import ru.eruditeonline.app.presentation.composeui.result.common.CommonResults
 import ru.eruditeonline.app.presentation.composeui.result.info.Info
 import ru.eruditeonline.app.presentation.composeui.result.info.InfoScreen
 import ru.eruditeonline.app.presentation.composeui.result.search.SearchResults
@@ -72,6 +74,15 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
     val backStack = remember { mutableStateListOf(startScreen) }
     val screenResultDispatcher = rememberScreenResultDispatcher()
     val hazeState = rememberHazeState()
+    var bottomNavigationHeight by remember { mutableIntStateOf(0) }
+    val density = LocalDensity.current
+    val bottomNavigationPadding = remember(bottomNavigationHeight) {
+        if (bottomNavigationHeight > 0) {
+            with(density) { bottomNavigationHeight.toDp() } + 16.dp
+        } else {
+            0.dp
+        }
+    }
 
     EruditeTheme(
         eruditeTheme = eruditeTheme,
@@ -86,6 +97,7 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
                 CompositionLocalProvider(
                     LocalBackStack provides backStack,
                     LocalViewModelFactory provides viewModelFactory,
+                    LocalBottomNavigationPadding provides bottomNavigationPadding,
                     LocalScreenResultDispatcher provides screenResultDispatcher,
                 ) {
                     NavDisplay(
@@ -136,7 +148,11 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
                             .padding(bottom = bottomPadding + with(density) {
                                 WindowInsets.navigationBars.getBottom(density).toDp()
                             }),
-                    )
+                    ) {
+                        bottomNavigationHeight = it.height
+                    }
+                } else {
+                    bottomNavigationHeight = 0
                 }
             }
         }

@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.materials.HazeMaterials
@@ -33,6 +34,8 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
+import ru.eruditeonline.app.presentation.composeui.base.BottomNavigationSpaceWithInset
+import ru.eruditeonline.app.presentation.composeui.base.LocalBottomNavigationPadding
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
@@ -58,9 +61,6 @@ fun DashboardScreen(viewModel: DashboardViewModel = appViewModel()) {
     }
 
     Scaffold(
-//        topBar = {
-//        },
-//        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets(),
     ) { innerPaddings ->
         val hazeState = rememberHazeState()
@@ -92,6 +92,7 @@ fun DashboardScreen(viewModel: DashboardViewModel = appViewModel()) {
                             onCompetitionClick = { viewModel.openCompetition(it) }
                         )
                     }
+                    BottomNavigationSpaceWithInset(innerPaddings, 16.dp)
                 }
             }
             TopAppBar(

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.presentation.composeui.base.BottomNavigationSpaceWithInset
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
@@ -47,11 +48,11 @@ fun ProfileScreen(viewModel: ProfileViewModel = appViewModel()) {
                 }
             )
         },
-        contentWindowInsets = WindowInsets.statusBars,
+        contentWindowInsets = WindowInsets.systemBars,
     ) { innerPaddings ->
         Column(
             Modifier
-                .padding(innerPaddings)
+                .padding(top = innerPaddings.calculateTopPadding())
         ) {
             Box(
                 modifier = Modifier
@@ -105,6 +106,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = appViewModel()) {
                     viewModel.openInformation()
                 }
             )
+            BottomNavigationSpaceWithInset(innerPaddings, 16.dp)
         }
     }
 }

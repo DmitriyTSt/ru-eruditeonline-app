@@ -33,6 +33,7 @@ import androidx.lifecycle.asFlow
 import androidx.paging.compose.collectAsLazyPagingItems
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
+import ru.eruditeonline.app.presentation.composeui.base.BottomNavigationSpaceWithInset
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.ObserveScreenResult
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
@@ -188,6 +189,10 @@ fun CompetitionsScreen(viewModel: CompetitionItemsViewModel = appViewModel()) {
                 }
 
                 applyFooterState(competitionPagingItems)
+
+                item {
+                    BottomNavigationSpaceWithInset(innerPaddings, 16.dp)
+                }
             }
         }
     }

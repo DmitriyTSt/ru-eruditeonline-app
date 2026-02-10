@@ -21,9 +21,11 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeEffect
@@ -38,12 +40,13 @@ fun NavigationBarView(
     backStack: SnapshotStateList<BaseScreen>,
     hazeState: HazeState,
     modifier: Modifier = Modifier,
+    onSizeChanged: (IntSize) -> Unit,
 ) {
     val elevation = dimensionResource(id = R.dimen.default_card_elevation)
     val horizontalItemPadding = 8.dp
 
     Card(
-        modifier = modifier,
+        modifier = modifier.onSizeChanged(onSizeChanged),
         shape = RoundedCornerShape(40.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = elevation),
     ) {
