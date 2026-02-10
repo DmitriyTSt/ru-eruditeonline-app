@@ -51,9 +51,8 @@ fun InfoScreen(path: String, viewModel: WebPageViewModel = appViewModel()) {
     var toolbarTitle by rememberSaveable { mutableStateOf("") }
 
     LaunchedEffect(path) {
-        viewModel.callOperations {
-            viewModel.loadWebPage(path)
-        }
+        // TODO тут должен быть call operations, но надо переписать ВМ, чтобы они создавались по одной на инстанс экрана
+        viewModel.loadWebPage(path)
     }
 
     LaunchedEffect(pageState) {
