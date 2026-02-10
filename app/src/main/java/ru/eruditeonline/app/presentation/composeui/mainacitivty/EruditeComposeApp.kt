@@ -1,5 +1,8 @@
 package ru.eruditeonline.app.presentation.composeui.mainacitivty
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -137,21 +140,29 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
                 val horizontalPadding = 24.dp
                 val bottomPadding = dimensionResource(id = R.dimen.bottom_navigation_view_margin_bottom)
                 val currentScreen = backStack.lastOrNull()
-                if (currentScreen is ScreenWithBottomNavigation) {
-                    NavigationBarView(
-                        currentScreen = currentScreen,
-                        backStack = backStack,
-                        hazeState = hazeState,
-                        modifier = Modifier
-                            .align(Alignment.BottomCenter)
-                            .padding(horizontal = horizontalPadding)
-                            .padding(bottom = bottomPadding + with(density) {
-                                WindowInsets.navigationBars.getBottom(density).toDp()
-                            }),
-                    ) {
-                        bottomNavigationHeight = it.height
+
+                AnimatedVisibility(
+                    visible = currentScreen is ScreenWithBottomNavigation,
+                    modifier = Modifier.align(Alignment.BottomCenter),
+                    enter = slideInVertically { it },
+                    exit = slideOutVertically { it },
+                ) {
+                    if (currentScreen != null) {
+                        NavigationBarView(
+                            currentScreen = currentScreen,
+                            backStack = backStack,
+                            hazeState = hazeState,
+                            modifier = Modifier
+                                .padding(horizontal = horizontalPadding)
+                                .padding(bottom = bottomPadding + with(density) {
+                                    WindowInsets.navigationBars.getBottom(density).toDp()
+                                }),
+                        ) {
+                            bottomNavigationHeight = it.height
+                        }
                     }
-                } else {
+                }
+                if (currentScreen !is ScreenWithBottomNavigation) {
                     bottomNavigationHeight = 0
                 }
             }
