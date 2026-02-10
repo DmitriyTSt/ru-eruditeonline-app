@@ -12,13 +12,15 @@ import androidx.core.view.WindowCompat
 @Composable
 fun EruditeTheme(
     eruditeTheme: EruditeThemeModel = EruditeThemeModel.STANDARD_LIGHT,
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
     val colors = when (eruditeTheme) {
         EruditeThemeModel.STANDARD_LIGHT -> ColorStandard.reducedContrastLightColorScheme
         EruditeThemeModel.STANDARD_DARK -> ColorStandard.reducedContrastDarkColorScheme
         EruditeThemeModel.AUTUMN_LIGHT -> ColorAutumn.reducedContrastLightColorScheme
         EruditeThemeModel.AUTUMN_DARK -> ColorAutumn.reducedContrastDarkColorScheme
+        EruditeThemeModel.WINTER_LIGHT -> ColorWinter.reducedContrastLightColorScheme
+        EruditeThemeModel.WINTER_DARK -> ColorWinter.reducedContrastDarkColorScheme
     }
 
     val view = LocalView.current
