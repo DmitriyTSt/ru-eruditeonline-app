@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.composeui.views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -11,10 +12,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Tab
+import androidx.compose.material3.ProvideTextStyle
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeEffect
@@ -41,7 +44,7 @@ fun RoundedCardTabRow(
 fun RoundedCardTab(
     selected: Boolean,
     onClick: () -> Unit,
-    text: @Composable () -> Unit,
+    text: (@Composable () -> Unit)?,
     modifier: Modifier = Modifier,
     hazeState: HazeState? = null,
 ) {
@@ -59,13 +62,30 @@ fun RoundedCardTab(
         colors = CardDefaults.cardColors().copy(containerColor = Color.Transparent),
         elevation = CardDefaults.elevatedCardElevation(),
     ) {
-        Tab(
-            selected = selected,
-            onClick = onClick,
-            modifier = tabModifier,
-            selectedContentColor = MaterialTheme.colorScheme.primary,
-            unselectedContentColor = LocalContentColor.current,
-            text = text,
-        )
+        val styledText: @Composable (() -> Unit)? =
+            text?.let {
+                @Composable {
+                    val style =
+                        MaterialTheme.typography.titleSmall.copy(
+                            textAlign = TextAlign.Center
+                        )
+                    ProvideTextStyle(style, content = text)
+                }
+            }
+        styledText?.let { tabText ->
+            Surface(
+                color = Color.Transparent,
+                contentColor = if (selected) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    LocalContentColor.current
+                },
+                modifier = tabModifier
+                    .clickable { onClick() }
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+            ) {
+                tabText()
+            }
+        }
     }
 }
