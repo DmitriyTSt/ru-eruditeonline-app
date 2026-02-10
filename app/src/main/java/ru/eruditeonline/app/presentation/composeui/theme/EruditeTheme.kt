@@ -11,7 +11,7 @@ import androidx.core.view.WindowCompat
 
 @Composable
 fun EruditeTheme(
-    eruditeTheme: EruditeThemeModel = EruditeThemeModel.STANDARD_LIGHT,
+    eruditeTheme: EruditeThemeModel = EruditeThemeModel.DEFAULT,
     content: @Composable () -> Unit
 ) {
     val colors = when (eruditeTheme) {

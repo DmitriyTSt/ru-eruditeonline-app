@@ -13,9 +13,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -24,6 +24,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import dev.chrisbanes.haze.hazeSource
@@ -65,6 +66,7 @@ import ru.eruditeonline.app.presentation.composeui.result.search.SearchResultsSc
 import ru.eruditeonline.app.presentation.composeui.result.user.UserResults
 import ru.eruditeonline.app.presentation.composeui.result.user.UserResultsScreen
 import ru.eruditeonline.app.presentation.composeui.settings.Settings
+import ru.eruditeonline.app.presentation.composeui.settings.ComposeSettingsViewModel
 import ru.eruditeonline.app.presentation.composeui.settings.SettingsScreen
 import ru.eruditeonline.app.presentation.composeui.splash.Splash
 import ru.eruditeonline.app.presentation.composeui.splash.SplashScreen
@@ -73,7 +75,10 @@ import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
 
 @Composable
 fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvider.Factory) {
-    var eruditeTheme by remember { mutableStateOf(EruditeThemeModel.STANDARD_LIGHT) }
+    val settingsViewModel: ComposeSettingsViewModel = viewModel(factory = viewModelFactory)
+    val eruditeTheme by settingsViewModel.currentThemeLiveData.observeAsState(
+        EruditeThemeModel.STANDARD_LIGHT
+    )
     val backStack = remember { mutableStateListOf(startScreen) }
     val screenResultDispatcher = rememberScreenResultDispatcher()
     val hazeState = rememberHazeState()
@@ -123,9 +128,8 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
                             entry<CommonResults> { CommonResultListScreen() }
                             entry<Settings> {
                                 SettingsScreen(
-                                    currentTheme = eruditeTheme,
                                     onBackClick = { backStack.removeLastOrNull() },
-                                    selectTheme = { eruditeTheme = it },
+                                    viewModel = settingsViewModel,
                                 )
                             }
                             entry<WebPage> { InfoScreen(it.path) }

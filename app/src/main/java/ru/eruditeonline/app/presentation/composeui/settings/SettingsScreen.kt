@@ -12,6 +12,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -26,6 +28,20 @@ import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
+    onBackClick: () -> Unit,
+    viewModel: ComposeSettingsViewModel,
+) {
+    val currentTheme by viewModel.currentThemeLiveData.observeAsState(EruditeThemeModel.DEFAULT)
+    SettingsScreenContent(
+        currentTheme = currentTheme,
+        onBackClick = onBackClick,
+        selectTheme = viewModel::changeTheme,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun SettingsScreenContent(
     currentTheme: EruditeThemeModel,
     onBackClick: () -> Unit,
     selectTheme: (EruditeThemeModel) -> Unit,
@@ -52,7 +68,7 @@ fun SettingsScreen(
                 Modifier
                     .selectableGroup()
             ) {
-                EruditeThemeModel.values().forEach { eruditeTheme ->
+                EruditeThemeModel.entries.forEach { eruditeTheme ->
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
@@ -75,9 +91,10 @@ fun SettingsScreen(
 @Composable
 fun SettingsScreenPreview() {
     EruditeTheme {
-        SettingsScreen(
+        SettingsScreenContent(
             currentTheme = EruditeThemeModel.STANDARD_LIGHT,
             onBackClick = {},
-            selectTheme = {})
+            selectTheme = {},
+        )
     }
 }

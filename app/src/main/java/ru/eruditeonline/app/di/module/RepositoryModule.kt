@@ -13,6 +13,7 @@ import ru.eruditeonline.app.data.repository.BuildConfigRepository
 import ru.eruditeonline.app.data.repository.BuildConfigRepositoryImpl
 import ru.eruditeonline.app.data.repository.CompetitionRepository
 import ru.eruditeonline.app.data.repository.CompetitionRepositoryImpl
+import ru.eruditeonline.app.data.repository.ComposeThemeRepositoryImpl
 import ru.eruditeonline.app.data.repository.DebugRepositoryImpl
 import ru.eruditeonline.app.data.repository.EndpointRepository
 import ru.eruditeonline.app.data.repository.EndpointRepositoryImpl
@@ -33,6 +34,7 @@ import ru.eruditeonline.app.data.repository.TokenRepositoryImpl
 import ru.eruditeonline.app.data.repository.UtilsRepository
 import ru.eruditeonline.app.data.repository.UtilsRepositoryImpl
 import ru.eruditeonline.app.domain.AuthorizationManager
+import ru.eruditeonline.app.domain.repository.ComposeThemeRepository
 import ru.eruditeonline.app.domain.repository.DebugRepository
 
 @Module
@@ -84,4 +86,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideDebugRepository(debugRepository: DebugRepositoryImpl): DebugRepository
+
+    @Binds
+    abstract fun provideComposeThemeRepository(composeThemeRepository: ComposeThemeRepositoryImpl): ComposeThemeRepository
 }

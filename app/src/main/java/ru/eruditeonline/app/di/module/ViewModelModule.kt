@@ -36,6 +36,7 @@ import ru.eruditeonline.app.presentation.ui.test.passage.TestPassageViewModel
 import ru.eruditeonline.app.presentation.ui.test.successresult.SuccessSaveResultViewModel
 import ru.eruditeonline.app.presentation.ui.test.tempresult.TestTempResultViewModel
 import ru.eruditeonline.app.presentation.ui.webpage.WebPageViewModel
+import ru.eruditeonline.app.presentation.composeui.settings.ComposeSettingsViewModel
 
 @Module
 abstract class ViewModelModule : BaseViewModelModule() {
@@ -188,4 +189,9 @@ abstract class ViewModelModule : BaseViewModelModule() {
     @IntoMap
     @ViewModelKey(SplashStartFlowViewModel::class)
     abstract fun splashStartFlowViewModel(viewModel: SplashStartFlowViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ComposeSettingsViewModel::class)
+    abstract fun composeSettingsViewModel(viewModel: ComposeSettingsViewModel): ViewModel
 }

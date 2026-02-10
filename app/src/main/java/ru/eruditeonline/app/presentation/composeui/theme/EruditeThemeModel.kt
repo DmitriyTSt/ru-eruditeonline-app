@@ -6,5 +6,9 @@ enum class EruditeThemeModel(val title: String, val isDarkSchema: Boolean) {
     AUTUMN_LIGHT(title = "Осенняя светлая", isDarkSchema = false),
     AUTUMN_DARK(title = "Осенняя темная", isDarkSchema = true),
     WINTER_LIGHT(title = "Зимняя светлая", isDarkSchema = false),
-    WINTER_DARK(title = "Зимняя темная", isDarkSchema = true),
+    WINTER_DARK(title = "Зимняя темная", isDarkSchema = true);
+
+    companion object {
+        val DEFAULT = STANDARD_LIGHT
+    }
 }
