@@ -35,7 +35,6 @@ import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
 import ru.eruditeonline.app.presentation.composeui.base.BottomNavigationSpaceWithInset
-import ru.eruditeonline.app.presentation.composeui.base.LocalBottomNavigationPadding
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
