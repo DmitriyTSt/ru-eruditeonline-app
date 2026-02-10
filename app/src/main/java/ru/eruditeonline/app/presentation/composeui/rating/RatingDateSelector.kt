@@ -63,7 +63,7 @@ fun RatingDateSelectorField(
             Modifier
                 .fillMaxWidth()
                 .clickable(onClick = onClick)
-                .hazeEffect(state = hazeState, style = HazeMaterials.ultraThin()),
+                .hazeEffect(state = hazeState, style = HazeMaterials.thin()),
             color = Color.Transparent,
         ) {
             Row(
