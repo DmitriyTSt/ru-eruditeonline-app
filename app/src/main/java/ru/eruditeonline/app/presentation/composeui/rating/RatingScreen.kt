@@ -1,5 +1,6 @@
 package ru.eruditeonline.app.presentation.composeui.rating
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,17 +13,27 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.materials.HazeMaterials
+import dev.chrisbanes.haze.rememberHazeState
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.presentation.composeui.views.StateFlipperView
@@ -34,6 +45,12 @@ fun RatingScreen() {
     var selectedTabIndex by rememberSaveable { mutableIntStateOf(0) }
     var isDatePickerVisible by rememberSaveable { mutableStateOf(false) }
     val selectedMode = RatingTabItemMode.entries[selectedTabIndex]
+    val hazeState = rememberHazeState()
+    var dateSelectorHeight by remember { mutableIntStateOf(0) }
+    val density = LocalDensity.current
+    val dateSelectorHeightDp = remember(dateSelectorHeight) {
+        with(density) { dateSelectorHeight.toDp() }
+    }
 
     val dayViewModel = ratingTabViewModel(key = "rating-day")
     val monthViewModel = ratingTabViewModel(key = "rating-month")
@@ -66,13 +83,21 @@ fun RatingScreen() {
 
     Scaffold(
         topBar = {
-            Column {
+            Column(
+                Modifier.hazeEffect(state = hazeState, style = HazeMaterials.thin())
+            ) {
                 TopAppBar(
                     title = {
                         Text(text = stringResource(R.string.rating_title))
-                    }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors().copy(
+                        containerColor = Color.Transparent,
+                    ),
                 )
-                PrimaryTabRow(selectedTabIndex = selectedTabIndex) {
+                PrimaryTabRow(
+                    selectedTabIndex = selectedTabIndex,
+                    containerColor = Color.Transparent,
+                ) {
                     RatingTabItemMode.entries.forEachIndexed { index, mode ->
                         Tab(
                             selected = selectedTabIndex == index,
@@ -87,22 +112,10 @@ fun RatingScreen() {
         },
         contentWindowInsets = WindowInsets.systemBars,
     ) { innerPaddings ->
-        Column(
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(
-                    top = innerPaddings.calculateTopPadding(),
-                    start = 16.dp,
-                    end = 16.dp,
-                )
+                .fillMaxSize(),
         ) {
-            RatingDateSelectorField(
-                mode = selectedMode,
-                selectedDate = selectedDate,
-                onClick = { isDatePickerVisible = true },
-                modifier = Modifier.fillMaxWidth()
-            )
-
             StateFlipperView(
                 state = ratingState,
                 onRetryClick = {
@@ -110,18 +123,45 @@ fun RatingScreen() {
                 },
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 12.dp),
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp,
+                    )
+                    .hazeSource(hazeState),
             ) { rating ->
                 if (rating.isEmpty()) {
-                    EmptyRatingView(modifier = Modifier.fillMaxSize())
+                    EmptyRatingView(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = innerPaddings.calculateTopPadding() + dateSelectorHeightDp)
+                    )
                 } else {
                     RatingList(
                         rating = rating,
                         innerPaddings = innerPaddings,
+                        dateSelectorHeightDp = dateSelectorHeightDp,
                         modifier = Modifier.fillMaxSize(),
                     )
                 }
             }
+
+            RatingDateSelectorField(
+                mode = selectedMode,
+                selectedDate = selectedDate,
+                hazeState = hazeState,
+                onClick = { isDatePickerVisible = true },
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .fillMaxWidth()
+                    .padding(
+                        top = innerPaddings.calculateTopPadding() + 12.dp,
+                        start = 16.dp,
+                        end = 16.dp,
+                    )
+                    .onSizeChanged {
+                        dateSelectorHeight = it.height
+                    }
+            )
         }
     }
 
