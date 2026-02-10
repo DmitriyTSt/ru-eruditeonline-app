@@ -4,10 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -15,7 +17,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
@@ -25,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -34,6 +36,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
 import androidx.paging.compose.collectAsLazyPagingItems
+import kotlinx.coroutines.flow.collectLatest
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.composeui.base.BottomNavigationSpaceWithInset
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
@@ -41,6 +44,7 @@ import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.paging.PagingStateFlipperView
 import ru.eruditeonline.app.presentation.composeui.paging.applyFooterState
 import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
+import ru.eruditeonline.app.presentation.composeui.views.SearchInputField
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultListViewModel
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultParams
 
@@ -52,11 +56,12 @@ fun UserResultsScreen(initialEmail: String? = null, viewModel: UserResultListVie
 
     val isEmailMode = !initialEmail.isNullOrBlank()
     var isSearchVisible by rememberSaveable(initialEmail) { mutableStateOf(isEmailMode) }
-    var searchQuery by rememberSaveable(initialEmail) { mutableStateOf(initialEmail.orEmpty()) }
+    val searchState = rememberTextFieldState(initialText = initialEmail.orEmpty())
 
     val resultsPagingItems = viewModel.resultsLiveData.asFlow().collectAsLazyPagingItems()
 
     LaunchedEffect(initialEmail) {
+        searchState.setTextAndPlaceCursorAtEnd(initialEmail.orEmpty())
         viewModel.callOperations {
             if (initialEmail.isNullOrBlank()) {
                 viewModel.init(UserResultParams.All)
@@ -66,22 +71,21 @@ fun UserResultsScreen(initialEmail: String? = null, viewModel: UserResultListVie
         }
     }
 
+    LaunchedEffect(searchState, isEmailMode) {
+        if (!isEmailMode) {
+            snapshotFlow { searchState.text.toString() }
+                .collectLatest(viewModel::search)
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     if (isSearchVisible) {
-                        TextField(
-                            value = searchQuery,
-                            onValueChange = { query ->
-                                searchQuery = query
-                                if (!isEmailMode) {
-                                    viewModel.search(query)
-                                }
-                            },
-                            modifier = Modifier.fillMaxWidth(),
-                            placeholder = { Text(text = stringResource(id = R.string.search_result_hint)) },
-                            singleLine = true,
+                        SearchInputField(
+                            state = searchState,
+                            placeholderText = stringResource(id = R.string.search_result_hint),
                             readOnly = isEmailMode,
                             keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
                                 imeAction = ImeAction.Search,
@@ -105,9 +109,8 @@ fun UserResultsScreen(initialEmail: String? = null, viewModel: UserResultListVie
                     } else {
                         if (isSearchVisible) {
                             IconButton(onClick = {
-                                searchQuery = ""
+                                searchState.setTextAndPlaceCursorAtEnd("")
                                 isSearchVisible = false
-                                viewModel.search("")
                             }) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_close),
@@ -141,7 +144,8 @@ fun UserResultsScreen(initialEmail: String? = null, viewModel: UserResultListVie
             },
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = innerPadding.calculateTopPadding()),
+                .padding(top = innerPadding.calculateTopPadding())
+                .imePadding(),
         ) {
             if (resultsPagingItems.itemCount == 0) {
                 UserResultsEmptyState()
