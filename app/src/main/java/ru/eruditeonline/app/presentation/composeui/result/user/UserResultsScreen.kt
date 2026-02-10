@@ -24,12 +24,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -53,6 +57,8 @@ import ru.eruditeonline.app.presentation.ui.result.user.UserResultParams
 fun UserResultsScreen(initialEmail: String? = null, viewModel: UserResultListViewModel = appViewModel()) {
     viewModel.ObserveDestinations()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val searchFocusRequester = remember { FocusRequester() }
 
     val isEmailMode = !initialEmail.isNullOrBlank()
     var isSearchVisible by rememberSaveable(initialEmail) { mutableStateOf(isEmailMode) }
@@ -86,6 +92,7 @@ fun UserResultsScreen(initialEmail: String? = null, viewModel: UserResultListVie
                         SearchInputField(
                             state = searchState,
                             placeholderText = stringResource(id = R.string.search_result_hint),
+                            modifier = Modifier.focusRequester(searchFocusRequester),
                             readOnly = isEmailMode,
                             keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
                                 imeAction = ImeAction.Search,
@@ -118,7 +125,11 @@ fun UserResultsScreen(initialEmail: String? = null, viewModel: UserResultListVie
                                 )
                             }
                         } else {
-                            IconButton(onClick = { isSearchVisible = true }) {
+                            IconButton(onClick = {
+                                isSearchVisible = true
+                                searchFocusRequester.requestFocus()
+                                keyboardController?.show()
+                            }) {
                                 Icon(
                                     painter = painterResource(R.drawable.ic_search),
                                     contentDescription = null,
