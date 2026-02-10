@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
+import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionDifficultyView
@@ -43,6 +44,7 @@ import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetail
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CompetitionScreen(id: Int, viewModel: CompetitionDetailViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     val competitionItemState by viewModel.competitionItemLiveData.observeAsState(LoadableState.Loading())
