@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -20,16 +22,22 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation3.runtime.entryProvider
+import androidx.navigation3.ui.NavDisplay
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.composeui.auth.login.LoginScreen
 import ru.eruditeonline.app.presentation.composeui.auth.registration.RegistrationScreen
+import ru.eruditeonline.app.presentation.composeui.base.BaseScreen
+import ru.eruditeonline.app.presentation.composeui.base.LocalBackStack
+import ru.eruditeonline.app.presentation.composeui.base.LocalViewModelFactory
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
+import ru.eruditeonline.app.presentation.composeui.competition.detail.Competition
 import ru.eruditeonline.app.presentation.composeui.competition.detail.CompetitionScreen
 import ru.eruditeonline.app.presentation.composeui.competition.filter.CompetitionFilterScreen
 import ru.eruditeonline.app.presentation.composeui.competition.items.CompetitionsScreen
+import ru.eruditeonline.app.presentation.composeui.dashboard.Dashboard
 import ru.eruditeonline.app.presentation.composeui.dashboard.DashboardScreen
 import ru.eruditeonline.app.presentation.composeui.debug.DebugScreen
 import ru.eruditeonline.app.presentation.composeui.model.Screen
@@ -41,9 +49,9 @@ import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
 
 @Composable
-fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.Factory) {
+fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvider.Factory) {
     var eruditeTheme by remember { mutableStateOf(EruditeThemeModel.STANDARD_LIGHT) }
-    val navController = rememberNavController()
+    val backStack = remember { mutableStateListOf(startScreen) }
     val hazeState = rememberHazeState()
 
     EruditeTheme(
@@ -56,6 +64,19 @@ fun EruditeComposeApp(startScreen: Screen?, viewModelFactory: ViewModelProvider.
             Box(
                 modifier = Modifier.fillMaxSize(),
             ) {
+                CompositionLocalProvider(
+                    LocalBackStack provides backStack,
+                    LocalViewModelFactory provides viewModelFactory,
+                ) {
+                    NavDisplay(
+                        backStack = backStack,
+                        onBack = { backStack.removeLastOrNull() },
+                        entryProvider = entryProvider {
+                            entry<Dashboard> { DashboardScreen() }
+                            entry<Competition> { CompetitionScreen(it.id) }
+                        },
+                    )
+                }
                 NavHost(
                     navController = navController,
                     startDestination = startScreen?.route ?: Screen.Dashboard.route,

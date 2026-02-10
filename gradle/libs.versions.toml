@@ -8,6 +8,7 @@ constraintlayout = "2.2.1"
 
 haze = "1.7.1"
 navigation = "2.9.7"
+nav3Core = "1.0.0"
 paging = "3.4.0"
 viewpager2 = "1.1.0"
 browser = "1.9.0"
@@ -46,7 +47,8 @@ androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayo
 androidx-material3 = { module = "androidx.compose.material3:material3" }
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
 androidx-paging = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging" }
 androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }

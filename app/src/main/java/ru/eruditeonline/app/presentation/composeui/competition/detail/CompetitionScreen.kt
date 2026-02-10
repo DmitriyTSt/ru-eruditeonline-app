@@ -29,9 +29,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionDifficultyView
 import ru.eruditeonline.app.presentation.composeui.views.CompetitionImage
@@ -42,7 +42,7 @@ import ru.eruditeonline.app.presentation.ui.competition.detail.CompetitionDetail
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CompetitionScreen(id: Int, navController: NavController, viewModel: CompetitionDetailViewModel) {
+fun CompetitionScreen(id: Int, viewModel: CompetitionDetailViewModel = appViewModel()) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     val competitionItemState by viewModel.competitionItemLiveData.observeAsState(LoadableState.Loading())
@@ -60,7 +60,7 @@ fun CompetitionScreen(id: Int, navController: NavController, viewModel: Competit
                     Text(text = competitionItemState.getOrNull()?.subject.orEmpty())
                 },
                 navigationIcon = {
-                    NavigationIcon(navController)
+                    NavigationIcon(viewModel::navigateBack)
                 },
                 scrollBehavior = scrollBehavior,
             )

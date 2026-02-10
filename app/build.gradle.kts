@@ -182,7 +182,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     
     // Navigation Compose
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.androidx.navigation3.runtime)
     
     // ViewModel Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)

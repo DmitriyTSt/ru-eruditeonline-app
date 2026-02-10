@@ -18,7 +18,9 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import dagger.android.AndroidInjection
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.SplashUseCase
-import ru.eruditeonline.app.presentation.composeui.model.Screen
+import ru.eruditeonline.app.presentation.composeui.appupdate.AppUpdate
+import ru.eruditeonline.app.presentation.composeui.dashboard.Dashboard
+import ru.eruditeonline.app.presentation.composeui.splash.Splash
 import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 import javax.inject.Inject
 import kotlin.reflect.KClass
@@ -46,9 +48,9 @@ class MainComposeActivity : ComponentActivity() {
             val startScreenState by viewModel.initialFlowLiveEvent.observeAsState(LoadableState.Loading())
 
             val screen = when (startScreenState.getOrNull()) {
-                is SplashUseCase.Result.AppUpdateScreen -> Screen.AppUpdate
-                SplashUseCase.Result.MainScreen -> Screen.Dashboard
-                null -> null
+                is SplashUseCase.Result.AppUpdateScreen -> AppUpdate
+                SplashUseCase.Result.MainScreen -> Dashboard
+                null -> Splash
             }
             EruditeComposeApp(startScreen = screen, viewModelFactory = viewModelFactory)
         }
