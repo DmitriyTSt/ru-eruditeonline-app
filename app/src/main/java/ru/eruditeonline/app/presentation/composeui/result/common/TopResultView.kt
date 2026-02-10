@@ -19,64 +19,23 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.mapper.orDefault
 import ru.eruditeonline.app.data.model.test.TestCommonResultRow
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
+import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.managers.DateFormatter
 
 @Composable
 fun TopResultView(topResult: TestCommonResultRow, onClick: (TestCommonResultRow) -> Unit, modifier: Modifier = Modifier) {
-    val place = when {
-        topResult.resultText.contains("III") -> 3
-        topResult.resultText.contains("II") -> 2
-        topResult.resultText.contains("I") -> 1
-        else -> topResult.resultText.let {
-            val placeStart = it.indexOf("(") + 1
-            try {
-                it.substring(placeStart, it.indexOf(" ", placeStart)).toIntOrNull()
-            } catch (e: Exception) {
-                null
-            }
-        }
-    }
     val date = DateFormatter().formatStandardDate(topResult.date)
-    val iconTint = when (place) {
-        1 -> Color(0xffffd700)
-        2 -> Color(0xffc0c0c0)
-        3 -> Color(0xffcd7f32)
-        else -> null
-    }
     Column(
         modifier = modifier.clickable { onClick(topResult) }
     ) {
         Row(Modifier.padding(bottom = 8.dp, start = 16.dp, end = 16.dp)) {
-            if (place.orDefault(5) < 4) {
-                if (iconTint != null) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_menu_rating_inactive),
-                        contentDescription = null,
-                        modifier = Modifier.padding(top = 16.dp, end = 12.dp),
-                        tint = iconTint,
-                    )
-                }
-            } else if (place != null) {
-                Box(modifier = Modifier.padding(top = 16.dp, end = 12.dp)) {
-                    Box(
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(24.dp)
-                            .border(1.dp, Color.Gray, CircleShape)
-                    ) {
-                        Text(
-                            text = place.toString(),
-                            modifier = Modifier.fillMaxWidth(),
-                            textAlign = TextAlign.Center,
-                        )
-                    }
-                }
-            }
+            ResultPlace(topResult.resultText, Modifier.padding(top = 16.dp, end = 12.dp))
             Text(
                 text = topResult.competitionTitle,
                 modifier = Modifier.padding(top = 8.dp),
@@ -99,5 +58,83 @@ fun TopResultView(topResult: TestCommonResultRow, onClick: (TestCommonResultRow)
             style = AppTypography.bodyMedium,
         )
         Spacer(modifier = Modifier.height(12.dp))
+    }
+}
+
+@Composable
+private fun ResultPlace(resultText: String, modifier: Modifier = Modifier) {
+    val place = when {
+        resultText.contains("III") -> 3
+        resultText.contains("II") -> 2
+        resultText.contains("I") -> 1
+        else -> resultText.let {
+            val placeStart = it.indexOf("(") + 1
+            it.substring(placeStart, it.indexOf(" ", placeStart).takeIf { it > 0 } ?: it.length).toIntOrNull()
+        }
+    }
+    val iconTint = when (place) {
+        1 -> Color(0xffffd700)
+        2 -> Color(0xffc0c0c0)
+        3 -> Color(0xffcd7f32)
+        else -> null
+    }
+    if (place.orDefault(5) < 4) {
+        if (iconTint != null) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_menu_rating_inactive),
+                contentDescription = null,
+                modifier = modifier,
+                tint = iconTint,
+            )
+        }
+    } else if (place != null) {
+        Box(modifier = modifier) {
+            Box(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .size(24.dp)
+                    .border(1.dp, Color.Gray, CircleShape)
+            ) {
+                Text(
+                    text = place.toString(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 1.dp, end = 0.75.dp),
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun ResultPlacePreview1() {
+    EruditeTheme {
+        ResultPlace("I")
+    }
+}
+
+@Preview
+@Composable
+fun ResultPlacePreview2() {
+    EruditeTheme {
+        ResultPlace("II")
+    }
+}
+
+@Preview
+@Composable
+fun ResultPlacePreview3() {
+    EruditeTheme {
+        ResultPlace("III")
+    }
+}
+
+@Preview
+@Composable
+fun ResultPlacePreview4() {
+    EruditeTheme {
+        ResultPlace("4")
     }
 }
