@@ -44,6 +44,8 @@
     <string name="user_result_list_title">Результаты</string>
     <string name="user_result_place_label">Место:</string>
     <string name="user_result_score_label">Балл:</string>
+    <string name="user_result_test_id_template">Тест %1$s</string>
+    <string name="user_result_result_id_template">№ %1$d</string>
     <string name="score_template">%d из %d</string>
     <string name="login_title">Вход</string>
     <string name="login_email_hint">E-mail адрес</string>

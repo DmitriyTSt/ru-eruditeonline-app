@@ -2,16 +2,14 @@ package ru.eruditeonline.app.presentation.composeui.result.user
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -33,12 +31,11 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
 import androidx.paging.compose.collectAsLazyPagingItems
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.model.test.TestUserResultRow
+import ru.eruditeonline.app.presentation.composeui.base.BottomNavigationSpaceWithInset
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.paging.PagingStateFlipperView
@@ -46,8 +43,6 @@ import ru.eruditeonline.app.presentation.composeui.paging.applyFooterState
 import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultListViewModel
 import ru.eruditeonline.app.presentation.ui.result.user.UserResultParams
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -146,21 +141,33 @@ fun UserResultsScreen(initialEmail: String? = null, viewModel: UserResultListVie
             },
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
+                .padding(top = innerPadding.calculateTopPadding()),
         ) {
             if (resultsPagingItems.itemCount == 0) {
                 UserResultsEmptyState()
             } else {
                 LazyColumn(
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(0.dp),
                 ) {
                     items(count = resultsPagingItems.itemCount) { index ->
                         resultsPagingItems[index]?.let { result ->
-                            UserResultCard(result = result)
+                            Column {
+                                UserResultCard(
+                                    result = result,
+                                )
+                                if (index < resultsPagingItems.itemCount - 1) {
+                                    HorizontalDivider(
+                                        modifier = Modifier.padding(vertical = 10.dp, horizontal = 8.dp),
+                                        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f),
+                                    )
+                                }
+                            }
                         }
                     }
                     applyFooterState(resultsPagingItems)
+                    item {
+                        BottomNavigationSpaceWithInset(innerPadding, 8.dp)
+                    }
                 }
             }
         }
@@ -187,80 +194,4 @@ private fun UserResultsEmptyState() {
         )
     }
 }
-
-@Composable
-private fun UserResultCard(result: TestUserResultRow) {
-    val dateText = DateTimeFormatter.ofPattern("dd.MM.yyyy", Locale.getDefault()).format(result.date)
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        onClick = {},
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp, vertical = 8.dp),
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                Text(
-                    text = dateText,
-                    style = MaterialTheme.typography.bodySmall,
-                )
-                Text(
-                    text = "${result.testId} № ${result.id}",
-                    style = MaterialTheme.typography.bodySmall,
-                )
-            }
-            Text(
-                text = result.username,
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(top = 4.dp),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Text(
-                    text = stringResource(id = R.string.user_result_place_label),
-                    style = MaterialTheme.typography.titleSmall,
-                )
-                Text(
-                    text = result.place,
-                    style = MaterialTheme.typography.bodyLarge,
-                )
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 2.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Text(
-                    text = stringResource(id = R.string.user_result_score_label),
-                    style = MaterialTheme.typography.titleSmall,
-                )
-                Text(
-                    text = stringResource(
-                        id = R.string.score_template,
-                        result.score.current,
-                        result.score.max,
-                    ),
-                    style = MaterialTheme.typography.bodyLarge,
-                )
-            }
-            Text(
-                text = result.competitionTitle,
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.padding(top = 4.dp),
-            )
-        }
-    }
-}
-
 
