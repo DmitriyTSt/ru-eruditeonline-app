@@ -20,7 +20,6 @@ import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.domain.usecase.SplashUseCase
 import ru.eruditeonline.app.presentation.composeui.appupdate.AppUpdate
 import ru.eruditeonline.app.presentation.composeui.dashboard.Dashboard
-import ru.eruditeonline.app.presentation.composeui.splash.Splash
 import ru.eruditeonline.app.presentation.ui.splash.SplashStartFlowViewModel
 import javax.inject.Inject
 import kotlin.reflect.KClass
@@ -42,7 +41,7 @@ class MainComposeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         installSplashScreen().setKeepOnScreenCondition {
-            viewModel.isReady
+            !viewModel.isReady
         }
         setContent {
             val startScreenState by viewModel.initialFlowLiveEvent.observeAsState(LoadableState.Loading())
