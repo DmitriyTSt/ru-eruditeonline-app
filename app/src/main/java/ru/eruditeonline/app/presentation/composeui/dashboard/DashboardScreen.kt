@@ -1,8 +1,11 @@
 package ru.eruditeonline.app.presentation.composeui.dashboard
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.rememberScrollState
@@ -19,9 +22,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.materials.HazeMaterials
+import dev.chrisbanes.haze.rememberHazeState
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
@@ -50,7 +58,42 @@ fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel)
     }
 
     Scaffold(
-        topBar = {
+//        topBar = {
+//        },
+//        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        contentWindowInsets = WindowInsets(),
+    ) { innerPaddings ->
+        val hazeState = rememberHazeState()
+        Box(Modifier.fillMaxSize()) {
+            StateFlipperView(
+                state = mainSectionsState,
+                onRetryClick = {
+                    viewModel.loadMainSections()
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPaddings)
+                    .hazeSource(hazeState),
+            ) { mainSections ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    val density = LocalDensity.current
+                    val topInset = with(density) { WindowInsets.statusBars.getTop(density).toDp() }
+                    Spacer(
+                        Modifier
+                            .height(TopAppBarDefaults.TopAppBarExpandedHeight + topInset)
+                    )
+                    mainSections.forEach { mainSection ->
+                        MainSectionView(
+                            mainSection = mainSection,
+                            onCompetitionClick = { viewModel.openCompetition(it) }
+                        )
+                    }
+                }
+            }
             TopAppBar(
                 title = {
                     Text(
@@ -58,6 +101,8 @@ fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel)
                         style = AppTypography.titleLarge,
                     )
                 },
+                modifier = Modifier
+                    .hazeEffect(state = hazeState, style = HazeMaterials.thin()),
                 actions = {
                     if ((isDebugButtonVisibleState as? LoadableState.Success)?.data == true) {
                         TextButton(onClick = { viewModel.openDebug() }) {
@@ -65,33 +110,11 @@ fun DashboardScreen(navController: NavController, viewModel: DashboardViewModel)
                         }
                     }
                 },
+                colors = TopAppBarDefaults.topAppBarColors().copy(
+                    containerColor = Color.Transparent,
+                ),
                 scrollBehavior = scrollBehavior
             )
-        },
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        contentWindowInsets = WindowInsets.statusBars,
-    ) { innerPaddings ->
-        StateFlipperView(
-            state = mainSectionsState,
-            onRetryClick = {
-                viewModel.loadMainSections()
-            },
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPaddings),
-        ) { mainSections ->
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-            ) {
-                mainSections.forEach { mainSection ->
-                    MainSectionView(
-                        mainSection = mainSection,
-                        onCompetitionClick = { viewModel.openCompetition(it) }
-                    )
-                }
-            }
         }
     }
 }
