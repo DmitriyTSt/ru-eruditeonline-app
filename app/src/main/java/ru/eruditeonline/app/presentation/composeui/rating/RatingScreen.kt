@@ -36,6 +36,8 @@ import dev.chrisbanes.haze.materials.HazeMaterials
 import dev.chrisbanes.haze.rememberHazeState
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
+import ru.eruditeonline.app.presentation.composeui.views.RoundedCardTab
+import ru.eruditeonline.app.presentation.composeui.views.RoundedCardTabRow
 import ru.eruditeonline.app.presentation.composeui.views.StateFlipperView
 import ru.eruditeonline.app.presentation.ui.rating.tab.RatingTabItemMode
 
@@ -83,9 +85,7 @@ fun RatingScreen() {
 
     Scaffold(
         topBar = {
-            Column(
-                Modifier.hazeEffect(state = hazeState, style = HazeMaterials.thin())
-            ) {
+            Column() {
                 TopAppBar(
                     title = {
                         Text(text = stringResource(R.string.rating_title))
@@ -93,18 +93,18 @@ fun RatingScreen() {
                     colors = TopAppBarDefaults.topAppBarColors().copy(
                         containerColor = Color.Transparent,
                     ),
+                    modifier = Modifier.hazeEffect(state = hazeState, style = HazeMaterials.thin()),
                 )
-                PrimaryTabRow(
-                    selectedTabIndex = selectedTabIndex,
+                RoundedCardTabRow(
+                    modifier = Modifier.padding(top = 4.dp),
                     containerColor = Color.Transparent,
                 ) {
                     RatingTabItemMode.entries.forEachIndexed { index, mode ->
-                        Tab(
+                        RoundedCardTab(
                             selected = selectedTabIndex == index,
                             onClick = { selectedTabIndex = index },
-                            text = {
-                                Text(text = stringResource(id = mode.titleRes))
-                            }
+                            text = { Text(text = stringResource(id = mode.titleRes)) },
+                            hazeState = hazeState,
                         )
                     }
                 }
@@ -154,7 +154,7 @@ fun RatingScreen() {
                     .align(Alignment.TopCenter)
                     .fillMaxWidth()
                     .padding(
-                        top = innerPaddings.calculateTopPadding() + 12.dp,
+                        top = innerPaddings.calculateTopPadding() + 4.dp,
                         start = 16.dp,
                         end = 16.dp,
                     )

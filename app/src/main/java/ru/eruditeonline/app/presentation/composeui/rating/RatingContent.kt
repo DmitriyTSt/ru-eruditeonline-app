@@ -43,7 +43,7 @@ internal fun RatingList(
     ) {
         item {
             // дополнительно отступ самого селектора и еще немного для равества отступов сверху и снизу от селектора
-            Spacer(Modifier.height(innerPaddings.calculateTopPadding() + dateSelectorHeightDp + 16.dp))
+            Spacer(Modifier.height(innerPaddings.calculateTopPadding() + dateSelectorHeightDp + 8.dp))
         }
         items(items = rating) { ratingRow ->
             RatingRowCard(ratingRow = ratingRow)
