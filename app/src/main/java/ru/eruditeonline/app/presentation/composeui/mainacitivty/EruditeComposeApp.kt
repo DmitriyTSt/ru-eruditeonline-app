@@ -53,6 +53,8 @@ import ru.eruditeonline.app.presentation.composeui.dashboard.Dashboard
 import ru.eruditeonline.app.presentation.composeui.dashboard.DashboardScreen
 import ru.eruditeonline.app.presentation.composeui.debug.Debug
 import ru.eruditeonline.app.presentation.composeui.debug.DebugScreen
+import ru.eruditeonline.app.presentation.composeui.information.Information
+import ru.eruditeonline.app.presentation.composeui.information.InformationScreen
 import ru.eruditeonline.app.presentation.composeui.profile.Profile
 import ru.eruditeonline.app.presentation.composeui.profile.ProfileScreen
 import ru.eruditeonline.app.presentation.composeui.rating.Rating
@@ -132,6 +134,7 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
                                     viewModel = settingsViewModel,
                                 )
                             }
+                            entry<Information> { InformationScreen() }
                             entry<WebPage> { InfoScreen(it.path) }
                             entry<Debug> { DebugScreen() }
                             entry<Login> { LoginScreen() }

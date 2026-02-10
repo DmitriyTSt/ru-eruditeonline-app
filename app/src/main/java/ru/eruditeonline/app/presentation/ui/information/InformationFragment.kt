@@ -6,7 +6,6 @@ import android.view.View
 import androidx.core.view.updatePadding
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.eruditeonline.app.R
-import ru.eruditeonline.app.data.repository.AppInfoRepository
 import ru.eruditeonline.app.databinding.FragmentInformationBinding
 import ru.eruditeonline.app.presentation.extension.appViewModels
 import ru.eruditeonline.app.presentation.extension.fitBottomInsetsPadding
@@ -24,7 +23,6 @@ class InformationFragment : BaseFragment(R.layout.fragment_information) {
     private val padding16 by lazy { resources.getDimensionPixelSize(R.dimen.padding_16) }
 
     @Inject lateinit var webPagesAdapter: WebPagesAdapter
-    @Inject lateinit var appInfoRepository: AppInfoRepository
 
     override fun callOperations() {
         viewModel.loadWebPages()
@@ -62,6 +60,6 @@ class InformationFragment : BaseFragment(R.layout.fragment_information) {
 
     @SuppressLint("SetTextI18n")
     private fun setupAppVersion() {
-        binding.textViewAppVersion.text = "${appInfoRepository.versionNameWithSuffix}(${appInfoRepository.versionCode})"
+        binding.textViewAppVersion.text = viewModel.appVersionText
     }
 }

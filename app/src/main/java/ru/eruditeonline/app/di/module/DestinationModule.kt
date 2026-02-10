@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import ru.eruditeonline.app.presentation.composeui.competition.items.ComposeCompetitionItemsDestinationsImpl
 import ru.eruditeonline.app.presentation.composeui.dashboard.ComposeDashboardDestinationsImpl
+import ru.eruditeonline.app.presentation.composeui.information.ComposeInformationDestinationsImpl
 import ru.eruditeonline.app.presentation.composeui.profile.ComposeAnonymProfileDestinationsImpl
 import ru.eruditeonline.app.presentation.composeui.profile.ComposeCommonProfileDestinationsImpl
 import ru.eruditeonline.app.presentation.managers.ComposeFeatureManager
@@ -11,6 +12,8 @@ import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsDe
 import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsDestinationsImpl
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardDestinations
 import ru.eruditeonline.app.presentation.ui.dashboard.DashboardDestinationsImpl
+import ru.eruditeonline.app.presentation.ui.information.InformationDestinations
+import ru.eruditeonline.app.presentation.ui.information.InformationDestinationsImpl
 import ru.eruditeonline.app.presentation.ui.profile.CommonProfileDestinations
 import ru.eruditeonline.app.presentation.ui.profile.CommonProfileDestinationsImpl
 import ru.eruditeonline.app.presentation.ui.profile.anonym.AnonymProfileDestinations
@@ -67,6 +70,19 @@ class DestinationModule {
             composeAnonymProfileDestinations
         } else {
             anonymProfileDestinations
+        }
+    }
+
+    @Provides
+    fun provideInformationDestinations(
+        composeFeatureManager: ComposeFeatureManager,
+        informationDestinations: InformationDestinationsImpl,
+        composeInformationDestinations: ComposeInformationDestinationsImpl,
+    ): InformationDestinations {
+        return if (composeFeatureManager.isComposeEnabled) {
+            composeInformationDestinations
+        } else {
+            informationDestinations
         }
     }
 }
