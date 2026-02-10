@@ -85,7 +85,7 @@ fun RatingScreen() {
 
     Scaffold(
         topBar = {
-            Column() {
+            Column {
                 TopAppBar(
                     title = {
                         Text(text = stringResource(R.string.rating_title))

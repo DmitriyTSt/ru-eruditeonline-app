@@ -18,9 +18,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SecondaryScrollableTabRow
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -37,7 +35,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
@@ -45,6 +43,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.asFlow
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.materials.HazeMaterials
+import dev.chrisbanes.haze.rememberHazeState
 import kotlinx.coroutines.flow.collectLatest
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
@@ -57,6 +60,8 @@ import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
+import ru.eruditeonline.app.presentation.composeui.views.RoundedCardTab
+import ru.eruditeonline.app.presentation.composeui.views.RoundedCardTabRow
 import ru.eruditeonline.app.presentation.ui.competition.filter.CompetitionFilterViewModel
 import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterGroup
 
@@ -66,6 +71,8 @@ fun CompetitionFilterScreen(filters: CompetitionFilters, viewModel: CompetitionF
     viewModel.ObserveDestinations()
     val screenResultDispatcher = LocalScreenResultDispatcher.current
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val hazeState = rememberHazeState()
+
     var applyButtonHeight by remember { mutableIntStateOf(0) }
     val density = LocalDensity.current
     val applyButtonHeightDp = remember(applyButtonHeight) {
@@ -89,29 +96,25 @@ fun CompetitionFilterScreen(filters: CompetitionFilters, viewModel: CompetitionF
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = stringResource(id = R.string.filter_title))
-                },
-                navigationIcon = {
-                    NavigationIcon(viewModel::navigateBack)
-                },
-                scrollBehavior = scrollBehavior,
-                actions = {
-                    TextButton(onClick = { viewModel.resetFilters() }) {
-                        Text(text = stringResource(R.string.reset_filters_label), style = AppTypography.bodyMedium)
+            Column {
+                TopAppBar(
+                    title = {
+                        Text(text = stringResource(id = R.string.filter_title))
+                    },
+                    modifier = Modifier.hazeEffect(state = hazeState, style = HazeMaterials.thin()),
+                    colors = TopAppBarDefaults.topAppBarColors().copy(
+                        containerColor = Color.Transparent,
+                    ),
+                    navigationIcon = {
+                        NavigationIcon(viewModel::navigateBack)
+                    },
+                    scrollBehavior = scrollBehavior,
+                    actions = {
+                        TextButton(onClick = { viewModel.resetFilters() }) {
+                            Text(text = stringResource(R.string.reset_filters_label), style = AppTypography.bodyMedium)
+                        }
                     }
-                }
-            )
-        },
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        contentWindowInsets = WindowInsets.systemBars,
-    ) { innerPaddings ->
-        Box(Modifier.fillMaxSize()) {
-            Column(
-                Modifier
-                    .padding(top = innerPaddings.calculateTopPadding())
-            ) {
+                )
                 FilterGroupTabs(
                     selectedTabIndex = selectedTabIndex,
                     onTabClick = {
@@ -119,25 +122,35 @@ fun CompetitionFilterScreen(filters: CompetitionFilters, viewModel: CompetitionF
                     },
                     filterGroups = filterGroups,
                     modifier = Modifier.zIndex(2f),
+                    hazeState = hazeState,
                 )
-
-                if (filterGroups.isNotEmpty()) {
-                    val filters = filterGroups[selectedTabIndex].filters
-                    FlowRow(
-                        modifier = Modifier
-                            .padding(horizontal = 12.dp)
-                            .verticalScroll(rememberScrollState()),
-                        horizontalArrangement = Arrangement.Start,
-                    ) {
-                        filters.forEach { filterItem ->
-                            FilterItemView(filterItem, viewModel::onFilterClick)
-                        }
-                        Spacer(
-                            Modifier
-                                .fillMaxWidth()
-                                .height(innerPaddings.calculateBottomPadding() + applyButtonHeightDp + 16.dp)
-                        )
+            }
+        },
+        contentWindowInsets = WindowInsets.systemBars,
+    ) { innerPaddings ->
+        Box(Modifier.fillMaxSize()) {
+            if (filterGroups.isNotEmpty()) {
+                val filters = filterGroups[selectedTabIndex].filters
+                FlowRow(
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .hazeSource(hazeState)
+                        .verticalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.Start,
+                ) {
+                    Spacer(
+                        Modifier
+                            .fillMaxWidth()
+                            .height(innerPaddings.calculateTopPadding())
+                    )
+                    filters.forEach { filterItem ->
+                        FilterItemView(filterItem, viewModel::onFilterClick)
                     }
+                    Spacer(
+                        Modifier
+                            .fillMaxWidth()
+                            .height(innerPaddings.calculateBottomPadding() + applyButtonHeightDp + 16.dp)
+                    )
                 }
             }
 
@@ -163,17 +176,19 @@ private fun FilterGroupTabs(
     selectedTabIndex: Int,
     onTabClick: (Int) -> Unit,
     filterGroups: List<FilterGroup>,
+    hazeState: HazeState,
     modifier: Modifier = Modifier,
 ) {
     if (filterGroups.isNotEmpty()) {
-        SecondaryScrollableTabRow(selectedTabIndex = selectedTabIndex, modifier = modifier) {
+        RoundedCardTabRow(modifier = modifier) {
             filterGroups.forEachIndexed { index, filterGroup ->
-                Tab(
+                RoundedCardTab(
                     selected = index == selectedTabIndex,
                     onClick = { onTabClick(index) },
                     text = {
                         Text(text = stringResource(filterGroup.titleRes))
-                    }
+                    },
+                    hazeState = hazeState,
                 )
             }
         }
