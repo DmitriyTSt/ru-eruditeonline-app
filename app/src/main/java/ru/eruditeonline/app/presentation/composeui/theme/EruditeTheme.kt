@@ -17,8 +17,8 @@ fun EruditeTheme(
     val colors = when (eruditeTheme) {
         EruditeThemeModel.STANDARD_LIGHT -> ColorStandard.reducedContrastLightColorScheme
         EruditeThemeModel.STANDARD_DARK -> ColorStandard.reducedContrastDarkColorScheme
-        EruditeThemeModel.AUTUMN_LIGHT -> lightColorScheme(ColorAutumn.Light)
-        EruditeThemeModel.AUTUMN_DARK -> darkColorScheme(ColorAutumn.Dark)
+        EruditeThemeModel.AUTUMN_LIGHT -> ColorAutumn.reducedContrastLightColorScheme
+        EruditeThemeModel.AUTUMN_DARK -> ColorAutumn.reducedContrastDarkColorScheme
     }
 
     val view = LocalView.current

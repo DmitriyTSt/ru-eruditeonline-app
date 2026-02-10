@@ -4,6 +4,9 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
+/**
+ * Сделано с помощью https://materialkolor.com/
+ */
 object ColorStandard {
     val Seed = Color(0xFF226644)
 
