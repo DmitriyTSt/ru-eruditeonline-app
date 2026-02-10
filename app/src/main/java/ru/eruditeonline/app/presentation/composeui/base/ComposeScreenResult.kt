@@ -1,25 +1,44 @@
 package ru.eruditeonline.app.presentation.composeui.base
 
-import android.os.Parcelable
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.navigation.NavController
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 
-inline fun <reified T : Parcelable> NavController.setResult(result: T) {
-    previousBackStackEntry?.savedStateHandle?.set(T::class.java.name, result)
+// AI Generated Надо будет подумать переписать
+
+class ScreenResultDispatcher {
+    val screenResults = mutableStateMapOf<String, Any>()
+
+    fun <T : Any> setResult(result: T) {
+        screenResults[result::class.java.name] = result
+    }
+
+    inline fun <reified T : Any> consumeResult(): T? {
+        val key = T::class.java.name
+        val result = screenResults[key] as? T
+        if (result != null) {
+            screenResults.remove(key)
+        }
+        return result
+    }
+}
+
+val LocalScreenResultDispatcher = staticCompositionLocalOf<ScreenResultDispatcher> {
+    error("ScreenResultDispatcher not found")
 }
 
 @Composable
-inline fun <reified T> NavController.SetResultListener(onResult: (T) -> Unit) {
-    val screenResultState = currentBackStackEntry
-        ?.savedStateHandle
-        ?.getLiveData<T>(T::class.java.name)?.observeAsState()
+fun rememberScreenResultDispatcher() = remember { ScreenResultDispatcher() }
 
-    screenResultState?.value?.let {
-        onResult(it)
-
-        currentBackStackEntry
-            ?.savedStateHandle
-            ?.remove<T>(T::class.java.name)
+@Composable
+inline fun <reified T : Any> ObserveScreenResult(crossinline onResult: (T) -> Unit) {
+    val screenResultDispatcher = LocalScreenResultDispatcher.current
+    val result = screenResultDispatcher.consumeResult<T>()
+    LaunchedEffect(result) {
+        if (result != null) {
+            onResult(result)
+        }
     }
 }

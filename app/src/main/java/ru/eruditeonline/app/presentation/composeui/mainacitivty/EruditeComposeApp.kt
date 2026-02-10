@@ -20,31 +20,49 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import dev.chrisbanes.haze.hazeSource
 import dev.chrisbanes.haze.rememberHazeState
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.presentation.composeui.appupdate.AppUpdate
+import ru.eruditeonline.app.presentation.composeui.appupdate.AppUpdateScreen
 import ru.eruditeonline.app.presentation.composeui.auth.login.LoginScreen
+import ru.eruditeonline.app.presentation.composeui.auth.login.Login
 import ru.eruditeonline.app.presentation.composeui.auth.registration.RegistrationScreen
+import ru.eruditeonline.app.presentation.composeui.auth.registration.Registration
 import ru.eruditeonline.app.presentation.composeui.base.BaseScreen
 import ru.eruditeonline.app.presentation.composeui.base.LocalBackStack
+import ru.eruditeonline.app.presentation.composeui.base.LocalScreenResultDispatcher
 import ru.eruditeonline.app.presentation.composeui.base.LocalViewModelFactory
-import ru.eruditeonline.app.presentation.composeui.base.appViewModel
+import ru.eruditeonline.app.presentation.composeui.base.ScreenWithBottomNavigation
+import ru.eruditeonline.app.presentation.composeui.base.rememberScreenResultDispatcher
 import ru.eruditeonline.app.presentation.composeui.competition.detail.Competition
 import ru.eruditeonline.app.presentation.composeui.competition.detail.CompetitionScreen
+import ru.eruditeonline.app.presentation.composeui.competition.filter.CompetitionFilter
 import ru.eruditeonline.app.presentation.composeui.competition.filter.CompetitionFilterScreen
+import ru.eruditeonline.app.presentation.composeui.competition.items.Competitions
 import ru.eruditeonline.app.presentation.composeui.competition.items.CompetitionsScreen
 import ru.eruditeonline.app.presentation.composeui.dashboard.Dashboard
 import ru.eruditeonline.app.presentation.composeui.dashboard.DashboardScreen
+import ru.eruditeonline.app.presentation.composeui.debug.Debug
 import ru.eruditeonline.app.presentation.composeui.debug.DebugScreen
-import ru.eruditeonline.app.presentation.composeui.model.Screen
+import ru.eruditeonline.app.presentation.composeui.profile.Profile
 import ru.eruditeonline.app.presentation.composeui.profile.ProfileScreen
+import ru.eruditeonline.app.presentation.composeui.rating.Rating
 import ru.eruditeonline.app.presentation.composeui.rating.RatingScreen
+import ru.eruditeonline.app.presentation.composeui.result.common.CommonResults
 import ru.eruditeonline.app.presentation.composeui.result.common.CommonResultListScreen
+import ru.eruditeonline.app.presentation.composeui.result.info.Info
+import ru.eruditeonline.app.presentation.composeui.result.info.InfoScreen
+import ru.eruditeonline.app.presentation.composeui.result.search.SearchResults
+import ru.eruditeonline.app.presentation.composeui.result.search.SearchResultsScreen
+import ru.eruditeonline.app.presentation.composeui.result.user.UserResults
+import ru.eruditeonline.app.presentation.composeui.result.user.UserResultsScreen
+import ru.eruditeonline.app.presentation.composeui.settings.Settings
 import ru.eruditeonline.app.presentation.composeui.settings.SettingsScreen
+import ru.eruditeonline.app.presentation.composeui.splash.Splash
+import ru.eruditeonline.app.presentation.composeui.splash.SplashScreen
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
 
@@ -52,6 +70,7 @@ import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
 fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvider.Factory) {
     var eruditeTheme by remember { mutableStateOf(EruditeThemeModel.STANDARD_LIGHT) }
     val backStack = remember { mutableStateListOf(startScreen) }
+    val screenResultDispatcher = rememberScreenResultDispatcher()
     val hazeState = rememberHazeState()
 
     EruditeTheme(
@@ -67,90 +86,58 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
                 CompositionLocalProvider(
                     LocalBackStack provides backStack,
                     LocalViewModelFactory provides viewModelFactory,
+                    LocalScreenResultDispatcher provides screenResultDispatcher,
                 ) {
                     NavDisplay(
                         backStack = backStack,
                         onBack = { backStack.removeLastOrNull() },
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .hazeSource(hazeState),
                         entryProvider = entryProvider {
+                            entry<Splash> { SplashScreen() }
+                            entry<AppUpdate> { AppUpdateScreen() }
                             entry<Dashboard> { DashboardScreen() }
+                            entry<Competitions> { CompetitionsScreen() }
+                            entry<CompetitionFilter> { CompetitionFilterScreen(it.filters) }
+                            entry<Rating> { RatingScreen() }
+                            entry<Profile> { ProfileScreen() }
                             entry<Competition> { CompetitionScreen(it.id) }
+                            entry<SearchResults> { SearchResultsScreen() }
+                            entry<UserResults> { UserResultsScreen() }
+                            entry<CommonResults> { CommonResultListScreen() }
+                            entry<Settings> {
+                                SettingsScreen(
+                                    currentTheme = eruditeTheme,
+                                    onBackClick = { backStack.removeLastOrNull() },
+                                    selectTheme = { eruditeTheme = it },
+                                )
+                            }
+                            entry<Info> { InfoScreen(it.path) }
+                            entry<Debug> { DebugScreen() }
+                            entry<Login> { LoginScreen() }
+                            entry<Registration> { RegistrationScreen() }
                         },
                     )
-                }
-                NavHost(
-                    navController = navController,
-                    startDestination = startScreen?.route ?: Screen.Dashboard.route,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .hazeSource(hazeState),
-                ) {
-                    composable(Screen.Dashboard.route) {
-                        DashboardScreen(
-                            navController = navController,
-                            viewModel = appViewModel(viewModelFactory),
-                        )
-                    }
-                    composable(Screen.Competitions.route) {
-                        CompetitionsScreen(
-                            navController = navController,
-                            viewModel = appViewModel(viewModelFactory),
-                        )
-                    }
-                    composable(Screen.CompetitionFilter.route) {
-                        CompetitionFilterScreen(
-                            navController = navController,
-                            viewModel = appViewModel(viewModelFactory),
-                        )
-                    }
-                    composable(Screen.Rating.route) { RatingScreen(/*...*/) }
-                    composable(Screen.Profile.route) {
-                        ProfileScreen(
-                            navController = navController,
-                            viewModel = appViewModel(viewModelFactory),
-                            viewModelFactory = viewModelFactory,
-                        )
-                    }
-                    composable(Screen.Competition.route, Screen.Competition.arguments) { backStackEntry ->
-                        CompetitionScreen(
-                            id = backStackEntry.arguments?.getInt("id") ?: 0,
-                            navController = navController,
-                            viewModel = appViewModel(viewModelFactory),
-                        )
-                    }
-                    composable(Screen.SearchResults.route) { }
-                    composable(Screen.UserResults.route) { }
-                    composable(Screen.CommonResults.route) {
-                        CommonResultListScreen(navController, appViewModel(viewModelFactory))
-                    }
-                    composable(Screen.Settings.route) { SettingsScreen(navController, eruditeTheme) { eruditeTheme = it } }
-                    composable(Screen.Info.route) { }
-                    composable(Screen.Debug.route) {
-                        DebugScreen(
-                            navController = navController,
-                            viewModel = appViewModel(viewModelFactory),
-                        )
-                    }
-                    composable(Screen.Login.route) {
-                        LoginScreen(navController, appViewModel(viewModelFactory))
-                    }
-                    composable(Screen.Registration.route) {
-                        RegistrationScreen(navController, appViewModel(viewModelFactory))
-                    }
                 }
 
                 val density = LocalDensity.current
                 val horizontalPadding = 24.dp
                 val bottomPadding = dimensionResource(id = R.dimen.bottom_navigation_view_margin_bottom)
-                NavigationBarView(
-                    navController,
-                    hazeState,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .padding(horizontal = horizontalPadding)
-                        .padding(bottom = bottomPadding + with(density) {
-                            WindowInsets.navigationBars.getBottom(density).toDp()
-                        }),
-                )
+                val currentScreen = backStack.lastOrNull()
+                if (currentScreen is ScreenWithBottomNavigation) {
+                    NavigationBarView(
+                        currentScreen = currentScreen,
+                        backStack = backStack,
+                        hazeState = hazeState,
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(horizontal = horizontalPadding)
+                            .padding(bottom = bottomPadding + with(density) {
+                                WindowInsets.navigationBars.getBottom(density).toDp()
+                            }),
+                    )
+                }
             }
         }
     }

@@ -23,8 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
@@ -33,12 +31,8 @@ import ru.eruditeonline.app.presentation.ui.profile.ProfileViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen(
-    navController: NavController,
-    viewModel: ProfileViewModel,
-    viewModelFactory: ViewModelProvider.Factory,
-) {
-    ObserveDestinations(navController, viewModel)
+fun ProfileScreen(viewModel: ProfileViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
     val isAuthorized by viewModel.isAuthorizedLiveData.observeAsState(false)
 
     LaunchedEffect(Unit) {
@@ -66,13 +60,11 @@ fun ProfileScreen(
             ) {
                 if (isAuthorized) {
                     UserProfileContent(
-                        navController = navController,
-                        viewModel = appViewModel(viewModelFactory),
+                        viewModel = appViewModel(),
                     )
                 } else {
                     AnonymProfileContent(
-                        navController = navController,
-                        viewModel = appViewModel(viewModelFactory),
+                        viewModel = appViewModel(),
                     )
                 }
             }

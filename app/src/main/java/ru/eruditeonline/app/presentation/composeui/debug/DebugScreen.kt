@@ -22,10 +22,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
-import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
+import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
 import ru.eruditeonline.app.presentation.composeui.views.StateFlipperView
@@ -33,7 +34,8 @@ import ru.eruditeonline.app.presentation.ui.debug.DebugViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DebugScreen(navController: NavController, viewModel: DebugViewModel) {
+fun DebugScreen(viewModel: DebugViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
     val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
@@ -62,7 +64,7 @@ fun DebugScreen(navController: NavController, viewModel: DebugViewModel) {
                     Text(text = stringResource(id = R.string.debug_title))
                 },
                 navigationIcon = {
-                    NavigationIcon(navController)
+                    NavigationIcon(viewModel::navigateBack)
                 },
                 scrollBehavior = scrollBehavior
             )

@@ -1,29 +1,34 @@
 package ru.eruditeonline.app.presentation.composeui.profile
 
-import ru.eruditeonline.app.presentation.composeui.model.Screen
+import ru.eruditeonline.app.presentation.composeui.dashboard.Dashboard
+import ru.eruditeonline.app.presentation.composeui.result.common.CommonResults
+import ru.eruditeonline.app.presentation.composeui.result.info.Info
+import ru.eruditeonline.app.presentation.composeui.result.search.SearchResults
+import ru.eruditeonline.app.presentation.composeui.result.user.UserResults
+import ru.eruditeonline.app.presentation.composeui.settings.Settings
 import ru.eruditeonline.app.presentation.navigation.Destination
 import ru.eruditeonline.app.presentation.ui.profile.CommonProfileDestinations
 import javax.inject.Inject
 
 class ComposeCommonProfileDestinationsImpl @Inject constructor() : CommonProfileDestinations {
 
-    override fun userResults() = Destination.ComposeScreen(Screen.UserResults.route)
+    override fun userResults() = Destination.ComposeScreen(UserResults)
 
     /** Итоги */
-    override fun commonResults() = Destination.ComposeScreen(Screen.CommonResults.route)
+    override fun commonResults() = Destination.ComposeScreen(CommonResults)
 
     /** Поиск результатов по email */
-    override fun searchResultsByEmail() = Destination.ComposeScreen(Screen.SearchResults.route)
+    override fun searchResultsByEmail() = Destination.ComposeScreen(SearchResults)
 
     /** Перезагрузка стека */
     override fun reloadStack() = Destination.Stack(
-        Destination.ComposeScreen(Screen.Dashboard.route),
-        Destination.ComposeScreen(Screen.Profile.route),
+        Destination.ComposeScreen(Dashboard),
+        Destination.ComposeScreen(Profile),
     )
 
     /** Информация */
-    override fun information() = Destination.ComposeScreen(Screen.Info.route)
+    override fun information() = Destination.ComposeScreen(Info())
 
     /** Настройки */
-    override fun settings() = Destination.ComposeScreen(Screen.Settings.route)
+    override fun settings() = Destination.ComposeScreen(Settings)
 }

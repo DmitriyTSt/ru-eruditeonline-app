@@ -17,17 +17,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.views.StateFlipperView
 import ru.eruditeonline.app.presentation.ui.profile.user.UserProfileViewModel
 
 @Composable
-fun UserProfileContent(navController: NavController, viewModel: UserProfileViewModel) {
-    ObserveDestinations(navController, viewModel)
+fun UserProfileContent(viewModel: UserProfileViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
 
     val profileState by viewModel.profileLiveData.observeAsState(LoadableState.Loading())
 

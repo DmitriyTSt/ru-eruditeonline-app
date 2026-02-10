@@ -17,7 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,20 +25,20 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.compose.currentBackStackEntryAsState
 import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.hazeEffect
 import dev.chrisbanes.haze.materials.HazeMaterials
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.presentation.composeui.base.BaseScreen
 import ru.eruditeonline.app.presentation.composeui.model.BottomMenuItem
 
 @Composable
-fun NavigationBarView(navController: NavController, hazeState: HazeState, modifier: Modifier = Modifier) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-
+fun NavigationBarView(
+    currentScreen: BaseScreen,
+    backStack: SnapshotStateList<BaseScreen>,
+    hazeState: HazeState,
+    modifier: Modifier = Modifier,
+) {
     val elevation = dimensionResource(id = R.dimen.default_card_elevation)
     val horizontalItemPadding = 8.dp
 
@@ -70,14 +70,10 @@ fun NavigationBarView(navController: NavController, hazeState: HazeState, modifi
                     BottomMenuItem.Profile,
                 ).forEach { item ->
                     NavigationBarItem(
-                        selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
+                        selected = item.screen::class == currentScreen::class,
                         onClick = {
-                            navController.navigate(item.route) {
-//                        popUpTo(navController.graph.findStartDestination().id) {
-//                            saveState = true
-//                        }
-                                launchSingleTop = true
-                                restoreState = true
+                            if (item.screen::class != currentScreen::class) {
+                                backStack.add(item.screen)
                             }
                         },
                         icon = {

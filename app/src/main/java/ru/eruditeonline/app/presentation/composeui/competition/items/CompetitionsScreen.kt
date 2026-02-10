@@ -30,12 +30,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
-import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
-import ru.eruditeonline.app.presentation.composeui.base.SetResultListener
+import ru.eruditeonline.app.presentation.composeui.base.ObserveScreenResult
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.paging.PagingStateFlipperView
 import ru.eruditeonline.app.presentation.composeui.paging.applyFooterState
 import ru.eruditeonline.app.presentation.composeui.paging.isSuccess
@@ -47,15 +47,15 @@ import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsVi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CompetitionsScreen(navController: NavController, viewModel: CompetitionItemsViewModel) {
-    ObserveDestinations(navController, viewModel)
+fun CompetitionsScreen(viewModel: CompetitionItemsViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     val competitionPagingItems = viewModel.pagingDataLiveData.asFlow().collectAsLazyPagingItems()
     val listViewType by viewModel.listViewTypeLiveData.observeAsState(CompetitionItemsViewType.CARD)
     val filters by viewModel.filtersLiveData.observeAsState(CompetitionFilters(emptyList(), emptyList()))
 
-    navController.SetResultListener<FilterRequest> { filterRequest ->
+    ObserveScreenResult<FilterRequest> { filterRequest ->
         viewModel.loadCompetitions(
             ageIds = filterRequest.ageIds,
             subjectIds = filterRequest.subjectIds,

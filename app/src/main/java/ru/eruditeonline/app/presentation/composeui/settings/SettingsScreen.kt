@@ -14,11 +14,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
@@ -28,8 +26,8 @@ import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    navController: NavController,
     currentTheme: EruditeThemeModel,
+    onBackClick: () -> Unit,
     selectTheme: (EruditeThemeModel) -> Unit,
 ) {
     Scaffold(
@@ -39,7 +37,7 @@ fun SettingsScreen(
                     Text(text = stringResource(R.string.settings_title))
                 },
                 navigationIcon = {
-                    NavigationIcon(navController)
+                    NavigationIcon(onBackClick)
                 }
             )
         }
@@ -78,8 +76,8 @@ fun SettingsScreen(
 fun SettingsScreenPreview() {
     EruditeTheme {
         SettingsScreen(
-            navController = NavController(LocalContext.current),
             currentTheme = EruditeThemeModel.STANDARD_LIGHT,
+            onBackClick = {},
             selectTheme = {})
     }
 }

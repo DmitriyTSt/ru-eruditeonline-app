@@ -25,27 +25,30 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.asFlow
-import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.data.model.competition.FilterItem
-import ru.eruditeonline.app.presentation.composeui.base.GetScreenArguments
-import ru.eruditeonline.app.presentation.composeui.base.setResult
+import ru.eruditeonline.app.presentation.composeui.base.LocalScreenResultDispatcher
+import ru.eruditeonline.app.presentation.composeui.base.LocalBackStack
+import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
+import ru.eruditeonline.app.presentation.composeui.base.ScreenResultDispatcher
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
@@ -54,17 +57,19 @@ import ru.eruditeonline.app.presentation.ui.competition.filter.model.FilterGroup
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-fun CompetitionFilterScreen(navController: NavController, viewModel: CompetitionFilterViewModel) {
+fun CompetitionFilterScreen(filters: CompetitionFilters, viewModel: CompetitionFilterViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
+    val screenResultDispatcher = LocalScreenResultDispatcher.current
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
-    navController.GetScreenArguments<CompetitionFilters> {
-        viewModel.initFilters(it)
+    LaunchedEffect(filters) {
+        viewModel.initFilters(filters)
     }
 
     LaunchedEffect(Unit) {
         viewModel.applyFilterLiveEvent.asFlow().collectLatest { filterRequest ->
-            navController.setResult(filterRequest)
-            navController.popBackStack()
+            screenResultDispatcher.setResult(filterRequest)
+            viewModel.navigateBack()
         }
     }
 
@@ -79,7 +84,7 @@ fun CompetitionFilterScreen(navController: NavController, viewModel: Competition
                     Text(text = stringResource(id = R.string.filter_title))
                 },
                 navigationIcon = {
-                    NavigationIcon(navController)
+                    NavigationIcon(viewModel::navigateBack)
                 },
                 scrollBehavior = scrollBehavior,
                 actions = {
@@ -184,6 +189,14 @@ private fun FilterItemViewPreview() {
 @Composable
 fun Preview() {
     EruditeTheme {
-        CompetitionFilterScreen(NavController(LocalContext.current), CompetitionFilterViewModel())
+        CompositionLocalProvider(
+            LocalBackStack provides mutableStateListOf(),
+            LocalScreenResultDispatcher provides ScreenResultDispatcher(),
+        ) {
+            CompetitionFilterScreen(
+                filters = CompetitionFilters(emptyList(), emptyList()),
+                viewModel = CompetitionFilterViewModel(),
+            )
+        }
     }
 }

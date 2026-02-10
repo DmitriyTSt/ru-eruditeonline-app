@@ -50,7 +50,7 @@ class MainComposeActivity : ComponentActivity() {
             val screen = when (startScreenState.getOrNull()) {
                 is SplashUseCase.Result.AppUpdateScreen -> AppUpdate
                 SplashUseCase.Result.MainScreen -> Dashboard
-                null -> Splash
+                null -> Dashboard
             }
             EruditeComposeApp(startScreen = screen, viewModelFactory = viewModelFactory)
         }

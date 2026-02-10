@@ -1,9 +1,11 @@
 package ru.eruditeonline.app.presentation.composeui.auth.registration
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
+import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.ui.auth.registration.RegistrationViewModel
 
 @Composable
-fun RegistrationScreen(navController: NavController, viewModel: RegistrationViewModel) {
+fun RegistrationScreen(viewModel: RegistrationViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
 }

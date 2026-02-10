@@ -32,17 +32,17 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.theme.AppTypography
 import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
 import ru.eruditeonline.app.presentation.ui.auth.login.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
-    ObserveDestinations(navController, viewModel)
+fun LoginScreen(viewModel: LoginViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     var login by remember { mutableStateOf("") }
@@ -57,7 +57,7 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel) {
             TopAppBar(
                 title = {},
                 navigationIcon = {
-                    NavigationIcon(navController)
+                    NavigationIcon(viewModel::navigateBack)
                 },
                 scrollBehavior = scrollBehavior,
             )

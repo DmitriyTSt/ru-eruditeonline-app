@@ -20,10 +20,10 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
-import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
+import ru.eruditeonline.app.presentation.composeui.base.appViewModel
 import ru.eruditeonline.app.presentation.composeui.paging.PagingStateFlipperView
 import ru.eruditeonline.app.presentation.composeui.paging.applyFooterState
 import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
@@ -31,8 +31,8 @@ import ru.eruditeonline.app.presentation.ui.result.common.CommonResultListViewMo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CommonResultListScreen(navController: NavController, viewModel: CommonResultListViewModel) {
-    ObserveDestinations(navController, viewModel)
+fun CommonResultListScreen(viewModel: CommonResultListViewModel = appViewModel()) {
+    viewModel.ObserveDestinations()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
 
     val resultsPagingItems = viewModel.resultsLiveData.asFlow().collectAsLazyPagingItems()
@@ -50,7 +50,7 @@ fun CommonResultListScreen(navController: NavController, viewModel: CommonResult
                     Text(text = stringResource(id = R.string.common_result_list_title))
                 },
                 navigationIcon = {
-                    NavigationIcon(navController)
+                    NavigationIcon(viewModel::navigateBack)
                 },
                 scrollBehavior = scrollBehavior,
             )
