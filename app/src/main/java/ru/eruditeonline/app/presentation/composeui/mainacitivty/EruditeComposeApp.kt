@@ -119,7 +119,7 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
                             entry<Profile> { ProfileScreen() }
                             entry<Competition> { CompetitionScreen(it.id) }
                             entry<SearchResults> { SearchResultsScreen() }
-                            entry<UserResults> { UserResultsScreen() }
+                            entry<UserResults> { UserResultsScreen(initialEmail = it.email) }
                             entry<CommonResults> { CommonResultListScreen() }
                             entry<Settings> {
                                 SettingsScreen(

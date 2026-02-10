@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class ComposeCommonProfileDestinationsImpl @Inject constructor() : CommonProfileDestinations {
 
-    override fun userResults() = Destination.ComposeScreen(UserResults)
+    override fun userResults() = Destination.ComposeScreen(UserResults())
 
     /** Итоги */
     override fun commonResults() = Destination.ComposeScreen(CommonResults)
