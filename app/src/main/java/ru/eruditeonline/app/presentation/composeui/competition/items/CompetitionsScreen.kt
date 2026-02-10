@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,12 +27,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.asFlow
 import androidx.paging.compose.collectAsLazyPagingItems
+import dev.chrisbanes.haze.hazeEffect
+import dev.chrisbanes.haze.hazeSource
+import dev.chrisbanes.haze.materials.HazeMaterials
+import dev.chrisbanes.haze.rememberHazeState
 import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.competition.CompetitionFilters
 import ru.eruditeonline.app.presentation.composeui.base.BottomNavigationSpaceWithInset
@@ -51,6 +58,7 @@ import ru.eruditeonline.app.presentation.ui.competition.items.CompetitionItemsVi
 fun CompetitionsScreen(viewModel: CompetitionItemsViewModel = appViewModel()) {
     viewModel.ObserveDestinations()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(rememberTopAppBarState())
+    val hazeState = rememberHazeState()
 
     val competitionPagingItems = viewModel.pagingDataLiveData.asFlow().collectAsLazyPagingItems()
     val listViewType by viewModel.listViewTypeLiveData.observeAsState(CompetitionItemsViewType.CARD)
@@ -75,6 +83,10 @@ fun CompetitionsScreen(viewModel: CompetitionItemsViewModel = appViewModel()) {
                 title = {
                     Text(text = stringResource(id = R.string.competition_items_title))
                 },
+                modifier = Modifier.hazeEffect(state = hazeState, style = HazeMaterials.thin()),
+                colors = TopAppBarDefaults.topAppBarColors().copy(
+                    containerColor = Color.Transparent,
+                ),
                 scrollBehavior = scrollBehavior,
                 actions = {
                     if (competitionPagingItems.isSuccess) {
@@ -100,7 +112,6 @@ fun CompetitionsScreen(viewModel: CompetitionItemsViewModel = appViewModel()) {
                 }
             )
         },
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         contentWindowInsets = WindowInsets.statusBars,
     ) { innerPaddings ->
         PagingStateFlipperView(
@@ -111,11 +122,20 @@ fun CompetitionsScreen(viewModel: CompetitionItemsViewModel = appViewModel()) {
             },
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPaddings),
+                .padding(
+                    start = innerPaddings.calculateStartPadding(LayoutDirection.Ltr),
+                    end = innerPaddings.calculateEndPadding(LayoutDirection.Ltr)
+                )
+                .hazeSource(hazeState),
         ) {
             LazyColumn(
                 contentPadding = PaddingValues(12.dp),
             ) {
+                item {
+                    Spacer(
+                        Modifier.height(innerPaddings.calculateTopPadding())
+                    )
+                }
                 when (listViewType) {
                     CompetitionItemsViewType.CARD -> {
                         items(
