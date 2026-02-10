@@ -24,7 +24,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -36,6 +35,7 @@ import ru.eruditeonline.app.R
 import ru.eruditeonline.app.data.model.LoadableState
 import ru.eruditeonline.app.data.model.competition.CompetitionItemShort
 import ru.eruditeonline.app.data.model.main.MainSection
+import ru.eruditeonline.app.data.model.main.Tagline
 import ru.eruditeonline.app.presentation.composeui.base.BottomNavigationSpaceWithInset
 import ru.eruditeonline.app.presentation.composeui.base.ObserveDestinations
 import ru.eruditeonline.app.presentation.composeui.base.appViewModel
@@ -112,7 +112,8 @@ fun DashboardScreen(viewModel: DashboardViewModel = appViewModel()) {
                     mainSections.forEach { mainSection ->
                         MainSectionView(
                             mainSection = mainSection,
-                            onCompetitionClick = { viewModel.openCompetition(it) }
+                            onCompetitionClick = { viewModel.openCompetition(it) },
+                            onTaglineClick = { viewModel.openTaglineContent(it) },
                         )
                     }
                     BottomNavigationSpaceWithInset(innerPaddings, 16.dp)
@@ -123,9 +124,14 @@ fun DashboardScreen(viewModel: DashboardViewModel = appViewModel()) {
 }
 
 @Composable
-fun MainSectionView(mainSection: MainSection, onCompetitionClick: (CompetitionItemShort) -> Unit, modifier: Modifier = Modifier) {
+fun MainSectionView(
+    mainSection: MainSection,
+    onCompetitionClick: (CompetitionItemShort) -> Unit,
+    onTaglineClick: (Tagline) -> Unit,
+    modifier: Modifier = Modifier
+) {
     when (mainSection) {
         is MainSection.CompetitionsBlock -> MainSectionCompetitionsBlock(mainSection, onCompetitionClick, modifier)
-        is MainSection.TaglineBlock -> MainSectionTaglineBlock(mainSection, modifier)
+        is MainSection.TaglineBlock -> MainSectionTaglineBlock(mainSection, onTaglineClick, modifier)
     }
 }

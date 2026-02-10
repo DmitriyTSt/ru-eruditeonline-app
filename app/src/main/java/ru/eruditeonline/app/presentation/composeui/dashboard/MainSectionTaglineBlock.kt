@@ -1,6 +1,7 @@
 package ru.eruditeonline.app.presentation.composeui.dashboard
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,10 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.eruditeonline.app.data.model.main.MainSection
+import ru.eruditeonline.app.data.model.main.Tagline
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MainSectionTaglineBlock(mainSection: MainSection.TaglineBlock, modifier: Modifier = Modifier) {
+fun MainSectionTaglineBlock(
+    mainSection: MainSection.TaglineBlock,
+    onTaglineClick: (Tagline) -> Unit,
+    modifier: Modifier = Modifier
+) {
     val state = rememberPagerState { mainSection.taglines.size }
     HorizontalPager(
         state = state,
@@ -27,6 +33,7 @@ fun MainSectionTaglineBlock(mainSection: MainSection.TaglineBlock, modifier: Mod
                 tagline = mainSection.taglines[it],
                 modifier = Modifier
                     .weight(1f)
+                    .clickable { onTaglineClick(mainSection.taglines[it]) }
             )
             Spacer(modifier = Modifier.width(4.dp))
         }
