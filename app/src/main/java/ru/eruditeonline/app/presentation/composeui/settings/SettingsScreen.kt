@@ -11,12 +11,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -31,10 +32,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.eruditeonline.app.R
+import ru.eruditeonline.app.presentation.composeui.theme.ColorAutumn
+import ru.eruditeonline.app.presentation.composeui.theme.ColorStandard
+import ru.eruditeonline.app.presentation.composeui.theme.ColorWinter
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeTheme
 import ru.eruditeonline.app.presentation.composeui.theme.EruditeThemeModel
 import ru.eruditeonline.app.presentation.composeui.views.NavigationIcon
@@ -197,37 +201,22 @@ private data class ThemePreviewPalette(
 )
 
 private fun EruditeThemeModel.previewPalette(): ThemePreviewPalette {
+    val colorScheme = colorScheme()
+    return ThemePreviewPalette(
+        primary = colorScheme.primary,
+        secondary = colorScheme.secondary,
+        background = colorScheme.surfaceContainerHighest,
+    )
+}
+
+private fun EruditeThemeModel.colorScheme(): ColorScheme {
     return when (this) {
-        EruditeThemeModel.STANDARD_LIGHT -> ThemePreviewPalette(
-            primary = Color(0xFF006D3A),
-            secondary = Color(0xFF3E693A),
-            background = Color(0xFFEFF8EE),
-        )
-        EruditeThemeModel.STANDARD_DARK -> ThemePreviewPalette(
-            primary = Color(0xFF80D89A),
-            secondary = Color(0xFFA2D394),
-            background = Color(0xFF1B221C),
-        )
-        EruditeThemeModel.AUTUMN_LIGHT -> ThemePreviewPalette(
-            primary = Color(0xFF8E4D22),
-            secondary = Color(0xFF7D570D),
-            background = Color(0xFFFFF5EC),
-        )
-        EruditeThemeModel.AUTUMN_DARK -> ThemePreviewPalette(
-            primary = Color(0xFFFFB68A),
-            secondary = Color(0xFFFFCB6B),
-            background = Color(0xFF2A211B),
-        )
-        EruditeThemeModel.WINTER_LIGHT -> ThemePreviewPalette(
-            primary = Color(0xFF005EAA),
-            secondary = Color(0xFF006874),
-            background = Color(0xFFECF4FF),
-        )
-        EruditeThemeModel.WINTER_DARK -> ThemePreviewPalette(
-            primary = Color(0xFFA3C9FF),
-            secondary = Color(0xFF74D1E0),
-            background = Color(0xFF1A212B),
-        )
+        EruditeThemeModel.STANDARD_LIGHT -> ColorStandard.reducedContrastLightColorScheme
+        EruditeThemeModel.STANDARD_DARK -> ColorStandard.reducedContrastDarkColorScheme
+        EruditeThemeModel.AUTUMN_LIGHT -> ColorAutumn.reducedContrastLightColorScheme
+        EruditeThemeModel.AUTUMN_DARK -> ColorAutumn.reducedContrastDarkColorScheme
+        EruditeThemeModel.WINTER_LIGHT -> ColorWinter.reducedContrastLightColorScheme
+        EruditeThemeModel.WINTER_DARK -> ColorWinter.reducedContrastDarkColorScheme
     }
 }
 
