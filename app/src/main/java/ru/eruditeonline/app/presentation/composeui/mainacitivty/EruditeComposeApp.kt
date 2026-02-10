@@ -58,8 +58,8 @@ import ru.eruditeonline.app.presentation.composeui.rating.Rating
 import ru.eruditeonline.app.presentation.composeui.rating.RatingScreen
 import ru.eruditeonline.app.presentation.composeui.result.common.CommonResultListScreen
 import ru.eruditeonline.app.presentation.composeui.result.common.CommonResults
-import ru.eruditeonline.app.presentation.composeui.result.info.Info
-import ru.eruditeonline.app.presentation.composeui.result.info.InfoScreen
+import ru.eruditeonline.app.presentation.composeui.webpage.WebPage
+import ru.eruditeonline.app.presentation.composeui.webpage.InfoScreen
 import ru.eruditeonline.app.presentation.composeui.result.search.SearchResults
 import ru.eruditeonline.app.presentation.composeui.result.search.SearchResultsScreen
 import ru.eruditeonline.app.presentation.composeui.result.user.UserResults
@@ -128,7 +128,7 @@ fun EruditeComposeApp(startScreen: BaseScreen, viewModelFactory: ViewModelProvid
                                     selectTheme = { eruditeTheme = it },
                                 )
                             }
-                            entry<Info> { InfoScreen(it.path) }
+                            entry<WebPage> { InfoScreen(it.path) }
                             entry<Debug> { DebugScreen() }
                             entry<Login> { LoginScreen() }
                             entry<Registration> { RegistrationScreen() }

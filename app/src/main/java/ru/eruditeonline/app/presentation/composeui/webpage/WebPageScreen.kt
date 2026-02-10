@@ -1,4 +1,4 @@
-package ru.eruditeonline.app.presentation.composeui.result.info
+package ru.eruditeonline.app.presentation.composeui.webpage
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

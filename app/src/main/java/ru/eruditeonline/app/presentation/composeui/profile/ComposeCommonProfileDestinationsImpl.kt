@@ -2,7 +2,7 @@ package ru.eruditeonline.app.presentation.composeui.profile
 
 import ru.eruditeonline.app.presentation.composeui.dashboard.Dashboard
 import ru.eruditeonline.app.presentation.composeui.result.common.CommonResults
-import ru.eruditeonline.app.presentation.composeui.result.info.Info
+import ru.eruditeonline.app.presentation.composeui.webpage.WebPage
 import ru.eruditeonline.app.presentation.composeui.result.search.SearchResults
 import ru.eruditeonline.app.presentation.composeui.result.user.UserResults
 import ru.eruditeonline.app.presentation.composeui.settings.Settings
@@ -27,7 +27,7 @@ class ComposeCommonProfileDestinationsImpl @Inject constructor() : CommonProfile
     )
 
     /** Информация */
-    override fun information() = Destination.ComposeScreen(Info())
+    override fun information() = Destination.ComposeScreen(WebPage())
 
     /** Настройки */
     override fun settings() = Destination.ComposeScreen(Settings)
